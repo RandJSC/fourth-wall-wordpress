@@ -3,3 +3,4 @@
 *.swo
 *~
 /build
+/node_modules

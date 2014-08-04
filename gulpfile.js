@@ -72,4 +72,16 @@ gulp.task('styles', function() {
       }).on('error', console.error.bind(console))
     ))
     .pipe($.pleeease)
+    .pipe(gulp.dest('build/css'));
 });
+
+gulp.task('plugins', function() {
+  console.log($);
+});
+
+// Load custom, per-project tasks from tasks folder
+try {
+  require('require-dir')('tasks');
+} catch (err) {
+  console.error(err);
+}

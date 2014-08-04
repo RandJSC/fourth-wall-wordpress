@@ -6,7 +6,7 @@
 'use strict';
 
 var gulp        = require('gulp');
-var $           = require('gulp-load-plugins')();
+var $           = require('gulp-load-plugins')({ lazy: true });
 var del         = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
@@ -75,7 +75,9 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('build/css'));
 });
 
-gulp.task('plugins', function() {
+gulp.task('clean', del.bind(null, ['.tmp', 'build']));
+
+gulp.task('gulp-plugins', function() {
   console.log($);
 });
 

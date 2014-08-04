@@ -25,6 +25,7 @@
     "gulp-uglify": "^0.3.1",
     "gulp-uncss": "^0.4.4",
     "gulp-useref": "^0.4.4",
+    "gulp-pleeease": "^0.0.5",
     "jshint-stylish": "^0.2.0",
     "opn": "^0.1.2",
     "psi": "^0.0.4",

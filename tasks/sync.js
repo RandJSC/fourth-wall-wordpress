@@ -20,6 +20,7 @@ gulp.task('sync:up', function() {
     ssh: true,
     port: 31173,
     recursive: true,
+    delete: true,
     args: [ '--verbose' ],
     onStdout: function(data) {
       gutil.log(data.toString());

@@ -4,34 +4,31 @@
 var gulp    = require('gulp');
 var colors  = require('colors');
 var path    = require('path');
-var rsync   = require('rsyncwrapper').rsync;
 var gutil   = require('gulp-util');
+var shell   = require('gulp-shell');
 var secrets = require('../secrets.json');
+var _       = require('lodash');
 
 gulp.task('sync:up', function() {
   console.log('Syncing Up...'.blue);
 
+  var config     = secrets.servers.staging.rsync;
   var buildDir   = path.join(__dirname, '..', 'build/');
-  var remotePath = secrets.servers.staging.rsyncDest;
-
-  rsync({
-    src: buildDir,
-    dest: remotePath,
-    ssh: true,
-    port: 31173,
-    recursive: true,
-    delete: true,
-    args: [ '--verbose' ],
-    onStdout: function(data) {
-      gutil.log(data.toString());
-    },
-    onStderr: function(data) {
-      gutil.log(data.toString());
-    }
-  }, function(err) {
-    if (err !== null) {
-      console.error(err);
-    }
+  var commandTpl = [
+    'rsync -avzr',
+    '-e "ssh -p <%= port %>"',
+    '--delete',
+    '<%= buildDir %>',
+    '<%= username %>@<%= hostname %>:<%= path %>'
+  ].join(' ');
+  var rsyncCmd   = _.template(commandTpl, {
+    port: config.port,
+    buildDir: buildDir,
+    username: config.username,
+    hostname: config.hostname,
+    path: config.path
   });
 
+  return gulp.src('', { read: false })
+    .pipe(shell(rsyncCmd));
 });

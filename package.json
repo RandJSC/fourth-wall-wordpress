@@ -6,6 +6,7 @@
     "node": ">=0.10.0"
   },
   "devDependencies": {
+    "colors": "^0.6.2",
     "browser-sync": "^1.1.2",
     "del": "^0.1.1",
     "gulp": "^3.8.5",

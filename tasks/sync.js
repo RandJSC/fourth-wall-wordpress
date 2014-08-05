@@ -1,26 +1,18 @@
 /* jshint -W097 */
 
 'use strict';
-var gulp   = require('gulp');
-var colors = require('colors');
-var path   = require('path');
-var rsync  = require('rsyncwrapper').rsync;
-var gutil  = require('gulp-util');
+var gulp    = require('gulp');
+var colors  = require('colors');
+var path    = require('path');
+var rsync   = require('rsyncwrapper').rsync;
+var gutil   = require('gulp-util');
+var secrets = require('../secrets.json');
 
 gulp.task('sync:up', function() {
   console.log('Syncing Up...'.blue);
 
-  var subdomain  = 'fourthwall.fifthroomhosting.com';
-  var themeSlug  = 'fourthwall';
   var buildDir   = path.join(__dirname, '..', 'build/');
-  var remotePath = path.join(
-    'frcweb@fifthroomcreative.com:public_html',
-    subdomain,
-    'public',
-    'wp-content',
-    'themes',
-    themeSlug
-  );
+  var remotePath = secrets.servers.staging.rsyncDest;
 
   rsync({
     src: buildDir,

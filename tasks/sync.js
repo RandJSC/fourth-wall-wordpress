@@ -1,11 +1,12 @@
 /* jshint -W097 */
 
 'use strict';
+
+var secrets = require('../secrets.json');
 var gulp    = require('gulp');
 var colors  = require('colors');
 var path    = require('path');
 var shell   = require('gulp-shell');
-var secrets = require('../secrets.json');
 var _       = require('lodash');
 
 gulp.task('sync:up', function() {

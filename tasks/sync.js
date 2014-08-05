@@ -4,7 +4,6 @@
 var gulp    = require('gulp');
 var colors  = require('colors');
 var path    = require('path');
-var gutil   = require('gulp-util');
 var shell   = require('gulp-shell');
 var secrets = require('../secrets.json');
 var _       = require('lodash');

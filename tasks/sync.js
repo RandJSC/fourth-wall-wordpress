@@ -1,3 +1,6 @@
+/* jshint -W097 */
+
+'use strict';
 var gulp   = require('gulp');
 var colors = require('colors');
 var path   = require('path');

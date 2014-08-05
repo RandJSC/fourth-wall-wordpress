@@ -1,3 +1,4 @@
+/* jshint -W097 */
 /**
  * Fourth Wall Events WordPress Theme
  * Gulp Tasks

@@ -1,0 +1,12 @@
+{
+  "indent": 2,
+  "undef": true,
+  "predef": [
+    "module",
+    "console",
+    "window",
+    "document",
+    "require",
+    "__dirname"
+  ]
+}

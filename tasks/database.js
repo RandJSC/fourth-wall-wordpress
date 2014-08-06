@@ -17,6 +17,10 @@ var localConfig  = secrets.servers.dev;
 var remoteConfig = secrets.servers.staging;
 
 var commandTemplate = function(parts, bindings) {
+  if (!_.isObject(bindings)) {
+    bindings = {};
+  }
+
   bindings = _.assign({}, bindings, {
     dev: localConfig,
     staging: remoteConfig

@@ -39,13 +39,17 @@ var commandTemplate = function(parts, bindings, glue) {
 };
 
 var remoteShell = function(command) {
+  var escapeQuotes = function(str) {
+    return str.replace(/([\'\"])/g, "\\$1");
+  };
+
   var cmd = commandTemplate([
     'ssh',
     '-p',
     '<%= staging.ssh.port %>',
     '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>',
-    "'<%= command %>'"
-  ], { command: command });
+    "'<%= escape(command) %>'"
+  ], { command: command, escape: escapeQuotes });
   return shell(cmd);
 };
 

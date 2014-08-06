@@ -64,8 +64,8 @@ var mysqlQuery = function(query, remote) {
     'mysql',
     '--user="<%= remote ? staging.mysql.username : dev.mysql.username %>"',
     '--password="<%= remote ? staging.mysql.password : dev.mysql.password %>"',
-    "--execute=\"<%= query %>\"",
-    "--database=\"<%= remote ? staging.mysql.database : dev.mysql.database %>\""
+    '--execute="<%= query %>"',
+    '--database="<%= remote ? staging.mysql.database : dev.mysql.database %>"'
   ], {
     query: query,
     remote: remote
@@ -164,21 +164,9 @@ gulp.task('db:down', function() {
     '<%= dev.mysql.database %>'
   ]);
 
-  var optionsQuery = "UPDATE wp_options SET option_value = 'http://";
-  optionsQuery    += localConfig.url;
-  optionsQuery    += "' WHERE option_name = 'home' OR option_name = 'siteurl';";
-
-  var postGuids = "UPDATE wp_posts SET guid = REPLACE(guid, 'http://";
-  postGuids    += remoteConfig.url;
-  postGuids    += "', 'http://";
-  postGuids    += localConfig.url;
-  postGuids    += "');";
-
-  var postContent = "UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://";
-  postContent += remoteConfig.url;
-  postContent += "', 'http://";
-  postContent += localConfig.url;
-  postContent += "');";
+  var optionsQuery = commandTemplate("UPDATE wp_options SET option_value = 'http://<%= dev.url %>' WHERE option_name = 'home' OR option_name = 'siteurl';");
+  var postGuids    = commandTemplate("UPDATE wp_posts SET guid = REPLACE(guid, 'http://<%= staging.url %>', 'http://<%= dev.url %>');");
+  var postContent  = commandTemplate("UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://<%= staging.url %>', 'http://<%= dev.url %>');");
 
   return gulp.src('')
     .pipe(remoteShell(mysqlDumpCmd))

@@ -17,6 +17,11 @@ var localConfig     = secrets.servers.dev;
 var remoteConfig    = secrets.servers.staging;
 
 var commandTemplate = function(parts, bindings) {
+  bindings = _.assign({}, bindings, {
+    dev: localConfig,
+    staging: remoteConfig
+  });
+
   if (_.isString(parts)) {
     return _.template(parts, bindings);
   }
@@ -25,13 +30,13 @@ var commandTemplate = function(parts, bindings) {
 };
 
 var remoteShell = function(command) {
-  var tpl = "ssh -p <%= port %> <%= username %>@<%= hostname %> '<%= command %>'";
-  var cmd = _.template(tpl, {
-    port: remoteConfig.ssh.port,
-    username: remoteConfig.ssh.username,
-    hostname: remoteConfig.ssh.hostname,
-    command: command
-  });
+  var cmd = commandTemplate([
+    'ssh',
+    '-p',
+    '<%= staging.ssh.port %>',
+    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>',
+    "'<%= command %>'"
+  ]);
   return shell(cmd);
 };
 
@@ -67,45 +72,31 @@ gulp.task('db:up', function() {
 
   var mysqlDumpCmd = commandTemplate([
     'mysqldump',
-    '--user="<%= username %>"',
-    '--password="<%= password %>"',
-    '<%= database %>',
+    '--user="<%= dev.mysql.username %>"',
+    '--password="<%= dev.mysql.password %>"',
+    '<%= dev.mysql.database %>',
     '|',
     'gzip',
     '>',
-    '/tmp/<%= database %>.sql.gz'
-  ], {
-    username: localConfig.mysql.username,
-    password: localConfig.mysql.password,
-    database: localConfig.mysql.database
-  });
+    '/tmp/<%= dev.mysql.database %>.sql.gz'
+  ]);
 
   var scpCmd = commandTemplate([
     'scp',
-    '-P <%= port %>',
-    '/tmp/<%= database %>.sql.gz',
-    '<%= username %>@<%= hostname %>:/tmp/'
-  ], {
-    port: remoteConfig.ssh.port,
-    database: localConfig.mysql.database,
-    username: remoteConfig.ssh.username,
-    hostname: remoteConfig.ssh.hostname
-  });
+    '-P <%= staging.ssh.port %>',
+    '/tmp/<%= dev.mysql.database %>.sql.gz',
+    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>:/tmp/'
+  ]);
 
   var loadDumpCmd = commandTemplate([
     'zcat',
-    '/tmp/<%= database %>.sql.gz',
+    '/tmp/<%= dev.mysql.database %>.sql.gz',
     '|',
     'mysql',
-    '--user="<%= username %>"',
-    '--password="<%= password %>"',
-    '<%= remoteDatabase %>'
-  ], {
-    database: localConfig.mysql.database,
-    username: remoteConfig.mysql.username,
-    password: remoteConfig.mysql.password,
-    remoteDatabase: remoteConfig.mysql.database
-  });
+    '--user="<%= staging.mysql.username %>"',
+    '--password="<%= staging.mysql.password %>"',
+    '<%= staging.mysql.database %>'
+  ]);
 
   var optionsQuery = 'UPDATE wp_options SET option_value = "http://' + remoteConfig.url + '" ';
   optionsQuery    += 'WHERE option_name = "home" OR option_name = "siteurl"';

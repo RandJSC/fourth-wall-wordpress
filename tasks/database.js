@@ -125,84 +125,49 @@ gulp.task('db:up', function() {
 gulp.task('db:down', function() {
   gutil.log('Syncing staging database down to localhost...'.blue);
 
-  var config    = secrets.servers.staging;
-  var devConfig = secrets.servers.dev;
-
   var mysqlDumpCmd = commandTemplate([
     'mysqldump',
-    '--user="<%= username %>"',
-    '--password="<%= password %>"',
-    "<%= database %>",
+    '--user="<%= staging.mysql.username %>"',
+    '--password="<%= staging.mysql.password %>"',
+    "<%= staging.mysql.database %>",
     "|",
     "gzip",
     ">",
-    "/tmp/<%= database %>.sql.gz"
-  ], {
-    username: config.mysql.username,
-    password: config.mysql.password,
-    database: config.mysql.database
-  });
+    "/tmp/<%= staging.mysql.database %>.sql.gz"
+  ]);
 
   var scpCmd = commandTemplate([
     'scp',
     '-P',
-    config.ssh.port,
-    '<%= username %>@<%= hostname %>:/tmp/<%= database %>.sql.gz',
+    '<%= staging.ssh.port %>',
+    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>:/tmp/<%= staging.mysql.database %>.sql.gz',
     '/tmp/'
-  ], {
-    username: config.ssh.username,
-    hostname: config.ssh.hostname,
-    database: config.mysql.database
-  });
+  ]);
 
   var mysqlLoadCmd = commandTemplate([
     'zcat',
-    '<%= filename %>',
+    '/tmp/<%= staging.mysql.database %>.sql.gz',
     '|',
     'mysql',
-    '--user="<%= username %>"',
-    '--password="<%= password %>"',
-    '<%= database %>'
-  ], {
-    filename: '/tmp/' + config.mysql.database + '.sql.gz',
-    username: devConfig.mysql.username,
-    password: devConfig.mysql.password,
-    database: devConfig.mysql.database
-  });
-
-  var mysqlQueryCmd = function(query) {
-    var commandTpl = [
-      'echo',
-      '"<%= query %>"',
-      '|',
-      'mysql',
-      '--user="<%= username %>"',
-      '--password="<%= password %>"',
-      '<%= database %>'
-    ].join(' ');
-
-    return _.template(commandTpl, {
-      query: query,
-      username: devConfig.mysql.username,
-      password: devConfig.mysql.password,
-      database: devConfig.mysql.database
-    });
-  };
+    '--user="<%= dev.mysql.username %>"',
+    '--password="<%= dev.mysql.password %>"',
+    '<%= dev.mysql.database %>'
+  ]);
 
   var optionsQuery = "UPDATE wp_options SET option_value = 'http://";
-  optionsQuery    += devConfig.url;
+  optionsQuery    += localConfig.url;
   optionsQuery    += "' WHERE option_name = 'home' OR option_name = 'siteurl';";
 
   var postGuids = "UPDATE wp_posts SET guid = REPLACE(guid, 'http://";
-  postGuids    += config.url;
+  postGuids    += remoteConfig.url;
   postGuids    += "', 'http://";
-  postGuids    += devConfig.url;
+  postGuids    += localConfig.url;
   postGuids    += "');";
 
   var postContent = "UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://";
-  postContent += config.url;
+  postContent += remoteConfig.url;
   postContent += "', 'http://";
-  postContent += devConfig.url;
+  postContent += localConfig.url;
   postContent += "');";
 
   return gulp.src('')

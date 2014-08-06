@@ -13,8 +13,8 @@ var mysql      = require('mysql');
 var async      = require('async');
 var _          = require('lodash');
 
-var localConfig     = secrets.servers.dev;
-var remoteConfig    = secrets.servers.staging;
+var localConfig  = secrets.servers.dev;
+var remoteConfig = secrets.servers.staging;
 
 var commandTemplate = function(parts, bindings) {
   bindings = _.assign({}, bindings, {
@@ -36,7 +36,7 @@ var remoteShell = function(command) {
     '<%= staging.ssh.port %>',
     '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>',
     "'<%= command %>'"
-  ]);
+  ], { command: command });
   return shell(cmd);
 };
 
@@ -48,15 +48,13 @@ var mysqlQuery = function(query, remote) {
   var conf    = remote ? remoteConfig : localConfig;
   var command = commandTemplate([
     'mysql',
-    '--user="<%= username %>"',
-    '--password="<%= password %>"',
-    "--execute=\\'<%= query %>\\'",
-    "--database=\\'<%= database %>\\'"
+    '--user="<%= remote ? staging.mysql.username : dev.mysql.username %>"',
+    '--password="<%= remote ? staging.mysql.password : dev.mysql.password %>"',
+    "--execute='<%= query %>'",
+    "--database='<%= remote ? staging.mysql.database : dev.mysql.password %>'"
   ], {
     query: query,
-    username: conf.mysql.username,
-    password: conf.mysql.password,
-    database: conf.mysql.database
+    remote: remote
   });
 
   console.log(command);

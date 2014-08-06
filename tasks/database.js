@@ -101,34 +101,20 @@ gulp.task('db:up', function() {
   ]);
 
   var loadDumpCmd = commandTemplate([
-    'zcat',
-    '/tmp/<%= dev.mysql.database %>.sql.gz',
-    '|',
-    'mysql',
-    '--user="<%= staging.mysql.username %>"',
-    '--password="<%= staging.mysql.password %>"',
-    '<%= staging.mysql.database %>'
+    '/home/frcweb/bin/wp-relocate.zsh',
+    '-f /tmp/<%= dev.mysql.database %>.sql.gz',
+    '-u <%= staging.mysql.username %>',
+    '-p "<%= staging.mysql.password %>"',
+    '-d <%= staging.mysql.database %>',
+    '-o "http://<%= dev.url %>"',
+    '-n "http://<%= staging.url %>"',
+    '-x'
   ]);
-
-  var optionsQuery = 'UPDATE wp_options SET option_value = "http://' + remoteConfig.url + '" ';
-  optionsQuery    += 'WHERE option_name = "home" OR option_name = "siteurl"';
-
-  var postGuidsQuery = 'UPDATE wp_posts SET guid = REPLACE(guid, "http://' + localConfig.url;
-  postGuidsQuery    += '", "http://';
-  postGuidsQuery    += remoteConfig.url + '")';
-
-  var postContentQuery = 'UPDATE wp_posts SET post_content = REPLACE(post_content, "http://' + localConfig.url + '" ';
-  postContentQuery    += '", "http://';
-  postContentQuery    += remoteConfig.url + '")';
-
 
   return gulp.src('')
     .pipe(shell(mysqlDumpCmd))
     .pipe(shell(scpCmd))
-    .pipe(remoteShell(loadDumpCmd))
-    .pipe(remoteShell(mysqlQuery(optionsQuery, true)))
-    .pipe(remoteShell(mysqlQuery(postGuidsQuery, true)))
-    .pipe(remoteShell(mysqlQuery(postContentQuery, true)));
+    .pipe(remoteShell(loadDumpCmd));
 });
 
 // [todo] - Use default variables in all commandTemplate calls

@@ -1,4 +1,5 @@
 /* jshint -W097 */
+/* jshint -W041 */
 
 'use strict';
 
@@ -16,7 +17,11 @@ var _          = require('lodash');
 var localConfig  = secrets.servers.dev;
 var remoteConfig = secrets.servers.staging;
 
-var commandTemplate = function(parts, bindings) {
+var commandTemplate = function(parts, bindings, glue) {
+  if (glue == null || !_.isString(glue)) {
+    glue = ' ';
+  }
+
   if (!_.isObject(bindings)) {
     bindings = {};
   }
@@ -30,7 +35,7 @@ var commandTemplate = function(parts, bindings) {
     return _.template(parts, bindings);
   }
 
-  return _.template(parts.join(' '), bindings);
+  return _.template(parts.join(glue), bindings);
 };
 
 var remoteShell = function(command) {

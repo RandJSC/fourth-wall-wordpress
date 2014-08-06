@@ -70,7 +70,7 @@ var log = function(msg) {
   return mapStream(function(file, cb) {
     gutil.log(msg);
     cb(null, file);
-  });  
+  });
 };
 
 module.exports = {

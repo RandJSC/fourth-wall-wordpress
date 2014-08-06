@@ -40,7 +40,7 @@ var commandTemplate = function(parts, bindings, glue) {
 
 var remoteShell = function(command) {
   var escapeQuotes = function(str) {
-    return str.replace(/([\'\"])/g, "\\$1");
+    return str.replace(/([\'])/g, "\\$1");
   };
 
   var cmd = commandTemplate([
@@ -50,6 +50,7 @@ var remoteShell = function(command) {
     '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>',
     "'<%= escape(command) %>'"
   ], { command: command, escape: escapeQuotes });
+  console.log(cmd);
   return shell(cmd);
 };
 
@@ -63,8 +64,8 @@ var mysqlQuery = function(query, remote) {
     'mysql',
     '--user="<%= remote ? staging.mysql.username : dev.mysql.username %>"',
     '--password="<%= remote ? staging.mysql.password : dev.mysql.password %>"',
-    "--execute='<%= query %>'",
-    "--database='<%= remote ? staging.mysql.database : dev.mysql.password %>'"
+    "--execute=\"<%= query %>\"",
+    "--database=\"<%= remote ? staging.mysql.database : dev.mysql.database %>\""
   ], {
     query: query,
     remote: remote

@@ -62,18 +62,16 @@ gulp.task('fonts', function() {
 
 // Compile and optimize stylesheets
 gulp.task('styles', function() {
-  return gulp.src([
-      'source/styles/*.scss',
-      'source/styles/**/*.css'
-    ])
-    .pipe($.changed('.tmp/styles', { extension: '.css' }))
-    .pipe($.if('*.scss', $.rubySass({
-        style: 'expanded',
-        precision: 10
-      }).on('error', console.error.bind(console))
-    ))
-    .pipe($.pleeease)
-    .pipe(gulp.dest('build/css'));
+  return gulp.src('source/css/**/*.scss')
+    .pipe($.rubySass({
+      style: 'expanded',
+      precision: 10,
+      loadPath: ['source/css']
+    }))
+    .on('error', console.error.bind(console))
+    .pipe($.pleeease())
+    .pipe(gulp.dest('build/css'))
+    .pipe($.size({ title: 'styles:scss', showFiles: true }));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));

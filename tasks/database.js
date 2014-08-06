@@ -10,8 +10,6 @@ var colors     = require('colors');
 var path       = require('path');
 var fs         = require('fs');
 var gutil      = require('gulp-util');
-var mysql      = require('mysql');
-var async      = require('async');
 var _          = require('lodash');
 
 var localConfig  = secrets.servers.dev;

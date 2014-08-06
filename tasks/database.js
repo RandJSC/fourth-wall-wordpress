@@ -121,6 +121,7 @@ gulp.task('db:up', function() {
     .pipe(remoteShell(mysqlQuery(postContentQuery, true)));
 });
 
+// [todo] - Use default variables in all commandTemplate calls
 gulp.task('db:down', function() {
   gutil.log('Syncing staging database down to localhost...'.blue);
 

@@ -13,6 +13,9 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed   = require('psi');
 var reload      = browserSync.reload;
+var shell       = require('gulp-shell');
+var rjs         = require('gulp-r');
+var rename      = require('gulp-rename');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -48,7 +51,7 @@ gulp.task('images', function() {
 
 // Copy all files at the root level
 gulp.task('copy', function() {
-  return gulp.src(['source/*', '!source/*.html'], { dot: true })
+  return gulp.src(['source/*', '!source/*.php'], { dot: true })
     .pipe(gulp.dest('build'))
     .pipe($.size({title: 'copy'}));
 });
@@ -74,10 +77,36 @@ gulp.task('styles', function() {
     .pipe($.size({ title: 'styles:scss', showFiles: true }));
 });
 
+gulp.task('php', function() {
+  return gulp.src('source/**/*.php')
+    .pipe(gulp.dest('build/'))
+    .pipe($.size({ title: 'php' }));
+});
+
+gulp.task('bower:install', function() {
+  return gulp.src('').pipe(shell('bower install'));
+});
+
+gulp.task('scripts', [ 'bower:install' ], function() {
+  return gulp.src('source/js/*.js')
+    .pipe(rjs({
+      baseUrl: 'source/js',
+      generateSourceMaps: true,
+      optimize: 'uglify2',
+      preserveLicenseComments: true
+    }))
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('build/js'));
+});
+
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
 
 gulp.task('gulp-plugins', function() {
   console.log($);
+});
+
+gulp.task('default', ['clean'], function(cb) {
+  runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts' ], cb);
 });
 
 // Load custom, per-project tasks from tasks folder

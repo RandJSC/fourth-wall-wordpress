@@ -6,5 +6,16 @@
     "requirejs-domready": "^2.0.1",
     "lodash-amd": "^2.4.1",
     "jquery": "^1.11.1"
+  },
+  "overrides": {
+    "jquery": {
+      "main": {
+        "development": "dist/jquery.js",
+        "production": "dist/jquery.min.js"
+      }
+    },
+    "lodash-amd": {
+      "main": "modern/main.js"
+    }
   }
 }

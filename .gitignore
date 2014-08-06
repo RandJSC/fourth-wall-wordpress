@@ -6,3 +6,4 @@
 /node_modules
 /.vagrant*
 /.sass-cache
+/bower_components

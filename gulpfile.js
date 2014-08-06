@@ -90,10 +90,7 @@ gulp.task('bower:install', function() {
 gulp.task('scripts', [ 'bower:install' ], function() {
   return gulp.src('source/js/*.js')
     .pipe(rjs({
-      baseUrl: 'source/js',
-      generateSourceMaps: true,
-      optimize: 'uglify2',
-      preserveLicenseComments: true
+      baseUrl: "source/js"
     }))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('build/js'));

@@ -14,8 +14,10 @@ var browserSync = require('browser-sync');
 var pagespeed   = require('psi');
 var rjs         = $.r || require('gulp-r');
 var path        = require('path');
+var fs          = require('fs');
 var reload      = browserSync.reload;
 var _           = require('lodash');
+var helpers     = require('./tasks/lib/helpers.js');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -78,7 +80,7 @@ gulp.task('fonts', function() {
 
 // Compile and optimize stylesheets
 gulp.task('styles', function() {
-  var themeData = require(resources.themeJSON);
+  var themeData   = require(resources.themeJSON);
   var styleHeader = _.template([
     '/*',
     'Theme Name: <%= themeName %>',
@@ -87,11 +89,16 @@ gulp.task('styles', function() {
     'Author URI: <%= authorUri %>',
     'Version: <%= version %>',
     'Tags: <%= tags.join(", ") %>',
-    '*/'
+    '*/',
+    "\n"
   ].join("\n"), themeData);
-  var mainFilter = $.filter('style.css');
+
+  var mainFilter = $.filter(function(file) {
+    return (/style\.s?css/).test(file.path.toString());
+  });
 
   return gulp.src(resources.scss)
+    .pipe(helpers.log('Compiling SCSS'.yellow))
     .pipe($.rubySass({
       style: 'expanded',
       precision: 10,
@@ -100,11 +107,11 @@ gulp.task('styles', function() {
     .on('error', console.error.bind(console))
     .pipe($.pleeease())
     .pipe(gulp.dest('build/css'))
+    .pipe($.size({ title: 'scss' }))
+    .pipe(helpers.log('Adding theme metadata'.yellow))
     .pipe(mainFilter)
       .pipe($.insert.prepend(styleHeader))
-      .pipe(gulp.dest('build'))
-    .pipe(mainFilter.restore())
-    .pipe($.size({ title: 'styles:scss', showFiles: true }));
+      .pipe(gulp.dest('build'));
 });
 
 gulp.task('php', function() {

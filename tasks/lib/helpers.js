@@ -66,9 +66,18 @@ var mysqlQuery = function(query, remote) {
   return command;
 };
 
-var log = function(msg) {
+var log = function(msg, once) {
+  if (once == null) {
+    once = true;
+  }
+
+  var times = 0;
+
   return mapStream(function(file, cb) {
-    gutil.log(msg);
+    if (times < 1) {
+      gutil.log(msg);
+    }
+    times++;
     cb(null, file);
   });
 };

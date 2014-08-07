@@ -18,6 +18,7 @@ var fs          = require('fs');
 var reload      = browserSync.reload;
 var _           = require('lodash');
 var helpers     = require('./tasks/lib/helpers.js');
+var server      = require('tiny-lr')();
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -44,6 +45,21 @@ var resources = {
   misc: [ 'source/*', '!source/*.php' ]
 };
 
+// Watcher task, benevolently minding your files and responding to changes in them.
+gulp.task('watch', function() {
+  var port = 35729;
+
+  $.livereload.listen(port);
+
+  gulp.watch(resources.scss, [ 'styles' ]);
+  gulp.watch(resources.css, [ 'copy' ]);
+  gulp.watch(resources.images, [ 'images' ]);
+  gulp.watch(resources.scripts, [ 'scripts' ]);
+  gulp.watch(resources.php, [ 'php' ]);
+  gulp.watch(resources.fonts, [ 'fonts' ]);
+  gulp.watch(resources.themeJSON, [ 'styles' ]);
+});
+
 // Lint JavaScript
 gulp.task('jshint', function() {
   return gulp.src(resources.scripts)
@@ -61,6 +77,7 @@ gulp.task('images', function() {
       interlaced: true
     })))
     .pipe(gulp.dest('build/images'))
+    .pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));
 });
 
@@ -68,6 +85,7 @@ gulp.task('images', function() {
 gulp.task('copy', function() {
   return gulp.src(resources.misc, { dot: true })
     .pipe(gulp.dest('build'))
+    .pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));
 });
 
@@ -75,6 +93,7 @@ gulp.task('copy', function() {
 gulp.task('fonts', function() {
   return gulp.src(resources.fonts)
     .pipe(gulp.dest('build/fonts'))
+    .pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'fonts'}));
 });
 
@@ -109,6 +128,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('build/css'))
     .pipe($.size({ title: 'scss' }))
     .pipe(helpers.log('Adding theme metadata'.yellow))
+    .pipe($.livereload({ auto: false }))
     .pipe(mainFilter)
       .pipe($.insert.prepend(styleHeader))
       .pipe(gulp.dest('build'));
@@ -117,6 +137,7 @@ gulp.task('styles', function() {
 gulp.task('php', function() {
   return gulp.src(resources.php)
     .pipe(gulp.dest('build/'))
+    .pipe($.livereload({ auto: false }))
     .pipe($.size({ title: 'php' }));
 });
 
@@ -130,6 +151,7 @@ gulp.task('scripts', [ 'bower:install' ], function() {
       baseUrl: path.join(__dirname, 'source', 'js')
     }))
     .pipe($.rename({ extname: '.min.js' }))
+    .pipe($.livereload({ auto: false }))
     .pipe(gulp.dest('build/js'));
 });
 

@@ -16,6 +16,7 @@ var reload      = browserSync.reload;
 var shell       = require('gulp-shell');
 var rjs         = require('gulp-r');
 var rename      = require('gulp-rename');
+var path        = require('path');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -90,7 +91,7 @@ gulp.task('bower:install', function() {
 gulp.task('scripts', [ 'bower:install' ], function() {
   return gulp.src('source/js/*.js')
     .pipe(rjs({
-      baseUrl: "source/js"
+      baseUrl: path.join(__dirname, 'source', 'js')
     }))
     .pipe(rename({ extname: '.min.js' }))
     .pipe(gulp.dest('build/js'));

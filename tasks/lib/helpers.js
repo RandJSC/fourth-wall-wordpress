@@ -77,6 +77,7 @@ var log = function(msg, once) {
     if (times < 1) {
       gutil.log(msg);
     }
+
     times++;
     cb(null, file);
   });

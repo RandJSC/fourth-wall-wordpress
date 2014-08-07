@@ -12,7 +12,7 @@ var del         = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed   = require('psi');
-var rjs         = require('gulp-r');
+var rjs         = $.r || require('gulp-r');
 var path        = require('path');
 var reload      = browserSync.reload;
 

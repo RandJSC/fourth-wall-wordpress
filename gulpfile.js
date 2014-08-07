@@ -12,11 +12,9 @@ var del         = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed   = require('psi');
-var reload      = browserSync.reload;
-var shell       = require('gulp-shell');
 var rjs         = require('gulp-r');
-var rename      = require('gulp-rename');
 var path        = require('path');
+var reload      = browserSync.reload;
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -85,7 +83,7 @@ gulp.task('php', function() {
 });
 
 gulp.task('bower:install', function() {
-  return gulp.src('').pipe(shell('bower install'));
+  return gulp.src('').pipe($.shell('bower install'));
 });
 
 gulp.task('scripts', [ 'bower:install' ], function() {
@@ -93,7 +91,7 @@ gulp.task('scripts', [ 'bower:install' ], function() {
     .pipe(rjs({
       baseUrl: path.join(__dirname, 'source', 'js')
     }))
-    .pipe(rename({ extname: '.min.js' }))
+    .pipe($.rename({ extname: '.min.js' }))
     .pipe(gulp.dest('build/js'));
 });
 

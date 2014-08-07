@@ -6,7 +6,8 @@ var bump = require('gulp-bump');
 var files = [
   './bower.json',
   './package.json',
-  './composer.json'
+  './composer.json',
+  './theme.json'
 ];
 
 gulp.task('bump:patch', function() {

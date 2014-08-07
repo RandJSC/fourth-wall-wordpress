@@ -1,6 +1,6 @@
 {
   "name": "Fourth Wall WordPress",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "requirejs": "^2.1.14",
     "requirejs-domready": "^2.0.1",

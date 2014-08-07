@@ -1,11 +1,11 @@
 {
-  "Theme Name": "Fourth Wall Events",
-  "Theme URI": "http://fourthwallevents.com",
-  "Description": "FWE responsive WordPress theme",
-  "Author": "Fifth Room Creative",
-  "Author URI": "http://fifthroomcreative.com",
+  "themeName": "Fourth Wall Events",
+  "themeUri": "http://fourthwallevents.com",
+  "description": "FWE responsive WordPress theme",
+  "author": "Fifth Room Creative",
+  "authorUri": "http://fifthroomcreative.com",
   "version": "0.1.2",
-  "Tags": [
+  "tags": [
     "responsive",
     "piklist"
   ]

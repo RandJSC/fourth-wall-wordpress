@@ -15,6 +15,7 @@ var pagespeed   = require('psi');
 var rjs         = $.r || require('gulp-r');
 var path        = require('path');
 var reload      = browserSync.reload;
+var _           = require('lodash');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -28,9 +29,22 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+var resources = {
+  scss: 'source/css/**/*.scss',
+  css: 'source/css/**/*.css',
+  scripts: 'source/js/**/*.js',
+  images: 'source/images/**/*',
+  php: 'source/**/*.php',
+  fonts: 'source/fonts/**/*',
+  themeJSON: './theme.json',
+  packageJSON: './package.json',
+  bowerJSON: './bower.json',
+  misc: [ 'source/*', '!source/*.php' ]
+};
+
 // Lint JavaScript
 gulp.task('jshint', function() {
-  return gulp.src('source/js/**/*.js')
+  return gulp.src(resources.scripts)
     .pipe(reload({stream: true, once: true}))
     .pipe($.jshint)
     .pipe($.jshint.reporter('jshint-stylish'))
@@ -39,7 +53,7 @@ gulp.task('jshint', function() {
 
 // Optimize images
 gulp.task('images', function() {
-  return gulp.src('source/images/**/*')
+  return gulp.src(resources.images)
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
@@ -50,21 +64,34 @@ gulp.task('images', function() {
 
 // Copy all files at the root level
 gulp.task('copy', function() {
-  return gulp.src(['source/*', '!source/*.php'], { dot: true })
+  return gulp.src(resources.misc, { dot: true })
     .pipe(gulp.dest('build'))
     .pipe($.size({title: 'copy'}));
 });
 
 // Copy fonts to build folder
 gulp.task('fonts', function() {
-  return gulp.src(['source/fonts/**'])
+  return gulp.src(resources.fonts)
     .pipe(gulp.dest('build/fonts'))
     .pipe($.size({title: 'fonts'}));
 });
 
 // Compile and optimize stylesheets
 gulp.task('styles', function() {
-  return gulp.src('source/css/**/*.scss')
+  var themeData = require(resources.themeJSON);
+  var styleHeader = _.template([
+    '/*',
+    'Theme Name: <%= themeName %>',
+    'Description: <%= description %>',
+    'Author: <%= author %>',
+    'Author URI: <%= authorUri %>',
+    'Version: <%= version %>',
+    'Tags: <%= tags.join(", ") %>',
+    '*/'
+  ].join("\n"), themeData);
+  var mainFilter = $.filter('style.css');
+
+  return gulp.src(resources.scss)
     .pipe($.rubySass({
       style: 'expanded',
       precision: 10,
@@ -73,11 +100,15 @@ gulp.task('styles', function() {
     .on('error', console.error.bind(console))
     .pipe($.pleeease())
     .pipe(gulp.dest('build/css'))
+    .pipe(mainFilter)
+      .pipe($.insert.prepend(styleHeader))
+      .pipe(gulp.dest('build'))
+    .pipe(mainFilter.restore())
     .pipe($.size({ title: 'styles:scss', showFiles: true }));
 });
 
 gulp.task('php', function() {
-  return gulp.src('source/**/*.php')
+  return gulp.src(resources.php)
     .pipe(gulp.dest('build/'))
     .pipe($.size({ title: 'php' }));
 });
@@ -87,7 +118,7 @@ gulp.task('bower:install', function() {
 });
 
 gulp.task('scripts', [ 'bower:install' ], function() {
-  return gulp.src('source/js/*.js')
+  return gulp.src(resources.scripts)
     .pipe(rjs({
       baseUrl: path.join(__dirname, 'source', 'js')
     }))
@@ -96,10 +127,6 @@ gulp.task('scripts', [ 'bower:install' ], function() {
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
-
-gulp.task('gulp-plugins', function() {
-  console.log($);
-});
 
 gulp.task('default', ['clean'], function(cb) {
   runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts' ], cb);

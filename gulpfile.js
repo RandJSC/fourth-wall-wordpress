@@ -42,7 +42,7 @@ var resources = {
   themeJSON: './theme.json',
   packageJSON: './package.json',
   bowerJSON: './bower.json',
-  misc: [ 'source/*', '!source/*.php' ]
+  misc: [ 'source/*', '!source/*.php', './theme.json' ]
 };
 
 // Watcher task, benevolently minding your files and responding to changes in them.

@@ -35,7 +35,11 @@ var AUTOPREFIXER_BROWSERS = [
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
-  scripts: 'source/js/**/*.js',
+  scripts: [ 'source/js/**/*.js', '!require.js' ],
+  vendorScripts: [
+    'bower_components/requirejs/require.js',
+    'bower_components/matchmedia/matchMedia.js'
+  ],
   images: 'source/images/**/*',
   php: 'source/**/*.php',
   fonts: 'source/fonts/**/*',
@@ -145,7 +149,7 @@ gulp.task('bower:install', function() {
   return gulp.src('').pipe($.shell('bower install'));
 });
 
-gulp.task('scripts', [ 'bower:install' ], function() {
+gulp.task('scripts', [ 'scripts:vendor' ], function() {
   return gulp.src(resources.scripts)
     .pipe(rjs({
       baseUrl: path.join(__dirname, 'source', 'js')
@@ -153,6 +157,12 @@ gulp.task('scripts', [ 'bower:install' ], function() {
     .pipe($.rename({ extname: '.min.js' }))
     .pipe($.livereload({ auto: false }))
     .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('scripts:vendor', ['bower:install'], function() {
+  return gulp.src(resources.vendorScripts)
+    .pipe(gulp.dest('build/js'))
+    .pipe($.size({ title: 'vendorScripts' }));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));

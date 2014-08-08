@@ -5,7 +5,8 @@
     "requirejs": "^2.1.14",
     "requirejs-domready": "^2.0.1",
     "lodash-amd": "^2.4.1",
-    "jquery": "^1.11.1"
+    "jquery": "^1.11.1",
+    "matchmedia": "~0.2.0"
   },
   "overrides": {
     "jquery": {

@@ -20,9 +20,9 @@ $settings  = get_option('fwe_theme_settings');
   <?php // [todo] - Favicons and Apple touch icon ?>
 
   <script src="<?php echo $theme_uri; ?>/js/modernizr.min.js"></script>
-  <script src="<?php echo $theme_uri; ?>/js/modernizr-tests.js"></script>
+  <script src="<?php echo $theme_uri; ?>/js/modernizr-tests.min.js"></script>
   <script src="<?php echo $theme_uri; ?>/vendor/matchmedia/matchMedia.js"></script>
-  <script data-main="<?php echo $theme_uri; ?>/js/main.js"
+  <script data-main="<?php echo $theme_uri; ?>/js/main.min.js"
           src="<?php echo $theme_uri; ?>/vendor/requirejs/require.js"></script>
 
   <?php wp_head(); ?>

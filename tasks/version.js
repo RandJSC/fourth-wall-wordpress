@@ -27,3 +27,9 @@ gulp.task('bump:major', function() {
     .pipe(bump({ type: 'major' }))
     .pipe(gulp.dest('./'));
 });
+
+gulp.task('bump:reset', function() {
+  return gulp.src(files)
+    .pipe(bump({ version: '0.1.0' }))
+    .pipe(gulp.dest('./'));
+});

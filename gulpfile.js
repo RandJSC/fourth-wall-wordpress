@@ -158,7 +158,7 @@ gulp.task('scripts', [ 'bower:install' ], function() {
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
 
 gulp.task('default', ['clean'], function(cb) {
-  runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts' ], cb);
+  runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], cb);
 });
 
 // Load custom, per-project tasks from tasks folder

@@ -7,3 +7,4 @@
 /.vagrant*
 /.sass-cache
 /bower_components
+/dist

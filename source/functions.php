@@ -4,5 +4,7 @@
  * WordPress Functions File
  */
 
-include_once 'includes/functions/plugins.php';
+$base_path = trailingslashit(dirname(__FILE__));
+
+include_once $base_path . 'includes/functions/plugins.php';
 ?>

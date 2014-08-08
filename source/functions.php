@@ -6,14 +6,15 @@
 
 $base_path = trailingslashit(dirname(__FILE__)) . 'includes/functions/';
 
-include_once $base_path . 'http-timeout-fix.php';
-include_once $base_path . 'image-sizes.php';
-include_once $base_path . 'login.php';
-include_once $base_path . 'menus.php';
-include_once $base_path . 'plugins.php';
-include_once $base_path . 'shortcodes.php';
-include_once $base_path . 'styles.php';
-include_once $base_path . 'utilities.php';
-include_once $base_path . 'widgets.php';
+require_once $base_path . 'http-timeout-fix.php';
+require_once $base_path . 'image-sizes.php';
+require_once $base_path . 'login.php';
+require_once $base_path . 'menus.php';
+require_once $base_path . 'plugins.php';
+require_once $base_path . 'post-types.php';
+require_once $base_path . 'shortcodes.php';
+require_once $base_path . 'styles.php';
+require_once $base_path . 'utilities.php';
+require_once $base_path . 'widgets.php';
 
 ?>

@@ -7,9 +7,10 @@
 
 require([
   '../../bower_components/requirejs-domready/domReady!',
-  '../../bower_components/jquery/dist/jquery',
+  'jquery'
 ], function(doc, $) {
 
   console.log(doc, $);
+  $('body').addClass('foo');
 
 });

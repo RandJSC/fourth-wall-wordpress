@@ -32,6 +32,13 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+var rjsConfig = {
+  baseUrl: path.join(__dirname, 'source', 'js'),
+  paths: {
+    jquery: '../../bower_components/jquery/dist/jquery.min'
+  }
+};
+
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
@@ -146,7 +153,8 @@ gulp.task('php', function() {
 });
 
 gulp.task('bower:install', function() {
-  return gulp.src('').pipe($.shell('bower install'));
+  return $.bower()
+    .pipe(gulp.dest('bower_components'));
 });
 
 gulp.task('scripts', [ 'scripts:vendor' ], function() {
@@ -156,12 +164,10 @@ gulp.task('scripts', [ 'scripts:vendor' ], function() {
 
   gulp.src(resources.scripts)
     .pipe(mainFilter)
-      .pipe(rjs({
-        baseUrl: path.join(__dirname, 'source', 'js')
-      }))
+      .pipe(rjs(rjsConfig))
       .pipe($.rename({ extname: '.min.js' }))
       .pipe(gulp.dest('build/js'));
-  return mainFilter.restore()
+  return mainFilter.restore({ end: true })
     .pipe($.rename({ extname: '.min.js' }))
     .pipe($.livereload({ auto: false }))
     .pipe(gulp.dest('build/js'));

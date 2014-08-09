@@ -21,24 +21,6 @@ function fwe_enqueue_styles() {
 
   wp_enqueue_style('fwe-main');
 }
-//add_action('wp_enqueue_scripts', 'fwe_enqueue_styles');
-
-function fwe_styles($assets) {
-
-  $theme_uri  = get_stylesheet_directory_uri();
-  $theme_dir  = trailingslashit(get_stylesheet_directory());
-  $theme_json = json_decode(file_get_contents($theme_dir . 'theme.json'), true);
-
-  $assets['styles'][] = array(
-    'handle'  => 'fwe-main',
-    'src'     => "$theme_uri/style.css",
-    'deps'    => false,
-    'version' => $theme_json['version'],
-    'media'   => 'screen',
-  );
-
-  return $assets;
-}
-add_filter('piklist_assets', 'fwe_styles');
+add_action('wp_enqueue_scripts', 'fwe_enqueue_styles');
 
 ?>

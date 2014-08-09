@@ -15,8 +15,6 @@ $settings  = get_option('fwe_theme_settings');
 
   <title><?php wp_title(); ?></title>
 
-  <link rel="stylesheet" href="<?php echo $theme_uri; ?>/style.css">
-
   <?php // [todo] - Favicons and Apple touch icon ?>
 
   <script src="<?php echo $theme_uri; ?>/js/modernizr.min.js"></script>

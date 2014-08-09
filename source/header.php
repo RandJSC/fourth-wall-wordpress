@@ -27,7 +27,6 @@ $settings  = get_option('fwe_theme_settings');
     var s    = document.createElement('script');
     var head = document.getElementsByTagName('head')[0];
     s.src    = '<?php echo $theme_uri; ?>/js/matchMedia.js';
-    s.async  = true;
     head.appendChild(s);
   }
   </script>

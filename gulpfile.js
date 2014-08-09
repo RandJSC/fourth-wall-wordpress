@@ -36,7 +36,8 @@ var rjsConfig = {
   baseUrl: path.join(__dirname, 'source', 'js'),
   paths: {
     jquery: '../../bower_components/jquery/dist/jquery.min',
-    slick: '../../bower_components/slick-carousel/slick/slick.min'
+    slick: '../../bower_components/slick-carousel/slick/slick.min',
+    lodash: '../../bower_components/lodash-amd/modern'
   }
 };
 
@@ -220,7 +221,7 @@ gulp.task('scripts:vendor', ['bower:install'], function() {
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
 
 gulp.task('default', ['clean'], function(cb) {
-  runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], cb);
+  runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], 'watch', cb);
 });
 
 // Load custom, per-project tasks from tasks folder

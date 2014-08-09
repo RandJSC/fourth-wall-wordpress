@@ -7,7 +7,8 @@
 
 require([
   '../../bower_components/requirejs-domready/domReady!',
-  'jquery'
+  'jquery',
+  'slick'
 ], function(doc, $) {
 
   console.log(doc, $);

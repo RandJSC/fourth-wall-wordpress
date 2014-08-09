@@ -67,6 +67,7 @@ gulp.task('help', $.helptext({
   'copy': 'Copy all remaining files verbatim to build folder',
   'fonts': 'Copy custom web fonts to build/fonts',
   'styles': 'Compile SCSS stylesheets',
+  'scsslint': 'Check SCSS syntax for best practices',
   'php': 'Copy PHP files to build folder',
   'bower:install': 'Install bower packages',
   'scripts': 'Optimize AMD modules and copy scripts to build/js',
@@ -138,7 +139,7 @@ gulp.task('fonts', function() {
 });
 
 // Compile and optimize stylesheets
-gulp.task('styles', function() {
+gulp.task('styles', [ 'scsslint' ], function() {
   var themeData   = require(resources.themeJSON);
   var styleHeader = _.template([
     '/*',
@@ -172,6 +173,14 @@ gulp.task('styles', function() {
     .pipe(mainFilter)
       .pipe($.insert.prepend(styleHeader))
       .pipe(gulp.dest('build'));
+});
+
+gulp.task('scsslint', function() {
+  return gulp.src([
+    resources.scss,
+    '!source/css/partials/bourbon/**/*',
+    '!source/css/partials/neat/**/*'
+  ]).pipe($.scsslint()).pipe($.scsslint.reporter());
 });
 
 gulp.task('php', function() {

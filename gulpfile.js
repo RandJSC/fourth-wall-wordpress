@@ -35,7 +35,8 @@ var AUTOPREFIXER_BROWSERS = [
 var rjsConfig = {
   baseUrl: path.join(__dirname, 'source', 'js'),
   paths: {
-    jquery: '../../bower_components/jquery/dist/jquery.min'
+    jquery: '../../bower_components/jquery/dist/jquery.min',
+    slick: '../../bower_components/slick-carousel/slick/slick.min'
   }
 };
 
@@ -55,6 +56,34 @@ var resources = {
   bowerJSON: './bower.json',
   misc: [ 'source/*', '!source/*.php', './theme.json' ]
 };
+
+// Print help text about tasks
+gulp.task('help', $.helptext({
+  'help': 'Print this message',
+  'default': 'Delete previous build and rebuild everything',
+  'watch': 'Watch source files for changes and build as necessary',
+  'jshint': 'Check JavaScript syntax',
+  'images': 'Optimize images and copy to build',
+  'copy': 'Copy all remaining files verbatim to build folder',
+  'fonts': 'Copy custom web fonts to build/fonts',
+  'styles': 'Compile SCSS stylesheets',
+  'php': 'Copy PHP files to build folder',
+  'bower:install': 'Install bower packages',
+  'scripts': 'Optimize AMD modules and copy scripts to build/js',
+  'scripts:vendor': 'Copy needed scripts from bower to build/js',
+  'clean': 'Delete build folder',
+  'db:up': 'Run from inside Vagrant VM to replace staging database with the local one',
+  'db:down': 'Run from inside Vagrant VM to replace local database with staging\'s',
+  'ssh:keygen': 'Generate RSA public key if there is none',
+  'ssh:uploadKey': 'Upload local public key to staging server for passwordless SSH access',
+  'ssh:setup': 'Generate key and upload it to staging for passwordless SSH access',
+  'sync:up': 'Rsync build folder up to staging',
+  'bump:patch': 'Increment patch version in config files',
+  'bump:minor': 'Increment minor version in config files',
+  'bump:major': 'Increment major version in config files',
+  'bump:reset': 'Reset theme version to 0.1.0',
+  'zip': 'Zip up build folder to dist/'
+}));
 
 // Watcher task, benevolently minding your files and responding to changes in them.
 gulp.task('watch', function() {

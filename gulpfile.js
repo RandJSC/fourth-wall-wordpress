@@ -150,10 +150,18 @@ gulp.task('bower:install', function() {
 });
 
 gulp.task('scripts', [ 'scripts:vendor' ], function() {
-  return gulp.src(resources.scripts)
-    .pipe(rjs({
-      baseUrl: path.join(__dirname, 'source', 'js')
-    }))
+  var mainFilter = $.filter(function(file) {
+    return (/main(\.min)?\.js$/).test(file.path);
+  });
+
+  gulp.src(resources.scripts)
+    .pipe(mainFilter)
+      .pipe(rjs({
+        baseUrl: path.join(__dirname, 'source', 'js')
+      }))
+      .pipe($.rename({ extname: '.min.js' }))
+      .pipe(gulp.dest('build/js'));
+  return mainFilter.restore()
     .pipe($.rename({ extname: '.min.js' }))
     .pipe($.livereload({ auto: false }))
     .pipe(gulp.dest('build/js'));

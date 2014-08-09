@@ -21,9 +21,18 @@ $settings  = get_option('fwe_theme_settings');
 
   <script src="<?php echo $theme_uri; ?>/js/modernizr.min.js"></script>
   <script src="<?php echo $theme_uri; ?>/js/modernizr-tests.min.js"></script>
-  <script src="<?php echo $theme_uri; ?>/vendor/matchmedia/matchMedia.js"></script>
   <script data-main="<?php echo $theme_uri; ?>/js/main.min.js"
-          src="<?php echo $theme_uri; ?>/vendor/requirejs/require.js"></script>
+          src="<?php echo $theme_uri; ?>/js/require.js"></script>
+  <script>
+  // Asynchronously load matchMedia polyfill if needed
+  if (!Modernizr.matchmedia) {
+    var s    = document.createElement('script');
+    var head = document.getElementsByTagName('head')[0];
+    s.src    = '<?php echo $theme_uri; ?>/js/matchMedia.js';
+    s.async  = true;
+    head.appendChild(s);
+  }
+  </script>
 
   <?php wp_head(); ?>
 </head>

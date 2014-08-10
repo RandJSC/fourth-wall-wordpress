@@ -6,6 +6,7 @@
 
 $base_path = trailingslashit(dirname(__FILE__)) . 'includes/functions/';
 
+require_once $base_path . 'hooks.php';
 require_once $base_path . 'http-timeout-fix.php';
 require_once $base_path . 'image-sizes.php';
 require_once $base_path . 'login.php';

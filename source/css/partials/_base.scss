@@ -1,4 +1,22 @@
 // Fourth Wall Events: Base Variables
 
+/**
+ * **Neat grid override:** max container width
+ * @group base
+ * @type Number
+ */
+$max-width: em(1055);
+
+/**
+ * Body background color
+ * @group base
+ * @type Color
+ */
 $background: #fff;
+
+/**
+ * Default text color
+ * @group base
+ * @type Color
+ */
 $text-color: #4d4d4d;

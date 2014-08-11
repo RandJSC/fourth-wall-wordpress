@@ -45,6 +45,9 @@ var rjsConfig = {
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
+  vendorStyles: [
+    'bower_components/normalize.css/normalize.css'
+  ],
   scripts: [ 'source/js/**/*.js', '!require.js' ],
   vendorScripts: [
     'bower_components/requirejs/require.js',
@@ -70,6 +73,7 @@ gulp.task('help', $.helptext({
   'copy': 'Copy all remaining files verbatim to build folder',
   'fonts': 'Copy custom web fonts to build/fonts',
   'styles': 'Compile SCSS stylesheets',
+  'styles:vendor': 'Copy stylesheets from bower_components to build/css',
   'scsslint': 'Check SCSS syntax for best practices',
   'php': 'Copy PHP files to build folder',
   'bower:install': 'Install bower packages',
@@ -143,7 +147,7 @@ gulp.task('fonts', function() {
 });
 
 // Compile and optimize stylesheets
-gulp.task('styles', [ 'scsslint' ], function() {
+gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
   var themeData   = require(resources.themeJSON);
   var styleHeader = _.template([
     '/*',
@@ -177,6 +181,11 @@ gulp.task('styles', [ 'scsslint' ], function() {
     .pipe(mainFilter)
       .pipe($.insert.prepend(styleHeader))
       .pipe(gulp.dest('build'));
+});
+
+gulp.task('styles:vendor', function() {
+  return gulp.src(resources.vendorStyles)
+    .pipe(gulp.dest('build/css'));
 });
 
 gulp.task('scsslint', function() {

@@ -2,16 +2,6 @@
 
 @import 'partials/bourbon/bourbon';
 @import 'partials/neat/neat';
-@import 'partials/base';
+@import 'partials/variables';
 @import 'partials/mixins';
-
-html {
-  font-size: 16px;
-  font-family: 'Helvetica', arial, sans-serif;
-}
-
-body {
-  font-size: 1em;
-  background: $background;
-  color: $text-color;
-}
+@import 'partials/base';

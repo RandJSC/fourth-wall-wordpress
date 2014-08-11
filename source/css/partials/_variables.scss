@@ -1,0 +1,31 @@
+// Fourth Wall Events: Base Variables
+
+/**
+ * **Neat grid override:** max container width
+ * @type Number
+ */
+$max-width: em(1060);
+
+/**
+ * Body background color
+ * @type Color
+ */
+$background: #fff;
+
+/**
+ * Default text color
+ * @type Color
+ */
+$text-color: #747474;
+
+/**
+ * Base font size for the whole document
+ * @type Number
+ */
+$base-font-size: 16px;
+
+/**
+ * Source Sans Pro font w/ fallbacks
+ * @type String
+ */
+$source-sans: 'Source Sans Pro', 'Helvetica', 'Arial', arial, sans-serif;

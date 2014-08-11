@@ -17,20 +17,40 @@ $settings  = get_option('fwe_theme_settings');
 
   <?php // [todo] - Favicons and Apple touch icon ?>
 
+  <?php // Google Web Fonts: Source Sans Pro ?>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic,600italic' rel='stylesheet' type='text/css'>
+
   <script src="<?php echo $theme_uri; ?>/js/modernizr.min.js"></script>
   <script src="<?php echo $theme_uri; ?>/js/modernizr-tests.min.js"></script>
   <script data-main="<?php echo $theme_uri; ?>/js/main.min.js"
           src="<?php echo $theme_uri; ?>/js/require.js"></script>
   <script>
-  // Asynchronously load matchMedia polyfill if needed
-  if (!Modernizr.matchmedia) {
-    var s    = document.createElement('script');
-    var head = document.getElementsByTagName('head')[0];
-    s.src    = '<?php echo $theme_uri; ?>/js/matchMedia.js';
-    head.appendChild(s);
-  }
+    // Asynchronously load matchMedia polyfill if needed
+    if (!Modernizr.matchmedia) {
+      var s    = document.createElement('script');
+      var head = document.getElementsByTagName('head')[0];
+      s.src    = '<?php echo $theme_uri; ?>/js/matchMedia.js';
+      head.appendChild(s);
+    }
   </script>
 
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+  <div id="master-container" class="full-width">
+    <div id="main-nav" class="menu">
+      <?php
+      wp_nav_menu(array(
+        'theme_location' => 'main-nav',
+        'container'      => 'nav',
+        'fallback_cb'    => false,
+      ));
+      ?>
+    </div><!-- /#main-nav -->
+    
+    <div class="pusher">
+      <div class="content">
+        <div class="content-inner">
+          <header id="logo-nav-search" class="container">
+            
+          </header><!-- /#logo-nav-search -->

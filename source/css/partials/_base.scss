@@ -1,22 +1,30 @@
-// Fourth Wall Events: Base Variables
+/**
+ * Set base font size and other defaults
+ * @group base
+ */
+html {
+  font-size: $base-font-size;
+  font-family: $source-sans;
+}
 
 /**
- * **Neat grid override:** max container width
- * @group base
- * @type Number
+ * Default font color and body background
  */
-$max-width: em(1060);
+body {
+  font: {
+    size: 1em;
+    weight: 300;
+  };
+  background: $background;
+  color: $text-color;
+}
 
 /**
- * Body background color
- * @group base
- * @type Color
+ * Full width, elastic container element
  */
-$background: #fff;
-
-/**
- * Default text color
- * @group base
- * @type Color
- */
-$text-color: #4d4d4d;
+.full-width {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  @include clearfix;
+}

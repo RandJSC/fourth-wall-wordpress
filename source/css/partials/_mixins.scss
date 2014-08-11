@@ -1,0 +1,10 @@
+/**
+ * Test documentation of a mixin
+ * @param {Number} $width
+ */
+@mixin hr($width: 100%) {
+  &:after {
+    content: '';
+    width: $width;
+  }
+}

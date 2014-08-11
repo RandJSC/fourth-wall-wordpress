@@ -187,7 +187,14 @@ gulp.task('scsslint', function() {
 gulp.task('sassdoc', function() {
   return gulp.src('source/css')
     .pipe($.sassdoc({
-      dest: 'doc'
+      dest: 'doc',
+      verbose: true,
+      display: {
+        access: [ 'public', 'private' ],
+        alias: true,
+        watermark: true
+      },
+      package: './package.json'
     }));
 });
 

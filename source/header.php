@@ -53,5 +53,6 @@ $settings  = get_option('fwe_theme_settings');
     <div class="pusher">
       <div class="content">
         <div class="content-inner">
-          <header id="logo-nav-search" class="container">
+          <header id="logo-nav-btn" class="container">
+
           </header><!-- /#logo-nav-search -->

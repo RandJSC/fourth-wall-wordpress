@@ -38,7 +38,8 @@ var rjsConfig = {
   paths: {
     jquery: '../../bower_components/jquery/dist/jquery.min',
     slick: '../../bower_components/slick-carousel/slick/slick.min',
-    lodash: '../../bower_components/lodash-amd/modern'
+    lodash: '../../bower_components/lodash-amd/modern',
+    Snap: '../../bower_components/Snap.svg/dist/snap.svg-min'
   }
 };
 

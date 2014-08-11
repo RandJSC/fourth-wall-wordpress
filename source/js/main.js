@@ -8,10 +8,10 @@
 require([
   '../../bower_components/requirejs-domready/domReady!',
   'jquery',
+  'Snap',
   'slick'
-], function(doc, $) {
+], function(doc, $, Snap) {
 
-  console.log(doc, $);
-  $('body').addClass('foo');
+  console.log(doc, $, Snap);
 
 });

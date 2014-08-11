@@ -19,6 +19,7 @@ var reload      = browserSync.reload;
 var _           = require('lodash');
 var helpers     = require('./tasks/lib/helpers.js');
 var server      = require('tiny-lr')();
+var pngcrush    = require('imagemin-pngcrush');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
@@ -49,7 +50,8 @@ var resources = {
     'bower_components/requirejs/require.js',
     'bower_components/matchmedia/matchMedia.js'
   ],
-  images: 'source/images/**/*',
+  images: 'source/img/**/*',
+  svgs: 'source/img/**/*.svg',
   php: 'source/**/*.php',
   fonts: 'source/fonts/**/*',
   themeJSON: './theme.json',
@@ -116,9 +118,10 @@ gulp.task('images', function() {
   return gulp.src(resources.images)
     .pipe($.cache($.imagemin({
       progressive: true,
-      interlaced: true
+      svgoPlugins: [ { removeViewBox: false } ],
+      use: [ pngcrush() ]
     })))
-    .pipe(gulp.dest('build/images'))
+    .pipe(gulp.dest('build/img'))
     .pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));
 });

@@ -7,19 +7,22 @@
   height: 100%;
 }
 
-#main-nav {
-  box-shadow: em(-5) 0 em(10) 0 rgba(0, 0, 0, .1);
-  @include transition(transform 500ms);
+#logo-nav-btn {
+  height: em(69);
+  overflow: hidden;
+  @include clearfix;
 
-  .search-form {
-    background: $tan;
+  #logo {
+    display: block;
+    float: left;
 
-    span.screen-reader-text {
-      display: none;
+    img {
+      width: em(115);
     }
+  }
 
-    input[type='submit'] {
-      display: none;
-    }
+  #hamburger {
+    display: block;
+    float: right;
   }
 }

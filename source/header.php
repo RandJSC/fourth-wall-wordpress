@@ -54,5 +54,19 @@ $settings  = get_option('fwe_theme_settings');
       <div class="content">
         <div class="content-inner">
           <header id="logo-nav-btn" class="container">
+            <a href="<?php echo site_url('/'); ?>" id="logo">
+              <img src="<?php echo $theme_uri; ?>/img/fwe-logo.svg" alt="Fourth Wall Events">
+            </a><!-- /#logo -->
 
+            <a href="#main-nav" id="hamburger">
+            
+              <svg xmlns="http://www.w3.org/2000/svg" width="34" height="26" id="hamburger-img">
+                <g fill="#fff" stroke="#008fd1" stroke-width="3.873" stroke-linecap="square" stroke-linejoin="round">
+                  <path d="M1.97 2.122h30.127v.127H1.97z"/>
+                  <path d="M1.97 12.994h30.126v.127H1.92z"/>
+                  <path d="M1.97 23.916H32.11v.127H1.983z"/>
+                </g>
+              </svg>
+ 
+            </a><!-- /#hamburger -->
           </header><!-- /#logo-nav-search -->

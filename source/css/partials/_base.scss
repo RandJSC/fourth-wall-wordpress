@@ -29,3 +29,25 @@ body {
   @include clearfix;
 }
 
+/**
+ * Pusher content div
+ */
+.content {
+  position: relative;
+  overflow-y: scroll;
+}
+
+/**
+ * Pusher inner content div
+ */
+.content-inner {
+  position: relative;
+}
+
+.pusher {
+  position: relative;
+  right: 0;
+  z-index: 99;
+  height: 100%;
+  @include transition(transform 500ms);
+}

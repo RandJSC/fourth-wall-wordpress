@@ -5,6 +5,14 @@
   position: relative;
   overflow: hidden;
   height: 100%;
+
+  &.menu-open .pusher {
+    @include transform(translate3d(em(-250), 0, 0));
+  }
+
+  &.menu-open #main-nav {
+    @include transform(translate3d(0, 0, 0));
+  }
 }
 
 #logo-nav-btn {

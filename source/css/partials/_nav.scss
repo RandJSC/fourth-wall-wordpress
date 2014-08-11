@@ -9,7 +9,9 @@
   z-index: 100;
   width: em(250);
   height: 100%;
+  background: $white;
 
+  @include transform(translate3d(em(250), 0, 0));
   @include transition(transform 500ms);
 
   .search-form {

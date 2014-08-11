@@ -1,0 +1,7 @@
+exclude: 'source/css/partials/bourbon'
+exclude: 'source/css/partials/neat'
+linters:
+  Comment:
+    enabled: false
+  PropertySortOrder:
+    enabled: false

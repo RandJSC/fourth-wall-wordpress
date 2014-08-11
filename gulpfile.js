@@ -184,6 +184,13 @@ gulp.task('scsslint', function() {
   ]).pipe($.scsslint()).pipe($.scsslint.reporter());
 });
 
+gulp.task('sassdoc', function() {
+  return gulp.src('source/css')
+    .pipe($.sassdoc({
+      dest: 'doc'
+    }));
+});
+
 gulp.task('php', function() {
   return gulp.src(resources.php)
     .pipe(gulp.dest('build/'))

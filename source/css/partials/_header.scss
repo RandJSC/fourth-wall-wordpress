@@ -1,0 +1,23 @@
+/**
+ * Overall container for all of the page's content
+ */
+#master-container {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+#main-nav {
+  @include transition(transform 500ms);
+  box-shadow: em(-5) 0 em(10) 0 rgba(0, 0, 0, .1);
+
+  .search-form {
+    span.screen-reader-text {
+      display: none;
+    }
+
+    input[type='submit'] {
+      display: none;
+    }
+  }
+}

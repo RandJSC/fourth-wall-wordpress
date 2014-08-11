@@ -40,6 +40,8 @@ $settings  = get_option('fwe_theme_settings');
   <div id="master-container" class="full-width">
     <div id="main-nav" class="menu">
       <?php
+      get_search_form();
+
       wp_nav_menu(array(
         'theme_location' => 'main-nav',
         'container'      => 'nav',
@@ -52,5 +54,4 @@ $settings  = get_option('fwe_theme_settings');
       <div class="content">
         <div class="content-inner">
           <header id="logo-nav-search" class="container">
-            
           </header><!-- /#logo-nav-search -->

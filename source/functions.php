@@ -15,6 +15,7 @@ require_once $base_path . 'plugins.php';
 require_once $base_path . 'post-types.php';
 require_once $base_path . 'shortcodes.php';
 require_once $base_path . 'styles.php';
+require_once $base_path . 'theme-support.php';
 require_once $base_path . 'utilities.php';
 require_once $base_path . 'widgets.php';
 

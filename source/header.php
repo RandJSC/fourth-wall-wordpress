@@ -70,4 +70,4 @@ $settings  = get_option('fwe_theme_settings');
  
             </a><!-- /#hamburger -->
           </header><!-- /#logo-nav-search -->
-          <section id="main-content">
+          <div id="main-content">

@@ -1,23 +1,41 @@
 <?php
+/**
+ * Fourth Wall Events
+ * Homepage Template
+ */
+
 get_header();
 ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
-  <h1><?php the_title(); ?></h1>
-
-  <?php the_content(); ?>
-
   <?php
   $images = get_post_meta(get_the_ID(), 'slider_images', true);
+  $has_slides = !empty($images) && !empty($images['image'][0][0]);
 
-  if (!empty($images) && !empty($images['image'][0][0])) {
+  if ($has_slides):
     var_dump($images);
-    foreach ($images['image'] as $idx => $img) {
-      $src = wp_get_attachment_image_src($img[0], 'full');
-      echo '<img src="' . $src[0] . '">';
-    }
-  }
   ?>
+    <section class="slider banner">
+
+    </section>
+  <?php endif; ?>
+
+  <section id="quick-links">
+    <?php
+    wp_nav_menu(array(
+      'theme_location' => 'quick_links',
+      'container'      => 'nav',
+      'fallback_cb'    => false,
+      'walker'         => new Walker_FWE_QuickLinks(),
+    ));
+    ?>
+  </section>
+
+  <section id="main-page-content">
+    <h1><?php the_title(); ?></h1>
+
+    <?php the_content(); ?>
+  </section>
 <?php endwhile; endif; ?>
 
 <?php get_footer(); ?>

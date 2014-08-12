@@ -4,19 +4,23 @@
  * WordPress Functions File
  */
 
-$base_path = trailingslashit(dirname(__FILE__)) . 'includes/functions/';
+$base_path = trailingslashit(dirname(__FILE__)) . 'includes/';
+$functions = $base_path . 'functions/';
+$walkers   = $base_path . 'walkers/';
 
-require_once $base_path . 'hooks.php';
-require_once $base_path . 'http-timeout-fix.php';
-require_once $base_path . 'image-sizes.php';
-require_once $base_path . 'login.php';
-require_once $base_path . 'menus.php';
-require_once $base_path . 'plugins.php';
-require_once $base_path . 'post-types.php';
-require_once $base_path . 'shortcodes.php';
-require_once $base_path . 'styles.php';
-require_once $base_path . 'theme-support.php';
-require_once $base_path . 'utilities.php';
-require_once $base_path . 'widgets.php';
+require_once $walkers . 'class.walker-fwe-quicklinks.php';
+
+require_once $functions . 'hooks.php';
+require_once $functions . 'http-timeout-fix.php';
+require_once $functions . 'image-sizes.php';
+require_once $functions . 'login.php';
+require_once $functions . 'menus.php';
+require_once $functions . 'plugins.php';
+require_once $functions . 'post-types.php';
+require_once $functions . 'shortcodes.php';
+require_once $functions . 'styles.php';
+require_once $functions . 'theme-support.php';
+require_once $functions . 'utilities.php';
+require_once $functions . 'widgets.php';
 
 ?>

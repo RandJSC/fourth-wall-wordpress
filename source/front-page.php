@@ -13,7 +13,6 @@ get_header();
   $has_slides = !empty($images) && !empty($images['image'][0][0]);
 
   if ($has_slides):
-    var_dump($images);
   ?>
     <section class="slider banner">
       <div class="slides">

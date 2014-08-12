@@ -12,6 +12,15 @@ require([
   'slick'
 ], function(doc, $, Snap) {
 
-  console.log(doc, $, Snap);
+  var $container = $('#master-container');
+  var $hamburger = $('#hamburger');
+  var burgerSvg  = Snap('#hamburger-img');
+
+  window.svg = burgerSvg;
+
+  $hamburger.on('click', function(evt) {
+    $container.toggleClass('menu-open');
+    return false;
+  });
 
 });

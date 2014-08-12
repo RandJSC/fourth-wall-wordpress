@@ -1,5 +1,6 @@
 exclude: 'source/css/partials/bourbon'
 exclude: 'source/css/partials/neat'
+exclude: 'source/css/partials/font-awesome/*'
 linters:
   Comment:
     enabled: false

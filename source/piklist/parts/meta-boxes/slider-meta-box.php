@@ -22,7 +22,7 @@ piklist('field', array(
       'type'        => 'file',
       'field'       => 'image',
       'label'       => 'Upload an Image',
-      'description' => 'You can upload a new image or choose an existing one. TODO: dimension requirements',
+      'description' => 'TODO: dimension requirements',
     ),  
   ),
 ));

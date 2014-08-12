@@ -1,3 +1,4 @@
+        </section><!-- /#main-content -->
         <footer id="footer-main">
           <?php
           $year = strftime('%Y');

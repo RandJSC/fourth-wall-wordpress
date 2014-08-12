@@ -17,9 +17,6 @@ $settings  = get_option('fwe_theme_settings');
 
   <?php // [todo] - Favicons and Apple touch icon ?>
 
-  <?php // Google Web Fonts: Source Sans Pro ?>
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic,600italic' rel='stylesheet' type='text/css'>
-
   <script src="<?php echo $theme_uri; ?>/js/modernizr.min.js"></script>
   <script src="<?php echo $theme_uri; ?>/js/modernizr-tests.min.js"></script>
   <script data-main="<?php echo $theme_uri; ?>/js/main.min.js"

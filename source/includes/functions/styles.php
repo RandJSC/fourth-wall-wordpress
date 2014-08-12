@@ -13,9 +13,25 @@ function fwe_enqueue_styles() {
       'version' => '3.0.1',
       'media'   => 'all',
     ),
+    'font-awesome' => array(
+      'src'     => "$theme_uri/css/font-awesome.css",
+      'deps'    => false,
+      'version' => '4.1.0',
+      'media'   => 'all',
+    ),
+    'source-sans-pro' => array(
+      'src'     => '//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic,600italic',
+      'deps'    => false,
+      'version' => '0.1.0',
+      'media'   => 'all',
+    ),
     'fwe-main' => array(
       'src'     => "$theme_uri/style.css",
-      'deps'    => array('normalize'),
+      'deps'    => array(
+        'normalize',
+        'font-awesome',
+        'source-sans-pro'
+      ),
       'version' => '0.1.0',
       'media'   => 'screen',
     ),

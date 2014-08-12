@@ -8,6 +8,7 @@
     "document",
     "require",
     "__dirname",
-    "process"
+    "process",
+    "define"
   ]
 }

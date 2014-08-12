@@ -43,6 +43,14 @@ var rjsConfig = {
   }
 };
 
+var sassConfig = {
+  style: 'expanded',
+  precision: 10,
+  loadPath: [
+    'source/css'
+  ]
+};
+
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
@@ -58,6 +66,9 @@ var resources = {
   svgs: 'source/img/**/*.svg',
   php: 'source/**/*.php',
   fonts: 'source/fonts/**/*',
+  vendorFonts: [
+    'bower_components/font-awesome/fonts/*'
+  ],
   themeJSON: './theme.json',
   packageJSON: './package.json',
   bowerJSON: './bower.json',
@@ -140,11 +151,16 @@ gulp.task('copy', function() {
 });
 
 // Copy fonts to build folder
-gulp.task('fonts', function() {
+gulp.task('fonts', [ 'fonts:vendor' ], function() {
   return gulp.src(resources.fonts)
     .pipe(gulp.dest('build/fonts'))
     .pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'fonts'}));
+});
+
+gulp.task('fonts:vendor', [ 'bower:install' ], function() {
+  return gulp.src(resources.vendorFonts)
+    .pipe(gulp.dest('build/fonts'));
 });
 
 // Compile and optimize stylesheets
@@ -168,11 +184,7 @@ gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
 
   return gulp.src(resources.scss)
     .pipe(helpers.log('Compiling SCSS'.yellow))
-    .pipe($.rubySass({
-      style: 'expanded',
-      precision: 10,
-      loadPath: ['source/css']
-    }))
+    .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
     .pipe($.pleeease())
     .pipe(gulp.dest('build/css'))

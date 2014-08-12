@@ -184,7 +184,7 @@ gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
       .pipe(gulp.dest('build'));
 });
 
-gulp.task('styles:vendor', function() {
+gulp.task('styles:vendor', [ 'bower:install' ], function() {
   return gulp.src(resources.vendorStyles)
     .pipe(gulp.dest('build/css'));
 });

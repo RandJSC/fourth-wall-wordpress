@@ -9,10 +9,14 @@ require([
   '../../bower_components/requirejs-domready/domReady!',
   'config',
   'jquery',
+  'FastClick',
   'Snap',
   'lodash/collections/forEach',
   'slick'
-], function(doc, config, $, Snap, forEach) {
+], function(doc, config, $, FastClick, Snap, forEach) {
+
+  // Attach fastclick to body
+  FastClick.attach(doc.body);
 
   var $container = $('#master-container');
   var $hamburger = $('#hamburger');

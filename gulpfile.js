@@ -39,7 +39,8 @@ var rjsConfig = {
     jquery: '../../bower_components/jquery/dist/jquery.min',
     slick: '../../bower_components/slick-carousel/slick/slick.min',
     lodash: '../../bower_components/lodash-amd/modern',
-    Snap: '../../bower_components/Snap.svg/dist/snap.svg'
+    Snap: '../../bower_components/Snap.svg/dist/snap.svg',
+    FastClick: '../../bower_components/fastclick/lib/fastclick'
   }
 };
 

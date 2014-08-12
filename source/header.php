@@ -40,7 +40,7 @@ $settings  = get_option('fwe_theme_settings');
       get_search_form();
 
       wp_nav_menu(array(
-        'theme_location' => 'main-nav',
+        'theme_location' => 'main_nav',
         'container'      => 'nav',
         'fallback_cb'    => false,
       ));

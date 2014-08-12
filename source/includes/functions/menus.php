@@ -9,7 +9,7 @@ function fwe_register_nav_menus() {
 
   register_nav_menus(array(
     'main_nav'    => 'Main Navigation',
-    'quick_links' => 'Quick Links',
+    'quick_links' => 'QuickLinks',
   ));
 }
 add_action('init', 'fwe_register_nav_menus');

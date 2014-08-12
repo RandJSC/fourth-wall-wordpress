@@ -16,7 +16,11 @@ class Walker_FWE_QuickLinks extends Walker_Nav_Menu {
     $classes = empty($item->classes) ? array() : (array)$item->classes;
     $classes[] = 'menu-item-' . $item->ID;
 
-    $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+    $filtered_classes = array_filter($classes, function($klass) {
+      return !(strpos($klass, 'fa-') === 0);
+    });
+
+    $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($filtered_classes), $item, $args));
     $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
     $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args);

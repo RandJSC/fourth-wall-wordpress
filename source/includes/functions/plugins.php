@@ -9,11 +9,21 @@ require_once trailingslashit(dirname(__FILE__)) . '../class-tgm-plugin-activatio
 function fwe_register_plugins() {
 
   $plugins = array(
+    // The spinal column of this site
     array(
       'name'     => 'PIKLIST | Rapid development framework',
       'slug'     => 'piklist',
       'required' => true,
     ),
+
+    // SEO/Front-end
+    array(
+      'name'     => 'WordPress SEO by Yoast',
+      'slug'     => 'wordpress-seo',
+      'required' => true,
+    ),
+
+    // Debug + Optimization
     array(
       'name'     => 'Debug Bar',
       'slug'     => 'debug-bar',

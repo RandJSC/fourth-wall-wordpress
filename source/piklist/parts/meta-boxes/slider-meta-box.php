@@ -19,6 +19,11 @@ piklist('field', array(
       'label' => 'Title',
     ),
     array(
+      'type' => 'text',
+      'field' => 'link_url',
+      'label' => 'Link URL',
+    ),
+    array(
       'type'        => 'file',
       'field'       => 'image',
       'label'       => 'Upload an Image',

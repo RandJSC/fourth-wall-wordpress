@@ -16,7 +16,21 @@ get_header();
     var_dump($images);
   ?>
     <section class="slider banner">
-
+      <div class="slides">
+        <?php foreach ($images['image'] as $idx => $id): ?>
+          <?php
+          $title    = $images['title'][$idx];
+          $link_url = $images['link_url'][$idx];
+          $src      = wp_get_attachment_image_src($images['image'][$idx][0], 'full');
+          ?>
+          <figure class="slide">
+            <a href="<?php echo $link_url; ?>">
+              <img src="<?php echo $src[0]; ?>" alt="<?php echo $title; ?>">
+              <figcaption><?php echo $title; ?></figcaption>
+            </a>
+          </figure>
+        <?php endforeach; ?>
+      </div>
     </section>
   <?php endif; ?>
 

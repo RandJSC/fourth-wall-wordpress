@@ -12,6 +12,6 @@ vagrant up
 vagrant ssh
 cd /vagrant
 gulp ssh:setup # this requires the staging server's SSH password
-gulp db:downa # load up a copy of the staging database
+gulp db:down # load up a copy of the staging database
 logout
 ```

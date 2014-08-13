@@ -37,7 +37,7 @@ var rjsConfig = {
   baseUrl: path.join(__dirname, 'source', 'js'),
   paths: {
     jquery: '../../bower_components/jquery/dist/jquery.min',
-    slick: '../../bower_components/slick-carousel/slick/slick.min',
+    slick: '../../bower_components/slick-carousel/slick/slick',
     lodash: '../../bower_components/lodash-amd/modern',
     Snap: '../../bower_components/Snap.svg/dist/snap.svg',
     FastClick: '../../bower_components/fastclick/lib/fastclick'
@@ -206,8 +206,10 @@ gulp.task('scsslint', function() {
   return gulp.src([
     resources.scss,
     '!source/css/partials/bourbon/**/*',
-    '!source/css/partials/neat/**/*'
-  ]).pipe($.scsslint()).pipe($.scsslint.reporter());
+    '!source/css/partials/neat/**/*',
+    '!source/css/partials/font-awesome/**/*',
+    '!source/css/slick.scss'
+  ]).pipe($.scsslint('.scss-lint.yml')).pipe($.scsslint.reporter());
 });
 
 gulp.task('sassdoc', function() {

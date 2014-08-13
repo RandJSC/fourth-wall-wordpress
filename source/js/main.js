@@ -12,6 +12,7 @@ require([
   'FastClick',
   'Snap',
   'lodash/collections/forEach',
+  'jquery.fourthwall-ui',
   'slick'
 ], function(doc, config, $, FastClick, Snap, forEach) {
 
@@ -22,24 +23,6 @@ require([
   var $hamburger = $('#hamburger');
   var burgerSvg  = Snap('#hamburger-img');
 
-  $hamburger.on('click', function(evt) {
-    $container.add($hamburger).toggleClass('menu-open');
-
-    if ($hamburger.hasClass('menu-open')) {
-      forEach(config.svg.paths.close, function(path, index) {
-        var nthChild = index + 1;
-        var element  = burgerSvg.select('path:nth-child(' + nthChild + ')');
-        element.animate({ d: path }, config.svg.animation.speed);
-      });
-    } else {
-      forEach(config.svg.paths.burger, function(path, index) {
-        var nthChild = index + 1;
-        var element  = burgerSvg.select('path:nth-child(' + nthChild + ')');
-        element.animate({ d: path }, config.svg.animation.speed);
-      });
-    }
-
-    return false;
-  });
+  $hamburger.toggleNav($container, burgerSvg);
 
 });

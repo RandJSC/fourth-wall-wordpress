@@ -11,10 +11,9 @@ require([
   'jquery',
   'FastClick',
   'Snap',
-  'lodash/collections/forEach',
   'jquery.fourthwall-ui',
   'slick'
-], function(doc, config, $, FastClick, Snap, forEach) {
+], function(doc, config, $, FastClick, Snap) {
 
   var $container = $('#master-container');
   var $hamburger = $('#hamburger');

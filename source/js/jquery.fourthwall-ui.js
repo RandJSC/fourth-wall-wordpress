@@ -3,6 +3,8 @@
  * UI Functions
  */
 
+/* jshint -W064 */
+
 (function(window, undefined) {
   'use strict';
 

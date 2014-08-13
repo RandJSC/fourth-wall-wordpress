@@ -25,12 +25,19 @@ function fwe_enqueue_styles() {
       'version' => '0.1.0',
       'media'   => 'all',
     ),
+    'slick-carousel' => array(
+      'src'     => "$theme_uri/css/slick.css",
+      'deps'    => false,
+      'version' => '1.3.7',
+      'media'   => 'all',
+    ),
     'fwe-main' => array(
       'src'     => "$theme_uri/style.css",
       'deps'    => array(
         'normalize',
         'font-awesome',
-        'source-sans-pro'
+        'source-sans-pro',
+        'slick-carousel',
       ),
       'version' => '0.1.0',
       'media'   => 'screen',

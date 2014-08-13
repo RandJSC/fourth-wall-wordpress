@@ -64,11 +64,15 @@ var resources = {
     'bower_components/matchmedia/matchMedia.js'
   ],
   images: 'source/img/**/*',
+  vendorImages: [
+    'bower_components/slick-carousel/slick/ajax-loader.gif'
+  ],
   svgs: 'source/img/**/*.svg',
   php: 'source/**/*.php',
   fonts: 'source/fonts/**/*',
   vendorFonts: [
-    'bower_components/font-awesome/fonts/*'
+    'bower_components/font-awesome/fonts/*',
+    'bower_components/slick-carousel/slick/fonts/*'
   ],
   themeJSON: './theme.json',
   packageJSON: './package.json',
@@ -131,7 +135,7 @@ gulp.task('jshint', function() {
 });
 
 // Optimize images
-gulp.task('images', function() {
+gulp.task('images', [ 'images:vendor' ], function() {
   return gulp.src(resources.images)
     .pipe($.cache($.imagemin({
       progressive: true,
@@ -141,6 +145,11 @@ gulp.task('images', function() {
     .pipe(gulp.dest('build/img'))
     .pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));
+});
+
+gulp.task('images:vendor', function() {
+  return gulp.src(resources.vendorImages)
+    .pipe(gulp.dest('build/img'));
 });
 
 // Copy all files at the root level

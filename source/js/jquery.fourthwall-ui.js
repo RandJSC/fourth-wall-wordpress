@@ -31,20 +31,18 @@
         var $svg       = Snap(svg);
 
         $hamburger.on('click', function(evt) {
+          var animatePaths = function(path, index) {
+            var nthChild = index + 1;
+            var element  = $svg.select('path:nth-child(' + nthChild + ')');
+            element.animate({ d: path }, config.svg.animation.speed);
+          };
+
           $container.add($hamburger).toggleClass('menu-open');
 
           if ($hamburger.hasClass('menu-open')) {
-            forEach(config.svg.paths.close, function(path, index) {
-              var nthChild = index + 1;
-              var element  = $svg.select('path:nth-child(' + nthChild + ')');
-              element.animate({ d: path }, config.svg.animation.speed);
-            });
+            forEach(config.svg.paths.close, animatePaths);
           } else {
-            forEach(config.svg.paths.burger, function(path, index) {
-              var nthChild = index + 1;
-              var element  = $svg.select('path:nth-child(' + nthChild + ')');
-              element.animate({ d: path }, config.svg.animation.speed);
-            });
+            forEach(config.svg.paths.burger, animatePaths);
           }
 
           return false;

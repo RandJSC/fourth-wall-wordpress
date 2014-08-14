@@ -16,6 +16,8 @@ $opacity-default: .75;
 $opacity-on-hover: 1;
 $opacity-not-active: .25;
 
+@import 'partials/variables';
+
 
 @function slick-image-url($url) {
   @if function-exists(image-url) {

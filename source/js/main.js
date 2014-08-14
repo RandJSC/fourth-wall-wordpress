@@ -24,4 +24,12 @@ require([
 
   $hamburger.toggleNav($container, burgerSvg);
 
+  $('.slider .slides').slick({
+    lazyLoad: 'ondemand',
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: false,
+    slide: 'figure'
+  });
 });

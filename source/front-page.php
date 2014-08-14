@@ -24,7 +24,11 @@ get_header();
           ?>
           <figure class="slide">
             <a href="<?php echo $link_url; ?>">
-              <img src="<?php echo $src[0]; ?>" alt="<?php echo $title; ?>">
+              <?php
+              $img_src = ($idx === 0) ? ' src="' . $src[0] . '"' : '';
+              $data_lazy = ($idx > 0) ? ' data-lazy="' . $src[0] . '"' : '';
+              ?>
+              <img<?php echo $img_src . $data_lazy; ?> alt="<?php echo $title; ?>">
               <figcaption><?php echo $title; ?></figcaption>
             </a>
           </figure>

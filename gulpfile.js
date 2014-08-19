@@ -143,7 +143,7 @@ gulp.task('images', [ 'images:vendor' ], function() {
       use: [ pngcrush() ]
     })))
     .pipe(gulp.dest('build/img'))
-    .pipe($.livereload({ auto: false }))
+    //.pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));
 });
 
@@ -156,7 +156,7 @@ gulp.task('images:vendor', function() {
 gulp.task('copy', function() {
   return gulp.src(resources.misc, { dot: true })
     .pipe(gulp.dest('build'))
-    .pipe($.livereload({ auto: false }))
+    //.pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));
 });
 
@@ -164,7 +164,7 @@ gulp.task('copy', function() {
 gulp.task('fonts', [ 'fonts:vendor' ], function() {
   return gulp.src(resources.fonts)
     .pipe(gulp.dest('build/fonts'))
-    .pipe($.livereload({ auto: false }))
+    //.pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'fonts'}));
 });
 
@@ -200,7 +200,7 @@ gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
     .pipe(gulp.dest('build/css'))
     .pipe($.size({ title: 'scss' }))
     .pipe(helpers.log('Adding theme metadata'.yellow))
-    .pipe($.livereload({ auto: false }))
+    //.pipe($.livereload({ auto: false }))
     .pipe(mainFilter)
       .pipe($.insert.prepend(styleHeader))
       .pipe(gulp.dest('build'));
@@ -237,8 +237,8 @@ gulp.task('sassdoc', function() {
 
 gulp.task('php', function() {
   return gulp.src(resources.php)
-    .pipe(gulp.dest('build/'))
-    .pipe($.livereload({ auto: false }))
+    .pipe(gulp.dest('build'))
+    //.pipe($.livereload({ auto: false }))
     .pipe($.size({ title: 'php' }));
 });
 
@@ -259,7 +259,7 @@ gulp.task('scripts', [ 'scripts:vendor' ], function() {
       .pipe(gulp.dest('build/js'));
   return mainFilter.restore({ end: true })
     .pipe($.rename({ extname: '.min.js' }))
-    .pipe($.livereload({ auto: false }))
+    //.pipe($.livereload({ auto: false }))
     .pipe(gulp.dest('build/js'));
 });
 

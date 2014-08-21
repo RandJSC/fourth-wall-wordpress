@@ -8,6 +8,10 @@ $base_path = trailingslashit(dirname(__FILE__)) . 'includes/';
 $functions = $base_path . 'functions/';
 $walkers   = $base_path . 'walkers/';
 
+if (file_exists($base_path . 'vendor/autoload.php')) {
+  require_once $base_path . 'vendor/autoload.php';
+}
+
 require_once $walkers . 'class.walker-fwe-quicklinks.php';
 
 require_once $functions . 'hooks.php';

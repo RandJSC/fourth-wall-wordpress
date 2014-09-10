@@ -1,7 +1,6 @@
 <?php
 $theme_uri = get_stylesheet_directory_uri();
 $settings  = get_option('fwe_settings');
-var_dump($settings);
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->

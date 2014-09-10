@@ -5,6 +5,8 @@
  * by Fifth Room Creative <info@fifthroomcreative.com>
  */
 
+/* global Modernizr */
+
 require([
   '../../bower_components/requirejs-domready/domReady!',
   'config',

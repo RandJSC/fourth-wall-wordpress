@@ -41,8 +41,14 @@
 
           if ($hamburger.hasClass('menu-open')) {
             forEach(config.svg.paths.close, animatePaths);
+            $svg.select('g').animate({
+              stroke: config.colors.text
+            }, config.svg.animation.speed);
           } else {
             forEach(config.svg.paths.burger, animatePaths);
+            $svg.select('g').animate({
+              stroke: config.colors.blue
+            }, config.svg.animation.speed);
           }
 
           return false;

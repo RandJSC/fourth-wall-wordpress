@@ -13,6 +13,11 @@ define([], function() {
     }
   };
 
+  config.colors = {
+    blue: '#008fd1',
+    text: '#747474'
+  };
+
   config.svg = {
     paths: {
       burger: [

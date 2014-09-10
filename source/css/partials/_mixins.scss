@@ -8,3 +8,19 @@
     width: $width;
   }
 }
+
+/**
+ * Add a background image to a link w/ background-size: cover
+ * @param {String} $url
+ * @param {String} $position
+ */
+@mixin link-bg-cover($url, $position: 0 0, $width: 100%, $height: 100%) {
+  a {
+    display: block;
+    width: $width;
+    height: $height;
+    background-image: url($url);
+    background-position: $position;
+    background-size: cover;
+  }
+}

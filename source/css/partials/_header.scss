@@ -7,7 +7,7 @@
   height: 100%;
 
   &.menu-open .pusher {
-    @include transform(translate3d(em(-250), 0, 0));
+    @include transform(translate3d(rem(-250), 0, 0));
   }
 
   &.menu-open #main-nav {
@@ -16,7 +16,7 @@
 }
 
 #logo-nav-btn {
-  height: em(69);
+  height: rem(69);
   overflow: hidden;
   @include clearfix;
 
@@ -25,10 +25,10 @@
     float: left;
 
     img {
-      width: em(115);
+      width: rem(115);
       position: relative;
-      top: em(-20);
-      left: em(-16);
+      top: rem(-20);
+      left: rem(-16);
     }
   }
 
@@ -36,6 +36,6 @@
     display: block;
     float: right;
     margin-right: 1em;
-    margin-top: em(20);
+    margin-top: rem(20);
   }
 }

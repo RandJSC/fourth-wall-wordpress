@@ -1,0 +1,48 @@
+// Homepage styles
+
+.slider {
+  figure {
+    margin: 0;
+
+    a {
+      display: block;
+      position: relative;
+      @include clearfix;
+    }
+
+    figcaption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: rem(10) rem(20);
+      background: rgba(0, 0, 0, .69);
+      color: $white;
+      text-align: right;
+      font: {
+        size: rem(31);
+        family: $source-sans;
+        weight: 200;
+      };
+    }
+  }
+}
+
+#quick-links {
+  #menu-quicklinks {
+    list-style: none;
+    padding-left: 0;
+    @include outer-container;
+
+    li {
+      @include span-columns(6 of 12);
+      @include omega;
+      height: rem(140);
+
+      &.magenta {
+        @include link-bg-cover(
+          $url: 'img/bg-magenta.svg'
+        );
+      }
+    }
+  }
+}

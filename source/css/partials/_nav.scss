@@ -2,7 +2,7 @@
  * Main Navigation container
  */
 #main-nav {
-  box-shadow: em(-5) 0 em(10) 0 rgba(0, 0, 0, .1);
+  box-shadow: rem(-5) 0 rem(10) 0 rgba(0, 0, 0, .1);
   position: absolute;
   top: 0;
   right: 0;
@@ -11,7 +11,7 @@
   height: 100%;
   background: $white;
 
-  @include transform(translate3d(em(250), 0, 0));
+  @include transform(translate3d(rem(250), 0, 0));
   @include transition(transform 500ms);
 
   .search-form {

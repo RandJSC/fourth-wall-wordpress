@@ -6,6 +6,13 @@ div.content-section {
     padding: rem(25);
   }
 
+  &.bg-blue {
+    background: url('img/bg-blue.svg') top left no-repeat;
+    background-size: 700%;
+    background-position: 65% 100%;
+    color: $white;
+  }
+
   .section-inner {
     padding: rem(25);
   }
@@ -39,6 +46,7 @@ div.content-section {
       font-size: rem(13);
       font-weight: 400;
       color: $black;
+      border: 1px solid #d2d2d2;
     }
 
     button {

@@ -13,14 +13,14 @@ html {
 body {
   font: {
     size: 1em;
-    weight: 300;
+    weight: 400;
   };
   background: $background;
   color: $text-color;
 }
 
 p {
-  font-weight: 300;
+  //font-weight: 300;
   line-height: rem(26);
 }
 

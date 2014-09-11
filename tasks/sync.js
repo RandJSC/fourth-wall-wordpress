@@ -4,13 +4,13 @@
 
 var secrets = require('../secrets.json');
 var gulp    = require('gulp');
-var colors  = require('colors');
+var chalk   = require('chalk');
 var path    = require('path');
 var shell   = require('gulp-shell');
 var helpers = require('./lib/helpers.js');
 
 gulp.task('sync:up', function() {
-  console.log('Syncing Up...'.blue);
+  console.log(chalk.blue( 'Syncing Up...' ));
 
   var config   = secrets.servers.staging.rsync;
   var buildDir = path.join(__dirname, '..', 'build/');
@@ -24,4 +24,8 @@ gulp.task('sync:up', function() {
 
   return gulp.src('', { read: false })
     .pipe(shell(rsyncCmd));
+});
+
+gulp.task('uploads:up', function() {
+  console.log(chalk.blue('Syncing uploads UP...'));
 });

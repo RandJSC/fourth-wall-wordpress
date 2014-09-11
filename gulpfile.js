@@ -20,6 +20,7 @@ var _           = require('lodash');
 var helpers     = require('./tasks/lib/helpers.js');
 var server      = require('tiny-lr')();
 var pngcrush    = require('imagemin-pngcrush');
+var chalk       = require('chalk');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',

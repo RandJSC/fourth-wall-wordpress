@@ -6,7 +6,7 @@
 var secrets = require('../secrets.json');
 var gulp    = require('gulp');
 var shell   = require('gulp-shell');
-var colors  = require('colors');
+var chalk   = require('chalk');
 var path    = require('path');
 var fs      = require('fs');
 var gutil   = require('gulp-util');
@@ -52,13 +52,13 @@ gulp.task('db:up', function() {
   ]);
 
   return gulp.src('')
-    .pipe(helpers.log('Dumping local database'.yellow))
+    .pipe(helpers.log(chalk.yellow('Dumping local database')))
     .pipe(shell(mysqlDumpCmd, { quiet: true }))
-    .pipe(helpers.log('Uploading to staging'.yellow))
+    .pipe(helpers.log(chalk.yellow('Uploading to staging')))
     .pipe(shell(scpCmd, { quiet: true }))
-    .pipe(helpers.log('Loading database dump on staging'.yellow))
+    .pipe(helpers.log(chalk.blue('Loading database dump on staging')))
     .pipe(helpers.remoteShell(loadDumpCmd, { quiet: true }))
-    .pipe(helpers.log('Done!'.green));
+    .pipe(helpers.log(chalk.green('Done!')));
 });
 
 gulp.task('db:down', function() {
@@ -98,15 +98,15 @@ gulp.task('db:down', function() {
   var postContent  = helpers.commandTemplate("UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://<%= staging.url %>', 'http://<%= dev.url %>');");
 
   return gulp.src('')
-    .pipe(helpers.log('Dumping remote database'.yellow))
+    .pipe(helpers.log(chalk.yellow('Dumping remote database')))
     .pipe(helpers.remoteShell(mysqlDumpCmd, { quiet: true }))
-    .pipe(helpers.log('Downloading remote database dump'.yellow))
+    .pipe(helpers.log(chalk.yellow('Downloading remote database dump')))
     .pipe(shell(scpCmd, { quiet: true }))
-    .pipe(helpers.log('Loading database dump'.yellow))
+    .pipe(helpers.log(chalk.yellow('Loading database dump')))
     .pipe(shell(mysqlLoadCmd, { quiet: true }))
-    .pipe(helpers.log('Changing URLs in database'.yellow))
+    .pipe(helpers.log(chalk.yellow('Changing URLs in database')))
     .pipe(shell(helpers.mysqlQuery(optionsQuery), { quiet: true }))
     .pipe(shell(helpers.mysqlQuery(postGuids), { quiet: true }))
     .pipe(shell(helpers.mysqlQuery(postContent), { quiet: true }))
-    .pipe(helpers.log('Done!'.green));
+    .pipe(helpers.log(chalk.green('Done!')));
 });

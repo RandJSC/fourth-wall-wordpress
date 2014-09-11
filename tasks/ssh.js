@@ -5,6 +5,7 @@ var gulp        = require('gulp');
 var gutil       = require('gulp-util');
 var shell       = require('gulp-shell');
 var colors      = require('colors');
+var chalk       = require('chalk');
 var path        = require('path');
 var fs          = require('fs');
 var runSequence = require('run-sequence');
@@ -39,6 +40,6 @@ gulp.task('ssh:uploadKey', function() {
 
 gulp.task('ssh:setup', function() {
   runSequence('ssh:keygen', 'ssh:uploadKey', function() {
-    gutil.log('All done'.green);
+    gutil.log(chalk.green('All done'));
   });
 });

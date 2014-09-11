@@ -1,0 +1,22 @@
+// Main Content Area
+
+#main-page-content {
+  padding: rem(25);
+
+  h1 {
+    text-align: center;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: rem(20);
+    line-height: rem(25);
+    font-style: italic;
+    border-bottom: 1px solid $hr-grey; 
+    padding-bottom: rem(25);
+  }
+
+  .center {
+    text-align: center;
+  }
+}

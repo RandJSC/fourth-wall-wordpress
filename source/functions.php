@@ -16,6 +16,7 @@ require_once $walkers . 'class.walker-fwe-quicklinks.php';
 
 require_once $functions . 'hooks.php';
 require_once $functions . 'http-timeout-fix.php';
+require_once $functions . 'file-types.php';
 require_once $functions . 'image-sizes.php';
 require_once $functions . 'login.php';
 require_once $functions . 'menus.php';

@@ -33,14 +33,62 @@
     padding-left: 0;
     @include outer-container;
 
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: rem(20);
+      background-size: rem(400) rem(400);
+      background-repeat: repeat;
+      color: $white;
+      font: {
+        weight: 600;
+        size: rem(20);
+      }
+      text: {
+        decoration: none;
+        align: center;
+      };
+    }
+
+    span.fa {
+      display: block;
+    }
+
     li {
       @include span-columns(6 of 12);
       @include omega;
       height: rem(140);
 
-      &.magenta {
-        @include link-bg-cover(
-          $url: 'img/bg-magenta.svg'
+      &:nth-child(1) {
+        @include quick-link(
+          $url: 'img/bg-magenta.svg',
+          $bg-size: rem(400) rem(400),
+          $position: rem(80) rem(-45)
+        );
+      }
+
+      &:nth-child(2) {
+        @include quick-link(
+          $url: 'img/bg-blue.svg',
+          $bg-size: rem(400) rem(400),
+          $position: rem(-76) rem(-45)
+        );
+      }
+
+      &:nth-child(3) {
+        @include quick-link(
+          $url: 'img/bg-green.svg',
+          $bg-size: rem(400) rem(400),
+          $position: rem(85) rem(223)
+        );
+      }
+
+      &:nth-child(4) {
+        @include quick-link(
+          $url: 'img/bg-orange.svg',
+          $bg-size: rem(400) rem(400),
+          $position: rem(15) rem(202)
         );
       }
     }

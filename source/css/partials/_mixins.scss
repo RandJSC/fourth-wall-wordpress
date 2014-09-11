@@ -14,13 +14,9 @@
  * @param {String} $url
  * @param {String} $position
  */
-@mixin link-bg-cover($url, $position: 0 0, $width: 100%, $height: 100%) {
+@mixin quick-link($url, $position: 0 0, $bg-size: cover) {
   a {
-    display: block;
-    width: $width;
-    height: $height;
     background-image: url($url);
     background-position: $position;
-    background-size: cover;
   }
 }

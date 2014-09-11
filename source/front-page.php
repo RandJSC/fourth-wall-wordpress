@@ -126,23 +126,25 @@ if ($news_query->have_posts()):
 <?php endif; ?>
 
 <section id="email-signup" class="content-section bg-blue">
-  <h2>Email Signup</h2>
+  <div class="section-inner">
+    <h2>Email Signup</h2>
 
-  <p>
-    Test test 123.
-  </p>
+    <p>
+      Test test 123.
+    </p>
 
-  <form action="" method="post">
-    <p>
-      <input type="text" name="name" required>
-    </p>
-    <p>
-      <input type="email" name="email" required>
-    </p>
-    <button type="submit" class="fwe-button">
-      Submit &raquo;
-    </button>
-  </form>
+    <form action="" method="post">
+      <p>
+        <input type="text" name="name" placeholder="Your Name" required>
+      </p>
+      <p>
+        <input type="email" name="email" placeholder="Email Address" required>
+      </p>
+      <button type="submit" class="fwe-button">
+        Submit &raquo;
+      </button>
+    </form>
+  </div>
 </section>
 
 <?php get_footer(); ?>

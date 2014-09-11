@@ -6,7 +6,14 @@ div.content-section {
     padding: rem(25);
   }
 
-  h1 {
+  .section-inner {
+    padding: rem(25);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
     text-align: center;
   }
 
@@ -21,5 +28,35 @@ div.content-section {
 
   .center {
     text-align: center;
+  }
+
+  form {
+    text-align: center;
+
+    input {
+      width: 100%;
+      padding: rem(8) rem(14);
+      font-size: rem(13);
+      font-weight: 400;
+      color: $black;
+    }
+
+    button {
+      position: relative;
+      font-weight: 400;
+      padding: rem(15) rem(40);
+      background: $button-bg;
+      color: $white;
+      border: 0;
+      border-radius: rem(7);
+      box-shadow: 0 rem(6) 0 rgba(0, 0, 0, .2), inset 0 0 3px rgba(255, 255, 255, .2);
+      @include transition(
+        background-color $transition-speed $transition-easing
+      );
+
+      &:hover {
+        background-color: $link-visited;
+      }
+    }
   }
 }

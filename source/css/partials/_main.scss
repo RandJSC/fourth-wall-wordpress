@@ -1,7 +1,10 @@
 // Main Content Area
 
-#main-page-content {
-  padding: rem(25);
+section.content-section,
+div.content-section {
+  &.padded {
+    padding: rem(25);
+  }
 
   h1 {
     text-align: center;

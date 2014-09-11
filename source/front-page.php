@@ -48,12 +48,10 @@ get_header();
     ?>
   </section>
 
-  <section id="main-page-content">
+  <section id="main-page-content" class="content-section padded">
     <h1><?php the_title(); ?></h1>
 
     <?php the_content(); ?>
-
-    <?php var_dump(get_post_meta(get_the_ID(), 'stitch_children')); ?>
   </section>
 <?php endwhile; endif; ?>
 
@@ -70,7 +68,7 @@ $blog_query = new WP_Query($blog_args);
 
 if ($blog_query->have_posts()):
 ?>
-  <section id="blog-posts" class="bg-green">
+  <section id="blog-posts" class="content-section bg-green">
     <h2>Blog Posts</h2>
 
     <ul class="thumb-list">
@@ -102,7 +100,7 @@ $news_query = new WP_Query($news_args);
 
 if ($news_query->have_posts()):
 ?>
-  <section id="news-posts" class="bg-none">
+  <section id="news-posts" class="content-section bg-none">
     <h2>News</h2>
 
     <ul class="thumb-list">
@@ -127,7 +125,7 @@ if ($news_query->have_posts()):
   </section>
 <?php endif; ?>
 
-<section id="email-signup" class="bg-blue">
+<section id="email-signup" class="content-section bg-blue">
   <h2>Email Signup</h2>
 
   <p>

@@ -60,3 +60,17 @@ gulp.task('uploads:down', syncTask({
   message: 'Syncing uploads DOWN...',
   direction: 'down'
 }));
+
+gulp.task('plugins:up', syncTask({
+  source: '/home/vagrant/www/wp-content/plugins/',
+  dest: 'public_html/fourthwall.fifthroomhosting.com/public/wp-content/plugins/',
+  message: 'Syncing plugins UP...',
+  direction: 'up'
+}));
+
+gulp.task('plugins:down', syncTask({
+  source: 'public_html/fourthwall.fifthroomhosting.com/public/wp-content/plugins/',
+  dest: '/home/vagrant/www/wp-content/plugins/',
+  message: 'Syncing plugins DOWN...',
+  direction: 'down'
+}));

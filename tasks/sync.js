@@ -28,4 +28,17 @@ gulp.task('sync:up', function() {
 
 gulp.task('uploads:up', function() {
   console.log(chalk.blue('Syncing uploads UP...'));
+  
+  var config     = secrets.servers.staging.rsync;
+  var uploadsDir = '/home/vagrant/www/wp-content/uploads/';
+  var rsyncCmd   = helpers.commandTemplate([
+    'rsync -avzr',
+    '-e "ssh -p <%= staging.ssh.port %>"',
+    '--delete',
+    '<%= uploadsDir %>',
+    '<%= staging.rsync.username %>@<%= staging.rsync.hostname %>:<%= staging.rsync.public_html %>/wp-content/uploads/'
+  ], { uploadsDir: uploadsDir });
+  
+  return gulp.src('', { read: false })
+    .pipe(shell(rsyncCmd));
 });

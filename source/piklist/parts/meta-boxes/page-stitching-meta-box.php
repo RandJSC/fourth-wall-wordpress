@@ -19,7 +19,7 @@ if (property_exists($post, 'ID') && $post->ID) {
 }
 
 $pages     = get_pages($pages_args);
-$page_opts = array();
+$page_opts = array('' => '-- Select a Page --');
 
 foreach ($pages as $idx => $page) {
   $page_opts[$page->ID] = $page->post_title;

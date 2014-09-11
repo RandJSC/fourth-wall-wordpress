@@ -10,6 +10,8 @@ function fwe_image_sizes() {
   // [todo] - define image sizes here
   // set_post_thumbnail_size($width, $height, $crop);
   // add_image_size($name, $width, $height, $crop);
+
+  add_image_size('tiny-thumb', 95, 75, true);
 }
 add_action('init', 'fwe_image_sizes');
 

@@ -68,7 +68,7 @@ $blog_query = new WP_Query($blog_args);
 
 if ($blog_query->have_posts()):
 ?>
-  <section id="blog-posts" class="content-section bg-green">
+  <section id="blog-posts" class="content-section bg green">
     <h2>Blog Posts</h2>
 
     <ul class="thumb-list">
@@ -125,7 +125,7 @@ if ($news_query->have_posts()):
   </section>
 <?php endif; ?>
 
-<section id="email-signup" class="content-section bg-blue">
+<section id="email-signup" class="content-section bg blue">
   <div class="section-inner">
     <h2>Email Signup</h2>
 
@@ -145,6 +145,15 @@ if ($news_query->have_posts()):
       </button>
     </form>
   </div>
+</section>
+
+<section id="facebook" class="content-section bg-none">
+  <h2>Fourth Wall on Facebook</h2>
+
+  <a href="" class="button block center">
+    <span class="fa fa-thumbs-o-up"></span>
+    Like on Facebook
+  </a>
 </section>
 
 <?php get_footer(); ?>

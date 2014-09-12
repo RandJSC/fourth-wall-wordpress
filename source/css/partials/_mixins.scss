@@ -20,3 +20,29 @@
     background-position: $position;
   }
 }
+
+%button {
+  position: relative;
+  font-weight: 400;
+  padding: rem(15) rem(40);
+  background: $button-bg;
+  color: $white;
+  border: 0;
+  border-radius: rem(7);
+  box-shadow: 0 rem(6) 0 rgba(0, 0, 0, .2), inset 0 0 3px rgba(255, 255, 255, .2);
+  outline: none;
+  text-decoration: none;
+  max-width: rem(300);
+  @include transition(
+    background-color $transition-speed $transition-easing
+  );
+
+  &:hover {
+    background-color: $link-visited;
+  }
+
+  &:active {
+    top: 2px;
+    box-shadow: 0 rem(4) 0 rgba(0, 0, 0, .2), inset 0 0 3px rgba(255, 255, 255, .2);
+  }
+}

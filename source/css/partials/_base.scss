@@ -62,3 +62,16 @@ h1 {
   color: $blue;
   font-weight: 400;
 }
+
+a.button {
+  @extend %button;
+
+  &.block {
+    display: block;
+  }
+
+  &.center {
+    text-align: center;
+    margin: 0 auto;
+  }
+}

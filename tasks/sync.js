@@ -12,7 +12,7 @@ var helpers = require('./lib/helpers.js');
 var syncTask = function syncTask(opts) {
   var config   = secrets.servers.staging.rsync;
   opts         = (typeof opts === 'undefined') ? {} : opts;
-  opts.source  = opts.source ? opts.source : path.join(__dirname, '..', 'build');
+  opts.source  = opts.source ? opts.source : path.join(__dirname, '..', 'build/');
   opts.dest    = opts.dest ? opts.dest : config.path;
   opts.message = opts.message ? opts.message : 'Beginning sync task';
   opts.direction = ( opts.direction === 'down' || opts.direction === 'up' ) ? opts.direction : 'up';

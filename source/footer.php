@@ -5,9 +5,23 @@
           $post_id = $post->ID;
           $cta_id  = get_post_meta($post_id, 'call_to_action', true);
           $cta     = get_post($cta_id);
-          var_dump($cta);
+        } else {
+          $cta = get_posts(array(
+            'posts_per_page' => 1,
+            'orderby'        => 'rand',
+            'post_type'      => 'call_to_action',
+            'post_status'    => 'publish',
+          ));
+
+          if (count($cta) > 0) {
+            $cta = $cta[0];
+          }
         }
+
+        if (isset($cta)):
         ?>
+
+        <?php endif; ?>
         </div><!-- /#main-content -->
         <footer id="footer-main">
           <?php

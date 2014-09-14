@@ -30,4 +30,22 @@ function fwe_get_cta() {
 
   return null;
 }
+
+function fwe_style_attribute($params = array()) {
+  $value = '';
+
+  foreach ($params as $key => $val) {
+    if (empty($val)) {
+      continue;
+    }
+    $value .= "{$key}:{$val};";
+  }
+
+  if (!empty($value)) {
+    $value = ' style="' . $value . '"';
+    return $value;
+  }
+
+  return '';
+}
 ?>

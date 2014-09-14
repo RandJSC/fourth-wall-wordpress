@@ -3,8 +3,9 @@
 
         if ($post && property_exists($post, 'ID')) {
           $post_id = $post->ID;
-          $cta_id = get_post_meta($post_id, 'call_to_action', true);
-          var_dump($cta_id);
+          $cta_id  = get_post_meta($post_id, 'call_to_action', true);
+          $cta     = get_post($cta_id);
+          var_dump($cta);
         }
         ?>
         </div><!-- /#main-content -->

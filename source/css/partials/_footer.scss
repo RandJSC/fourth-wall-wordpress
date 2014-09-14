@@ -1,0 +1,15 @@
+.call-to-action {
+  padding: rem(20) 0;
+
+  .cta-body {
+    background: rgba($tan, .9);
+    padding: rem(20) 0;
+  }
+
+  .cta-contents {
+    max-width: rem(800);
+    margin: 0 auto;
+    padding: 0 rem(15);
+    color: $cta-text;
+  }
+}

@@ -18,7 +18,11 @@
           ));
         ?>
           <div class="call-to-action"<?php echo $style_attr; ?>>
-
+            <div class="cta-body">
+              <div class="cta-contents">
+                <?php echo apply_filters('the_content', $cta->post_content); ?>
+              </div>
+            </div>
           </div>
         <?php endif; ?>
         </div><!-- /#main-content -->

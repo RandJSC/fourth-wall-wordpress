@@ -48,6 +48,7 @@ function fwe_register_post_types($post_types) {
     'supports' => array(
       'title',
       'author',
+      'editor',
     ),
     'hide_meta_box' => array(
       'slug',

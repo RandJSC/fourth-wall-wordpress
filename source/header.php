@@ -1,6 +1,7 @@
 <?php
-$theme_uri = get_stylesheet_directory_uri();
-$settings  = get_option('fwe_settings');
+global $fwe_settings, $theme_uri;
+$theme_uri    = get_stylesheet_directory_uri();
+$fwe_settings = get_option('fwe_settings');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -16,25 +17,25 @@ $settings  = get_option('fwe_settings');
   <title><?php wp_title(); ?></title>
 
   <?php // [todo] - Favicons and Apple touch icon ?>
-  <?php if ($settings['favicon_ico']): ?>
+  <?php if ($fwe_settings['favicon_ico']): ?>
     <?php
-    $ico_src     = wp_get_attachment_image_src($settings['favicon_ico'], 'full');
+    $ico_src     = wp_get_attachment_image_src($fwe_settings['favicon_ico'], 'full');
     $favicon_ico = $ico_src[0];
     ?>
     <link rel="shortcut icon" href="<?php echo $favicon_ico; ?>">
   <?php endif; ?>
 
-  <?php if ($settings['favicon_png']): ?>
+  <?php if ($fwe_settings['favicon_png']): ?>
     <?php
-    $png_src     = wp_get_attachment_image_src($settings['favicon_png'], 'full');
+    $png_src     = wp_get_attachment_image_src($fwe_settings['favicon_png'], 'full');
     $favicon_png = $png_src[0];
     ?>
     <link rel="icon" href="<?php echo $favicon_png; ?>">
   <?php endif; ?>
 
-  <?php if ($settings['apple_touch_icon']): ?>
+  <?php if ($fwe_settings['apple_touch_icon']): ?>
     <?php
-    $touch_icon = wp_get_attachment_image_src($settings['apple_touch_icon'], 'full');
+    $touch_icon = wp_get_attachment_image_src($fwe_settings['apple_touch_icon'], 'full');
     $touch_icon = $touch_icon[0];
     ?>
     <link rel="apple-touch-icon-precomposed" href="<?php echo $touch_icon; ?>">

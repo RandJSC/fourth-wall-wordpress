@@ -2,7 +2,7 @@
   padding: rem(40) 0;
 
   .cta-body {
-    background: rgba($tan, .9);
+    background: rgba($white, .9);
     padding: rem(20) 0;
     padding-bottom: rem(30);
   }
@@ -13,5 +13,41 @@
     padding: 0 rem(20);
     color: $cta-text;
     font-size: rem(18);
+  }
+}
+
+#socials {
+  background: $footer-dark-green;
+  padding-top: rem(20);
+  padding-bottom: rem(20);
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 auto;
+    max-width: rem(270);
+    text-align: center;
+    @include clearfix;
+  }
+
+  li {
+    display: inline-block;
+    width: rem(32);
+    text-align: center;
+    margin-right: rem(12);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a {
+    font-size: rem(32);
+    color: $white;
+    text-decoration: none;
+
+    &:hover {
+      color: $green;
+    }
   }
 }

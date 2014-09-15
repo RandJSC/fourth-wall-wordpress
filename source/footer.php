@@ -37,6 +37,12 @@
         </div><!-- /#main-content -->
 
         <div id="socials">
+          <?php
+          wp_nav_menu(array(
+            'theme_location' => 'social_links',
+            'walker' => new Walker_FWE_Socials,
+          ));
+          ?>
         </div>
 
         <footer id="footer-main">

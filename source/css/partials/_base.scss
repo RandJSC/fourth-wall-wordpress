@@ -24,6 +24,15 @@ p {
   line-height: rem(26);
 }
 
+a {
+  color: $text-color;
+  @include transition(color $transition-speed $transition-easing);
+
+  &:hover {
+    color: $link-hover;
+  }
+}
+
 /**
  * Full width, elastic container element
  */

@@ -48,4 +48,15 @@ function fwe_style_attribute($params = array()) {
 
   return '';
 }
+
+function fwe_is_url_local($url) {
+  if (!preg_match('/^https?\:\/\//', $url)) {
+    return true;
+  }
+
+  $site_url  = site_url();
+  $is_remote = strpos($url, $site_url) === false;
+
+  return !$is_remote;
+}
 ?>

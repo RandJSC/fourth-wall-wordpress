@@ -8,6 +8,9 @@
           $bg_pos    = get_post_meta($cta->ID, 'background_position', true);
           $bg_repeat = get_post_meta($cta->ID, 'background_repeat', true);
           $bg_color  = get_post_meta($cta->ID, 'background_color', true);
+          $link_url  = get_post_meta($cta->ID, 'link_url', true);
+          $btn_txt   = get_post_meta($cta->ID, 'button_text', true);
+          $target    = fwe_is_url_local($link_url) ? '' : ' target="_blank"';
 
           $style_attr = fwe_style_attribute(array(
             'background-image'    => "url('{$bg_img[0]}')",
@@ -21,6 +24,10 @@
             <div class="cta-body">
               <div class="cta-contents">
                 <?php echo apply_filters('the_content', $cta->post_content); ?>
+
+                <a class="button center inline-block" href="<?php echo esc_url($link_url); ?>"<?php echo $target; ?>>
+                  <?php echo $btn_txt; ?>
+                </a>
               </div>
             </div>
           </div>

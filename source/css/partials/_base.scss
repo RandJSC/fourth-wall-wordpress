@@ -70,6 +70,10 @@ a.button {
     display: block;
   }
 
+  &.inline-block {
+    display: inline-block;
+  }
+
   &.center {
     text-align: center;
     margin: 0 auto;

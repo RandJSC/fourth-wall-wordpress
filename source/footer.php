@@ -25,9 +25,11 @@
               <div class="cta-contents">
                 <?php echo apply_filters('the_content', $cta->post_content); ?>
 
-                <a class="button center block" href="<?php echo esc_url($link_url); ?>"<?php echo $target; ?>>
-                  <?php echo $btn_txt; ?>
-                </a>
+                <?php if (!empty($btn_txt) && !empty($link_url)): ?>
+                  <a class="button center block" href="<?php echo esc_url($link_url); ?>"<?php echo $target; ?>>
+                    <?php echo $btn_txt; ?>
+                  </a>
+                <?php endif; ?>
               </div>
             </div>
           </div>

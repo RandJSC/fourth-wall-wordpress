@@ -36,5 +36,10 @@ define([], function() {
     }
   };
 
+  config.gravityForms = {
+    apiKey: 'bf72b8cd58',
+    privateKey: '3d86b92f6e1a864'
+  };
+
   return config;
 });

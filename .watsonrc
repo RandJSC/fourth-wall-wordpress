@@ -1,0 +1,30 @@
+# watson rc
+# watson - inline issue manager
+# [goosecode] labs
+
+
+# Directories
+[dirs]
+./source
+
+
+# Tags
+[tags]
+fix
+fixme
+review
+todo
+kludge
+
+
+# Ignores
+[ignore]
+.git
+*.swp
+
+
+[github_api]
+mikedamage=99d18411817b7c59f809a5b65db6df7903a60a26
+
+
+

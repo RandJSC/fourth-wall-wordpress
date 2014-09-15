@@ -50,7 +50,7 @@
         <footer id="contact">
           <h2>Contact</h2>
           <p>Drop us a line. Give us a call. Let us know how we can help get your audience talking.</p>
-          <div itemscope itemtype="http://schema.org/LocalBusiness">
+          <div id="address" itemscope itemtype="http://schema.org/LocalBusiness">
             <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
             <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
 
@@ -72,6 +72,11 @@
                 <?php echo $fwe_settings['phone']; ?>
               </span>
             </div>
+          </div>
+          
+          <div id="footer-contact">
+            <!-- [todo] - Redo this as custom form using the Gravity Forms API over AJAX -->
+            <?php gravity_form(1, false, false, false, false, false, true); ?>
           </div>
         </footer>
 

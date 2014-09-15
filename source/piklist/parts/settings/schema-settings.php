@@ -41,4 +41,16 @@ piklist('field', array(
   'field' => 'zip_code',
   'label' => 'Zip Code',
 ));
+
+piklist('field', array(
+  'type'  => 'text',
+  'field' => 'phone',
+  'label' => 'Phone Number',
+));
+
+piklist('field', array(
+  'type'  => 'text',
+  'field' => 'contact_email',
+  'label' => 'Contact Email',
+));
 ?>

@@ -1,4 +1,6 @@
           <?php
+          global $fwe_settings, $theme_uri;
+
           $cta = fwe_get_cta();
 
           if ($cta):
@@ -36,14 +38,42 @@
           <?php endif; ?>
         </div><!-- /#main-content -->
 
-        <div id="socials">
+        <footer id="socials">
           <?php
           wp_nav_menu(array(
             'theme_location' => 'social_links',
             'walker' => new Walker_FWE_Socials,
           ));
           ?>
-        </div>
+        </footer>
+
+        <footer id="contact">
+          <h2>Contact</h2>
+          <p>Drop us a line. Give us a call. Let us know how we can help get your audience talking.</p>
+          <div itemscope itemtype="http://schema.org/LocalBusiness">
+            <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
+            <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
+
+            <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+              <span itemprop="streetAddress"><?php echo $fwe_settings['address']; ?></span>
+              <span itemprop="addressLocality"><?php echo $fwe_settings['city']; ?></span>
+              <span itemprop="addressRegion"><?php echo $fwe_settings['state']; ?></span>
+              <span itemprop="postalCode"><?php echo $fwe_settings['zip_code']; ?></span>
+            </address>
+            
+            <div class="email">
+              <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>" itemprop="email">
+                <?php echo $fwe_settings['contact_email']; ?>
+              </a>
+            </div>
+
+            <div class="phone">
+              <span itemprop="telephone">
+                <?php echo $fwe_settings['phone']; ?>
+              </span>
+            </div>
+          </div>
+        </footer>
 
         <footer id="footer-main">
           <?php

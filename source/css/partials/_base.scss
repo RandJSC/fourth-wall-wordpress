@@ -78,4 +78,18 @@ a.button {
     text-align: center;
     margin: 0 auto;
   }
+
+  .button-icon {
+    &.right {
+      margin-left: rem(10);
+    }
+
+    &.left {
+      margin-right: rem(10);
+    }
+  }
+
+  .fa.big {
+    font-size: rem(22);
+  }
 }

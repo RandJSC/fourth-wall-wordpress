@@ -151,8 +151,8 @@ if ($news_query->have_posts()):
   <h2>Fourth Wall on Facebook</h2>
 
   <a href="" class="button block center">
-    <span class="fa fa-thumbs-o-up"></span>
     Like on Facebook
+    <span class="button-icon right fa fa-thumbs-up big"></span>
   </a>
 </section>
 

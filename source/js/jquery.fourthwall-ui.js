@@ -14,14 +14,16 @@
         'jquery',
         'config',
         'lodash/collections/forEach',
-        'Snap'
+        'Snap',
+        'bragi',
+        'jquery.fourthwall-util'
       ], factory);
     } else {
       return factory(root.jQuery);
     }
   };
 
-  initialize(window, function($, config, forEach, Snap) {
+  initialize(window, function($, config, forEach, Snap, logger) {
 
     return $.fn.extend({
 
@@ -37,14 +39,17 @@
             element.animate({ d: path }, config.svg.animation.speed);
           };
 
+          logger.log('nav', 'toggling');
           $container.add($hamburger).toggleClass('menu-open');
 
           if ($hamburger.hasClass('menu-open')) {
+            logger.log('svg', 'animating to X');
             forEach(config.svg.paths.close, animatePaths);
             $svg.select('g').animate({
               stroke: config.colors.text
             }, config.svg.animation.speed);
           } else {
+            logger.log('svg', 'animating to hamburger');
             forEach(config.svg.paths.burger, animatePaths);
             $svg.select('g').animate({
               stroke: config.colors.blue

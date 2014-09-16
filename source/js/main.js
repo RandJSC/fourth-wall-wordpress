@@ -15,6 +15,7 @@ require([
   'Snap',
   'bragi',
   'jquery.fourthwall-ui',
+  'jquery.fourthwall-util',
   'slick'
 ], function(doc, config, $, FastClick, Snap, logger) {
 

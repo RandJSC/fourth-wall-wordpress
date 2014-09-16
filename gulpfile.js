@@ -42,7 +42,9 @@ var rjsConfig = {
     lodash: '../../bower_components/lodash-amd/modern',
     Snap: '../../bower_components/Snap.svg/dist/snap.svg',
     FastClick: '../../bower_components/fastclick/lib/fastclick',
-    bragi: '../../bower_components/Bragi-Browser/dist/bragi'
+    bragi: '../../bower_components/Bragi-Browser/dist/bragi',
+    hammerjs: '../../bower_components/hammerjs/hammer',
+    'jquery.hammerjs': '../../bower_components/jquery-hammerjs/jquery.hammer'
   },
   generateSourceMaps: true,
   optimize: 'uglify2',

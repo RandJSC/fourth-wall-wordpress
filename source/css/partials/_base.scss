@@ -43,6 +43,10 @@ a {
   &.button {
     @extend %button;
 
+    &:hover {
+      color: $white;
+    }
+
     &.block {
       display: block;
     }

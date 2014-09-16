@@ -30,8 +30,6 @@ require([
 
   $hamburger.toggleNav($container, burgerSvg);
 
-  console.debug($.fn.transToggleClass);
-
   $('.slider .slides').slick({
     lazyLoad: 'ondemand',
     slidesToShow: 1,

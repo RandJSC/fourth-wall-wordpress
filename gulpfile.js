@@ -54,7 +54,9 @@ var sassConfig = {
   precision: 10,
   loadPath: [
     'source/css'
-  ]
+  ],
+  sourcemap: true,
+  sourcemapPath: 'build/css'
 };
 
 var resources = {

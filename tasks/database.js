@@ -17,7 +17,7 @@ var localConfig  = secrets.servers.dev;
 var remoteConfig = secrets.servers.staging;
 
 gulp.task('db:up', function() {
-  gutil.log('Syncing database up to staging...'.blue);
+  gutil.log(chalk.blue('Syncing database up to staging...'));
 
   var localConfig  = secrets.servers.dev;
   var remoteConfig = secrets.servers.staging;
@@ -62,7 +62,7 @@ gulp.task('db:up', function() {
 });
 
 gulp.task('db:down', function() {
-  gutil.log('Syncing staging database down to localhost...'.blue);
+  gutil.log(chalk.blue('Syncing staging database down to localhost...'));
 
   var mysqlDumpCmd = helpers.commandTemplate([
     'mysqldump',

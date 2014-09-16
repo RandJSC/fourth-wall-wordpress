@@ -80,28 +80,28 @@
 
       &:nth-child(1) {
         @include quick-link(
-          $url: 'img/bg-magenta.svg',
+          $url: '../img/bg-magenta.svg',
           $position: rem(80) rem(-45)
         );
       }
 
       &:nth-child(2) {
         @include quick-link(
-          $url: 'img/bg-blue.svg',
+          $url: '../img/bg-blue.svg',
           $position: rem(-76) rem(-45)
         );
       }
 
       &:nth-child(3) {
         @include quick-link(
-          $url: 'img/bg-green.svg',
+          $url: '../img/bg-green.svg',
           $position: rem(85) rem(223)
         );
       }
 
       &:nth-child(4) {
         @include quick-link(
-          $url: 'img/bg-orange.svg',
+          $url: '../img/bg-orange.svg',
           $position: rem(15) rem(202)
         );
       }

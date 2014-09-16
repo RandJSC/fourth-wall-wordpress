@@ -223,7 +223,7 @@ gulp.task('php', function() {
 });
 
 gulp.task('bower:install', function() {
-  return $.bower()
+  return $.bower({ directory: './bower_components', cwd: __dirname })
     .pipe(gulp.dest('bower_components'));
 });
 

@@ -14,8 +14,8 @@ require([
   'FastClick',
   'Snap',
   'bragi',
-  'jquery.fourthwall-ui',
   'jquery.fourthwall-util',
+  'jquery.fourthwall-ui',
   'slick'
 ], function(doc, config, $, FastClick, Snap, logger) {
 
@@ -29,6 +29,8 @@ require([
   FastClick.attach(doc.body);
 
   $hamburger.toggleNav($container, burgerSvg);
+
+  console.debug($.fn.transToggleClass);
 
   $('.slider .slides').slick({
     lazyLoad: 'ondemand',

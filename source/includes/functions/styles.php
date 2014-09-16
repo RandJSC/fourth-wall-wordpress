@@ -32,7 +32,7 @@ function fwe_enqueue_styles() {
       'media'   => 'all',
     ),
     'fwe-main' => array(
-      'src'     => "$theme_uri/style.css",
+      'src'     => "$theme_uri/css/style.css",
       'deps'    => array(
         'normalize',
         'font-awesome',

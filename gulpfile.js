@@ -177,35 +177,13 @@ gulp.task('fonts:vendor', [ 'bower:install' ], function() {
 
 // Compile and optimize stylesheets
 gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
-  var themeData   = require(resources.themeJSON);
-  var styleHeader = _.template([
-    '/*',
-    'Theme Name: <%= themeName %>',
-    'Description: <%= description %>',
-    'Author: <%= author %>',
-    'Author URI: <%= authorUri %>',
-    'Version: <%= version %>',
-    'Tags: <%= tags.join(", ") %>',
-    '*/',
-    "\n"
-  ].join("\n"), themeData);
-
-  var mainFilter = $.filter(function(file) {
-    return (/style\.s?css/).test(file.path.toString());
-  });
-
   return gulp.src(resources.scss)
     .pipe(helpers.log('Compiling SCSS'.yellow))
     .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
     .pipe($.pleeease())
     .pipe(gulp.dest('build/css'))
-    .pipe($.size({ title: 'scss' }))
-    .pipe(helpers.log('Adding theme metadata'.yellow))
-    //.pipe($.livereload({ auto: false }))
-    .pipe(mainFilter)
-      .pipe($.insert.prepend(styleHeader))
-      .pipe(gulp.dest('build'));
+    .pipe($.size({ title: 'scss' }));
 });
 
 gulp.task('styles:vendor', [ 'bower:install' ], function() {

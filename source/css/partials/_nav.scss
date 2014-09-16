@@ -15,14 +15,52 @@
   @include transition(transform 500ms);
 
   .search-form {
-    background: $tan;
+    background: $search-box-bg;
+    padding: rem(15);
 
     span.screen-reader-text {
       display: none;
     }
 
+    input[type="search"],
+    input[type="text"] {
+      padding: rem(10);
+      font-size: rem(13);
+      border: 1px solid $search-box-border;
+      width: 90%;
+      color: darken($text-color, 20%);
+
+      @include placeholder {
+        color: $search-box-border;
+      }
+    }
+
     input[type='submit'] {
       display: none;
+    }
+  }
+
+  ul {
+    @extend %unlist;
+
+    li {
+      border-bottom: 1px solid $nav-border;
+    }
+
+    a {
+      position: relative;
+      display: inline-block;
+      padding: rem(20);
+      font-size: rem(20);
+      color: $blue;
+      text-decoration: none;
+      outline: none;
+      @include transition(color $transition-speed, background-color $transition-speed);
+
+      &:active {
+        background: $blue;
+        color: $white;
+      }
     }
   }
 }

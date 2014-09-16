@@ -75,12 +75,73 @@
     margin: 0 auto;
   }
 
-  #contact-form .gfield_required {
-    color: $red;
-  }
-
   hr {
     max-width: rem(1060);
+  }
+
+  #address {
+    margin-top: rem(40);
+  }
+
+  .contact {
+    margin-bottom: rem(40);
+
+    @include clearfix;
+
+    .icon {
+      float: left;
+      width: rem(30);
+      font-size: rem(30);
+      text-align: center;
+    }
+
+    .info {
+      font-style: italic;
+      float: left;
+      margin-left: rem(20);
+      padding-top: rem(8);
+      @include calc(width, '100% - 50px');
+    }
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+
+  #contact-form {
+    margin-bottom: rem(40);
+
+    input,
+    textarea {
+      width: 100%;
+      padding: rem(8) rem(13);
+      margin-bottom: rem(20);
+      color: $footer-credits;
+      font-size: rem(12);
+      outline: none;
+      border: 0;
+      border-radius: 0;
+
+      @include placeholder {
+        color: $text-color;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    textarea {
+      min-height: rem(220);
+    }
+
+    button {
+      @extend %button;
+    }
   }
 }
 

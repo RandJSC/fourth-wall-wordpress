@@ -59,4 +59,30 @@ function fwe_is_url_local($url) {
 
   return !$is_remote;
 }
+
+function fwe_google_maps_link($params = array()) {
+
+  $url_base = 'https://maps.google.com/?q=';
+
+  if (array_key_exists('address', $params)) {
+    $pieces = array(
+      $params['address'],
+      $params['city'],
+      $params['state'],
+      $params['zip_code'],
+    );
+  } else {
+    $pieces = $params;
+  }
+
+  if (is_array($pieces)) {
+    $oneliner = implode(', ', $pieces);
+  } else {
+    $oneliner = $pieces;
+  }
+
+  $query = urlencode($oneliner);
+
+  return $url_base . $query;
+}
 ?>

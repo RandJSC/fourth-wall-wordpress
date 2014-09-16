@@ -3,6 +3,16 @@
 
           $cta = fwe_get_cta();
 
+          if ($fwe_settings['address']) {
+            $map_link = fwe_google_maps_link(array(
+              'address'  => $fwe_settings['address'],
+              'city'     => $fwe_settings['city'],
+              'state'    => $fwe_settings['state'],
+              'zip_code' => $fwe_settings['zip_code'],
+            ));
+          }
+
+
           if ($cta):
             $bg_img    = get_post_meta($cta->ID, 'background_image', true);
             $bg_img    = wp_get_attachment_image_src($bg_img, 'full');
@@ -54,29 +64,71 @@
             <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
             <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
 
-            <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-              <span itemprop="streetAddress"><?php echo $fwe_settings['address']; ?></span>
-              <span itemprop="addressLocality"><?php echo $fwe_settings['city']; ?></span>
-              <span itemprop="addressRegion"><?php echo $fwe_settings['state']; ?></span>
-              <span itemprop="postalCode"><?php echo $fwe_settings['zip_code']; ?></span>
-            </address>
+            <div class="street-address contact">
+              <div class="icon">
+                <a href="<?php echo $map_link; ?>" target="_blank">
+                  <span class="fa fa-map-marker"></span>
+                </a>
+              </div>
+
+              <div class="info">
+                <a href="<?php echo $map_link; ?>" target="_blank">
+                  <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <span itemprop="streetAddress"><?php echo $fwe_settings['address']; ?>,</span>
+                    <span itemprop="addressLocality"><?php echo $fwe_settings['city']; ?>,</span>
+                    <span itemprop="addressRegion"><?php echo $fwe_settings['state']; ?></span>
+                    <span itemprop="postalCode"><?php echo $fwe_settings['zip_code']; ?></span>
+                  </address>
+                </a>
+              </div>
+            </div>
             
-            <div class="email">
-              <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>" itemprop="email">
-                <?php echo $fwe_settings['contact_email']; ?>
-              </a>
+            <div class="email contact">
+              <div class="icon">
+                <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>">
+                  <span class="fa fa-envelope"></span>
+                </a>
+              </div>
+
+              <div class="info">
+                <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>" itemprop="email">
+                  <?php echo $fwe_settings['contact_email']; ?>
+                </a>
+              </div>
             </div>
 
-            <div class="phone">
-              <span itemprop="telephone">
-                <?php echo $fwe_settings['phone']; ?>
-              </span>
+            <div class="phone contact">
+              <div class="icon">
+                <a href="tel://<?php echo esc_attr($fwe_settings['phone']); ?>">
+                  <span class="fa fa-phone"></span>
+                </a>
+              </div>
+
+              <div class="info">
+                <a href="tel://<?php echo esc_attr($fwe_settings['phone']); ?>">
+                  <span itemprop="telephone">
+                    <?php echo $fwe_settings['phone']; ?>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
           
           <div id="contact-form">
-            <!-- [todo] - Redo this as custom form using the Gravity Forms API over AJAX -->
-            <?php gravity_form(1, false, false, false, false, false, true); ?>
+            <form action="" method="post">
+              <p class="split">
+                <input type="text" placeholder="Your Name" name="contact_name" required>
+              </p>
+              <p class="split">
+                <input type="email" placeholder="Your Email" name="contact_email" required>
+              </p>
+              <p>
+                <textarea name="contact_message"></textarea>
+              </p>
+              <p class="right">
+                <button type="submit">Submit &raquo;</button>
+              </p>
+            </form>
           </div>
 
           <hr>

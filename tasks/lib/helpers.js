@@ -3,12 +3,13 @@
 
 'use strict';
 
-var secrets   = require('../../secrets.json');
-var _         = require('lodash');
-var gulp      = require('gulp');
-var gutil     = require('gulp-util');
-var shell     = require('gulp-shell');
-var mapStream = require('map-stream');
+var secrets    = require('../../secrets.json');
+var _          = require('lodash');
+var gulp       = require('gulp');
+var gutil      = require('gulp-util');
+var shell      = require('gulp-shell');
+var mapStream  = require('map-stream');
+var Handlebars = require('handlebars');
 
 var localConfig  = secrets.servers.dev;
 var remoteConfig = secrets.servers.staging;
@@ -27,11 +28,10 @@ var commandTemplate = function(parts, bindings, glue) {
     staging: remoteConfig
   });
 
-  if (_.isString(parts)) {
-    return _.template(parts, bindings);
-  }
+  var allParts = _.isArray(parts) ? parts.join(glue) : parts;
+  var template = Handlebars.compile(allParts);
 
-  return _.template(parts.join(glue), bindings);
+  return template(bindings);
 };
 
 var remoteShell = function(command, opts) {
@@ -42,9 +42,9 @@ var remoteShell = function(command, opts) {
   var cmd = commandTemplate([
     'ssh',
     '-p',
-    '<%= staging.ssh.port %>',
-    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>',
-    "'<%= escape(command) %>'"
+    '{{ staging.ssh.port }}',
+    '{{ staging.ssh.username }}@{{ staging.ssh.hostname }}',
+    "'{{  escape(command) }}'"
   ], { command: command, escape: escapeQuotes });
 
   return shell(cmd, opts);
@@ -57,10 +57,10 @@ var mysqlQuery = function(query, remote) {
 
   var command = commandTemplate([
     'mysql',
-    '--user="<%= dev.mysql.username %>"',
-    '--password="<%= dev.mysql.password %>"',
-    '--database="<%= dev.mysql.database %>"',
-    '--execute="<%= query %>"'
+    '--user="{{ dev.mysql.username }}"',
+    '--password="{{ dev.mysql.password }}"',
+    '--database="{{ dev.mysql.database }}"',
+    '--execute="{{ query }}"'
   ], { query: query, remote: remote });
 
   return command;

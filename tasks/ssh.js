@@ -26,10 +26,10 @@ gulp.task('ssh:uploadKey', function() {
   var pubKey     = fs.readFileSync(keyfile);
   var config     = secrets.servers.staging.ssh;
   var sshCommand = helpers.commandTemplate([
-    "echo '<%= key %>'",
+    "echo '{{ key }}'",
     '|',
-    'ssh -p <%= staging.ssh.port %>',
-    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>',
+    'ssh -p {{ staging.ssh.port }}',
+    '{{ staging.ssh.username }}@{{ staging.ssh.hostname }}',
     "'cat >> ~/.ssh/authorized_keys'"
   ], { key: pubKey });
 

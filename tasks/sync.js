@@ -19,16 +19,16 @@ var syncTask = function syncTask(opts) {
 
   var rsyncLines = [
     'rsync -avzr',
-    '-e "ssh -p <%= staging.ssh.port %>"',
+    '-e "ssh -p {{ staging.ssh.port }}"',
     '--delete'
   ];
 
   if (opts.direction === 'up') {
-    rsyncLines.push('<%= source %>');
-    rsyncLines.push('<%= staging.rsync.username %>@<%= staging.rsync.hostname %>:<%= dest %>');
+    rsyncLines.push('{{ source }}');
+    rsyncLines.push('{{ staging.rsync.username }}@{{ staging.rsync.hostname }}:{{ dest }}');
   } else {
-    rsyncLines.push('<%= staging.rsync.username %>@<%= staging.rsync.hostname %>:<%= source %>');
-    rsyncLines.push('<%= dest %>');
+    rsyncLines.push('{{ staging.rsync.username }}@{{ staging.rsync.hostname }}:{{ source }}');
+    rsyncLines.push('{{ dest }}');
   }
 
   return function() {

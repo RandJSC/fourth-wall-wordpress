@@ -24,30 +24,30 @@ gulp.task('db:up', function() {
 
   var mysqlDumpCmd = helpers.commandTemplate([
     'mysqldump',
-    '--user="<%= dev.mysql.username %>"',
-    '--password="<%= dev.mysql.password %>"',
-    '<%= dev.mysql.database %>',
+    '--user="{{ dev.mysql.username }}"',
+    '--password="{{ dev.mysql.password }}"',
+    '{{ dev.mysql.database }}',
     '|',
     'gzip',
     '>',
-    '/tmp/<%= dev.mysql.database %>.sql.gz'
+    '/tmp/{{ dev.mysql.database }}.sql.gz'
   ]);
 
   var scpCmd = helpers.commandTemplate([
     'scp',
-    '-P <%= staging.ssh.port %>',
-    '/tmp/<%= dev.mysql.database %>.sql.gz',
-    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>:/tmp/'
+    '-P {{ staging.ssh.port }}',
+    '/tmp/{{ dev.mysql.database }}.sql.gz',
+    '{{ staging.ssh.username }}@{{ staging.ssh.hostname }}:/tmp/'
   ]);
 
   var loadDumpCmd = helpers.commandTemplate([
     'bin/wp-relocate.zsh',
-    '-f /tmp/<%= dev.mysql.database %>.sql.gz',
-    '-u <%= staging.mysql.username %>',
-    '-p "<%= staging.mysql.password %>"',
-    '-d <%= staging.mysql.database %>',
-    '-o "http://<%= dev.url %>"',
-    '-n "http://<%= staging.url %>"',
+    '-f /tmp/{{ dev.mysql.database }}.sql.gz',
+    '-u {{ staging.mysql.username }}',
+    '-p "{{ staging.mysql.password }}"',
+    '-d {{ staging.mysql.database }}',
+    '-o "http://{{ dev.url }}"',
+    '-n "http://{{ staging.url }}"',
     '-x'
   ]);
 
@@ -66,36 +66,36 @@ gulp.task('db:down', function() {
 
   var mysqlDumpCmd = helpers.commandTemplate([
     'mysqldump',
-    '--user="<%= staging.mysql.username %>"',
-    '--password="<%= staging.mysql.password %>"',
-    "<%= staging.mysql.database %>",
+    '--user="{{ staging.mysql.username }}"',
+    '--password="{{ staging.mysql.password }}"',
+    "{{ staging.mysql.database }}",
     "|",
     "gzip",
     ">",
-    "/tmp/<%= staging.mysql.database %>.sql.gz"
+    "/tmp/{{ staging.mysql.database }}.sql.gz"
   ]);
 
   var scpCmd = helpers.commandTemplate([
     'scp',
     '-P',
-    '<%= staging.ssh.port %>',
-    '<%= staging.ssh.username %>@<%= staging.ssh.hostname %>:/tmp/<%= staging.mysql.database %>.sql.gz',
+    '{{ staging.ssh.port }}',
+    '{{ staging.ssh.username }}@{{ staging.ssh.hostname }}:/tmp/{{ staging.mysql.database }}.sql.gz',
     '/tmp/'
   ]);
 
   var mysqlLoadCmd = helpers.commandTemplate([
     'zcat',
-    '/tmp/<%= staging.mysql.database %>.sql.gz',
+    '/tmp/{{ staging.mysql.database }}.sql.gz',
     '|',
     'mysql',
-    '--user="<%= dev.mysql.username %>"',
-    '--password="<%= dev.mysql.password %>"',
-    '<%= dev.mysql.database %>'
+    '--user="{{ dev.mysql.username }}"',
+    '--password="{{ dev.mysql.password }}"',
+    '{{ dev.mysql.database }}'
   ]);
 
-  var optionsQuery = helpers.commandTemplate("UPDATE wp_options SET option_value = 'http://<%= dev.url %>' WHERE option_name = 'home' OR option_name = 'siteurl';");
-  var postGuids    = helpers.commandTemplate("UPDATE wp_posts SET guid = REPLACE(guid, 'http://<%= staging.url %>', 'http://<%= dev.url %>');");
-  var postContent  = helpers.commandTemplate("UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://<%= staging.url %>', 'http://<%= dev.url %>');");
+  var optionsQuery = helpers.commandTemplate("UPDATE wp_options SET option_value = 'http://{{ dev.url }}' WHERE option_name = 'home' OR option_name = 'siteurl';");
+  var postGuids    = helpers.commandTemplate("UPDATE wp_posts SET guid = REPLACE(guid, 'http://{{ staging.url }}', 'http://{{ dev.url }}');");
+  var postContent  = helpers.commandTemplate("UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://{{ staging.url }}', 'http://{{ dev.url }}');");
 
   return gulp.src('')
     .pipe(helpers.log(chalk.yellow('Dumping remote database')))

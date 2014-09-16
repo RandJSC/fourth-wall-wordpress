@@ -91,12 +91,15 @@
           </div>
         </footer>
 
-        <footer id="footer-main">
+        <footer id="copyright">
           <?php
           $year = strftime('%Y');
           ?>
-          <p class="copyright">
-            Copyright &copy; <?php echo $year; ?> Fourth Wall Events, All Rights Reserved.
+          <p class="copyright-message">
+            &copy; <?php echo $year; ?> Fourth Wall Events
+          </p>
+          <p class="credits">
+            Designed and built by <a href="http://fifthroomcreative.com" target="_blank">Fifth Room Creative</a>
           </p>
         </footer><!-- /#footer-main -->
 

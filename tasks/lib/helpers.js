@@ -44,7 +44,7 @@ var remoteShell = function(command, opts) {
     '-p',
     '{{ staging.ssh.port }}',
     '{{ staging.ssh.username }}@{{ staging.ssh.hostname }}',
-    "'{{  command }}'"
+    "'{{{ command }}}'"
   ], { command: command, escape: escapeQuotes });
 
   return shell(cmd, opts);
@@ -60,7 +60,7 @@ var mysqlQuery = function(query, remote) {
     '--user="{{ dev.mysql.username }}"',
     '--password="{{ dev.mysql.password }}"',
     '--database="{{ dev.mysql.database }}"',
-    '--execute="{{ query }}"'
+    '--execute="{{{ query }}}"'
   ], { query: query, remote: remote });
 
   return command;

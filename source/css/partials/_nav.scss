@@ -29,6 +29,7 @@
       border: 1px solid $search-box-border;
       width: 90%;
       color: darken($text-color, 20%);
+      @include appearance(none);
 
       @include placeholder {
         color: $search-box-border;
@@ -57,7 +58,8 @@
       outline: none;
       @include transition(color $transition-speed, background-color $transition-speed);
 
-      &:active {
+      &:active,
+      &:hover {
         background: $blue;
         color: $white;
       }

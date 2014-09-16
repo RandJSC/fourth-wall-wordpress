@@ -44,7 +44,7 @@ var remoteShell = function(command, opts) {
     '-p',
     '{{ staging.ssh.port }}',
     '{{ staging.ssh.username }}@{{ staging.ssh.hostname }}',
-    "'{{  escape(command) }}'"
+    "'{{  command }}'"
   ], { command: command, escape: escapeQuotes });
 
   return shell(cmd, opts);

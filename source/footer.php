@@ -74,9 +74,20 @@
             </div>
           </div>
           
-          <div id="footer-contact">
+          <div id="contact-form">
             <!-- [todo] - Redo this as custom form using the Gravity Forms API over AJAX -->
             <?php gravity_form(1, false, false, false, false, false, true); ?>
+          </div>
+
+          <hr>
+
+          <div id="footer-nav">
+            <?php
+            wp_nav_menu(array(
+              'theme_location' => 'footer_nav',
+              'fallback_cb'    => false,
+            ));
+            ?>
           </div>
         </footer>
 

@@ -11,6 +11,7 @@ function fwe_register_nav_menus() {
     'main_nav'     => 'Main Navigation',
     'quick_links'  => 'QuickLinks',
     'social_links' => 'Social Links',
+    'footer_nav'   => 'Footer Navigation',
   ));
 }
 add_action('init', 'fwe_register_nav_menus');

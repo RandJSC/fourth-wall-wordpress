@@ -22,9 +22,9 @@
   padding-bottom: rem(20);
 
   ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0 auto;
+    @extend %unlist;
+    margin-left: auto;
+    margin-right: auto;
     max-width: rem(270);
     text-align: center;
     @include clearfix;
@@ -70,8 +70,47 @@
 
   p,
   #address,
-  #footer-contact {
+  #contact-form {
     max-width: rem(800);
     margin: 0 auto;
+  }
+
+  #contact-form .gfield_required {
+    color: $red;
+  }
+
+  hr {
+    max-width: rem(1060);
+  }
+}
+
+#footer-nav {
+  margin-top: rem(30);
+  margin-bottom: rem(30);
+
+  ul {
+    @extend %unlist;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      padding: 0 rem(20);
+      border-right: 1px solid $white;
+      font-size: rem(20);
+
+      &:last-child {
+        border-right: 0;
+      }
+
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+
+      &:hover {
+        color: $green;
+      }
+    }
   }
 }

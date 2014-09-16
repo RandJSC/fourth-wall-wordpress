@@ -31,6 +31,37 @@ a {
   &:hover {
     color: $link-hover;
   }
+
+  &.button {
+    @extend %button;
+
+    &.block {
+      display: block;
+    }
+
+    &.inline-block {
+      display: inline-block;
+    }
+
+    &.center {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .button-icon {
+      &.right {
+        margin-left: rem(10);
+      }
+
+      &.left {
+        margin-right: rem(10);
+      }
+    }
+
+    .fa.big {
+      font-size: rem(22);
+    }
+  }
 }
 
 /**
@@ -72,33 +103,6 @@ h1 {
   font-weight: 400;
 }
 
-a.button {
+input[type="submit"] {
   @extend %button;
-
-  &.block {
-    display: block;
-  }
-
-  &.inline-block {
-    display: inline-block;
-  }
-
-  &.center {
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .button-icon {
-    &.right {
-      margin-left: rem(10);
-    }
-
-    &.left {
-      margin-right: rem(10);
-    }
-  }
-
-  .fa.big {
-    font-size: rem(22);
-  }
 }

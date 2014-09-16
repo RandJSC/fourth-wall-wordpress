@@ -43,7 +43,10 @@ var rjsConfig = {
     Snap: '../../bower_components/Snap.svg/dist/snap.svg',
     FastClick: '../../bower_components/fastclick/lib/fastclick',
     bragi: '../../bower_components/Bragi-Browser/dist/bragi'
-  }
+  },
+  generateSourceMaps: true,
+  optimize: 'uglify2',
+  preserveLicenseComments: false
 };
 
 var sassConfig = {
@@ -227,19 +230,14 @@ gulp.task('bower:install', function() {
     .pipe(gulp.dest('bower_components'));
 });
 
-gulp.task('scripts', [ 'scripts:vendor' ], function() {
+gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
   var mainFilter = $.filter(function(file) {
     return (/main(\.min)?\.js$/).test(file.path);
   });
 
-  gulp.src(resources.scripts)
-    .pipe(mainFilter)
-      .pipe(rjs(rjsConfig))
-      .pipe($.rename({ extname: '.min.js' }))
-      .pipe(gulp.dest('build/js'));
-  return mainFilter.restore({ end: true })
-    .pipe($.rename({ extname: '.min.js' }))
-    //.pipe($.livereload({ auto: false }))
+  return gulp.src('source/js/main.js')
+    .pipe(rjs(rjsConfig))
+    .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });
 
@@ -247,6 +245,18 @@ gulp.task('scripts:vendor', ['bower:install'], function() {
   return gulp.src(resources.vendorScripts)
     .pipe(gulp.dest('build/js'))
     .pipe($.size({ title: 'vendorScripts' }));
+});
+
+gulp.task('scripts:copy', function() {
+  var exceptMainFilter = $.filter(function(file) {
+    return !(/main(\.min)?\.js$/).test(file.path);
+  });
+
+  return gulp.src(resources.scripts)
+    .pipe(exceptMainFilter)
+    .pipe($.uglify())
+    .pipe($.size({ title: 'uglified-js' }))
+    .pipe(gulp.dest('build/js'));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));

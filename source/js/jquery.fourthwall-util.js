@@ -22,7 +22,16 @@
   };
 
   initialize(window, function($, config, forEach, logger) {
-  
+
+    var wrapClassTransition = function wrapClassTransition(method) {
+      method = method ? method : 'toggleClass';
+
+      return function(klass, callback) {
+        callback = (typeof callback === 'function') ? callback : $.noop;
+        return $(this).afterTransition(callback, true)[method](klass);
+      };
+    };
+
     return $.fn.extend({
 
       afterTransition: function(callback, once) {
@@ -37,10 +46,11 @@
         });
       },
 
-      transAddClass: function(klass, callback) {
-        var $el = $(this);
-        return $el.afterTransition(callback, true).addClass(klass);
-      }
+      transAddClass: wrapClassTransition('addClass'),
+
+      transRemoveClass: wrapClassTransition('removeClass'),
+
+      transToggleClass: wrapClassTransition('toggleClass')
 
     });
 

@@ -4,7 +4,6 @@ var secrets     = require('../secrets.json');
 var gulp        = require('gulp');
 var gutil       = require('gulp-util');
 var shell       = require('gulp-shell');
-var colors      = require('colors');
 var chalk       = require('chalk');
 var path        = require('path');
 var fs          = require('fs');

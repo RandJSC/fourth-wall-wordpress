@@ -7,9 +7,8 @@ var chalk    = require('chalk');
 var zip      = require('gulp-zip');
 var helpers  = require('./lib/helpers.js');
 var theme    = require('../theme.json');
-var _        = require('lodash');
 var source   = 'build/**/*';
-var filename = _.template('<%= theme.slug %>-<%= theme.version %>.zip', { theme: theme });
+var filename = theme.slug + '-' + theme.version + '.zip';
 
 gulp.task('zip', function() {
   return gulp.src(source)

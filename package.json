@@ -39,6 +39,7 @@
     "gulp-useref": "^1.0.1",
     "gulp-util": "^3.0.1",
     "gulp-zip": "^2.0.1",
+    "handlebars": "^2.0.0",
     "imagemin-pngcrush": "^1.0.0",
     "jshint-stylish": "^0.4.0",
     "lodash": "^2.4.1",

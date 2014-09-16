@@ -11,7 +11,8 @@
     "normalize.css": "~3.0.1",
     "Snap.svg": "~0.3.0",
     "font-awesome": "~4.1.0",
-    "fastclick": "~1.0.3"
+    "fastclick": "~1.0.3",
+    "Bragi-Browser": "enoex/Bragi-Browser#~0.0.7"
   },
   "overrides": {
     "jquery": {

@@ -13,9 +13,12 @@ require([
   'jquery',
   'FastClick',
   'Snap',
+  'bragi',
   'jquery.fourthwall-ui',
   'slick'
-], function(doc, config, $, FastClick, Snap) {
+], function(doc, config, $, FastClick, Snap, logger) {
+
+  logger.log('timing', 'Begin docReady');
 
   var $container = $('#master-container');
   var $hamburger = $('#hamburger');
@@ -34,4 +37,6 @@ require([
     arrows: false,
     slide: 'figure'
   });
+
+  logger.log('timing', 'End docReady');
 });

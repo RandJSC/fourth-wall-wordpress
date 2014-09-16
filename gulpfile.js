@@ -54,9 +54,7 @@ var sassConfig = {
   precision: 10,
   loadPath: [
     'source/css'
-  ],
-  sourcemap: true,
-  sourcemapPath: 'build/css'
+  ]
 };
 
 var resources = {
@@ -186,7 +184,9 @@ gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
     .pipe(helpers.log('Compiling SCSS'.yellow))
     .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
-    .pipe($.pleeease())
+    .pipe($.sourcemaps.init())
+      .pipe($.pleeease())
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('build/css'))
     .pipe($.size({ title: 'scss' }));
 });

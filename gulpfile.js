@@ -34,6 +34,10 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+var browserifyConfig = {
+  insertGlobals: true
+};
+
 var sassConfig = {
   style: 'expanded',
   precision: 10,
@@ -222,9 +226,7 @@ gulp.task('php', function() {
 
 gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
   return gulp.src('source/js/main.js')
-    .pipe($.browserify({
-      insertGlobals: true
-    }))
+    .pipe($.browserify(browserifyConfig))
     .pipe($.uglify())
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));

@@ -253,10 +253,15 @@ gulp.task('scripts:copy', function() {
     .pipe(gulp.dest('build/js'));
 });
 
+gulp.task('totalsize', function() {
+  return gulp.src('build/**/*')
+    .pipe($.size({ title: 'grand total' }));
+});
+
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
 
 gulp.task('default', ['clean'], function(cb) {
-  runSequence('styles', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], cb);
+  runSequence('styles', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], 'totalsize', cb);
 });
 
 // Load custom, per-project tasks from tasks folder

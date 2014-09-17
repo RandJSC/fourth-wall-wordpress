@@ -7,19 +7,19 @@
 
 /* global Modernizr */
 
-require([
-  '../../bower_components/requirejs-domready/domReady!',
-  'config',
-  'jquery',
-  'FastClick',
-  'Snap',
-  'bragi',
-  'hammerjs',
-  'jquery.fourthwall-util',
-  'jquery.fourthwall-ui',
-  'slick'
-], function(doc, config, $, FastClick, Snap, logger, Hammer) {
+(function(window, undefined) {
+
   'use strict';
+
+  var config    = require('./config');
+  var $         = require('jquery');
+  var FastClick = require('fastclick');
+  var logger    = require('bragi-browser');
+  var fweUtil   = require('./jquery.fourthwall-util');
+  var fweUI     = require('./jquery.fourthwall-ui');
+  var slick     = require('slick-carousel');
+  var Hammer    = require('hammerjs');
+  var Snap      = require('snapsvg');
 
   logger.log('timing', 'Begin docReady');
 
@@ -31,10 +31,10 @@ require([
   };
 
   // Attach fastclick to body
-  FastClick.attach(doc.body);
+  FastClick.attach(document.body);
 
   $hamburger.toggleNav($container, burgerSvg);
-  
+
   if (Modernizr.touch) {
     var hammertime = new Hammer.Manager($container[0], {});
     
@@ -56,4 +56,5 @@ require([
   });
 
   logger.log('timing', 'End docReady');
-});
+
+})(window);

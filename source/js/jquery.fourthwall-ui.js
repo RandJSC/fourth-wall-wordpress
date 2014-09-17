@@ -8,7 +8,7 @@
 (function(window, undefined) {
   'use strict';
 
-  var _       = require('lodash');
+  var forEach = require('lodash.foreach');
   var $       = require('jquery');
   var config  = require('./config');
   var Snap    = require('snapsvg');
@@ -16,7 +16,7 @@
   var fweUtil = require('./jquery.fourthwall-util');
 
   module.exports = $.fn.extend({
-  
+
     toggleNav: function(container, svg) {
       var $hamburger = this;
       var $container = $(container);
@@ -34,13 +34,13 @@
 
         if ($hamburger.hasClass('menu-open')) {
           logger.log('svg', 'animating to X');
-          _.forEach(config.svg.paths.close, animatePaths);
+          forEach(config.svg.paths.close, animatePaths);
           $svg.select('g').animate({
             stroke: config.colors.text
           }, config.svg.animation.speed);
         } else {
           logger.log('svg', 'animating to hamburger');
-          _.forEach(config.svg.paths.burger, animatePaths);
+          forEach(config.svg.paths.burger, animatePaths);
           $svg.select('g').animate({
             stroke: config.colors.blue
           }, config.svg.animation.speed);

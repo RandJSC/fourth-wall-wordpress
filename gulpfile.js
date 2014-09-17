@@ -225,6 +225,7 @@ gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
     .pipe($.browserify({
       insertGlobals: true
     }))
+    .pipe($.uglify())
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });

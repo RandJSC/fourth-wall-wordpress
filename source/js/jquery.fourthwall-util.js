@@ -8,8 +8,7 @@
 (function(window, undefined) {
   'use strict';
 
-  var $ = require('jquery');
-  var _ = require('lodash');
+  var $      = require('jquery');
   var config = require('./config');
   var logger = require('bragi-browser');
 

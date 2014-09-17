@@ -19,7 +19,7 @@
   var fweUI           = require('./jquery.fourthwall-ui');
   var Slick           = require('./slick.commonjs');
   var Hammer          = require('hammerjs');
-  var Snap            = require('snapsvg/dist/snap.svg');
+  var Snap            = require('./snap.svg.custom');
 
   logger.log('timing', 'Begin docReady');
 

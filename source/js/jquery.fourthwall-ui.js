@@ -11,7 +11,7 @@
   var forEach = require('lodash.foreach');
   var $       = require('jquery');
   var config  = require('./config');
-  var Snap    = require('snapsvg');
+  var Snap    = require('./snap.svg.custom');
   var logger  = require('bragi-browser');
   var fweUtil = require('./jquery.fourthwall-util');
 

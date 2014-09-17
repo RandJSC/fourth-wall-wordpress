@@ -25,22 +25,25 @@ require([
   var $container   = $('#master-container');
   var $hamburger   = $('#hamburger');
   var burgerSvg    = Snap('#hamburger-img');
-  var hammertime   = new Hammer.Manager($container[0], {});
-  var canSwipe     = function canSwipe(recognizer, input) {
-    return $container.hasClass('menu-open');
-  };
 
   // Attach fastclick to body
   FastClick.attach(doc.body);
 
   $hamburger.toggleNav($container, burgerSvg);
   
-  hammertime.add(new Hammer.Swipe({ enable: canSwipe }));
-  hammertime.on('swiperight', function(evt) {
-    $hamburger.trigger('click');
-    logger.log('touch', 'swiperight');
-    console.debug(evt);
-  });
+  if (Modernizr.touch) {
+    var hammertime = new Hammer.Manager($container[0], {});
+    var canSwipe   = function canSwipe(recognizer, input) {
+      return $container.hasClass('menu-open');
+    };
+    
+    hammertime.add(new Hammer.Swipe({ enable: canSwipe }));
+    hammertime.on('swiperight', function(evt) {
+      $hamburger.trigger('click');
+      logger.log('touch', 'swiperight');
+      console.debug(evt);
+    });
+  }
 
   $('.slider .slides').slick({
     lazyLoad: 'ondemand',

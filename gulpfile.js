@@ -222,7 +222,9 @@ gulp.task('php', function() {
 
 gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
   return gulp.src('source/js/main.js')
-    .pipe($.browserify({ insertGlobals: true }))
+    .pipe($.browserify({
+      insertGlobals: true
+    }))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });

@@ -18,7 +18,6 @@
   var fweUtil         = require('./jquery.fourthwall-util');
   var fweUI           = require('./jquery.fourthwall-ui');
   var Slick           = require('./slick.commonjs');
-  var Hammer          = require('hammerjs');
   var Snap            = require('./snap.svg.custom');
 
   logger.log('timing', 'Begin docReady');
@@ -26,25 +25,11 @@
   var $container = $('#master-container');
   var $hamburger = $('#hamburger');
   var burgerSvg  = Snap('#hamburger-img');
-  var canSwipe   = function canSwipe(recognizer, input) {
-    return $container.hasClass('menu-open');
-  };
 
   // Attach fastclick to body
   attachFastClick(document.body);
 
   $hamburger.toggleNav($container, burgerSvg);
-
-  if (Modernizr.touch) {
-    var hammertime = new Hammer.Manager($container[0], {});
-    
-    hammertime.add(new Hammer.Swipe({ enable: canSwipe }));
-    hammertime.on('swiperight', function(evt) {
-      $hamburger.trigger('click');
-      logger.log('touch', 'swiperight');
-      console.debug(evt);
-    });
-  }
 
   $('.slider .slides').slick({
     lazyLoad: 'ondemand',

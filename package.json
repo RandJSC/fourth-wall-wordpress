@@ -23,6 +23,7 @@
     "hammerjs": "^2.0.3",
     "jquery": "1.11.1",
     "lodash": "^2.4.1",
+    "lodash.debounce": "^2.4.1",
     "lodash.foreach": "^2.4.1",
     "slick-carousel": "^1.3.7"
   },

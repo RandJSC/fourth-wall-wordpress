@@ -4,16 +4,19 @@
  */
 
 /* jshint -W064 */
+/* global Modernizr */
 
 (function(window, undefined) {
   'use strict';
 
-  var forEach = require('lodash.foreach');
-  var $       = require('jquery');
-  var config  = require('./config');
-  var Snap    = require('./snap.svg.custom');
-  var logger  = require('bragi-browser');
-  var fweUtil = require('./jquery.fourthwall-util');
+  var forEach  = require('lodash.foreach');
+  var debounce = require('lodash.debounce');
+  var $        = require('jquery');
+  var config   = require('./config');
+  var Snap     = require('./snap.svg.custom');
+  var Hammer   = require('hammerjs');
+  var logger   = require('bragi-browser');
+  var fweUtil  = require('./jquery.fourthwall-util');
 
   module.exports = $.fn.extend({
 
@@ -21,6 +24,28 @@
       var $hamburger = this;
       var $container = $(container);
       var $svg       = Snap(svg);
+      var canSwipe   = function(recognizer, input) {
+        var menuOpen = $container.hasClass('menu-open');
+        var logMsg   = 'Swipe recognizer ' + (menuOpen ? 'enabled' : 'disabled');
+        logger.log('touch', logMsg);
+        return menuOpen;
+      };
+
+      if (!Modernizr.touch) {
+        logger.log('touch', 'Registering swipe handler');
+
+        var hammertime = new Hammer.Manager($container[0], {});
+        $container.data('hammertime', hammertime);
+
+        console.log(hammertime);
+
+        hammertime.add(new Hammer.Swipe({ enable: debounce(canSwipe, 100) }));
+        hammertime.on('swiperight', function(evt) {
+          $hamburger.trigger('click');
+          logger.log('touch', 'swiperight on screen');
+          console.debug(evt);
+        });
+      }
 
       $hamburger.on('click', function(evt) {
         var animatePaths = function(path, index) {

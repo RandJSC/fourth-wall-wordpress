@@ -19,12 +19,16 @@ require([
   'jquery.fourthwall-ui',
   'slick'
 ], function(doc, config, $, FastClick, Snap, logger, Hammer) {
+  'use strict';
 
   logger.log('timing', 'Begin docReady');
 
-  var $container   = $('#master-container');
-  var $hamburger   = $('#hamburger');
-  var burgerSvg    = Snap('#hamburger-img');
+  var $container = $('#master-container');
+  var $hamburger = $('#hamburger');
+  var burgerSvg  = Snap('#hamburger-img');
+  var canSwipe   = function canSwipe(recognizer, input) {
+    return $container.hasClass('menu-open');
+  };
 
   // Attach fastclick to body
   FastClick.attach(doc.body);
@@ -33,9 +37,6 @@ require([
   
   if (Modernizr.touch) {
     var hammertime = new Hammer.Manager($container[0], {});
-    var canSwipe   = function canSwipe(recognizer, input) {
-      return $container.hasClass('menu-open');
-    };
     
     hammertime.add(new Hammer.Swipe({ enable: canSwipe }));
     hammertime.on('swiperight', function(evt) {

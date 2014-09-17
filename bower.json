@@ -1,9 +1,0 @@
-{
-  "name": "Fourth Wall WordPress",
-  "version": "0.1.2",
-  "dependencies": {
-    "matchmedia": "~0.2.0",
-    "normalize.css": "~3.0.1",
-    "font-awesome": "~4.1.0"
-  }
-}

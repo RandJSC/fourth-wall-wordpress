@@ -160,5 +160,6 @@
   </div><!-- /#master-container -->
 
   <?php wp_footer(); ?>
+  <script src="<?php echo $theme_uri; ?>/js/main.js"></script>
 </body>
 </html>

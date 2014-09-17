@@ -54,8 +54,6 @@ $fwe_settings = get_option('fwe_settings');
       head.appendChild(s);
     }
   </script>
-  <script data-main="<?php echo $theme_uri; ?>/js/main.js"
-          src="<?php echo $theme_uri; ?>/js/require.js"></script>
 
   <?php wp_head(); ?>
 </head>

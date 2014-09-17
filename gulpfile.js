@@ -34,23 +34,6 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
-var rjsConfig = {
-  baseUrl: path.join(__dirname, 'source', 'js'),
-  paths: {
-    jquery: '../../bower_components/jquery/dist/jquery.min',
-    slick: '../../bower_components/slick-carousel/slick/slick',
-    lodash: '../../bower_components/lodash-amd/modern',
-    Snap: '../../bower_components/Snap.svg/dist/snap.svg',
-    FastClick: '../../bower_components/fastclick/lib/fastclick',
-    bragi: '../../bower_components/Bragi-Browser/dist/bragi',
-    hammerjs: '../../bower_components/hammerjs/hammer',
-    'jquery.hammerjs': '../../bower_components/jquery-hammerjs/jquery.hammer'
-  },
-  generateSourceMaps: true,
-  optimize: 'uglify2',
-  preserveLicenseComments: false
-};
-
 var sassConfig = {
   style: 'expanded',
   precision: 10,
@@ -62,28 +45,22 @@ var sassConfig = {
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
-  vendorStyles: [
-    'bower_components/normalize.css/normalize.css'
-  ],
-  scripts: [ 'source/js/**/*.js', '!require.js' ],
-  vendorScripts: [
-    'bower_components/requirejs/require.js',
-    'bower_components/matchmedia/matchMedia.js'
-  ],
+  vendorStyles: [],
+  scripts: [ 'source/js/**/*.js' ],
+  vendorScripts: [],
   images: 'source/img/**/*',
   vendorImages: [
-    'bower_components/slick-carousel/slick/ajax-loader.gif'
+    'node_modules/slick-carousel/slick/ajax-loader.gif'
   ],
   svgs: 'source/img/**/*.svg',
   php: 'source/**/*.php',
   fonts: 'source/fonts/**/*',
   vendorFonts: [
-    'bower_components/font-awesome/fonts/*',
-    'bower_components/slick-carousel/slick/fonts/*'
+    'node_modules/font-awesome/fonts/*',
+    'node_modules/slick-carousel/slick/fonts/*'
   ],
   themeJSON: './theme.json',
   packageJSON: './package.json',
-  bowerJSON: './bower.json',
   misc: [ 'source/*', '!source/*.php', './theme.json' ]
 };
 
@@ -97,12 +74,11 @@ gulp.task('help', $.helptext({
   'copy': 'Copy all remaining files verbatim to build folder',
   'fonts': 'Copy custom web fonts to build/fonts',
   'styles': 'Compile SCSS stylesheets',
-  'styles:vendor': 'Copy stylesheets from bower_components to build/css',
+  'styles:vendor': 'Copy stylesheets from node_modules to build/css',
   'scsslint': 'Check SCSS syntax for best practices',
   'php': 'Copy PHP files to build folder',
-  'bower:install': 'Install bower packages',
   'scripts': 'Optimize AMD modules and copy scripts to build/js',
-  'scripts:vendor': 'Copy needed scripts from bower to build/js',
+  'scripts:vendor': 'Copy needed scripts from node_modules to build/js',
   'clean': 'Delete build folder',
   'db:up': 'Run from inside Vagrant VM to replace staging database with the local one',
   'db:down': 'Run from inside Vagrant VM to replace local database with staging\'s',
@@ -155,6 +131,11 @@ gulp.task('images', [ 'images:vendor' ], function() {
 });
 
 gulp.task('images:vendor', function() {
+  if (!resources.vendorImages.length) {
+    console.log(chalk.cyan('No vendor images. Skipping.'));
+    return;
+  }
+
   return gulp.src(resources.vendorImages)
     .pipe(gulp.dest('build/img'));
 });
@@ -175,7 +156,12 @@ gulp.task('fonts', [ 'fonts:vendor' ], function() {
     .pipe($.size({title: 'fonts'}));
 });
 
-gulp.task('fonts:vendor', [ 'bower:install' ], function() {
+gulp.task('fonts:vendor', function() {
+  if (!resources.vendorFonts.length) {
+    console.log(chalk.cyan('No vendor fonts. Skipping.'));
+    return;
+  }
+
   return gulp.src(resources.vendorFonts)
     .pipe(gulp.dest('build/fonts'));
 });
@@ -183,7 +169,7 @@ gulp.task('fonts:vendor', [ 'bower:install' ], function() {
 // Compile and optimize stylesheets
 gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
   return gulp.src(resources.scss)
-    .pipe(helpers.log('Compiling SCSS'.yellow))
+    .pipe(helpers.log(chalk.yellow('Compiling SCSS')))
     .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
     .pipe($.sourcemaps.init())
@@ -193,7 +179,12 @@ gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
     .pipe($.size({ title: 'scss' }));
 });
 
-gulp.task('styles:vendor', [ 'bower:install' ], function() {
+gulp.task('styles:vendor', function() {
+  if (!resources.vendorStyles.length) {
+    console.log(chalk.cyan('No vendor styles. Skipping.'));
+    return;
+  }
+
   return gulp.src(resources.vendorStyles)
     .pipe(gulp.dest('build/css'));
 });
@@ -229,23 +220,19 @@ gulp.task('php', function() {
     .pipe($.size({ title: 'php' }));
 });
 
-gulp.task('bower:install', function() {
-  return $.bower({ directory: './bower_components', cwd: __dirname })
-    .pipe(gulp.dest('bower_components'));
-});
-
 gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
-  var mainFilter = $.filter(function(file) {
-    return (/main(\.min)?\.js$/).test(file.path);
-  });
-
   return gulp.src('source/js/main.js')
-    .pipe(rjs(rjsConfig))
+    .pipe($.browserify({ insertGlobals: true }))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });
 
-gulp.task('scripts:vendor', ['bower:install'], function() {
+gulp.task('scripts:vendor', function() {
+  if (!resources.vendorScripts.length) {
+    console.log(chalk.cyan('No vendor scripts to copy. Skipping.'));
+    return;
+  }
+
   return gulp.src(resources.vendorScripts)
     .pipe(gulp.dest('build/js'))
     .pipe($.size({ title: 'vendorScripts' }));
@@ -266,7 +253,7 @@ gulp.task('scripts:copy', function() {
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
 
 gulp.task('default', ['clean'], function(cb) {
-  runSequence('styles', 'bower:install', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], cb);
+  runSequence('styles', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], cb);
 });
 
 // Load custom, per-project tasks from tasks folder

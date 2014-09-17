@@ -3,7 +3,8 @@
  * Global Settings and Configuration
  */
 
-define([], function() {
+(function() {
+  'use strict';
 
   var config = {};
 
@@ -40,5 +41,6 @@ define([], function() {
     apiKey: 'bf72b8cd58'
   };
 
-  return config;
-});
+  module.exports = config;
+})();
+

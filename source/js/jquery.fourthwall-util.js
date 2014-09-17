@@ -8,51 +8,36 @@
 (function(window, undefined) {
   'use strict';
 
-  var initialize = function(root, factory) {
-    if (typeof define === 'function' && define.amd) {
-      return define([
-        'jquery',
-        'config',
-        'lodash/collections/forEach',
-        'bragi'
-      ], factory);
-    }
+  var $ = require('jquery');
+  var _ = require('lodash');
+  var config = require('./config');
+  var logger = require('bragi-browser');
 
-    return factory(root.jQuery);
+  var wrapClassTransition = function wrapClassTransition(method) {
+    method = method ? method : 'toggleClass';
+
+    return function(klass, callback) {
+      callback = (typeof callback === 'function') ? callback : $.noop;
+      return $(this).afterTransition(callback, true)[method](klass);
+    };
   };
 
-  initialize(window, function($, config, forEach, logger) {
+  module.exports = $.fn.extend({
 
-    var wrapClassTransition = function wrapClassTransition(method) {
-      method = method ? method : 'toggleClass';
+    afterTransition: function(callback, once) {
+      once = once ? true : false;
 
-      return function(klass, callback) {
-        callback = (typeof callback === 'function') ? callback : $.noop;
-        return $(this).afterTransition(callback, true)[method](klass);
-      };
-    };
+      return $(this).on('transitionend webkitTransitionEnd', function(evt) {
+        if (once) {
+          $(this).off('transitionend webkitTransitionEnd');
+        }
 
-    return $.fn.extend({
-
-      afterTransition: function(callback, once) {
-        once = once ? true : false;
-
-        return $(this).on('transitionend webkitTransitionEnd', function(evt) {
-          if (once) {
-            $(this).off('transitionend webkitTransitionEnd');
-          }
-
-          callback.call($(this), evt);
-        });
-      },
-
-      transAddClass: wrapClassTransition('addClass'),
-
-      transRemoveClass: wrapClassTransition('removeClass'),
-
-      transToggleClass: wrapClassTransition('toggleClass')
-
-    });
+        callback.call($(this), evt);
+      });
+    },
+    transAddClass:    wrapClassTransition('addClass'),
+    transRemoveClass: wrapClassTransition('removeClass'),
+    transToggleClass: wrapClassTransition('toggleClass')
 
   });
 

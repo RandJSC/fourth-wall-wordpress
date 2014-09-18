@@ -28,9 +28,15 @@
       strToSign     += method + ':';
       strToSign     += route + ':';
       strToSign     += expiration;
-      console.log(expiration);
+      var signed     = hmacBase64(strToSign, config.gravityForms.privateKey);
 
-      return hmacBase64(strToSign, config.gravityForms.privateKey);
+      logger.log('gforms', 'Gravity Forms signature calculated: %O', {
+        route: route,
+        signature: signed,
+        expiration: expiration
+      });
+
+      return signed;
     }
   };
 

@@ -52,7 +52,7 @@
           element.animate({ d: path }, config.svg.animation.speed);
         };
 
-        logger.log('nav', 'toggling');
+        logger.log('nav', 'toggling: %O', evt);
         $container.add($hamburger).toggleClass('menu-open');
 
         if ($hamburger.hasClass('menu-open')) {

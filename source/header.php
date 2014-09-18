@@ -16,7 +16,6 @@ $fwe_settings = get_option('fwe_settings');
 
   <title><?php wp_title(); ?></title>
 
-  <?php // [todo] - Favicons and Apple touch icon ?>
   <?php if ($fwe_settings['favicon_ico']): ?>
     <?php
     $ico_src     = wp_get_attachment_image_src($fwe_settings['favicon_ico'], 'full');

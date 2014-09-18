@@ -54,9 +54,9 @@
     var urlTemplate = Handlebars.compile('/gravityformsapi/{{ route }}?api_key={{ api_key }}&signature={{ signature }}&expires={{ expires }}');
     var fullURL     = urlTemplate({
       route: route,
-      api_key: config.gravityForms.apiKey,
-      signature: signature.signature,
-      expires: signature.expires
+      api_key: encodeURIComponent(config.gravityForms.apiKey),
+      signature: encodeURIComponent(signature.signature),
+      expires: encodeURIComponent(signature.expires)
     });
 
     logger.log('form', 'Contact form submission: %O', {
@@ -72,15 +72,15 @@
       type: 'POST',
       dataType: 'json',
       contentType: 'application/json',
-      data: JSON.stringify({
+      data: JSON.stringify([{
         '1': name,
         '2': email,
         '3': message
-      })
+      }])
     });
 
     ajax.success(function(json, txt, xhr) {
-      console.log(json);
+      logger.log('ajax', 'Received response from server: %O', json);
     });
 
     return false;

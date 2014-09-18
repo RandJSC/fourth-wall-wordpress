@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "bragi-browser": "^0.0.7",
+    "crypto-js": "^3.1.2-5",
     "eve": "^0.5.0",
     "fastclick": "^1.0.3",
     "font-awesome": "^4.2.0",

@@ -85,4 +85,15 @@ function fwe_google_maps_link($params = array()) {
 
   return $url_base . $query;
 }
+
+function fwe_gforms_request_signature($route, $method = 'GET') {
+  $api_key     = 'bf72b8cd58';
+  $private_key = '3d86b92f6e1a864';
+  $expiration  = strtotime('+60 mins');
+  $sign_string = sprintf('%s:%s:%s:%s', $api_key, $method, $route, $expires);
+  $hash        = hash_hmac('sha1', $sign_string, $private_key, true);
+
+  return rawurlencode(base64_encode($hash));
+}
+
 ?>

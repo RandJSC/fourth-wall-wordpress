@@ -36,7 +36,10 @@
         expiration: expiration
       });
 
-      return signed;
+      return {
+        signature: signed,
+        expires: expiration
+      };
     }
   };
 

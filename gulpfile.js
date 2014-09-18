@@ -22,6 +22,15 @@ var server      = require('tiny-lr')();
 var pngcrush    = require('imagemin-pngcrush');
 var chalk       = require('chalk');
 
+// All optimizations are turned on by default. Pass --dev to
+// enable the creation of source maps and other things that
+// take up lots of space.
+var isProduction = true;
+
+if ($.util.env.dev) {
+  isProduction = false;
+}
+
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 8',
   'ie_mob >= 10',
@@ -35,7 +44,8 @@ var AUTOPREFIXER_BROWSERS = [
 ];
 
 var browserifyConfig = {
-  insertGlobals: true
+  insertGlobals: !isProduction,
+  debug: !isProduction
 };
 
 var sassConfig = {

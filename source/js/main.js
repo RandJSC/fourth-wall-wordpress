@@ -81,6 +81,7 @@
 
     ajax.success(function(json, txt, xhr) {
       logger.log('ajax', 'Received response from server: %O', json);
+      $el[0].reset();
     });
 
     return false;

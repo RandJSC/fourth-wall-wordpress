@@ -5,6 +5,8 @@
 
 (function(window, undefined) {
 
+  'use strict';
+
   var logger = require('bragi-browser');
   var config = require('./config');
   var HMAC   = require('crypto-js/hmac-sha1');

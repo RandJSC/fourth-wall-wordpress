@@ -31,19 +31,17 @@
         return menuOpen;
       };
 
-      if (!Modernizr.touch) {
+      if (Modernizr.touch) {
         logger.log('touch', 'Registering swipe handler');
 
         var hammertime = new Hammer.Manager($container[0], {});
         $container.data('hammertime', hammertime);
 
-        console.log(hammertime);
-
         hammertime.add(new Hammer.Swipe({ enable: debounce(canSwipe, 100) }));
         hammertime.on('swiperight', function(evt) {
           $hamburger.trigger('click');
           logger.log('touch', 'swiperight on screen');
-          console.debug(evt);
+          logger.log('touch', 'Touch event: %O', evt);
         });
       }
 

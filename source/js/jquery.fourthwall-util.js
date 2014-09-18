@@ -12,6 +12,7 @@
   var config = require('./config');
   var logger = require('bragi-browser');
 
+  // Private helper functions
   var wrapClassTransition = function wrapClassTransition(method) {
     method = method ? method : 'toggleClass';
 
@@ -21,6 +22,7 @@
     };
   };
 
+  // jQuery instance methods
   module.exports = $.fn.extend({
 
     afterTransition: function(callback, once) {

@@ -11,14 +11,15 @@
 
   'use strict';
 
-  var config          = require('./config');
-  var $               = require('jquery');
-  var attachFastClick = require('fastclick');
-  var logger          = require('bragi-browser');
-  var fweUtil         = require('./jquery.fourthwall-util');
-  var fweUI           = require('./jquery.fourthwall-ui');
-  var Slick           = require('./slick.commonjs');
-  var Snap            = require('./snap.svg.custom');
+  var config    = require('./config');
+  var $         = require('jquery');
+  var fastClick = require('fastclick');
+  var logger    = require('bragi-browser');
+  var fweUtil   = require('./jquery.fourthwall-util');
+  var fweUI     = require('./jquery.fourthwall-ui');
+  var Slick     = require('./slick.commonjs');
+  var Snap      = require('./snap.svg.custom');
+  var gforms    = require('./gforms-api');
 
   logger.log('timing', 'Begin docReady');
 
@@ -27,7 +28,7 @@
   var burgerSvg  = Snap('#hamburger-img');
 
   // Attach fastclick to body
-  attachFastClick(document.body);
+  fastClick(document.body);
 
   $hamburger.toggleNav($container, burgerSvg);
 

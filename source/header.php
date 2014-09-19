@@ -42,7 +42,7 @@ $fwe_settings = get_option('fwe_settings');
     <meta name="msapplication-TileImage" content="<?php echo $touch_icon; ?>">
   <?php endif; ?>
 
-  <script src="<?php echo $theme_uri; ?>/js/bundle.min.js"></script>
+  <script src="<?php echo $theme_uri; ?>/js/bundle.js"></script>
 
   <?php wp_head(); ?>
 </head>

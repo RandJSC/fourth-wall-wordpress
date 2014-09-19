@@ -20,6 +20,7 @@ var pngcrush    = require('imagemin-pngcrush');
 var chalk       = require('chalk');
 var exorcist    = require('exorcist');
 var transform   = require('vinyl-transform');
+var glob        = require('glob');
 
 // All optimizations are turned on by default. Pass --dev to
 // enable the creation of source maps and other things that
@@ -279,6 +280,42 @@ gulp.task('scripts:copy', function() {
     }), $.concat('bundle.js')))
     .pipe($.size({ title: 'uglified-js' }))
     .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('sourcemaps:fix', function(cb) {
+  var maps    = glob.sync('build/js/*.map');
+  var pathReg = /(js\/.+)$/;
+
+  $.util.log(chalk.magenta('Fixing file paths in source maps...'));
+
+  if (maps.length) {
+    _.forEach(maps, function(map, idx) {
+      var json = JSON.parse(fs.readFileSync(map));
+
+      if (!json.sources.length) return;
+
+      json.sources = _.map(json.sources, function(src) {
+        var matches = src.match(pathReg);
+        
+        if (!matches || matches.length < 2) return src;
+
+        var endPath = matches[1];
+        var fullUrl = baseUrl + '/' + endPath;
+
+        return fullUrl;
+      });
+
+      var fileData = JSON.stringify(json);
+
+      fs.writeFileSync(map, fileData);
+
+      $.util.log(chalk.green('Fixed: ') + map);
+    });
+  } else {
+    $.util.log(chalk.magenta('No source maps found. Skipping.'));
+  }
+
+  cb();
 });
 
 gulp.task('totalsize', function() {

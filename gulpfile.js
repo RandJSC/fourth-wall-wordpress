@@ -44,7 +44,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 var browserifyConfig = {
   insertGlobals: !isProduction,
-  debug: true
+  debug: isProduction
 };
 
 var sassConfig = {

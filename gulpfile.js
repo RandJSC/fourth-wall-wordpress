@@ -243,7 +243,10 @@ gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
     .pipe($.if(isProduction, transform(function() {
       return exorcist('build/js/main.js.map');
     })))
-    .pipe($.if(isProduction, $.uglify()))
+    .pipe($.if(isProduction, $.uglify({
+      inSourceMap: 'build/js/main.js.map',
+      outSourceMap: 'build/js/main.js.map'
+    })))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });

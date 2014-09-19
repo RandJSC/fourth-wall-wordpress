@@ -10,17 +10,16 @@ var gulp        = require('gulp');
 var $           = require('gulp-load-plugins')({ lazy: true });
 var del         = require('del');
 var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
-var pagespeed   = require('psi');
 var rjs         = $.r || require('gulp-r');
 var path        = require('path');
 var fs          = require('fs');
-var reload      = browserSync.reload;
 var _           = require('lodash');
 var helpers     = require('./tasks/lib/helpers.js');
 var server      = require('tiny-lr')();
 var pngcrush    = require('imagemin-pngcrush');
 var chalk       = require('chalk');
+var exorcist    = require('exorcist');
+var transform   = require('vinyl-transform');
 
 // All optimizations are turned on by default. Pass --dev to
 // enable the creation of source maps and other things that
@@ -125,10 +124,8 @@ gulp.task('watch', function() {
 // Lint JavaScript
 gulp.task('jshint', function() {
   return gulp.src(resources.scripts)
-    .pipe(reload({stream: true, once: true}))
     .pipe($.jshint)
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+    .pipe($.jshint.reporter('jshint-stylish'));
 });
 
 // Optimize images
@@ -237,7 +234,11 @@ gulp.task('php', function() {
 gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
   return gulp.src('source/js/main.js')
     .pipe($.browserify(browserifyConfig))
-    .pipe($.uglify())
+    .pipe($.if($.util.env.dev, transform(function() {
+      return exorcist('build/js/main.js.map');
+    }, function() {
+    
+    })))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });

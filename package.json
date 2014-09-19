@@ -78,6 +78,7 @@
     "require-dir": "^0.1.0",
     "run-sequence": "^0.3.6",
     "semver": "^3.0.1",
-    "tiny-lr": "^0.1.4"
+    "tiny-lr": "^0.1.4",
+    "vinyl-transform": "0.0.1"
   }
 }

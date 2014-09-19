@@ -23,6 +23,8 @@
   var Handlebars = require('handlebars');
   var Popover    = require('./popover');
 
+  window.Popover = Popover;
+
   logger.log('timing', 'Begin docReady');
 
   var $container   = $('#master-container');

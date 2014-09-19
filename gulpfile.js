@@ -42,9 +42,14 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+var baseUrl  = 'http://' + (isProduction ? 'fourthwall.fifthroomhosting.com' : 'localhost:8888') + '/wp-content/themes/fourthwall';
+var webPaths = {
+  js: baseUrl + '/js'
+};
+
 var browserifyConfig = {
   insertGlobals: !isProduction,
-  debug: isProduction
+  debug: true
 };
 
 var sassConfig = {
@@ -63,6 +68,11 @@ var resources = {
   vendorStyles: [],
   scripts: [ 'source/js/**/*.js' ],
   vendorScripts: [],
+  standaloneScripts: [
+    'source/js/modernizr.js',
+    'source/js/modernizr-tests.js',
+    'source/js/matchMedia.js'
+  ],
   images: 'source/img/**/*',
   vendorImages: [
     'node_modules/slick-carousel/slick/ajax-loader.gif'
@@ -196,7 +206,7 @@ gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
 
 gulp.task('styles:vendor', function() {
   if (!resources.vendorStyles.length) {
-    console.log(chalk.cyan('No vendor styles. Skipping.'));
+    $.util.log(chalk.cyan('No vendor styles. Skipping.'));
     return;
   }
 
@@ -236,16 +246,13 @@ gulp.task('php', function() {
 });
 
 gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
-  del.sync(['build/js/*.map']);
-
   return gulp.src('source/js/main.js')
     .pipe($.browserify(browserifyConfig))
-    .pipe($.if(isProduction, transform(function() {
-      return exorcist('build/js/main.js.map');
-    })))
-    .pipe($.if(isProduction, $.uglify({
-      inSourceMap: 'build/js/main.js.map',
-      outSourceMap: 'build/js/main.js.map'
+    .pipe(transform(function() { return exorcist('build/js/main.browserify.map'); }))
+    .pipe($.if(isProduction, $.uglifyjs({
+      inSourceMap: 'main.browserify.map',
+      outSourceMap: 'main.js.map',
+      sourceRoot: webPaths.js
     })))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
@@ -253,7 +260,7 @@ gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
 
 gulp.task('scripts:vendor', function() {
   if (!resources.vendorScripts.length) {
-    console.log(chalk.cyan('No vendor scripts to copy. Skipping.'));
+    $.util.log(chalk.cyan('No vendor scripts to copy. Skipping.'));
     return;
   }
 
@@ -263,13 +270,13 @@ gulp.task('scripts:vendor', function() {
 });
 
 gulp.task('scripts:copy', function() {
-  var exceptMainFilter = $.filter(function(file) {
-    return !(/main(\.min)?\.js$/).test(file.path);
-  });
+  del.sync(['build/js/*.map']);
 
-  return gulp.src(resources.scripts)
-    .pipe(exceptMainFilter)
-    .pipe($.uglify())
+  return gulp.src(resources.standaloneScripts)
+    .pipe($.if(isProduction, $.uglifyjs('bundle.js', {
+      outSourceMap: true,
+      sourceRoot: webPaths.js
+    }), $.concat('bundle.js')))
     .pipe($.size({ title: 'uglified-js' }))
     .pipe(gulp.dest('build/js'));
 });

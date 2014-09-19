@@ -42,17 +42,7 @@ $fwe_settings = get_option('fwe_settings');
     <meta name="msapplication-TileImage" content="<?php echo $touch_icon; ?>">
   <?php endif; ?>
 
-  <script src="<?php echo $theme_uri; ?>/js/modernizr.js"></script>
-  <script src="<?php echo $theme_uri; ?>/js/modernizr-tests.js"></script>
-  <script>
-    // Asynchronously load matchMedia polyfill if needed
-    if (!Modernizr.matchmedia) {
-      var s    = document.createElement('script');
-      var head = document.getElementsByTagName('head')[0];
-      s.src    = '<?php echo $theme_uri; ?>/js/matchMedia.js';
-      head.appendChild(s);
-    }
-  </script>
+  <script src="<?php echo $theme_uri; ?>/js/bundle.min.js"></script>
 
   <?php wp_head(); ?>
 </head>

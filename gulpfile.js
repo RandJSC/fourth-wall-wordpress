@@ -44,11 +44,13 @@ var AUTOPREFIXER_BROWSERS = [
 
 var browserifyConfig = {
   insertGlobals: !isProduction,
-  debug: !isProduction
+  debug: true
 };
 
 var sassConfig = {
-  style: 'expanded',
+  style: isProduction ? 'compressed' : 'expanded',
+  lineNumbers: !isProduction,
+  debugInfo: !isProduction,
   precision: 10,
   loadPath: [
     'source/css'
@@ -179,13 +181,15 @@ gulp.task('fonts:vendor', function() {
 
 // Compile and optimize stylesheets
 gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
+  del.sync(['build/css/*.map']);
+
   return gulp.src(resources.scss)
     .pipe(helpers.log(chalk.yellow('Compiling SCSS')))
     .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
-    .pipe($.sourcemaps.init())
-      .pipe($.pleeease())
-    .pipe($.sourcemaps.write())
+    .pipe($.if(isProduction, $.sourcemaps.init()))
+    .pipe($.if(isProduction, $.pleeease()))
+    .pipe($.if(isProduction, $.sourcemaps.write()))
     .pipe(gulp.dest('build/css'))
     .pipe($.size({ title: 'scss' }));
 });
@@ -232,13 +236,14 @@ gulp.task('php', function() {
 });
 
 gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
+  del.sync(['build/js/*.map']);
+
   return gulp.src('source/js/main.js')
     .pipe($.browserify(browserifyConfig))
-    .pipe($.if($.util.env.dev, transform(function() {
-      return exorcist('build/js/main.js.map');
-    }, function() {
-    
+    .pipe($.if(isProduction, transform(function() {
+      return exorcist('build/js/main.map');
     })))
+    .pipe($.if(isProduction, $.uglify()))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });

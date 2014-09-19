@@ -241,7 +241,7 @@ gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
   return gulp.src('source/js/main.js')
     .pipe($.browserify(browserifyConfig))
     .pipe($.if(isProduction, transform(function() {
-      return exorcist('build/js/main.map');
+      return exorcist('build/js/main.js.map');
     })))
     .pipe($.if(isProduction, $.uglify()))
     .pipe($.size({ title: 'main-js' }))

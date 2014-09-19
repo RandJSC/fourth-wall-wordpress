@@ -21,6 +21,7 @@
   var Snap       = require('./snap.svg.custom');
   var gforms     = require('./gforms-api');
   var Handlebars = require('handlebars');
+  var Popover    = require('./popover');
 
   logger.log('timing', 'Begin docReady');
 

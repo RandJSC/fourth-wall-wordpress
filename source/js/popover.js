@@ -27,19 +27,19 @@
       id: this.opts.id,
       'class': this.opts['class'].join(' ')
     });
-    
+
   };
 
   Popover.prototype.show = function() {
-  
+
   };
 
   Popover.prototype.hide = function() {
-  
+
   };
 
   Popover.prototype.toggle = function() {
-  
+
   };
 
   if (isBrowserify()) {

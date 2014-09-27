@@ -10,11 +10,22 @@ var gutil      = require('gulp-util');
 var shell      = require('gulp-shell');
 var mapStream  = require('map-stream');
 var Handlebars = require('handlebars');
+var path       = require('path');
 
 var localConfig  = secrets.servers.dev;
 var remoteConfig = secrets.servers.staging;
 
-var commandTemplate = function(parts, bindings, glue) {
+var vagrant = {
+  privateKey: path.join(process.env.HOME, '.vagrant.d', 'insecure_private_key'),
+  port: localConfig.ssh.port,
+  user: 'vagrant'
+};
+
+var escapeQuotes = function escapeQuotes(str) {
+  return str.replace(/([\'])/g, "\\$1");
+};
+
+var commandTemplate = function commandTemplate(parts, bindings, glue) {
   if (glue == null || !_.isString(glue)) {
     glue = ' ';
   }
@@ -34,11 +45,7 @@ var commandTemplate = function(parts, bindings, glue) {
   return template(bindings);
 };
 
-var remoteShell = function(command, opts) {
-  var escapeQuotes = function(str) {
-    return str.replace(/([\'])/g, "\\$1");
-  };
-
+var remoteShell = function remoteShell(command, opts) {
   var cmd = commandTemplate([
     'ssh',
     '-p',
@@ -50,7 +57,52 @@ var remoteShell = function(command, opts) {
   return shell(cmd, opts);
 };
 
-var mysqlQuery = function(query, remote) {
+var vagrantCommand = function vagrantCommand(command, opts) {
+  var cmd = commandTemplate([
+    'vagrant',
+    'ssh',
+    '--command',
+    "'{{{ command }}}'"
+  ], { command: command });
+
+  return shell(cmd, opts);
+};
+
+var copyFromVagrant = function copyFromVagrant(file, dest, opts) {
+  var cmd = commandTemplate([
+    'scp',
+    '-P {{ vagrant.port }}',
+    '-o IdentityFile={{ vagrant.privateKey }}',
+    '-o StrictHostKeyChecking=no',
+    '-o UserKnownHostsFile=/dev/null',
+    '-o PasswordAuthentication=no',
+    '-o IdentitiesOnly=yes',
+    '-o LogLevel=FATAL',
+    '{{ vagrant.user }}@127.0.0.1:{{ file }}',
+    '{{ dest }}'
+  ], { vagrant: vagrant, file: file, dest: dest });
+
+  return shell(cmd, opts);
+};
+
+var copyToVagrant = function copyToVagrant(file, dest, opts) {
+  var cmd = commandTemplate([
+    'scp',
+    '-P {{ vagrant.port }}',
+    '-o IdentityFile={{ vagrant.privateKey }}',
+    '-o StrictHostKeyChecking=no',
+    '-o UserKnownHostsFile=/dev/null',
+    '-o PasswordAuthentication=no',
+    '-o IdentitiesOnly=yes',
+    '-o LogLevel=FATAL',
+    '{{ file }}',
+    '{{ vagrant.user }}@127.0.0.1:{{ dest }}'
+  ], { vagrant: vagrant, file: file, dest: dest });
+
+  return shell(cmd, opts);
+};
+
+var mysqlQuery = function mysqlQuery(query, remote) {
   if (_.isUndefined(remote)) {
     remote = false;
   }
@@ -66,7 +118,7 @@ var mysqlQuery = function(query, remote) {
   return command;
 };
 
-var log = function(msg, once) {
+var log = function log(msg, once) {
   if (once == null) {
     once = true;
   }
@@ -87,5 +139,8 @@ module.exports = {
   commandTemplate: commandTemplate,
   remoteShell: remoteShell,
   mysqlQuery: mysqlQuery,
-  log: log
+  log: log,
+  vagrantCommand: vagrantCommand,
+  copyToVagrant: copyToVagrant,
+  copyFromVagrant: copyFromVagrant
 };

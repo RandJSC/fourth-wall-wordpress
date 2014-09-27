@@ -33,9 +33,9 @@
 
     Popover.prototype._singletonInstance = this;
 
-    var self = this;
-    var title;
-    var content;
+    var _title;
+    var _content;
+    var self     = this;
     var defaults = {
       id: 'popover',
       'class': []
@@ -65,10 +65,10 @@
     Object.defineProperty(this, 'title', {
       enumerable: true,
       get: function() {
-        return title;
+        return _title;
       },
       set: function(val) {
-        title = val;
+        _title = val;
         self.refresh();
       }
     });
@@ -76,10 +76,10 @@
     Object.defineProperty(this, 'content', {
       enumerable: true,
       get: function() {
-        return content;
+        return _content;
       },
       set: function(val) {
-        content = val;
+        _content = val;
         self.refresh();
       }
     });

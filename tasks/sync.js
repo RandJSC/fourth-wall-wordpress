@@ -9,6 +9,8 @@ var path    = require('path');
 var shell   = require('gulp-shell');
 var helpers = require('./lib/helpers.js');
 
+var projectRoot = path.resolve(path.join(__dirname, '..'));
+
 var syncTask = function syncTask(opts) {
   var config   = secrets.servers.staging.rsync;
   opts         = (typeof opts === 'undefined') ? {} : opts;
@@ -49,20 +51,20 @@ gulp.task('sync:up', syncTask({
 }));
 
 gulp.task('uploads:up', syncTask({
-  source: '/home/vagrant/www/wp-content/uploads/',
+  source: path.join(projectRoot, 'uploads/'),
   dest: 'public_html/fourthwall.fifthroomhosting.com/public/wp-content/uploads/',
   message: 'Syncing uploads UP...'
 }));
 
 gulp.task('uploads:down', syncTask({
   source: 'public_html/fourthwall.fifthroomhosting.com/public/wp-content/uploads/',
-  dest: '/home/vagrant/www/wp-content/uploads/',
+  dest: path.join(projectRoot, 'uploads/'),
   message: 'Syncing uploads DOWN...',
   direction: 'down'
 }));
 
 gulp.task('plugins:up', syncTask({
-  source: '/home/vagrant/www/wp-content/plugins/',
+  source: path.join(projectRoot, 'plugins/'),
   dest: 'public_html/fourthwall.fifthroomhosting.com/public/wp-content/plugins/',
   message: 'Syncing plugins UP...',
   direction: 'up'
@@ -70,7 +72,7 @@ gulp.task('plugins:up', syncTask({
 
 gulp.task('plugins:down', syncTask({
   source: 'public_html/fourthwall.fifthroomhosting.com/public/wp-content/plugins/',
-  dest: '/home/vagrant/www/wp-content/plugins/',
+  dest: path.join(projectRoot, 'plugins/'),
   message: 'Syncing plugins DOWN...',
   direction: 'down'
 }));

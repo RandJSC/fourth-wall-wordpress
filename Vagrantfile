@@ -21,6 +21,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   config.vm.synced_folder 'build', '/home/vagrant/www/wp-content/themes/fourthwall'
+  config.vm.synced_folder 'plugins', '/home/vagrant/www/wp-content/plugins'
+  config.vm.synced_folder 'uploads', '/home/vagrant/www/wp-content/uploads'
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = 'provision/vagrant.yml'

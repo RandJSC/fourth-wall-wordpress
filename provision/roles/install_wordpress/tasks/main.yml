@@ -3,7 +3,7 @@
   mysql_db: name=wordpress_dev state=present login_user=root login_password=root
 
 - name: add mysql remote user
-  mysql_user: name=root password=root host=% state=present login_user=root login_password=root
+  mysql_user: name=root password=root host=% state=present login_user=root login_password=root priv=*.*:ALL
 
 - name: download wordpress
   command: "wget http://wordpress.org/latest.tar.gz -O /tmp/latest.tar.gz creates=/tmp/latest.tar.gz"

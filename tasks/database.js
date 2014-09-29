@@ -21,9 +21,12 @@ gulp.task('db:up', function() {
 
   var localConfig  = secrets.servers.dev;
   var remoteConfig = secrets.servers.staging;
+  var isVagrant    = helpers.isVagrant();
 
   var mysqlDumpCmd = helpers.commandTemplate([
     'mysqldump',
+    (!isVagrant ? '--host={{ dev.mysql.host }}' : ''),
+    (!isVagrant ? '--port={{ dev.mysql.port }}' : ''),
     '--user="{{ dev.mysql.username }}"',
     '--password="{{ dev.mysql.password }}"',
     '{{ dev.mysql.database }}',
@@ -64,6 +67,7 @@ gulp.task('db:up', function() {
 gulp.task('db:down', function() {
   gutil.log(chalk.blue('Syncing staging database down to localhost...'));
 
+  var isVagrant    = helpers.isVagrant();
   var mysqlDumpCmd = helpers.commandTemplate([
     'mysqldump',
     '--user="{{ staging.mysql.username }}"',
@@ -88,6 +92,8 @@ gulp.task('db:down', function() {
     '/tmp/{{ staging.mysql.database }}.sql.gz',
     '|',
     'mysql',
+    (!isVagrant ? '--host={{ dev.mysql.host }}' : ''),
+    (!isVagrant ? '--port={{ dev.mysql.port }}' : ''),
     '--user="{{ dev.mysql.username }}"',
     '--password="{{ dev.mysql.password }}"',
     '{{ dev.mysql.database }}'

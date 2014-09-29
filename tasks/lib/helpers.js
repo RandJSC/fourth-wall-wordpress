@@ -107,8 +107,11 @@ var mysqlQuery = function mysqlQuery(query, remote) {
     remote = false;
   }
 
+  var vagrant = isVagrant();
   var command = commandTemplate([
     'mysql',
+    (!vagrant ? '--host={{ dev.mysql.host }}' : ''),
+    (!vagrant ? '--port={{ dev.mysql.port }}' : ''),
     '--user="{{ dev.mysql.username }}"',
     '--password="{{ dev.mysql.password }}"',
     '--database="{{ dev.mysql.database }}"',
@@ -135,6 +138,10 @@ var log = function log(msg, once) {
   });
 };
 
+var isVagrant = function isVagrant() {
+  return process.env.USER === 'vagrant';
+};
+
 module.exports = {
   commandTemplate: commandTemplate,
   remoteShell: remoteShell,
@@ -142,5 +149,6 @@ module.exports = {
   log: log,
   vagrantCommand: vagrantCommand,
   copyToVagrant: copyToVagrant,
-  copyFromVagrant: copyFromVagrant
+  copyFromVagrant: copyFromVagrant,
+  isVagrant: isVagrant
 };

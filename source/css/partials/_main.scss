@@ -81,9 +81,39 @@ div.content-section {
       color: $black;
       border: 1px solid #d2d2d2;
     }
+  }
+}
 
-    button {
-      @extend %button;
+button {
+  @extend %button;
+
+  &.loading {
+    .button-spinner {
+      opacity: 1;
+    }
+
+    .button-label {
+      opacity: 0;
     }
   }
+}
+
+.button-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  @include transition(opacity $transition-speed $transition-easing);
+}
+
+.button-label {
+  z-index: 3;
+  position: relative;
+  @include transition(opacity $transition-speed $transition-easing);
 }

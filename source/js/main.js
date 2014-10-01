@@ -23,6 +23,8 @@
   var Handlebars    = require('handlebars');
   var ButtonSpinner = require('./button-spinner');
 
+  window.ButtonSpinner = ButtonSpinner;
+
   logger.log('timing', 'Begin docReady');
 
   var $container   = $('#master-container');

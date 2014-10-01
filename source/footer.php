@@ -126,7 +126,9 @@
                 <textarea name="contact_message" id="contact-message"></textarea>
               </p>
               <p class="right">
-                <button type="submit">Submit &raquo;</button>
+                <button type="submit">
+                  <span class="button-label">Submit &raquo;</span>
+                </button>
               </p>
             </form>
           </div>

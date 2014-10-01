@@ -26,11 +26,12 @@
   module.exports = $.fn.extend({
 
     afterTransition: function(callback, once) {
-      once = once ? true : false;
+      callback = $.isFunction(callback) ? callback : $.noop;
+      once     = once ? true : false;
 
-      return $(this).on('transitionend webkitTransitionEnd', function(evt) {
+      return $(this).on('transitionend webkitTransitionEnd', function transCallback(evt) {
         if (once) {
-          $(this).off('transitionend webkitTransitionEnd');
+          $(this).off('transitionend webkitTransitionEnd', transCallback);
         }
 
         callback.call($(this), evt);

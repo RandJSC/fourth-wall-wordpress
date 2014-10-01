@@ -9,21 +9,11 @@
 
   'use strict';
 
-  var debounce, logger;
-
-  var isBrowserify = function isBrowserify() {
-    return (typeof exports !== 'undefined');
-  };
-
-  if (isBrowserify()) {
-    var $          = require('jquery');
-    var Handlebars = require('handlebars');
-    debounce       = require('lodash.debounce');
-    logger         = require('bragi-browser');
-  } else {
-    debounce   = _.debounce;
-    logger     = BRAGI;
-  }
+  var $          = require('jquery');
+  var Handlebars = require('handlebars');
+  var debounce   = require('lodash.debounce');
+  var logger     = require('bragi-browser');
+  var Q          = require('q');
 
   var Popover = function Popover(options) {
     // Singleton - always return the same instance on subsequent initializations
@@ -142,33 +132,34 @@
     return true;
   };
 
-  Popover.prototype.show = function show(cb) {
+  Popover.prototype.show = function show() {
     logger.log('popover', 'Showing popover');
 
-    var self = this;
+    var self     = this;
+    var deferred = Q.defer();
 
     this.$elem.transAddClass('visible', function() {
-      if (typeof cb === 'function') {
-        cb.call(self);
-      }
+      deferred.resolve(self);
     });
 
     this.visible = true;
+
+    return deferred.promise;
   };
 
-  Popover.prototype.hide = function hide(cb) {
+  Popover.prototype.hide = function hide() {
     logger.log('popover', 'Hiding popover');
 
-    var self = this;
-
+    var self     = this;
+    var deferred = Q.defer();
 
     this.$elem.transRemoveClass('visible', function() {
-      if (typeof cb === 'function') {
-        cb.call(self);
-      }
+      deferred.resolve(self);
     });
 
     this.visible = false;
+
+    return deferred.promise;
   };
 
   Popover.prototype.toggle = function toggle(cb) {
@@ -176,10 +167,6 @@
     return this.visible ? this.hide() : this.show();
   };
 
-  if (isBrowserify()) {
-    module.exports = Popover;
-  } else {
-    window.Popover = Popover;
-  }
+  module.exports = Popover;
 
 })(window);

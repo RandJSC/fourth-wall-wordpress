@@ -162,7 +162,7 @@
     return deferred.promise;
   };
 
-  Popover.prototype.toggle = function toggle(cb) {
+  Popover.prototype.toggle = function toggle() {
     logger.log('popover', 'Toggling visibility');
     return this.visible ? this.hide() : this.show();
   };

@@ -9,7 +9,8 @@ get_header();
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
-  $images = get_post_meta(get_the_ID(), 'slider_images', true);
+  $post_id    = get_the_ID();
+  $images     = get_post_meta($post_id, 'slider_images', true);
   $has_slides = !empty($images) && !empty($images['image'][0][0]);
 
   if ($has_slides):
@@ -74,9 +75,10 @@ if ($blog_query->have_posts()):
     <ul class="thumb-list">
       <?php while ($blog_query->have_posts()): $blog_query->the_post(); ?>
         <?php
+        $blog_id   = get_the_ID();
         $has_thumb = has_post_thumbnail();
         $li_class  = $has_thumb ? '' : ' class="no-thumb"';
-        $permalink = get_permalink(get_the_ID());
+        $permalink = get_permalink($blog_id);
         ?>
         <li<?php echo $li_class; ?>>
           <?php if ($has_thumb): ?>
@@ -106,9 +108,10 @@ if ($news_query->have_posts()):
     <ul class="thumb-list">
       <?php while ($news_query->have_posts()): $news_query->the_post(); ?>
         <?php
+        $news_id   = get_the_ID();
         $has_thumb = has_post_thumbnail();
         $li_class  = $has_thumb ? '' : ' class="no-thumb"';
-        $permalink = get_permalink(get_the_ID());
+        $permalink = get_permalink($news_id);
         ?>
         <li<?php echo $li_class; ?>>
           <?php if ($has_thumb): ?>

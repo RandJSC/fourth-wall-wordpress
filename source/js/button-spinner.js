@@ -9,9 +9,7 @@
 
   'use strict';
 
-  var Q        = require('q');
   var $        = require('jquery');
-  var ui       = require('./jquery.fourthwall-ui');
   var util     = require('./jquery.fourthwall-util');
   var Spinner  = require('spin.js');
   var isString = require('lodash.isstring');

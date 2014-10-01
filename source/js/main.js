@@ -11,19 +11,17 @@
 
   'use strict';
 
-  var config     = require('./config');
-  var $          = require('jquery');
-  var fastClick  = require('fastclick');
-  var logger     = require('bragi-browser');
-  var fweUtil    = require('./jquery.fourthwall-util');
-  var fweUI      = require('./jquery.fourthwall-ui');
-  var Slick      = require('./slick.commonjs');
-  var Snap       = require('./snap.svg.custom');
-  var gforms     = require('./gforms-api');
-  var Handlebars = require('handlebars');
-  var Popover    = require('./popover');
-
-  window.Popover = Popover;
+  var config        = require('./config');
+  var $             = require('jquery');
+  var fastClick     = require('fastclick');
+  var logger        = require('bragi-browser');
+  var fweUtil       = require('./jquery.fourthwall-util');
+  var fweUI         = require('./jquery.fourthwall-ui');
+  var Slick         = require('./slick.commonjs');
+  var Snap          = require('./snap.svg.custom');
+  var gforms        = require('./gforms-api');
+  var Handlebars    = require('handlebars');
+  var ButtonSpinner = require('./button-spinner');
 
   logger.log('timing', 'Begin docReady');
 

@@ -128,35 +128,8 @@ if ($news_query->have_posts()):
   </section>
 <?php endif; ?>
 
-<section id="email-signup" class="content-section bg blue">
-  <div class="section-inner">
-    <h2>Email Signup</h2>
+<?php get_template_part('email-signup'); ?>
 
-    <p>
-      Test test 123.
-    </p>
-
-    <form action="" method="post">
-      <p>
-        <input type="text" name="name" placeholder="Your Name" required>
-      </p>
-      <p>
-        <input type="email" name="email" placeholder="Email Address" required>
-      </p>
-      <button type="submit" class="fwe-button">
-        Submit &raquo;
-      </button>
-    </form>
-  </div>
-</section>
-
-<section id="facebook" class="content-section bg-none">
-  <h2>Fourth Wall on Facebook</h2>
-
-  <a href="" class="button block center">
-    Like on Facebook
-    <span class="button-icon right fa fa-thumbs-up big"></span>
-  </a>
-</section>
+<?php get_template_part('facebook-feed'); ?>
 
 <?php get_footer(); ?>

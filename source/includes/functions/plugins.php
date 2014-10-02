@@ -35,11 +35,6 @@ function fwe_register_plugins() {
       'required' => false,
     ),
     array(
-      'name'     => 'P3 (Plugin Performance Profiler)',
-      'slug'     => 'p3-profiler',
-      'required' => false,
-    ),
-    array(
       'name'     => 'WP Optimize',
       'slug'     => 'wp-optimize',
       'required' => false,

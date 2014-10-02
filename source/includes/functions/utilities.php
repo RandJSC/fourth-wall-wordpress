@@ -96,4 +96,8 @@ function fwe_gforms_request_signature($route, $method = 'GET') {
   return rawurlencode(base64_encode($hash));
 }
 
+function fwe_is_post($post) {
+  return is_a($post, 'WP_Post');
+}
+
 ?>

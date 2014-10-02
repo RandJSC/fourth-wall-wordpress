@@ -29,6 +29,7 @@
   };
 
   ButtonSpinner.prototype.start = function start() {
+    logger.log('buttonSpinner', 'Starting spinner');
     var height = this.$button.height();
 
     this.spinner = this._createSpinner({
@@ -46,6 +47,7 @@
   };
 
   ButtonSpinner.prototype.stop = function stop(message) {
+    logger.log('buttonSpinner', 'Stopping spinner');
     var self = this;
 
     if (message) {

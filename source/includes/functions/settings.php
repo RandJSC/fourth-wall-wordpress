@@ -15,7 +15,7 @@ function fwe_register_settings_pages($pages) {
     'menu_icon'   => 'dashicons-admin-generic',
     'page_icon'   => 'dashicons-admin-generic',
     'single_line' => true,
-    'default_tab' => 'Icons',
+    'default_tab' => 'Images',
     'save_text'   => 'Save Theme Options',
   );
 

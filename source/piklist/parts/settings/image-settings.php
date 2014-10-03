@@ -1,6 +1,6 @@
 <?php
 /*
-Title: Icon Settings
+Title: Images
 Setting: fwe_settings
 */
 
@@ -32,6 +32,16 @@ piklist('field', array(
   'label'       => 'Apple Touch Icon',
   'description' => '152x152px PNG recommended',
   'help'        => 'Displayed when a visitor saves your site to their home screen',
+  'attributes'  => array(
+    'class' => 'text',
+  ),
+));
+
+piklist('field', array(
+  'type'        => 'file',
+  'field'       => 'default_category_banner',
+  'label'       => 'Default Category Banner',
+  'description' => 'If a category has no banner image, this one will be used.',
   'attributes'  => array(
     'class' => 'text',
   ),

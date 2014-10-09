@@ -33,8 +33,6 @@ div.content-section {
   }
 
   &.bg-none {
-    padding: rem(25);
-
     h1, h2, h3, h4 {
       color: $blue;
     }
@@ -80,6 +78,33 @@ div.content-section {
       font-weight: 400;
       color: $black;
       border: 1px solid #d2d2d2;
+    }
+  }
+
+  ul.thumb-list {
+    @extend %unlist;
+
+    li {
+      @include clearfix;
+      margin-bottom: rem(20);
+    }
+
+    a.thumb {
+      display: block;
+      float: left;
+      margin-right: rem(10);
+      min-width: rem(95);
+    }
+
+    a.thumb img {
+      border: rem(5) solid $white;
+      background: $white;
+    }
+
+    a {
+      color: $white;
+      font-weight: 600;
+      float: left;
     }
   }
 }

@@ -66,12 +66,15 @@ $blog_args = array(
   'order'          => 'DESC',
 );
 $blog_query = new WP_Query($blog_args);
+$blog_link  = get_term_link('blog', 'category');
 
 if ($blog_query->have_posts()):
 ?>
   <section id="blog-posts" class="content-section bg green">
     <div class="section-inner">
-      <h2>Blog Posts</h2>
+      <h2>
+        <a href="<?php echo $blog_link; ?>">Blog Posts</a>
+      </h2>
 
       <ul class="thumb-list">
         <?php while ($blog_query->have_posts()): $blog_query->the_post(); ?>
@@ -99,15 +102,18 @@ if ($blog_query->have_posts()):
 <?php endif; ?>
 
 <?php
-$news_args = $blog_args;
+$news_args  = $blog_args;
 $news_args['category_name'] = 'news';
 $news_query = new WP_Query($news_args);
+$news_link  = get_term_link('news', 'category');
 
 if ($news_query->have_posts()):
 ?>
   <section id="news-posts" class="content-section bg-none">
     <div class="section-inner">
-      <h2>News</h2>
+      <h2>
+        <a href="<?php echo $news_link; ?>">News</a>
+      </h2>
 
       <ul class="thumb-list">
         <?php while ($news_query->have_posts()): $news_query->the_post(); ?>

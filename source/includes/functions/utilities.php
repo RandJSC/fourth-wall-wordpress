@@ -100,4 +100,26 @@ function fwe_is_post($post) {
   return is_a($post, 'WP_Post');
 }
 
+function fwe_list_hooked_functions($tag = false) {
+  global $wp_filter;
+
+  $hook = array();
+
+  if ($tag) {
+    $hook[$tag] = $wp_filter[$tag];
+
+    if (!is_array($hook[$tag])) {
+      trigger_error("Nothing found for '$tag' hook", E_USER_WARNING);
+      return;
+    }
+  } else {
+    $hook = $wp_filter;
+    ksort($hook);
+  }
+
+  foreach ($hook as $tag => $priority) {
+    var_dump($tag, $priority);
+  }
+}
+
 ?>

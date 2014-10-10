@@ -36,6 +36,10 @@ div.content-section {
     h1, h2, h3, h4 {
       color: $blue;
     }
+
+    ul.thumb-list a {
+      color: $text-color;
+    }
   }
 
   .section-inner {

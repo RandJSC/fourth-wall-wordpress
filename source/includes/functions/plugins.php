@@ -39,6 +39,11 @@ function fwe_register_plugins() {
       'slug'     => 'wp-optimize',
       'required' => false,
     ),
+    array(
+      'name'     => 'Regenerate Thumbnails',
+      'slug'     => 'regenerate-thumbnails',
+      'required' => false,
+    ),
   );
 
   $config = array(

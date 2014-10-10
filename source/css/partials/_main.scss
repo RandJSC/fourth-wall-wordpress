@@ -146,3 +146,11 @@ button {
   position: relative;
   @include transition(opacity $transition-speed $transition-easing);
 }
+
+#facebook {
+  text-align: center;
+
+  .fb-like-box {
+    margin-bottom: rem(20);
+  }
+}

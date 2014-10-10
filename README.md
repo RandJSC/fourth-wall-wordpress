@@ -5,13 +5,12 @@ by Mike Green (mike@fifthroomcreative.com)
 ## Setup
 
 ```bash
-[sudo] npm install -g bower coffee-script yo gulp
+[sudo] npm install -g gulp
 npm install
-gulp # this will start watching the project for changes, so either hit CTRL-C to quit or do the rest in a new tab
-vagrant up
-vagrant ssh
-cd /vagrant
-gulp ssh:setup # this requires the staging server's SSH password
-gulp db:down # load up a copy of the staging database
-logout
+mkdir plugins uploads
+gulp              # <--[This compiles everything and creates a build folder]
+gulp plugins:down # download plugins from staging
+gulp uploads:down # download staging's uploads folder
+vagrant up        # boot the virtual machine
+gulp db:down      # sync the staging database into the VM
 ```

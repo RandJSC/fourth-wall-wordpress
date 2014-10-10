@@ -22,7 +22,7 @@ if (array_key_exists('facebook_page_url', $fwe_settings) && $fwe_settings['faceb
         data-stream="true"
         data-show-border="true"></div>
 
-      <a href="<?php echo esc_url($fwe_settings['facebook_page_url']); ?>" class="button block center">
+      <a href="<?php echo esc_url($fwe_settings['facebook_page_url']); ?>" class="button block center" target="_blank">
         Like on Facebook
         <span class="button-icon right fa fa-thumbs-up big"></span>
       </a>

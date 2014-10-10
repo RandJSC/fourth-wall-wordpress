@@ -57,6 +57,11 @@ div.content-section {
   h2 {
     border-bottom: 1px solid $hr-grey;
     padding-bottom: rem(25);
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
   .intro {

@@ -14,8 +14,8 @@ if (array_key_exists('facebook_page_url', $fwe_settings) && $fwe_settings['faceb
       <div
         class="fb-like-box"
         data-href="<?php echo esc_url($fwe_settings['facebook_page_url']); ?>"
-        data-width="<?php echo  (int) $fwe_settings['facebook_widget_width']; ?>"
-        data-height="<?php echo (int) $fwe_settings['facebook_widget_height']; ?>"
+        data-width="<?php echo $fwe_settings['facebook_widget_width']; ?>"
+        data-height="<?php echo $fwe_settings['facebook_widget_height']; ?>"
         data-colorscheme="light"
         data-show-faces="false"
         data-header="false"

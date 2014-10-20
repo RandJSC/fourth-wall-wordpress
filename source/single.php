@@ -73,16 +73,11 @@ if (isset($post) && fwe_is_post($post)) {
         <span class="fa fa-clock-o"></span>
         <?php the_date(); ?>
       </div>
+
       <?php if ($post_tags): ?>
         <div class="post-tags padded">
           <span class="fa fa-tags"></span>
-          <?php
-          $tag_links = array_map(function($tag) {
-            $link = get_term_link($tag->term_id, $tag->taxonomy);
-            return '<a href="' . $link . '">' . $tag->name . '</a>';
-          }, $post_tags);
-          echo implode(', ', $tag_links);
-          ?>
+          <?php fwe_tag_list($post_tags); ?>
         </div>
       <?php endif; ?>
 

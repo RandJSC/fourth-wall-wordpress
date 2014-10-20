@@ -122,4 +122,15 @@ function fwe_list_hooked_functions($tag = false) {
   }
 }
 
+function fwe_tag_list($tags = array()) {
+  if (empty($tags) || !is_array($tags)) return false;
+
+  $links = array_map(function($tag) {
+    $link = get_term_link($tag->term_id, $tag->taxonomy);
+    return '<a href="' . $link . '">' . $tag->name . '</a>';
+  }, $tags);
+
+  echo implode(', ', $links);
+}
+
 ?>

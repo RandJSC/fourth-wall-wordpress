@@ -66,7 +66,9 @@ var sassConfig = {
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
-  vendorStyles: [],
+  vendorStyles: [
+    'node_modules/font-awesome/css/font-awesome.min.css'
+  ],
   scripts: [ 'source/js/**/*.js' ],
   vendorScripts: [],
   standaloneScripts: [
@@ -296,7 +298,7 @@ gulp.task('sourcemaps:fix', function(cb) {
 
       json.sources = _.map(json.sources, function(src) {
         var matches = src.match(pathReg);
-        
+
         if (!matches || matches.length < 2) return src;
 
         var endPath = matches[1];

@@ -159,3 +159,21 @@ button {
     margin-bottom: rem(20);
   }
 }
+
+#page-banner {
+  position: relative;
+  margin: 0;
+  border-top: rem(10) solid $banner-border;
+
+  figcaption {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    background: $banner-background;
+    color: $white;
+    font-size: rem(31);
+    font-weight: 200;
+    padding: rem(2) rem(22) rem(5);
+  }
+}

@@ -30,6 +30,9 @@
   var $contactForm = $('#contact-form form');
   var burgerSvg    = Snap('#hamburger-img');
 
+  // Console access to jQuery:
+  window.jQuery = window.$ = $;
+
   // Attach fastclick to body
   fastClick(document.body);
 

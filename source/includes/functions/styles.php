@@ -14,7 +14,7 @@ function fwe_enqueue_styles() {
       'media'   => 'all',
     ),
     'font-awesome' => array(
-      'src'     => "$theme_uri/css/font-awesome.css",
+      'src'     => "$theme_uri/css/font-awesome.min.css",
       'deps'    => false,
       'version' => '4.1.0',
       'media'   => 'all',

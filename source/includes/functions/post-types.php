@@ -4,9 +4,10 @@
  * Custom Post Type Registration
  */
 
-add_filter('piklist_post_types', 'fwe_register_post_types');
-function fwe_register_post_types($post_types) {
-
+/**
+ * Post Type: location
+ */
+function fwe_register_post_type_location($post_types) {
   $post_types['location'] = array(
     'labels'    => piklist('post_type_labels', 'Location'),
     'title'     => 'Enter a title...',
@@ -26,6 +27,15 @@ function fwe_register_post_types($post_types) {
       'revisions',
     ),
   );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_location');
+
+/**
+ * Post Type: team_member
+ */
+function fwe_register_post_type_team_member($post_types) {
 
   $post_types['team_member'] = array(
     'labels'    => piklist('post_type_labels', 'Team Member'),
@@ -48,6 +58,15 @@ function fwe_register_post_types($post_types) {
       'commentstatus',
     ),
   );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_team_member');
+
+/**
+ * Post Type: call_to_action
+ */
+function fwe_register_post_type_call_to_action($post_types) {
 
   $post_types['call_to_action'] = array(
     'labels' => array(
@@ -85,5 +104,55 @@ function fwe_register_post_types($post_types) {
 
   return $post_types;
 }
+add_filter('piklist_post_types', 'fwe_register_post_type_call_to_action');
+
+/**
+ * Post Type: gallery
+ */
+function fwe_register_post_type_gallery($post_types) {
+
+  $post_types['gallery'] = array(
+    'labels'    => piklist('post_type_labels', 'Gallery'),
+    'title'     => 'Enter a title...',
+    'public'    => true,
+    'menu_icon' => 'dashicons-format-gallery',
+    'rewrite'   => array(
+      'slug' => 'gallery',
+    ),
+    'supports'  => array(
+      'title',
+      'editor',
+      'thumbnail',
+    ),
+  );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_gallery');
+
+/**
+ * Post Type: case_study
+ */
+function fwe_register_post_type_case_study($post_types) {
+
+  $post_types['case_study'] = array(
+    'labels' => piklist('post_type_labels', 'Case Study'),
+    'title' => 'Enter a title...',
+    'public' => true,
+    'menu_icon' => 'dashicons-awards',
+    'rewrite' => array(
+      'slug' => 'case-study',
+    ),
+    'supports' => array(
+      'title',
+      'editor',
+      'revisions',
+      'thumbnail',
+    ),
+  );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_case_study');
 
 ?>

@@ -39,6 +39,8 @@ function fwe_register_post_types($post_types) {
       'title',
       'editor',
       'revisions',
+      'thumbnail',
+      'excerpt',
     ),
     'hide_meta_box' => array(
       'author',

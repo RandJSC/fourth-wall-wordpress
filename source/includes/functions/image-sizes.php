@@ -12,6 +12,7 @@ function fwe_image_sizes() {
   // add_image_size($name, $width, $height, $crop);
 
   add_image_size('tiny-thumb', 95, 75, true);
+  add_image_size('team-member-headshot', 192, 192, true);
 }
 add_action('init', 'fwe_image_sizes');
 

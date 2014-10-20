@@ -8,10 +8,11 @@ add_filter('piklist_post_types', 'fwe_register_post_types');
 function fwe_register_post_types($post_types) {
 
   $post_types['location'] = array(
-    'labels' => piklist('post_type_labels', 'Location'),
-    'title' => 'Enter a title...',
-    'public' => true,
-    'rewrite' => array(
+    'labels'    => piklist('post_type_labels', 'Location'),
+    'title'     => 'Enter a title...',
+    'public'    => true,
+    'menu_icon' => 'dashicons-location-alt',
+    'rewrite'   => array(
       'slug' => 'location',
     ),
     'supports' => array(
@@ -23,6 +24,26 @@ function fwe_register_post_types($post_types) {
       'comments',
       'commentstatus',
       'revisions',
+    ),
+  );
+
+  $post_types['team_member'] = array(
+    'labels'    => piklist('post_type_labels', 'Team Member'),
+    'title'     => 'Enter a title...',
+    'public'    => true,
+    'menu_icon' => 'dashicons-admin-users',
+    'rewrite'   => array(
+      'slug' => 'team',
+    ),
+    'supports'  => array(
+      'title',
+      'editor',
+      'revisions',
+    ),
+    'hide_meta_box' => array(
+      'author',
+      'comments',
+      'commentstatus',
     ),
   );
 
@@ -40,9 +61,10 @@ function fwe_register_post_types($post_types) {
       'not_found_in_trash' => 'No calls to action found in Trash',
       'parent_item_colon'  => 'Parent CTA',
     ),
-    'title' => 'Enter a title...',
-    'public' => true,
-    'rewrite' => array(
+    'title'     => 'Enter a title...',
+    'public'    => true,
+    'menu_icon' => 'dashicons-megaphone',
+    'rewrite'   => array(
       'slug' => 'cta',
     ),
     'supports' => array(

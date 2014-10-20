@@ -1,0 +1,52 @@
+section.content-section article.post,
+div.content-section article.post {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-align: left;
+  }
+
+  .padded {
+    padding-left: rem(25);
+    padding-right: rem(25);
+  }
+
+  .post-header {
+    h1 {
+      margin-top: rem(5);
+      margin-bottom: rem(5);
+    }
+  }
+
+  .byline {
+    font-size: rem(18);
+    padding-bottom: rem(20);
+    border-bottom: 1px solid $post-byline-border;
+
+    a {
+      padding-left: rem(5);
+      font-style: italic;
+    }
+  }
+
+  .post-tags,
+  .post-date {
+    font-style: italic;
+
+    .fa {
+      width: rem(20);
+    }
+  }
+
+  .post-date {
+    margin-top: rem(16);
+  }
+
+  .post-excerpt {
+    font-style: italic;
+    margin-bottom: rem(20);
+  }
+}

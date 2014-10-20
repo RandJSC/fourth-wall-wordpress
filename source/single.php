@@ -47,10 +47,63 @@ if (isset($post) && fwe_is_post($post)) {
 </section>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
-  <section id="main-page-content" class="content-section padded">
-    <h1><?php the_title(); ?></h1>
+  <?php
+  $post_id   = get_the_ID();
+  $author_id = get_post_meta($post_id, 'team_member_id', true);
+  $post_tags = get_the_tags();
 
-    <?php the_content(); ?>
+  if ($author_id) {
+    $author = get_post($author_id);
+  }
+  ?>
+  <section id="main-page-content" class="content-section">
+    <article <?php post_class(); ?>>
+      <div class="post-header padded">
+        <h1><?php the_title(); ?></h1>
+
+        <?php if (isset($author)): ?>
+          <div class="byline">
+            <span class="fa fa-user"></span>
+            <a href="<?php echo get_permalink($author_id); ?>">Posted by <?php echo apply_filters('the_title', $author->post_title); ?></a>
+          </div>
+        <?php endif; ?>
+      </div>
+
+      <div class="post-date padded">
+        <span class="fa fa-clock-o"></span>
+        <?php the_date(); ?>
+      </div>
+      <?php if ($post_tags): ?>
+        <div class="post-tags padded">
+          <span class="fa fa-tags"></span>
+          <?php
+          $tag_links = array_map(function($tag) {
+            $link = get_term_link($tag->term_id, $tag->taxonomy);
+            return '<a href="' . $link . '">' . $tag->name . '</a>';
+          }, $post_tags);
+          echo implode(', ', $tag_links);
+          ?>
+        </div>
+      <?php endif; ?>
+
+      <div class="post-excerpt padded">
+        <?php the_excerpt(); ?>
+      </div>
+
+      <?php if (has_post_thumbnail()): ?>
+        <?php
+        $thumb_id = get_post_thumbnail_id();
+        $thumb_src = wp_get_attachment_image_src($thumb_id, 'full');
+        ?>
+        <div class="post-featured-image">
+          <img src="<?php echo $thumb_src[0]; ?>" width="100%" alt="<?php the_title(); ?>">
+        </div>
+      <?php endif; ?>
+
+      <div class="post-content padded">
+        <?php the_content(); ?>
+      </div>
+    </article>
   </section>
 <?php endwhile; endif; ?>
 

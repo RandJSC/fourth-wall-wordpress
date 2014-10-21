@@ -48,12 +48,12 @@ if (isset($post) && fwe_is_post($post)) {
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
-  $post_id   = get_the_ID();
-  $author_id = get_post_meta($post_id, 'team_member_id', true);
-  $post_tags = get_the_tags();
+  $post_id        = get_the_ID();
+  $team_member_id = get_post_meta($post_id, 'team_member_id', true);
+  $post_tags      = get_the_tags();
 
-  if ($author_id) {
-    $author = get_post($author_id);
+  if (!empty($team_member_id)) {
+    $team_member = get_post($team_member_id);
   }
   ?>
   <section id="main-page-content" class="content-section">
@@ -61,10 +61,10 @@ if (isset($post) && fwe_is_post($post)) {
       <div class="post-header padded">
         <h1><?php the_title(); ?></h1>
 
-        <?php if (isset($author)): ?>
+        <?php if (!empty($team_member_id)): ?>
           <div class="byline">
             <span class="fa fa-user"></span>
-            <a href="<?php echo get_permalink($author_id); ?>">Posted by <?php echo apply_filters('the_title', $author->post_title); ?></a>
+            <a href="<?php echo get_permalink($team_member_id); ?>">Posted by <?php echo apply_filters('the_title', $team_member->post_title); ?></a>
           </div>
         <?php endif; ?>
       </div>
@@ -87,7 +87,7 @@ if (isset($post) && fwe_is_post($post)) {
 
       <?php if (has_post_thumbnail()): ?>
         <?php
-        $thumb_id = get_post_thumbnail_id();
+        $thumb_id  = get_post_thumbnail_id();
         $thumb_src = wp_get_attachment_image_src($thumb_id, 'full');
         ?>
         <div class="post-featured-image">

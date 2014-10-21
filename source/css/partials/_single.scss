@@ -48,5 +48,9 @@ div.content-section article.post {
   .post-excerpt {
     font-style: italic;
     margin-bottom: rem(20);
+
+    p {
+      font-style: italic;
+    }
   }
 }

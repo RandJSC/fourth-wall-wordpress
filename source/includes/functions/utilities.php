@@ -137,4 +137,25 @@ function fwe_tag_list($tags = array()) {
   echo implode(', ', $links);
 }
 
+function fwe_get_page_banner($post_id = null) {
+  if (!$post_id) {
+    global $post;
+    $post_id = $post->ID;
+  }
+
+  $page    = get_post($post_id);
+  $banner  = get_post_meta($post_id, 'banner_image', true);
+  $caption = get_post_meta($post_id, 'banner_caption', true);
+
+  if (!$banner) {
+    if ($page->post_parent !== 0) {
+      return fwe_get_page_banner($page->post_parent);
+    } else {
+      return null;
+    }
+  }
+
+  return array('banner' => $banner, 'caption' => $caption);
+}
+
 ?>

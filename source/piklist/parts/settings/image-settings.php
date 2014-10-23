@@ -65,6 +65,6 @@ piklist('field', array(
   'description' => 'Shown on all search result listings',
   'attributes'  => array(
     'class' => 'text',
-  )
+  ),
 ));
 ?>

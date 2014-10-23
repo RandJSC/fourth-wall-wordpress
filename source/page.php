@@ -1,5 +1,7 @@
 <?php
 get_header();
+
+global $post, $fwe_settings;
 ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>

@@ -5,11 +5,24 @@
  */
 
 function fwe_login_logo() {
-  $settings = get_option('fwe_theme_options');
-  $logo = $settings['login_logo'];
+  $settings = get_option('fwe_settings');
 
-  // [todo] - figure out how Piklist stores attachment info in theme settings
-  // [todo] - display image in place of WP logo
+  if (!array_key_exists('admin_logo', $settings) || !$settings['admin_logo']) {
+    return;
+  }
+
+  list($src, $width, $height, $scale) = wp_get_attachment_image_src($settings['admin_logo'], 'full');
+?>
+  <style type="text/css">
+    body.login div#login h1 a {
+      background-image: url('<?php echo $src; ?>');
+      background-size: <?php echo $width; ?>px <?php echo $height; ?>px;
+      background-repeat: no-repeat;
+      width: <?php echo $width; ?>px;
+      height: <?php echo $height; ?>px;
+    }
+  </style>
+<?php
 }
 add_action('login_enqueue_scripts', 'fwe_login_logo');
 

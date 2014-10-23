@@ -6,6 +6,17 @@ Setting: fwe_settings
 
 piklist('field', array(
   'type'        => 'file',
+  'field'       => 'admin_logo',
+  'label'       => 'Login Page Logo',
+  'description' => 'Square PNG (max dimensions 200x200)',
+  'help'        => 'This logo is displayed above the admin login form',
+  'attributes'  => array(
+    'class' => 'text'
+  ),
+));
+
+piklist('field', array(
+  'type'        => 'file',
   'field'       => 'favicon_ico',
   'label'       => 'Bookmark Icon (ico format)',
   'description' => 'ICO file with 16x16px and 32x32px sizes recommended',

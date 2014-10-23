@@ -11,11 +11,11 @@ function fwe_get_cta() {
     $post_id = $post->ID;
     $cta_id  = get_post_meta($post_id, 'call_to_action', true);
 
-    if (!$cta) {
+    if (!$cta_id) {
       return fwe_get_random_cta();
+    } else {
+      return get_post($cta_id);
     }
-
-    return $cta;
   }
 
   return fwe_get_random_cta();

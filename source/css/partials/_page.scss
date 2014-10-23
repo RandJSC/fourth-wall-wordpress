@@ -1,0 +1,10 @@
+section.content-section article.page,
+div.content-section article.page {
+  .post-header {
+    hr {
+      border: 0;
+      border-bottom: 1px solid $post-byline-border;
+      width: 100%;
+    }
+  }
+}

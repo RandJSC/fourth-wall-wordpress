@@ -27,6 +27,7 @@ $banner = fwe_get_page_banner($post->ID);
 
       <div class="post-header padded">
         <h1><?php the_title(); ?></h1>
+        <hr>
       </div>
 
       <?php if (has_post_thumbnail()): ?>

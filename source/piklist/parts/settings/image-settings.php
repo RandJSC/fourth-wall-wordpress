@@ -57,4 +57,14 @@ piklist('field', array(
     'class' => 'text',
   ),
 ));
+
+piklist('field', array(
+  'type'        => 'file',
+  'field'       => 'search_banner',
+  'label'       => 'Search Results Banner',
+  'description' => 'Shown on all search result listings',
+  'attributes'  => array(
+    'class' => 'text',
+  )
+));
 ?>

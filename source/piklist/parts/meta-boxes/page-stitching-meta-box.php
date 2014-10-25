@@ -2,7 +2,8 @@
 /*
 Title: Page Stitching
 Post Type: page
-Context: side
+Context: normal
+Priority: high
 */
 
 global $post;

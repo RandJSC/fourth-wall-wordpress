@@ -14,11 +14,10 @@ function fwe_intro_paragraph_shortcode($atts, $content = null) {
 
   if (!empty($class)) {
     $extra_classes = explode(' ', $class);
-    $class_names = array_merge($class_names, $extra_classes);
+    $class_names   = array_merge($class_names, $extra_classes);
   }
 
-  $class_names = implode(' ', $class_names);
-  $class_names = ' class="' . $class_names . '"';
+  $class_names = ' class="' . implode(' ', $class_names) . '"';
 
   $id = !empty($id) ? ' id="' . $id . '"' : '';
 

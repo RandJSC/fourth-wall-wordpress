@@ -13,9 +13,9 @@ function fwe_get_cta() {
 
     if (!$cta_id) {
       return fwe_get_random_cta();
-    } else {
-      return get_post($cta_id);
     }
+
+    return get_post($cta_id);
   }
 
   return fwe_get_random_cta();

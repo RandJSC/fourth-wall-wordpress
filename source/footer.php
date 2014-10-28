@@ -82,7 +82,7 @@
                 </a>
               </div>
             </div>
-            
+
             <div class="email contact">
               <div class="icon">
                 <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>">
@@ -113,7 +113,7 @@
               </div>
             </div>
           </div>
-          
+
           <div id="contact-form">
             <form action="" method="post" data-form-id="<?php echo $fwe_settings['contact_form_id']; ?>">
               <p class="split">

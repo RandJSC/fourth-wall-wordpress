@@ -23,6 +23,7 @@ require_once $functions . 'login.php';
 require_once $functions . 'menus.php';
 require_once $functions . 'plugins.php';
 require_once $functions . 'post-types.php';
+require_once $functions . 'taxonomies.php';
 require_once $functions . 'settings.php';
 require_once $functions . 'shortcodes.php';
 require_once $functions . 'styles.php';

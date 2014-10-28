@@ -5,34 +5,6 @@
  */
 
 /**
- * Post Type: location
- */
-function fwe_register_post_type_location($post_types) {
-  $post_types['location'] = array(
-    'labels'    => piklist('post_type_labels', 'Location'),
-    'title'     => 'Enter a title...',
-    'public'    => true,
-    'menu_icon' => 'dashicons-location-alt',
-    'rewrite'   => array(
-      'slug' => 'location',
-    ),
-    'supports' => array(
-      'title',
-    ),
-    'hide_meta_box' => array(
-      'slug',
-      'author',
-      'comments',
-      'commentstatus',
-      'revisions',
-    ),
-  );
-
-  return $post_types;
-}
-add_filter('piklist_post_types', 'fwe_register_post_type_location');
-
-/**
  * Post Type: team_member
  */
 function fwe_register_post_type_team_member($post_types) {

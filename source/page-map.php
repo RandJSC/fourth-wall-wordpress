@@ -1,4 +1,8 @@
 <?php
+/*
+Template Name: Map Page
+*/
+
 get_header();
 
 global $post, $fwe_settings, $banner;
@@ -13,5 +17,3 @@ $banner = fwe_get_page_banner($post->ID);
   <?php get_template_part('subpage', 'main-content'); ?>
 
 <?php endwhile; endif; ?>
-
-<?php get_footer(); ?>

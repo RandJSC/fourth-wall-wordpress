@@ -27,33 +27,6 @@ piklist('field', array(
 ));
 
 piklist('field', array(
-  'type'       => 'text',
-  'field'      => 'location_name',
-  'label'      => 'Location Name',
-  'attributes' => array(
-    'class' => 'text',
-  ),
-));
-
-piklist('field', array(
-  'type'       => 'text',
-  'field'      => 'latitude',
-  'label'      => 'Location Latitude',
-  'attributes' => array(
-    'class' => 'text',
-  ),
-));
-
-piklist('field', array(
-  'type'       => 'text',
-  'field'      => 'longitude',
-  'label'      => 'Location Longitude',
-  'attributes' => array(
-    'class' => 'text',
-  ),
-));
-
-piklist('field', array(
   'type'    => 'select',
   'field'   => 'case_study_id',
   'label'   => 'Case Study',

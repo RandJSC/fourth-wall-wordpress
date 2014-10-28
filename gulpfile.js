@@ -76,7 +76,7 @@ var resources = {
     'source/js/modernizr-tests.js',
     'source/js/matchMedia.js'
   ],
-  images: 'source/img/**/*',
+  images: 'source/img/**/*.{png,jpg,gif,svg}',
   vendorImages: [
     'node_modules/slick-carousel/slick/ajax-loader.gif'
   ],
@@ -146,11 +146,10 @@ gulp.task('jshint', function() {
 // Optimize images
 gulp.task('images', [ 'images:vendor' ], function() {
   return gulp.src(resources.images)
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
-      svgoPlugins: [ { removeViewBox: false } ],
-      use: [ pngcrush() ]
-    })))
+      svgoPlugins: [ { removeViewBox: false } ]
+    }))
     .pipe(gulp.dest('build/img'))
     //.pipe($.livereload({ auto: false }))
     .pipe($.size({title: 'copy'}));

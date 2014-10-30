@@ -131,7 +131,7 @@ add_filter('piklist_post_types', 'fwe_register_post_type_case_study');
  * Post Type: testimonial
  */
 function fwe_register_post_type_testimonial($post_types) {
-  
+
   $post_types['testimonial'] = array(
     'labels'    => piklist('post_type_labels', 'Testimonial'),
     'title'     => 'Enter a Title...',

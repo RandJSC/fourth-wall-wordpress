@@ -4,6 +4,10 @@
  * Shortcodes
  */
 
+/**
+ * Intro Paragraph for Pages
+ * ex. [intro class="foo" id="main-intro"]Hello World[/intro]
+ */
 function fwe_intro_paragraph_shortcode($atts, $content = null) {
   extract(shortcode_atts(array(
     'class' => '',
@@ -29,4 +33,57 @@ function fwe_intro_paragraph_shortcode($atts, $content = null) {
 <?php
 }
 add_shortcode('intro', 'fwe_intro_paragraph_shortcode');
+
+/**
+ * Testimonial Slider
+ * ex. [testimonial_slider count="3" orderby="rand" /]
+ */
+function fwe_testimonial_slider($atts) {
+  extract(shortcode_atts(array(
+    'count'   => 3,
+    'orderby' => 'date',
+    'order'   => 'DESC',
+  ), $atts));
+
+  $query_args = array(
+    'post_type'      => 'testimonial',
+    'posts_per_page' => (int) $count,
+    'post_status'    => 'publish',
+    'orderby'        => $orderby,
+    'order'          => $order,
+  );
+  $query      = new WP_Query($query_args);
+
+  if (!$query->have_posts()) return '';
+
+  ob_start();
+?>
+  <div class="testimonial-slider">
+    <ul class="testimonials">
+      <?php while ($query->have_posts()): $query->the_post(); ?>
+        <?php
+        $post_id      = get_the_ID();
+        $author_name  = get_post_meta($post_id, 'author_name', true);
+        $author_title = get_post_meta($post_id, 'author_position', true);
+        ?>
+        <li <?php post_class(); ?>>
+          <blockquote>
+            <?php the_content(); ?>
+
+            <footer>
+              <cite>
+                <?php echo $author_name; ?>
+                <em><?php echo $author_title; ?></em>
+              </cite>
+            </footer>
+          </blockquote>
+        </li>
+      <?php endwhile; wp_reset_postdata(); ?>
+    </ul>
+  </div>
+<?php
+  return ob_get_clean();
+}
+add_shortcode('testimonial_slider', 'fwe_testimonial_slider');
+
 ?>

@@ -192,7 +192,7 @@ gulp.task('fonts:vendor', function() {
 });
 
 // Compile and optimize stylesheets
-gulp.task('styles', [ 'scsslint', 'styles:vendor' ], function() {
+gulp.task('styles', [ 'styles:vendor' ], function() {
   del.sync(['build/css/*.map']);
 
   return gulp.src(resources.scss)

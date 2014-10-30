@@ -26,7 +26,7 @@ $banner = fwe_get_page_banner($post->ID);
 
   if (is_array($stitches) && count($stitches)):
     foreach ($stitches as $stitch_id):
-      $post = get_post($stitch_id);
+      $stitch_page    = get_post($stitch_id);
       $stitch_content = get_post_meta($stitch_id, 'stitch_content', true);
       $stitch_content = apply_filters('the_content', $stitch_content);
       $bg_image       = get_post_meta($stitch_id, 'background_image', true);
@@ -44,18 +44,15 @@ $banner = fwe_get_page_banner($post->ID);
       $article_style  = fwe_style_attribute(array(
         'background-color' => $bg_color,
       ));
-
-      setup_postdata($post);
-      var_dump(get_the_title(), $post);
   ?>
       <section
         class="stitch content-section"
-        data-slug="<?php echo $post->post_name; ?>"
-        data-url="<?php the_permalink(); ?>"<?php echo $section_style; ?>>
+        data-slug="<?php echo $stitch_page->post_name; ?>"
+        data-url="<?php echo get_permalink($stitch_id); ?>"<?php echo $section_style; ?>>
 
-        <article <?php post_class(); ?><?php echo $article_style; ?>>
+        <article class="stitch"<?php echo $article_style; ?>>
           <div class="post-header padded">
-            <h2><?php the_title(); ?></h2>
+            <h2><?php echo apply_filters('the_title', $stitch_page->post_title); ?></h2>
           </div>
 
           <div class="post-content padded">

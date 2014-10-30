@@ -67,16 +67,20 @@ function fwe_testimonial_slider($atts) {
         $author_title = get_post_meta($post_id, 'author_position', true);
         ?>
         <li <?php post_class(); ?>>
+          <div class="quote left">&ldquo;</div>
           <blockquote>
-            <?php the_content(); ?>
+            <div class="quote-content">
+              <?php the_content(); ?>
 
-            <footer>
-              <cite>
-                <?php echo $author_name; ?>
-                <em><?php echo $author_title; ?></em>
-              </cite>
-            </footer>
+              <footer>
+                <cite>
+                  <?php echo $author_name; ?>
+                  <em><?php echo $author_title; ?></em>
+                </cite>
+              </footer>
+            </div>
           </blockquote>
+          <div class="quote right">&rdquo;</div>
         </li>
       <?php endwhile; wp_reset_postdata(); ?>
     </ul>

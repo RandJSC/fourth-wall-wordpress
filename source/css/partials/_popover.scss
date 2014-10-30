@@ -1,9 +1,0 @@
-#popover {
-  position: fixed;
-  bottom: 0;
-  opacity: 0;
-  @include transition(
-    opacity $transition-speed $transition-easing,
-    transform $transition-speed $transition-easing
-  );
-}

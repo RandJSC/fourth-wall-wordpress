@@ -1,0 +1,34 @@
+.testimonial-slider {
+  max-width: rem(650);
+  width: 100%;
+  margin: 0 auto;
+
+  ul.testimonials {
+    @extend %unlist;
+
+    li {
+      @include clearfix;
+    }
+
+    .quote {
+      float: left;
+      font-size: rem(102);
+      font-family: $source-sans;
+      color: $button-bg;
+      width: rem(32);
+    }
+
+    blockquote {
+      margin: 0;
+
+      .quote-content {
+        float: left;
+        width: 90%;
+      }
+
+      .clear {
+        clear: both;
+      }
+    }
+  }
+}

@@ -108,14 +108,14 @@ add_filter('piklist_post_types', 'fwe_register_post_type_gallery');
 function fwe_register_post_type_case_study($post_types) {
 
   $post_types['case_study'] = array(
-    'labels' => piklist('post_type_labels', 'Case Study'),
-    'title' => 'Enter a title...',
-    'public' => true,
+    'labels'    => piklist('post_type_labels', 'Case Study'),
+    'title'     => 'Enter a title...',
+    'public'    => true,
     'menu_icon' => 'dashicons-awards',
-    'rewrite' => array(
+    'rewrite'   => array(
       'slug' => 'case-study',
     ),
-    'supports' => array(
+    'supports'  => array(
       'title',
       'editor',
       'revisions',
@@ -126,5 +126,26 @@ function fwe_register_post_type_case_study($post_types) {
   return $post_types;
 }
 add_filter('piklist_post_types', 'fwe_register_post_type_case_study');
+
+/**
+ * Post Type: testimonial
+ */
+function fwe_register_post_type_testimonial($post_types) {
+  
+  $post_types['testimonial'] = array(
+    'labels'    => piklist('post_type_labels', 'Testimonial'),
+    'title'     => 'Enter a Title...',
+    'public'    => true,
+    'menu_icon' => 'dashicons-testimonial',
+    'rewrite'   => array( 'slug' => 'testimonial' ),
+    'supports'  => array(
+      'title',
+      'editor',
+    ),
+  );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_testimonial');
 
 ?>

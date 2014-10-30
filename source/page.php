@@ -46,16 +46,16 @@ $banner = fwe_get_page_banner($post->ID);
       ));
 
       setup_postdata($post);
+      var_dump(get_the_title(), $post);
   ?>
       <section
-        class="stitch"
+        class="stitch content-section"
         data-slug="<?php echo $post->post_name; ?>"
         data-url="<?php the_permalink(); ?>"<?php echo $section_style; ?>>
 
         <article <?php post_class(); ?><?php echo $article_style; ?>>
           <div class="post-header padded">
             <h2><?php the_title(); ?></h2>
-            <hr>
           </div>
 
           <div class="post-content padded">

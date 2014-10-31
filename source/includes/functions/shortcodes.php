@@ -126,11 +126,12 @@ function fwe_accordion($atts) {
       <?php
       $header_id    = 'accordion-' . $id . '-header-' . $i;
       $pane_id      = 'accordion-' . $id . '-pane-' . $i;
+      $pane_icon    = wp_get_attachment_image_src($panes['icon'][$i][0], 'full');
       $header_style = fwe_style_attribute(array(
         'background-color' => $panes['header_background'][$i],
       ));
       $link_style   = fwe_style_attribute(array(
-        'background-image'    => $pane_icon[0],
+        'background-image'    => 'url(' . $pane_icon[0] . ')',
         'background-repeat'   => 'no-repeat',
         'background-position' => 'left top',
       ))

@@ -132,7 +132,7 @@ function fwe_accordion($atts) {
       $link_style   = fwe_style_attribute(array(
         'background-image'    => 'url(' . $pane_icon[0] . ')',
         'background-repeat'   => 'no-repeat',
-      ))
+      ));
       ?>
       <div class="pane">
         <div class="pane-header" id="<?php echo $header_id; ?>"<?php echo $header_style; ?>>

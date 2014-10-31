@@ -119,7 +119,6 @@ function fwe_accordion($atts) {
   $pane_count = count($panes['content']);
 
   ob_start();
-  var_dump($panes);
 ?>
   <div class="accordion">
     <?php for ($i = 0; $i < $pane_count; $i++): ?>

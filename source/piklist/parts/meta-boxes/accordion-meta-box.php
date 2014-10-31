@@ -22,7 +22,6 @@ piklist('field', array(
       'field'       => 'content',
       'label'       => 'Content',
       'description' => 'Things will explode if you try to embed another accordion here.',
-      'teeny' => true,
     ),
   ),
 ));

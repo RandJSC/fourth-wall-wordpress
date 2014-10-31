@@ -119,17 +119,26 @@ function fwe_accordion($atts) {
   $pane_count = count($panes['content']);
 
   ob_start();
+  var_dump($panes);
 ?>
   <div class="accordion">
     <?php for ($i = 0; $i < $pane_count; $i++): ?>
       <?php
-      $header_id = 'accordion-' . $id . '-header-' . $i;
-      $pane_id   = 'accordion-' . $id . '-pane-' . $i;
+      $header_id    = 'accordion-' . $id . '-header-' . $i;
+      $pane_id      = 'accordion-' . $id . '-pane-' . $i;
+      $header_style = fwe_style_attribute(array(
+        'background-color' => $panes['header_background'][$i],
+      ));
+      $link_style   = fwe_style_attribute(array(
+        'background-image'    => $pane_icon[0],
+        'background-repeat'   => 'no-repeat',
+        'background-position' => 'left top',
+      ))
       ?>
       <div class="pane">
-        <div class="pane-header" id="<?php echo $header_id; ?>">
+        <div class="pane-header" id="<?php echo $header_id; ?>"<?php echo $header_style; ?>>
           <?php echo '<' . $header . '>'; ?>
-            <a href="#<?php echo $pane_id; ?>">
+            <a href="#<?php echo $pane_id; ?>"<?php echo $link_style; ?>>
               <?php echo apply_filters('the_title', $panes['title'][$i]); ?>
             </a>
           <?php echo '</' . $header . '>'; ?>

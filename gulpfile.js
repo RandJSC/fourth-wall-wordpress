@@ -21,6 +21,7 @@ var chalk       = require('chalk');
 var exorcist    = require('exorcist');
 var transform   = require('vinyl-transform');
 var glob        = require('glob');
+var notifier    = require('node-notifier');
 
 // All optimizations are turned on by default. Pass --dev to
 // enable the creation of source maps and other things that
@@ -91,6 +92,15 @@ var resources = {
   packageJSON: './package.json',
   misc: [ 'source/*', '!source/*.php', './theme.json' ]
 };
+
+// Pop a notification on error
+gulp.on('error', function onError(err) {
+  notifier.notify({
+    title: 'Gulp Error!',
+    message: err.message
+  });
+  $.util.log(chalk.bold(chalk.red('ERROR: ')) + err.message);
+});
 
 // Print help text about tasks
 gulp.task('help', $.helptext({

@@ -76,6 +76,7 @@
     "lodash": "^2.4.1",
     "main-bower-files": "^2.0.0",
     "map-stream": "^0.1.0",
+    "node-notifier": "^4.0.2",
     "opn": "^1.0.0",
     "psi": "^0.1.2",
     "require-dir": "^0.1.0",

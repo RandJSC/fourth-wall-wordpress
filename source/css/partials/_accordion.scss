@@ -1,6 +1,4 @@
 .accordion {
-  .pane {}
-
   .pane-header {
     a {
       display: block;
@@ -26,6 +24,16 @@
       color: $white;
       font-size: rem(65);
       line-height: rem(26);
+    }
+  }
+
+  .pane-content {
+    overflow: hidden;
+    max-height: rem(4000);
+    @include transition(max-height $transition-speed $transition-easing);
+
+    &.closed {
+      max-height: 0;
     }
   }
 }

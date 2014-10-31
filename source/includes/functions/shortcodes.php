@@ -119,10 +119,13 @@ function fwe_accordion($atts) {
   $pane_count = count($panes['content']);
 
   ob_start();
+  var_dump($panes);
 ?>
   <div class="accordion">
     <?php for ($i = 0; $i < $pane_count; $i++): ?>
       <?php
+      if (empty($panes['content'][$i]) || empty($panes['title'][$i])) continue;
+
       $header_id    = 'accordion-' . $id . '-header-' . $i;
       $pane_id      = 'accordion-' . $id . '-pane-' . $i;
       $pane_icon    = wp_get_attachment_image_src($panes['icon'][$i][0], 'full');
@@ -144,7 +147,7 @@ function fwe_accordion($atts) {
           <?php echo '</' . $header . '>'; ?>
         </div>
 
-        <div class="pane-content" id="<?php echo $pane_id; ?>">
+        <div class="pane-content closed" id="<?php echo $pane_id; ?>">
           <div class="pane-body">
             <?php echo apply_filters('the_content', $panes['content'][$i]); ?>
           </div>

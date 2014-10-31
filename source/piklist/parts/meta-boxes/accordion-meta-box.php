@@ -18,6 +18,24 @@ piklist('field', array(
       'label' => 'Title',
     ),
     array(
+      'type'        => 'file',
+      'field'       => 'icon',
+      'label'       => 'Icon',
+      'description' => 'This should be a square PNG or SVG w/ a white foreground.',
+      'validate'    => array(
+        array(
+          'limit' => array(
+            'max' => 1,
+          ),
+        ),
+      ),
+    ),
+    array(
+      'type'  => 'colorpicker',
+      'field' => 'header_background',
+      'label' => 'Header Background',
+    ),
+    array(
       'type'        => 'editor',
       'field'       => 'content',
       'label'       => 'Content',

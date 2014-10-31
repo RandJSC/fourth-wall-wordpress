@@ -1,0 +1,31 @@
+.accordion {
+  .pane {}
+
+  .pane-header {
+    a {
+      display: block;
+      width: 100%;
+      padding: rem(25);
+      padding-left: 30%;
+      color: $white;
+      font-size: rem(24);
+      line-height: rem(29);
+      background-position: 7.8125% 0;
+      @include clearfix;
+    }
+
+    .title {
+      float: left;
+      width: 76.5625%;
+    }
+
+    .plusminus {
+      float: left;
+      width: 23.4375%;
+      text-align: right;
+      color: $white;
+      font-size: rem(65);
+      line-height: rem(26);
+    }
+  }
+}

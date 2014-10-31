@@ -132,7 +132,6 @@ function fwe_accordion($atts) {
       $link_style   = fwe_style_attribute(array(
         'background-image'    => 'url(' . $pane_icon[0] . ')',
         'background-repeat'   => 'no-repeat',
-        'background-position' => 'left top',
       ))
       ?>
       <div class="pane">

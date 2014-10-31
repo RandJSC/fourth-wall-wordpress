@@ -15,16 +15,13 @@
       font-size: rem(102);
       font-family: $source-sans;
       color: $button-bg;
-      width: rem(32);
+      width: 10%;
     }
 
     blockquote {
+      float: left;
       margin: 0;
-
-      .quote-content {
-        float: left;
-        width: 90%;
-      }
+      width: 80%;
 
       .clear {
         clear: both;

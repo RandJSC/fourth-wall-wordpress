@@ -69,16 +69,14 @@ function fwe_testimonial_slider($atts) {
         <li <?php post_class(); ?>>
           <div class="quote left">&ldquo;</div>
           <blockquote>
-            <div class="quote-content">
-              <?php the_content(); ?>
+            <?php the_content(); ?>
 
-              <footer>
-                <cite>
-                  <?php echo $author_name; ?>
-                  <em><?php echo $author_title; ?></em>
-                </cite>
-              </footer>
-            </div>
+            <footer>
+              <cite>
+                <?php echo $author_name; ?>
+                <em><?php echo $author_title; ?></em>
+              </cite>
+            </footer>
           </blockquote>
           <div class="quote right">&rdquo;</div>
         </li>

@@ -139,7 +139,8 @@ function fwe_accordion($atts) {
         <div class="pane-header" id="<?php echo $header_id; ?>"<?php echo $header_style; ?>>
           <?php echo '<' . $header . '>'; ?>
             <a href="#<?php echo $pane_id; ?>"<?php echo $link_style; ?>>
-              <?php echo apply_filters('the_title', $panes['title'][$i]); ?>
+              <div class="title"><?php echo apply_filters('the_title', $panes['title'][$i]); ?></div>
+              <div class="plusminus">+</div>
             </a>
           <?php echo '</' . $header . '>'; ?>
         </div>

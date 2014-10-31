@@ -35,6 +35,14 @@ $banner = fwe_get_page_banner($post->ID);
       $bg_pos         = get_post_meta($stitch_id, 'background_position', true);
       $bg_repeat      = get_post_meta($stitch_id, 'background_repeat', true);
 
+      $pad_content    = get_post_meta($stitch_id, 'pad_content', true);
+      $pad_content    = ($pad_content === 'no') ? false : true;
+      $pad_content    = $pad_content ? ' padded' : '';
+
+      $pad_header     = get_post_meta($stitch_id, 'pad_header', true);
+      $pad_header     = ($pad_header === 'no') ? false : true;
+      $pad_header     = $pad_header ? ' padded' : '';
+
       $section_style  = fwe_style_attribute(array(
         'background-image'    => $bg_image,
         'background-size'     => $bg_size,
@@ -51,11 +59,11 @@ $banner = fwe_get_page_banner($post->ID);
         data-url="<?php echo get_permalink($stitch_id); ?>"<?php echo $section_style; ?>>
 
         <article class="stitch"<?php echo $article_style; ?>>
-          <div class="post-header padded">
+          <div class="post-header<?php echo $pad_header; ?>">
             <h2><?php echo apply_filters('the_title', $stitch_page->post_title); ?></h2>
           </div>
 
-          <div class="post-content padded">
+          <div class="post-content<?php echo $pad_content; ?>">
             <?php echo $stitch_content; ?>
           </div>
         </article>

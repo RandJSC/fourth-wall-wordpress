@@ -7,6 +7,28 @@ Priority: high
 */
 
 piklist('field', array(
+  'type'    => 'radio',
+  'field'   => 'pad_header',
+  'label'   => 'Add Padding to Header?',
+  'choices' => array(
+    'yes' => 'Yes',
+    'no'  => 'No',
+  ),
+  'value'   => 'yes',
+));
+
+piklist('field', array(
+  'type'    => 'radio',
+  'field'   => 'pad_content',
+  'label'   => 'Add Padding to Content?',
+  'choices' => array(
+    'yes' => 'Yes',
+    'no'  => 'No',
+  ),
+  'value'   => 'yes',
+));
+
+piklist('field', array(
   'type' => 'editor',
   'field' => 'stitch_content',
   'label' => 'Stitch Content',

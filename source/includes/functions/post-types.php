@@ -133,12 +133,15 @@ add_filter('piklist_post_types', 'fwe_register_post_type_case_study');
 function fwe_register_post_type_testimonial($post_types) {
 
   $post_types['testimonial'] = array(
-    'labels'    => piklist('post_type_labels', 'Testimonial'),
-    'title'     => 'Enter a Title...',
-    'public'    => true,
-    'menu_icon' => 'dashicons-testimonial',
-    'rewrite'   => array( 'slug' => 'testimonial' ),
-    'supports'  => array(
+    'labels'              => piklist('post_type_labels', 'Testimonial'),
+    'title'               => 'Enter a Title...',
+    'public'              => true,
+    'menu_icon'           => 'dashicons-testimonial',
+    'exclude_from_search' => true,
+    'publicly_queryable'  => false,
+    'show_in_nav_menus'   => false,
+    'rewrite'             => array( 'slug' => 'testimonial' ),
+    'supports'            => array(
       'title',
       'editor',
     ),
@@ -154,12 +157,15 @@ add_filter('piklist_post_types', 'fwe_register_post_type_testimonial');
 function fwe_register_post_type_accordion($post_types) {
 
   $post_types['accordion'] = array(
-    'labels'    => piklist('post_type_labels', 'Accordion'),
-    'title'     => 'Enter a Title...',
-    'public'    => true,
-    'menu_icon' => 'dashicons-editor-justify',
-    'rewrite'   => array( 'slug' => 'accordion' ),
-    'supports'  => array(
+    'labels'              => piklist('post_type_labels', 'Accordion'),
+    'title'               => 'Enter a Title...',
+    'public'              => true,
+    'menu_icon'           => 'dashicons-editor-justify',
+    'exclude_from_search' => true,
+    'publicly_queryable'  => false,
+    'show_in_nav_menus'   => false,
+    'rewrite'             => array( 'slug' => 'accordion' ),
+    'supports'            => array(
       'title',
     ),
   );

@@ -31,6 +31,7 @@
   var $hamburger         = $('#hamburger');
   var $contactForm       = $('#contact-form form');
   var $testimonialSlider = $('.testimonial-slider ul');
+  var $testimonialDots   = $testimonialSlider.parent().find('a.slider-dot');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -56,16 +57,19 @@
     draggable: false,
     slide: 'li',
     onInit: function(slider) {
-      var $dots = $testimonialSlider.parent().find('a.slider-dot');
-      console.log($dots);
-
-      $dots.click(function(evt) {
+      $testimonialDots.click(function(evt) {
         var slideNum = $(this).data('index');
         $testimonialSlider.slickGoTo(slideNum);
-        $dots.removeClass('current');
+        $testimonialDots.removeClass('current');
         $(this).addClass('current');
         return false;
       });
+    },
+    onAfterChange: function(slider) {
+      $testimonialDots
+        .removeClass('current')
+        .eq(slider.currentSlide)
+          .addClass('current');
     }
   });
 

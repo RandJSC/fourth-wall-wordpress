@@ -45,14 +45,15 @@ function fwe_testimonial_slider($atts) {
     'order'   => 'DESC',
   ), $atts));
 
-  $query_args = array(
+  $query_args  = array(
     'post_type'      => 'testimonial',
     'posts_per_page' => (int) $count,
     'post_status'    => 'publish',
     'orderby'        => $orderby,
     'order'          => $order,
   );
-  $query      = new WP_Query($query_args);
+  $query       = new WP_Query($query_args);
+  $total_posts = $query->post_count;
 
   if (!$query->have_posts()) return '';
 
@@ -73,7 +74,8 @@ function fwe_testimonial_slider($atts) {
 
             <footer>
               <cite>
-                <?php echo $author_name; ?>
+                &ndash;&nbsp;<?php echo $author_name; ?>
+                <br>
                 <em><?php echo $author_title; ?></em>
               </cite>
             </footer>
@@ -82,6 +84,11 @@ function fwe_testimonial_slider($atts) {
         </li>
       <?php endwhile; wp_reset_postdata(); ?>
     </ul>
+    <div class="dot-nav">
+      <?php for ($i = 0; $i <= $post_count; $i++): ?>
+        <a class="slider-dot" href="" data-index="<?php echo $i; ?>"></a>
+      <?php endfor; ?>
+    </div>
   </div>
 <?php
   return ob_get_clean();

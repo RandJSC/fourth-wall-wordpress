@@ -8,3 +8,12 @@ div.content-section article.page {
     }
   }
 }
+
+section.content-section article.stitch {
+  .post-header {
+    h2 {
+      color: $blue;
+      text-align: center;
+    }
+  }
+}

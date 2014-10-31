@@ -12,19 +12,38 @@
 
     .quote {
       float: left;
-      font-size: rem(102);
+      font-size: rem(75);
       font-family: $source-sans;
       color: $button-bg;
-      width: 10%;
+      width: rem(53);
+      padding-left: rem(14);
+
+      &.right {
+        text-align: right;
+        padding-right: rem(14);
+        padding-left: 0;
+      }
     }
 
     blockquote {
       float: left;
       margin: 0;
-      width: 80%;
+      width: rem(214);
+      text-align: center;
+      padding: rem(8);
 
       .clear {
         clear: both;
+      }
+
+      p {
+        margin-top: rem(10);
+        margin-bottom: rem(6);
+        line-height: rem(24);
+      }
+
+      cite {
+        font-style: normal;
       }
     }
   }

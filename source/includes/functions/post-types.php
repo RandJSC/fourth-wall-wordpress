@@ -148,4 +148,24 @@ function fwe_register_post_type_testimonial($post_types) {
 }
 add_filter('piklist_post_types', 'fwe_register_post_type_testimonial');
 
+/**
+ * Post Type: accordion
+ */
+function fwe_register_post_type_accordion($post_types) {
+
+  $post_types['accordion'] = array(
+    'labels'    => piklist('post_type_labels', 'Accordion'),
+    'title'     => 'Enter a Title...',
+    'public'    => true,
+    'menu_icon' => 'dashicons-editor-justify',
+    'rewrite'   => array( 'slug' => 'accordion' ),
+    'supports'  => array(
+      'title',
+    ),
+  );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_accordion');
+
 ?>

@@ -96,4 +96,56 @@ function fwe_testimonial_slider($atts) {
 }
 add_shortcode('testimonial_slider', 'fwe_testimonial_slider');
 
+/**
+ * Accordion
+ * ex. [accordion id="1" headers="h3" /]
+ */
+function fwe_accordion($atts) {
+  extract(shortcode_atts(array(
+    'id'     => null,
+    'header' => 'h3',
+  ), $atts));
+
+  $accordion = get_post($id);
+
+  if (!$accordion) return '';
+  if ($accordion->post_type !== 'accordion') return '';
+
+  $panes = get_post_meta($id, 'accordion_panes', true);
+
+  if (!(count($panes) && array_key_exists('content', $panes) && count($panes['content'])))
+    return '';
+
+  $pane_count = count($panes['content']);
+
+  ob_start();
+?>
+  <div class="accordion">
+    <?php for ($i = 0; $i < $pane_count; $i++): ?>
+      <?php
+      $header_id = 'accordion-' . $id . '-header-' . $i;
+      $pane_id   = 'accordion-' . $id . '-pane-' . $i;
+      ?>
+      <div class="pane">
+        <div class="pane-header" id="<?php echo $header_id; ?>">
+          <?php echo '<' . $header . '>'; ?>
+            <a href="#<?php echo $pane_id; ?>">
+              <?php echo apply_filters('the_title', $panes['title'][$i]); ?>
+            </a>
+          <?php echo '</' . $header . '>'; ?>
+        </div>
+
+        <div class="pane-content" id="<?php echo $pane_id; ?>">
+          <div class="pane-body">
+            <?php echo apply_filters('the_content', $panes['content'][$i]); ?>
+          </div>
+        </div>
+      </div>
+    <?php endfor; ?>
+  </div>
+<?php
+  return ob_get_clean();
+}
+add_shortcode('accordion', 'fwe_accordion')
+
 ?>

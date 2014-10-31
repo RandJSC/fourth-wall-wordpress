@@ -1,5 +1,10 @@
 .accordion {
   .pane-header {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
     a {
       display: block;
       width: 100%;

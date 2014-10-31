@@ -5,6 +5,7 @@
 
   ul.testimonials {
     @extend %unlist;
+    margin-bottom: rem(12);
 
     li {
       @include clearfix;
@@ -44,6 +45,26 @@
 
       cite {
         font-style: normal;
+      }
+    }
+  }
+
+  .dot-nav {
+    text-align: center;
+
+    a.slider-dot {
+      display: inline-block;
+      border: 3px solid $blue;
+      background: $white;
+      width: rem(50);
+      height: rem(12);
+      margin-right: rem(16);
+      margin-left: rem(16);
+
+      @include transition(background-color $transition-speed $transition-easing);
+
+      &:hover, &.current {
+        background: $blue;
       }
     }
   }

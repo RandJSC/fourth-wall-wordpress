@@ -17,7 +17,7 @@
   var logger        = require('bragi-browser');
   var fweUtil       = require('./jquery.fourthwall-util');
   var fweUI         = require('./jquery.fourthwall-ui');
-  var Slick         = require('./slick.commonjs');
+  var Slick         = require('slick-carousel');
   var Snap          = require('./snap.svg.custom');
   var gforms        = require('./gforms-api');
   var Handlebars    = require('handlebars');

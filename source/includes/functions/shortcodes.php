@@ -85,7 +85,7 @@ function fwe_testimonial_slider($atts) {
       <?php endwhile; wp_reset_postdata(); ?>
     </ul>
     <div class="dot-nav">
-      <?php for ($i = 0; $i <= $post_count; $i++): ?>
+      <?php for ($i = 0; $i < $total_posts; $i++): ?>
         <a class="slider-dot" href="" data-index="<?php echo $i; ?>"></a>
       <?php endfor; ?>
     </div>

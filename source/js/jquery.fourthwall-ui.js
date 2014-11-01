@@ -113,13 +113,15 @@
         var $allContent  = $el.find('.pane-content');
 
         $headerLinks.on('click', function(evt) {
-          logger.log('accordion', 'Opening pane: %O', evt.target);
           var $pane    = $(this).closest('.pane');
           var $content = $pane.find('.pane-content');
           var isOpen   = !$content.hasClass('closed');
+
+          logger.log('accordion', 'Closing all panes');
           $allContent.addClass('closed');
 
           if (!isOpen) {
+            logger.log('accordion', 'Opening pane: %O', evt.target);
             $content.removeClass('closed');
           }
 

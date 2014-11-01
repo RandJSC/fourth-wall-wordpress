@@ -26,11 +26,13 @@
 
   logger.log('timing', 'Begin docReady');
 
-  var burgerSvg          = Snap('#hamburger-img');
-  var $container         = $('#master-container');
-  var $hamburger         = $('#hamburger');
-  var $contactForm       = $('#contact-form form');
-  var $testimonialSlider = $('.testimonial-slider');
+  var burgerSvg           = Snap('#hamburger-img');
+  var $container          = $('#master-container');
+  var $hamburger          = $('#hamburger');
+  var $contactForm        = $('#contact-form form');
+  var $testimonialSliders = $('.testimonial-slider');
+  var $accordions         = $('.accordion');
+  var $sliders            = $('.slider .slides');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -40,16 +42,14 @@
 
   $hamburger.toggleNav($container, burgerSvg);
 
-  $('.slider .slides').slick({
-    lazyLoad: 'ondemand',
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    dots: false,
-    arrows: false,
-    slide: 'figure'
-  });
+  // Photo sliders
+  $sliders.photoSlider();
 
-  $testimonialSlider.testimonialSlider();
+  // Testimonial sliders
+  $testimonialSliders.testimonialSlider();
+
+  // Accordions
+  $accordions.accordion();
 
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);

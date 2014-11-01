@@ -30,8 +30,7 @@
   var $container         = $('#master-container');
   var $hamburger         = $('#hamburger');
   var $contactForm       = $('#contact-form form');
-  var $testimonialSlider = $('.testimonial-slider ul');
-  var $testimonialDots   = $testimonialSlider.parent().find('a.slider-dot');
+  var $testimonialSlider = $('.testimonial-slider');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -50,28 +49,7 @@
     slide: 'figure'
   });
 
-  $testimonialSlider.slick({
-    infinite: false,
-    arrows: false,
-    dots: false,
-    draggable: false,
-    slide: 'li',
-    onInit: function(slider) {
-      $testimonialDots.click(function(evt) {
-        var slideNum = $(this).data('index');
-        $testimonialSlider.slickGoTo(slideNum);
-        $testimonialDots.removeClass('current');
-        $(this).addClass('current');
-        return false;
-      });
-    },
-    onAfterChange: function(slider) {
-      $testimonialDots
-        .removeClass('current')
-        .eq(slider.currentSlide)
-          .addClass('current');
-    }
-  });
+  $testimonialSlider.testimonialSlider();
 
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);

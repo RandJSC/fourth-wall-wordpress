@@ -73,6 +73,34 @@
       });
 
       return this;
+    },
+
+    testimonialSlider: function() {
+      return $(this).each(function() {
+        var $el     = $(this);
+        var $slider = $el.find('ul');
+        var $dots   = $(this).find('a.slider-dot');
+
+        $slider.slick({
+          infinite: false,
+          arrows: false,
+          dots: false,
+          draggable: false,
+          slide: 'li',
+          onInit: function(slider) {
+            $dots.on('click', function(evt) {
+              var slideNum = $(this).data('index');
+              $slider.slickGoTo(slideNum);
+              $dots.removeClass('current');
+              $(this).addClass('current');
+              return false;
+            });
+          },
+          onAfterChange: function(slider) {
+            $dots.removeClass('current').eq(slider.currentSlide).addClass('current');
+          }
+        });
+      });
     }
 
   });

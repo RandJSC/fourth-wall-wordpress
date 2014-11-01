@@ -88,6 +88,8 @@
           draggable: false,
           slide: 'li',
           onInit: function(slider) {
+            logger.log('testimonialSlider', 'Slider initialized: %O', slider);
+
             $dots.on('click', function(evt) {
               var slideNum = $(this).data('index');
               $slider.slickGoTo(slideNum);
@@ -97,6 +99,7 @@
             });
           },
           onAfterChange: function(slider) {
+            logger.log('testimonialSlider', 'Slide transition');
             $dots.removeClass('current').eq(slider.currentSlide).addClass('current');
           }
         });

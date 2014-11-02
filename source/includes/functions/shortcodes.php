@@ -112,8 +112,14 @@ function fwe_accordion($atts) {
 
   $panes = get_post_meta($id, 'accordion_panes', true);
 
-  if (!(count($panes) && array_key_exists('content', $panes) && count($panes['content'])))
+  if (!(
+    count($panes) &&
+    array_key_exists('content', $panes) &&
+    count($panes['content'])
+  )) {
+
     return '';
+  }
 
   $pane_count = count($panes['content']);
 

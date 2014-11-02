@@ -108,8 +108,7 @@ function fwe_accordion($atts) {
 
   $accordion = get_post($id);
 
-  if (!$accordion) return '';
-  if ($accordion->post_type !== 'accordion') return '';
+  if (!$accordion || $accordion->post_type !== 'accordion') return '';
 
   $panes = get_post_meta($id, 'accordion_panes', true);
 

@@ -124,7 +124,6 @@
           var isOpen   = $content.hasClass('open');
           var height   = $content.data('height');
 
-
           if (anyOpen) {
             logger.log('accordion', 'Closing all panes');
 

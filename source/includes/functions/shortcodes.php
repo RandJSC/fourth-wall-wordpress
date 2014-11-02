@@ -146,7 +146,7 @@ function fwe_accordion($atts) {
           <?php echo '</' . $header . '>'; ?>
         </div>
 
-        <div class="pane-content closed" id="<?php echo $pane_id; ?>">
+        <div class="pane-content" id="<?php echo $pane_id; ?>">
           <div class="pane-body">
             <?php echo apply_filters('the_content', $panes['content'][$i]); ?>
           </div>

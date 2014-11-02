@@ -112,21 +112,38 @@
         var $headerLinks = $el.find('.pane-header a');
         var $allContent  = $el.find('.pane-content');
 
+        $allContent.each(function() {
+          var height = $(this).outerHeight();
+          $(this).data('height', height).css('maxHeight', 0);
+        });
+
         $headerLinks.on('click', function(evt) {
+          var anyOpen  = $allContent.hasClass('open');
           var $pane    = $(this).closest('.pane');
           var $content = $pane.find('.pane-content');
-          var isOpen   = !$content.hasClass('closed');
+          var isOpen   = $content.hasClass('open');
+          var height   = $content.data('height');
 
-          logger.log('accordion', 'Closing all panes');
-          $allContent.addClass('closed');
 
-          if (!isOpen) {
-            logger.log('accordion', 'Opening pane: %O', evt.target);
-            $content.removeClass('closed');
+          if (anyOpen) {
+            logger.log('accordion', 'Closing all panes');
+
+            $allContent.afterTransition(function() {
+              logger.log('accordion', 'Pane transition complete');
+
+              if (!isOpen) {
+                logger.log('accordion', 'Opening pane: %O', evt.target);
+                $content.addClass('open').css('maxHeight', height);
+              }
+            }, true).css('maxHeight', 0).removeClass('open');
+          } else {
+            $content.addClass('open').css('maxHeight', height);
           }
 
           return false;
         });
+
+        $el.addClass('initialized');
 
         logger.log('accordion', 'Initialized accordion: %O', $el);
       });

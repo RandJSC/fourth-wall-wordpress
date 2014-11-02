@@ -1,4 +1,13 @@
 .accordion {
+  visibility: hidden;
+  opacity: 0;
+  @include transition(opacity $transition-speed);
+
+  &.initialized {
+    visibility: visible;
+    opacity: 1;
+  }
+
   .pane-header {
     h3 {
       margin-top: 0;
@@ -34,11 +43,11 @@
 
   .pane-content {
     overflow: hidden;
-    max-height: rem(4000);
-    @include transition(max-height $transition-speed $transition-easing);
+    @include transition(max-height 500ms ease-out);
 
     &.closed {
-      max-height: 0;
+      //max-height: 0;
+      @include transition(max-height 500ms ease-out);
     }
   }
 }

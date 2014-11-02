@@ -137,6 +137,7 @@
               }
             }, true).css('maxHeight', 0).removeClass('open');
           } else {
+            logger.log('accordion', 'Opening pane: %O', evt.target);
             $content.addClass('open').css('maxHeight', height);
           }
 

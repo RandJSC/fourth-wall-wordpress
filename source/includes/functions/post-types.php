@@ -57,6 +57,9 @@ function fwe_register_post_type_call_to_action($post_types) {
     'title'     => 'Enter a title...',
     'public'    => true,
     'menu_icon' => 'dashicons-megaphone',
+    'exclude_from_search' => true,
+    'publicly_queryable'  => false,
+    'show_in_nav_menus'   => false,
     'rewrite'   => array(
       'slug' => 'cta',
     ),

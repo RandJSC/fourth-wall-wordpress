@@ -121,7 +121,10 @@ function fwe_accordion($atts) {
     return '';
   }
 
-  $pane_count = count($panes['content']);
+  $pane_count = max(
+    count($panes['content']),
+    count($panes['title'])
+  );
 
   ob_start();
 ?>

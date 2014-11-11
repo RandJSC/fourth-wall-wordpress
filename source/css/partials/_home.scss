@@ -10,6 +10,10 @@
       @include clearfix;
     }
 
+    img {
+      max-height: 720px;
+    }
+
     figcaption {
       position: absolute;
       bottom: 0;

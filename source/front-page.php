@@ -9,30 +9,31 @@ get_header();
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
-  $post_id    = get_the_ID();
-  $images     = get_post_meta($post_id, 'slider_images', true);
-  $has_slides = !empty($images) && !empty($images['image'][0][0]);
+  $post_id     = get_the_ID();
+  $images      = get_post_meta($post_id, 'slider_images', true);
+  $has_slides  = !empty($images) && !empty($images['image'][0][0]);
+  $image_count = $has_slides ? count($images['image']) : 0;
 
   if ($has_slides):
   ?>
     <section class="slider banner">
       <div class="slides">
-        <?php foreach ($images['image'] as $idx => $id): ?>
+        <?php for ($i = 0; $i < $image_count; $i++): ?>
           <?php
-          $title    = $images['title'][$idx];
-          $link_url = $images['link_url'][$idx];
-          $src      = wp_get_attachment_image_src($images['image'][$idx][0], 'full');
+          $title    = $images['title'][$i];
+          $link_url = $images['link_url'][$i];
+          $src      = wp_get_attachment_image_src($images['image'][$i][0], 'full');
           ?>
           <figure class="slide">
             <a href="<?php echo $link_url; ?>">
               <?php
-              $img_src = ($idx === 0) ? ' src="' . $src[0] . '"' : 'data-lazy="' . $src[0] . '"';
+              $img_src = ($i === 0) ? ' src="' . $src[0] . '"' : ' data-lazy="' . $src[0] . '"';
               ?>
-              <img<?php echo $img_src; ?> alt="<?php echo $title; ?>" width="100%">
+              <img<?php echo $img_src; ?> alt="<?php echo esc_attr($title); ?>" width="100%">
               <figcaption><?php echo $title; ?></figcaption>
             </a>
           </figure>
-        <?php endforeach; ?>
+        <?php endfor; ?>
       </div>
     </section>
   <?php endif; ?>

@@ -76,8 +76,16 @@ $banner = fwe_get_page_banner($post->ID);
             <div class="stitch-slider">
               <div class="slides">
                 <?php for ($i = 0; $i < $slide_count; $i++): ?>
+                  <?php
+                  $title    = $slider_images['title'][$i];
+                  $link_url = $slider_images['link_url'][$i];
+                  $image    = $slider_images['image'][$i][0];
+                  $image    = wp_get_attachment_image_src($image, 'full');
+                  ?>
                   <figure class="slide">
-
+                    <a href="<?php echo esc_url($link_url); ?>">
+                      <img src="<?php echo $image[0]; ?>" alt="<?php echo $title; ?>" width="100%">
+                    </a>
                   </figure>
                 <?php endfor; ?>
               </div>

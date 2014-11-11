@@ -165,6 +165,10 @@ button {
   margin: 0;
   border-top: rem(10) solid $banner-border;
 
+  img {
+    max-height: 720px;
+  }
+
   figcaption {
     position: absolute;
     display: block;

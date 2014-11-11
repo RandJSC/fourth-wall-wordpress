@@ -30,6 +30,9 @@ $banner = fwe_get_page_banner($post->ID);
       $stitch_content = get_post_meta($stitch_id, 'stitch_content', true);
       $stitch_content = apply_filters('the_content', $stitch_content);
       $bg_image       = get_post_meta($stitch_id, 'background_image', true);
+      $bg_image       = wp_get_attachment_image_src($bg_image, 'full');
+      $bg_image       = $bg_image[0];
+      $bg_image       = !empty($bg_image) ? 'url(\'' . $bg_image . '\')' : null;
       $bg_color       = get_post_meta($stitch_id, 'background_color', true);
       $bg_size        = get_post_meta($stitch_id, 'background_size', true);
       $bg_pos         = get_post_meta($stitch_id, 'background_position', true);
@@ -49,21 +52,39 @@ $banner = fwe_get_page_banner($post->ID);
         'background-position' => $bg_pos,
         'background-repeat'   => $bg_repeat,
       ));
-      $article_style  = fwe_style_attribute(array(
+      $content_style  = fwe_style_attribute(array(
         'background-color' => $bg_color,
       ));
+
+      $white_header   = $bg_image ? ' white' : '';
+
+      $slider_images  = get_post_meta($stitch_id, 'slider_images', true);
+      $has_slides     = !empty($slider_images) && !empty($slider_images['image'][0][0]);
+      $slide_count    = $has_slides ? count($slider_images['image']) : 0;
   ?>
       <section
         class="stitch content-section"
         data-slug="<?php echo $stitch_page->post_name; ?>"
         data-url="<?php echo get_permalink($stitch_id); ?>"<?php echo $section_style; ?>>
 
-        <article class="stitch"<?php echo $article_style; ?>>
-          <div class="post-header<?php echo $pad_header; ?>">
+        <article class="stitch">
+          <div class="post-header<?php echo $pad_header; ?><?php echo $white_header; ?>">
             <h2><?php echo apply_filters('the_title', $stitch_page->post_title); ?></h2>
           </div>
 
-          <div class="post-content<?php echo $pad_content; ?>">
+          <?php if ($has_slides): ?>
+            <div class="stitch-slider">
+              <div class="slides">
+                <?php for ($i = 0; $i < $slide_count; $i++): ?>
+                  <figure class="slide">
+
+                  </figure>
+                <?php endfor; ?>
+              </div>
+            </div>
+          <?php endif; ?>
+
+          <div class="post-content<?php echo $pad_content; ?>"<?php echo $content_style; ?>>
             <?php echo $stitch_content; ?>
           </div>
         </article>

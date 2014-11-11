@@ -11,13 +11,27 @@ div.content-section article.page {
 
 section.stitch {
   padding-bottom: rem(20);
+  padding-top: rem(20);
 }
 
 section.content-section article.stitch {
+
   .post-header {
     h2 {
       color: $blue;
       text-align: center;
     }
+
+    &.white {
+      h2 {
+        color: $white;
+        border-bottom-color: $white;
+      }
+    }
+  }
+
+  .post-content {
+    padding-top: rem(20);
+    padding-bottom: rem(20);
   }
 }

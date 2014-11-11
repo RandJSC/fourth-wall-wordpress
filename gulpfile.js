@@ -133,9 +133,8 @@ gulp.task('help', $.helptext({
 
 // Watcher task, benevolently minding your files and responding to changes in them.
 gulp.task('watch', function() {
-  var port = 35729;
-
-  $.livereload.listen(port);
+  //var port = 35729;
+  //$.livereload.listen(port);
 
   gulp.watch(resources.scss, [ 'styles' ]);
   gulp.watch(resources.css, [ 'copy' ]);

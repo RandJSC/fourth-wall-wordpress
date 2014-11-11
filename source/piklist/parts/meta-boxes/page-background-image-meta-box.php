@@ -7,15 +7,24 @@ Priority: high
 */
 
 piklist('field', array(
-  'type' => 'file',
-  'field' => 'background_image',
-  'scope' => 'post_meta',
-  'label' => 'Background Image',
-  'description' => 'This image will be used as the page\'s background, stretched to fill the width of the user\'s screen. For best results, use an SVG.'
+  'type'        => 'file',
+  'field'       => 'background_image',
+  'scope'       => 'post_meta',
+  'label'       => 'Background Image',
+  'description' => 'This image will be used as the page\'s background, stretched to fill the width of the user\'s screen. For best results, use an SVG.',
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(
-  'type'        => 'colorpicker',
+  'type'        => 'color',
   'field'       => 'background_color',
   'scope'       => 'post_meta',
   'label'       => 'Background Color',

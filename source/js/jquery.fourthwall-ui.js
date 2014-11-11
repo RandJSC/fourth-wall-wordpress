@@ -108,9 +108,12 @@
 
     accordion: function() {
       return this.each(function() {
-        var $el          = $(this);
-        var $headerLinks = $el.find('.pane-header a');
-        var $allContent  = $el.find('.pane-content');
+        var minus         = '&ndash;';
+        var plus          = '+';
+        var $el           = $(this);
+        var $headerLinks  = $el.find('.pane-header a');
+        var $allContent   = $el.find('.pane-content');
+        var $allPlusMinus = $el.find('.plusminus');
 
         $allContent.each(function() {
           var height = $(this).outerHeight();
@@ -118,14 +121,18 @@
         });
 
         $headerLinks.on('click', function(evt) {
-          var anyOpen  = $allContent.hasClass('open');
-          var $pane    = $(this).closest('.pane');
-          var $content = $pane.find('.pane-content');
-          var isOpen   = $content.hasClass('open');
-          var height   = $content.data('height');
+          var $link      = $(this);
+          var anyOpen    = $allContent.hasClass('open');
+          var $plusMinus = $link.find('.plusminus');
+          var $pane      = $link.closest('.pane');
+          var $content   = $pane.find('.pane-content');
+          var isOpen     = $content.hasClass('open');
+          var height     = $content.data('height');
 
           if (anyOpen) {
             logger.log('accordion', 'Closing all panes');
+
+            $allPlusMinus.html(plus);
 
             $allContent.afterTransition(function() {
               logger.log('accordion', 'Pane transition complete');
@@ -133,11 +140,13 @@
               if (!isOpen) {
                 logger.log('accordion', 'Opening pane: %O', evt.target);
                 $content.addClass('open').css('maxHeight', height);
+                $plusMinus.html(minus);
               }
             }, true).css('maxHeight', 0).removeClass('open');
           } else {
             logger.log('accordion', 'Opening pane: %O', evt.target);
             $content.addClass('open').css('maxHeight', height);
+            $plusMinus.html(minus);
           }
 
           return false;

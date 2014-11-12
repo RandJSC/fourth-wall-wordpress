@@ -32,7 +32,7 @@
   var $contactForm        = $('#contact-form form');
   var $testimonialSliders = $('.testimonial-slider');
   var $accordions         = $('.accordion');
-  var $sliders            = $('.slider .slides');
+  var $sliders            = $('.slider .slides, .stitch-slider .slides');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;

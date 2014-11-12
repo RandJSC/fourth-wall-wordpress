@@ -9,14 +9,24 @@
 (function(window, undefined) {
   'use strict';
 
-  var forEach  = require('lodash.foreach');
-  var debounce = require('lodash.debounce');
-  var $        = require('jquery');
-  var config   = require('./config');
-  var Snap     = require('./snap.svg.custom');
-  var Hammer   = require('hammerjs');
-  var logger   = require('bragi-browser');
-  var fweUtil  = require('./jquery.fourthwall-util');
+  var forEach    = require('lodash.foreach');
+  var debounce   = require('lodash.debounce');
+  var $          = require('jquery');
+  var config     = require('./config');
+  var Snap       = require('./snap.svg.custom');
+  var Hammer     = require('hammerjs');
+  var logger     = require('bragi-browser');
+  var fweUtil    = require('./jquery.fourthwall-util');
+  var Handlebars = require('handlebars');
+
+  var templates = {
+    sliderArrow: Handlebars.compile(
+      '<a href="" class="slider-arrow {{ side }}">' +
+        '<span class="fa fa-angle-{{ side }}"></span>' +
+      '</a>'
+    ),
+    arrowContainer: '<div class="slider-arrows"></div>'
+  };
 
   module.exports = $.fn.extend({
 
@@ -166,7 +176,22 @@
           slidesToScroll: 1,
           dots: false,
           arrows: false,
-          slide: 'figure'
+          slide: 'figure',
+          onInit: function(slider) {
+            var sides      = [ 'left', 'right' ];
+            var $container = slider.$slider.closest('.stitch-slider');
+
+            if (!$container.length) return;
+
+            $container.append(templates.arrowContainer);
+
+            var $arrowContainer = $container.find('.slider-arrows');
+
+            forEach(sides, function(side) {
+              var arrow = templates.sliderArrow({ side: side });
+              $arrowContainer.append(arrow);
+            });
+          }
         });
       });
     }

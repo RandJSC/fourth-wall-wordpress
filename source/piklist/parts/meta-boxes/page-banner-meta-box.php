@@ -10,6 +10,15 @@ piklist('field', array(
   'type'  => 'file',
   'field' => 'banner_image',
   'label' => 'Banner Image',
+  'validate' => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(

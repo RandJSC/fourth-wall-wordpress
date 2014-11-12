@@ -30,6 +30,15 @@ piklist('field', array(
   'label'       => 'Background Image',
   'description' => 'SVG recommended',
   'scope'       => 'post_meta',
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(

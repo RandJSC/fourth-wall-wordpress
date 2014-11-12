@@ -158,4 +158,8 @@ function fwe_get_page_banner($post_id = null) {
   return array('banner' => $banner, 'caption' => $caption);
 }
 
+function fwe_lazy_load_img_src($src, $index) {
+  return ($index === 0) ? 'src="' . $src . '"' : 'data-lazy="' . $src . '"';
+}
+
 ?>

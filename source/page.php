@@ -81,10 +81,11 @@ $banner = fwe_get_page_banner($post->ID);
                   $link_url = $slider_images['link_url'][$i];
                   $image    = $slider_images['image'][$i][0];
                   $image    = wp_get_attachment_image_src($image, 'full');
+                  $src_attr = fwe_lazy_load_img_src($image[0], $i);
                   ?>
                   <figure class="slide">
                     <a href="<?php echo esc_url($link_url); ?>">
-                      <img src="<?php echo $image[0]; ?>" alt="<?php echo $title; ?>" width="100%">
+                      <img <?php echo $src_attr; ?> alt="<?php echo $title; ?>" width="100%">
                     </a>
                   </figure>
                 <?php endfor; ?>

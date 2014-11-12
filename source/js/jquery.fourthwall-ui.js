@@ -170,7 +170,9 @@
 
     photoSlider: function() {
       return this.each(function() {
-        $(this).slick({
+        var $el = $(this);
+
+        $el.slick({
           lazyLoad: 'ondemand',
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -187,9 +189,20 @@
 
             var $arrowContainer = $container.find('.slider-arrows');
 
+            // append nav arrows to slider container
             forEach(sides, function(side) {
               var arrow = templates.sliderArrow({ side: side });
               $arrowContainer.append(arrow);
+            });
+
+            // bind click handlers to nav arrows
+            $arrowContainer.find('.slider-arrow').on('click', function(evt) {
+              if ($(this).hasClass('left')) {
+                $el.slickPrev();
+              } else {
+                $el.slickNext();
+              }
+              return false;
             });
           }
         });

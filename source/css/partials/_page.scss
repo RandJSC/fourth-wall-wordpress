@@ -68,7 +68,12 @@ section.content-section article.stitch {
   }
 
   .post-content {
-    padding-top: rem(20);
-    padding-bottom: rem(20);
+    p:first-child {
+      padding-top: rem(20);
+    }
+
+    p:last-child {
+      padding-bottom: rem(20);
+    }
   }
 }

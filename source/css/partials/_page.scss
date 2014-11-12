@@ -30,6 +30,43 @@ section.content-section article.stitch {
     }
   }
 
+  .stitch-slider {
+    position: relative;
+
+    .slider-arrows {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding-left: rem(8);
+      padding-right: rem(8);
+
+      .slider-arrow {
+        float: left;
+        display: block;
+        border-radius: 50%;
+        width: rem(36);
+        height: rem(36);
+        font-size: rem(22);
+        font-weight: bold;
+        background: $white;
+        color: $black;
+        text-align: center;
+        padding-top: rem(4);
+        opacity: 0.8;
+
+        @include transition(opacity $transition-speed ease-out);
+
+        &.right {
+          float: right;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   .post-content {
     padding-top: rem(20);
     padding-bottom: rem(20);

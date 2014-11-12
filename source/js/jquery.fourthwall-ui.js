@@ -195,6 +195,13 @@
               $arrowContainer.append(arrow);
             });
 
+            // vertically center nav arrows
+            var arrowHeight     = $arrowContainer.height();
+            var sliderHeight    = $el.height();
+            var arrowTop        = sliderHeight / 2 - arrowHeight;
+            $arrowContainer.css('top', sliderHeight / 2 - arrowHeight);
+            console.log('%d / 2 - %d = %d', sliderHeight, arrowHeight, arrowTop);
+
             // bind click handlers to nav arrows
             $arrowContainer.find('.slider-arrow').on('click', function(evt) {
               if ($(this).hasClass('left')) {

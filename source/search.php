@@ -6,17 +6,15 @@ global $fwe_settings;
 $banner = $fwe_settings['search_banner'];
 ?>
 
-<?php if ($banner): ?>
-  <?php
-  $banner_src = wp_get_attachment_image_src($banner, 'full');
-  ?>
-  <section class="banner">
-    <figure id="page-banner">
+<section class="banner">
+  <figure id="page-banner">
+    <?php if ($banner): ?>
+      <?php $banner_src = wp_get_attachment_image_src($banner, 'full'); ?>
       <img src="<?php echo $banner_src[0]; ?>" alt="Search Results" width="100%">
-      <figcaption>Search Results</figcaption>
-    </figure>
-  </section>
-<?php endif; ?>
+    <?php endif; ?>
+    <figcaption>Search Results</figcaption>
+  </figure>
+</section>
 
 <section id="main-page-content" class="content-section">
   <?php if (!have_posts()): ?>
@@ -46,6 +44,9 @@ $banner = $fwe_settings['search_banner'];
       <?php endwhile; ?>
     </ol>
   <?php endif; ?>
+
+  <div class="pagination">
+  </div>
 </section>
 
 <?php get_footer(); ?>

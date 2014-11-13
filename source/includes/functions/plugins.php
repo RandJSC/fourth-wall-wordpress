@@ -15,6 +15,11 @@ function fwe_register_plugins() {
       'slug'     => 'piklist',
       'required' => true,
     ),
+    array(
+      'name'     => 'JSON REST API (WP API)',
+      'slug'     => 'json-rest-api',
+      'required' => true,
+    ),
 
     // SEO/Front-end
     array(

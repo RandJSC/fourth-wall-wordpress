@@ -1,11 +1,7 @@
 <?php
-/**
- * Template Name: Team Members
- */
-
 get_header();
 
-global $post, $fwe_settings, $banner;
+global $post, $fwe_settings, $banner, $stitch;
 
 $banner = fwe_get_page_banner($post->ID);
 ?>
@@ -30,42 +26,7 @@ $banner = fwe_get_page_banner($post->ID);
 
   if (is_array($stitches) && count($stitches)):
     foreach ($stitches as $stitch_id) {
-      $stitch_page    = get_post($stitch_id);
-      $stitch_content = get_post_meta($stitch_id, 'stitch_content', true);
-      $stitch_content = apply_filters('the_content', $stitch_content);
-      $bg_image       = get_post_meta($stitch_id, 'background_image', true);
-      $bg_image       = wp_get_attachment_image_src($bg_image, 'full');
-      $bg_image       = $bg_image[0];
-      $bg_image       = !empty($bg_image) ? 'url(\'' . $bg_image . '\')' : null;
-      $bg_color       = get_post_meta($stitch_id, 'background_color', true);
-      $bg_size        = get_post_meta($stitch_id, 'background_size', true);
-      $bg_pos         = get_post_meta($stitch_id, 'background_position', true);
-      $bg_repeat      = get_post_meta($stitch_id, 'background_repeat', true);
-
-      $pad_content    = get_post_meta($stitch_id, 'pad_content', true);
-      $pad_content    = ($pad_content === 'no') ? false : true;
-      $pad_content    = $pad_content ? ' padded' : '';
-
-      $pad_header     = get_post_meta($stitch_id, 'pad_header', true);
-      $pad_header     = ($pad_header === 'no') ? false : true;
-      $pad_header     = $pad_header ? ' padded' : '';
-
-      $section_style  = fwe_style_attribute(array(
-        'background-image'    => $bg_image,
-        'background-size'     => $bg_size,
-        'background-position' => $bg_pos,
-        'background-repeat'   => $bg_repeat,
-      ));
-      $content_style  = fwe_style_attribute(array(
-        'background-color' => $bg_color,
-      ));
-
-      $white_header   = $bg_image ? ' white' : '';
-
-      $slider_images  = get_post_meta($stitch_id, 'slider_images', true);
-      $has_slides     = !empty($slider_images) && !empty($slider_images['image'][0][0]);
-      $slide_count    = $has_slides ? count($slider_images['image']) : 0;
-
+      $stitch = fwe_get_stitch_vars($stitch_id);
       get_template_part('subpage', 'stitch-content');
     }
     wp_reset_postdata();

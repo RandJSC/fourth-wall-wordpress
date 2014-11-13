@@ -164,6 +164,7 @@ button {
   position: relative;
   margin: 0;
   border-top: rem(10) solid $banner-border;
+  min-height: rem(50);
 
   img {
     max-height: 720px;

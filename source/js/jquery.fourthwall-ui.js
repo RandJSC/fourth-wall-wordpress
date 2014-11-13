@@ -168,6 +168,21 @@
       });
     },
 
+    homepageSlider: function() {
+      return this.each(function() {
+        var $el = $(this);
+
+        $el.slick({
+          lazyLoad: 'ondemand',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+          arrows: false,
+          slide: 'figure'
+        });
+      });
+    },
+
     photoSlider: function() {
       return this.each(function() {
         var $el = $(this);

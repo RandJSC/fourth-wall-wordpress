@@ -32,7 +32,8 @@
   var $contactForm        = $('#contact-form form');
   var $testimonialSliders = $('.testimonial-slider');
   var $accordions         = $('.accordion');
-  var $sliders            = $('.slider .slides, .stitch-slider .slides');
+  var $homepageSlider     = $('.slider .slides');
+  var $stitchSliders      = $('.stitch-slider .slides');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -42,8 +43,11 @@
 
   $hamburger.toggleNav($container, burgerSvg);
 
+  // Homepage slider (if present)
+  $homepageSlider.homepageSlider();
+
   // Photo sliders
-  $sliders.photoSlider();
+  $stitchSliders.photoSlider();
 
   // Testimonial sliders
   $testimonialSliders.testimonialSlider();

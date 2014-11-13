@@ -11,10 +11,9 @@ get_header();
   <?php
   $post_id     = get_the_ID();
   $images      = get_post_meta($post_id, 'slider_images', true);
-  $has_slides  = !empty($images) && !empty($images['image'][0][0]);
-  $image_count = $has_slides ? count($images['image']) : 0;
+  $image_count = count($images['image']);
 
-  if ($has_slides):
+  if ($image_count):
   ?>
     <section class="slider banner">
       <div class="slides">
@@ -29,7 +28,7 @@ get_header();
               <?php
               $img_src = fwe_lazy_load_img_src($src[0], $i);
               ?>
-              <img<?php echo $img_src; ?> alt="<?php echo esc_attr($title); ?>" width="100%">
+              <img <?php echo $img_src; ?> alt="<?php echo esc_attr($title); ?>" width="100%">
               <figcaption><?php echo $title; ?></figcaption>
             </a>
           </figure>

@@ -30,5 +30,6 @@ require_once $functions . 'styles.php';
 require_once $functions . 'theme-support.php';
 require_once $functions . 'utilities.php';
 require_once $functions . 'widgets.php';
+require_once $functions . 'excerpts.php';
 
 ?>

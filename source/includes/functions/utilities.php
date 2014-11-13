@@ -162,4 +162,54 @@ function fwe_lazy_load_img_src($src, $index) {
   return ($index === 0) ? 'src="' . $src . '"' : 'data-lazy="' . $src . '"';
 }
 
+function fwe_pagination_links($query = null, $range = 2) {
+  global $paged, $wp_query;
+
+  $paged     = $paged ? $paged : 1;
+  $showitems = $range * 2 + 1;
+
+  if (is_null($query)) {
+    $query = $wp_query;
+  }
+
+  $pages = $query->max_num_pages;
+  $pages = $pages ? $pages : 1;
+
+  if ($pages > 1):
+?>
+    <div class="pagination">
+      <a class="previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
+        <?php if ($paged > 1): ?>
+          <span class="arrow">
+            <span class="fa fa-arrow-left"></span>
+          </span>
+          <span class="link-text">Prev</span>
+        <?php endif; ?>
+      </a>
+
+      <?php for ($i = 1; $i <= $pages; $i++): ?>
+        <?php if (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems): ?>
+          <?php if ($paged == $i): ?>
+            <span class="current"><?php echo $i; ?></span>
+          <?php else: ?>
+            <a href="<?php echo get_pagenum_link($i); ?>" class="inactive">
+              <?php echo $i; ?>
+            </a>
+          <?php endif; ?>
+        <?php endif; ?>
+      <?php endfor; ?>
+
+      <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
+        <?php if ($paged <= $pages - 1): ?>
+          <span class="link-text">Next</span>
+          <span class="arrow">
+            <span class="fa fa-arrow-right"></span>
+          </span>
+        <?php endif; ?>
+      </a>
+    </div>
+<?php
+  endif;
+}
+
 ?>

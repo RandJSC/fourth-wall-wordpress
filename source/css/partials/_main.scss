@@ -182,3 +182,16 @@ button {
     padding: rem(2) rem(22) rem(5);
   }
 }
+
+.pagination {
+  background: $content-bg;
+  font-size: rem(20);
+
+  a {
+    text-decoration: none;
+  }
+
+  .current {
+    font-weight: bold;
+  }
+}

@@ -45,7 +45,7 @@ $banner = $fwe_settings['search_banner'];
     </ol>
   <?php endif; ?>
 
-  <?php fwe_pagination_links(null, 1); ?>
+  <?php fwe_pagination_links(); ?>
 </section>
 
 <?php get_footer(); ?>

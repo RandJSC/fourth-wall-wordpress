@@ -5,7 +5,7 @@
  */
 
 function fwe_excerpt_length($length) {
-  return 50;
+  return 15;
 }
 add_filter('excerpt_length', 'fwe_excerpt_length', 999);
 

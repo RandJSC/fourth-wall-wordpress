@@ -11,6 +11,7 @@
 
   var forEach    = require('lodash.foreach');
   var debounce   = require('lodash.debounce');
+  var assign     = require('lodash.assign');
   var $          = require('jquery');
   var config     = require('./config');
   var Snap       = require('./snap.svg.custom');
@@ -26,6 +27,15 @@
       '</a>'
     ),
     arrowContainer: '<div class="slider-arrows"></div>'
+  };
+
+  var slickDefaults = {
+    lazyLoad: 'ondemand',
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: false,
+    slide: 'figure'
   };
 
   module.exports = $.fn.extend({
@@ -170,16 +180,7 @@
 
     homepageSlider: function() {
       return this.each(function() {
-        var $el = $(this);
-
-        $el.slick({
-          lazyLoad: 'ondemand',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
-          arrows: false,
-          slide: 'figure'
-        });
+        return $(this).slick(slickDefaults);
       });
     },
 
@@ -187,13 +188,7 @@
       return this.each(function() {
         var $el = $(this);
 
-        $el.slick({
-          lazyLoad: 'ondemand',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
-          arrows: false,
-          slide: 'figure',
+        var slickOpts = assign({}, slickDefaults, {
           onInit: function(slider) {
             var sides      = [ 'left', 'right' ];
             var $container = slider.$slider.closest('.stitch-slider');
@@ -228,6 +223,8 @@
             });
           }
         });
+
+        $el.slick(slickOpts);
       });
     }
 

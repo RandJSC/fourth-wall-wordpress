@@ -22,6 +22,7 @@
     "handlebars": "^2.0.0",
     "jquery": "1.11.1",
     "lodash": "^2.4.1",
+    "lodash.assign": "^2.4.1",
     "lodash.debounce": "^2.4.1",
     "lodash.foreach": "^2.4.1",
     "lodash.isstring": "^2.4.1",

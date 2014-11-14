@@ -15,6 +15,7 @@ if (file_exists($base_path . 'vendor/autoload.php')) {
 require_once $walkers . 'class.walker-fwe-quicklinks.php';
 require_once $walkers . 'class.walker-fwe-socials.php';
 
+require_once $functions . 'api.php';
 require_once $functions . 'hooks.php';
 require_once $functions . 'http-timeout-fix.php';
 require_once $functions . 'file-types.php';

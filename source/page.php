@@ -6,7 +6,7 @@ global $post, $fwe_settings, $banner, $stitch;
 $banner = fwe_get_page_banner($post->ID);
 ?>
 
-<?php get_template_part('subpage', 'banner'); ?>
+<?php get_template_part('partials/subpage', 'banner'); ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
@@ -19,7 +19,7 @@ $banner = fwe_get_page_banner($post->ID);
   ?>
 
   <?php // This page's content: ?>
-  <?php get_template_part('subpage', 'main-content'); ?>
+  <?php get_template_part('partials/subpage', 'main-content'); ?>
 
   <?php
   // Stitched subpage content (if any):
@@ -27,7 +27,7 @@ $banner = fwe_get_page_banner($post->ID);
   if (is_array($stitches) && count($stitches)):
     foreach ($stitches as $stitch_id) {
       $stitch = fwe_get_stitch_vars($stitch_id);
-      get_template_part('subpage', 'stitch-content');
+      get_template_part('partials/subpage', 'stitch-content');
     }
     wp_reset_postdata();
   endif;

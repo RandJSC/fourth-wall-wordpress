@@ -138,8 +138,8 @@ if ($news_query->have_posts()):
   </section>
 <?php endif; ?>
 
-<?php get_template_part('email-signup'); ?>
+<?php get_template_part('partials/email', 'signup'); ?>
 
-<?php get_template_part('facebook-feed'); ?>
+<?php get_template_part('partials/facebook', 'feed'); ?>
 
 <?php get_footer(); ?>

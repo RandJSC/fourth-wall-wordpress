@@ -46,7 +46,7 @@ $fwe_settings = get_option('fwe_settings');
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-  <?php get_template_part('facebook-init'); ?>
+  <?php get_template_part('partials/facebook', 'init'); ?>
 
   <div id="master-container" class="full-width">
     <div id="main-nav" class="menu">

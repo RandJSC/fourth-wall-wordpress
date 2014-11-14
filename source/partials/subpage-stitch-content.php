@@ -1,4 +1,3 @@
-<?php global $stitch; ?>
 <section
   class="stitch content-section"
   data-slug="<?php echo $stitch['stitch_page']->post_name; ?>"

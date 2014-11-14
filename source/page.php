@@ -1,7 +1,7 @@
 <?php
 get_header();
 
-global $post, $fwe_settings, $banner, $stitch;
+global $post, $fwe_settings, $banner;
 
 $banner = fwe_get_page_banner($post->ID);
 ?>
@@ -27,7 +27,7 @@ $banner = fwe_get_page_banner($post->ID);
   if (is_array($stitches) && count($stitches)):
     foreach ($stitches as $stitch_id) {
       $stitch = fwe_get_stitch_vars($stitch_id);
-      get_template_part('partials/subpage', 'stitch-content');
+      include(locate_template('partials/subpage-stitch-content.php'));
     }
     wp_reset_postdata();
   endif;

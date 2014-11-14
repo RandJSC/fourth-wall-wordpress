@@ -38,7 +38,7 @@ add_shortcode('intro', 'fwe_intro_paragraph_shortcode');
  * Testimonial Slider
  * ex. [testimonial_slider count="3" orderby="rand" /]
  */
-function fwe_testimonial_slider($atts) {
+function fwe_testimonial_slider_shortcode($atts) {
   extract(shortcode_atts(array(
     'count'   => 3,
     'orderby' => 'date',
@@ -94,13 +94,13 @@ function fwe_testimonial_slider($atts) {
 <?php
   return ob_get_clean();
 }
-add_shortcode('testimonial_slider', 'fwe_testimonial_slider');
+add_shortcode('testimonial_slider', 'fwe_testimonial_slider_shortcode');
 
 /**
  * Accordion
  * ex. [accordion id="1" headers="h3" /]
  */
-function fwe_accordion($atts) {
+function fwe_accordion_shortcode($atts) {
   extract(shortcode_atts(array(
     'id'     => null,
     'header' => 'h3',
@@ -165,6 +165,25 @@ function fwe_accordion($atts) {
 <?php
   return ob_get_clean();
 }
-add_shortcode('accordion', 'fwe_accordion')
+add_shortcode('accordion', 'fwe_accordion_shortcode');
 
+function fwe_team_members_shortcode($atts, $content = null) {
+  extract(shortcode_atts(array(
+    'order'    => 'DESC',
+    'orderby'  => 'meta_value',
+    'meta_key' => 'surname',
+  ), $atts));
+
+  $team_members = new WP_Query(array(
+    'post_type'      => 'team_member',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'orderby'        => $orderby,
+    'order'          => $order,
+    'meta_key'       => $meta_key,
+  ));
+
+  include(locate_template('partials/team-viewer.php'));
+}
+add_shortcode('team_members', 'fwe_team_members_shortcode');
 ?>

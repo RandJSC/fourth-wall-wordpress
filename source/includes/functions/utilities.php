@@ -256,4 +256,13 @@ function fwe_get_stitch_vars($page_id = 0) {
     'content_style'  => $content_style,
   );
 }
+
+function fwe_get_surname($title) {
+  $suffixes    = array('Jr', 'Jr.', 'II', 'III', 'IV', 'V');
+  $name_pieces = array_reverse( explode( ' ', $title ) );
+  $surname     = in_array( $name_pieces[0], $suffixes ) ? $name_pieces[1] : $name_pieces[0];
+  $surname     = str_replace( ',', '', $surname );
+
+  return $surname;
+}
 ?>

@@ -2,11 +2,9 @@
 $count = 0;
 ?>
 <div class="team-members">
-  <?php if ($team_members->have_posts()): while ($team_members->have_posts()): ?>
-    <?php
-    $team_members->the_post();
-    ?>
+  <?php if ($team_members->have_posts()): while ($team_members->have_posts()): $team_members->the_post(); ?>
 
+    <?php // Current active team member area ?>
     <?php if ($count === 0): ?>
       <?php
       $id          = get_the_ID();

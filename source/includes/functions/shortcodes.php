@@ -169,7 +169,7 @@ add_shortcode('accordion', 'fwe_accordion_shortcode');
 
 function fwe_team_members_shortcode($atts, $content = null) {
   extract(shortcode_atts(array(
-    'order'    => 'DESC',
+    'order'    => 'ASC',
     'orderby'  => 'meta_value',
     'meta_key' => 'surname',
   ), $atts));

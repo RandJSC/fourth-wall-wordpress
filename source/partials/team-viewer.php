@@ -121,7 +121,7 @@ $count = 0;
       $job_title = get_post_meta(get_the_ID(), 'job_title', true);
     ?>
       <?php if (has_post_thumbnail()): ?>
-        <a class="team-member" href="">
+        <a class="team-member" href="<?php echo site_url('/wp-json/fwe/team-members/' . get_the_ID()); ?>">
           <div class="thumbnail">
             <?php the_post_thumbnail('team-member-thumb'); ?>
           </div>

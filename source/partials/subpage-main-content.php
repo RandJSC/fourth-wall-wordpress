@@ -1,5 +1,8 @@
 <?php
-$images = get_post_meta(get_the_ID(), 'slider_images', true);
+$page_id     = get_the_ID();
+$images      = get_post_meta($page_id, 'slider_images', true);
+$pad_content = get_post_meta($page_id, 'pad_content', true);
+$pad_content = $pad_content === 'yes' ? ' padded' : '';
 ?>
 <section id="main-page-content" class="content-section">
   <article <?php post_class(); ?>>
@@ -11,7 +14,7 @@ $images = get_post_meta(get_the_ID(), 'slider_images', true);
 
     <?php if (has_post_thumbnail()): ?>
       <?php
-      $thumb_id = get_post_thumbnail_id();
+      $thumb_id  = get_post_thumbnail_id();
       $thumb_src = wp_get_attachment_image_src($thumb_id, 'full');
       ?>
       <div class="post-featured-image">
@@ -19,7 +22,7 @@ $images = get_post_meta(get_the_ID(), 'slider_images', true);
       </div>
     <?php endif; ?>
 
-    <div class="post-content padded">
+    <div class="post-content<?php echo $pad_content; ?>">
       <?php the_content(); ?>
     </div>
   </article>

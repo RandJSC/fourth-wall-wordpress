@@ -116,12 +116,14 @@ $count = 0;
     $num_colors = count($colors);
 
     while ($team_members->have_posts()): $team_members->the_post();
+      global $post;
+
       $color_idx = $count % $num_colors;
       $color     = $colors[$color_idx];
       $job_title = get_post_meta(get_the_ID(), 'job_title', true);
     ?>
       <?php if (has_post_thumbnail()): ?>
-        <a class="team-member" href="<?php echo site_url('/wp-json/fwe/team-members/' . get_the_ID()); ?>">
+        <a class="team-member" href="<?php echo site_url('/wp-json/fwe/team-members/' . get_the_ID()); ?>" data-slug="<?php echo esc_attr($post->post_name); ?>">
           <div class="thumbnail">
             <?php the_post_thumbnail('team-member-thumb'); ?>
           </div>

@@ -34,6 +34,7 @@
   var $accordions         = $('.accordion');
   var $homepageSlider     = $('.slider .slides');
   var $stitchSliders      = $('.stitch-slider .slides');
+  var $teamMembers        = $('.team-members');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -54,6 +55,9 @@
 
   // Accordions
   $accordions.accordion();
+
+  // Team Members viewer shortcode
+  $teamMembers.teamMembersShortcode();
 
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);

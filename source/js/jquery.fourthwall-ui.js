@@ -226,6 +226,43 @@
 
         $el.slick(slickOpts);
       });
+    },
+
+    teamMembersShortcode: function() {
+      return this.each(function() {
+        var $root       = $(this);
+        var $thumbLinks = $root.find('.team-thumbs a');
+        var teamMembers = {};
+
+        $thumbLinks.on('click', function(evt) {
+          var ajax;
+          var $el     = $(this);
+          var slug    = $el.data('slug');
+          var jsonURL = $el.attr('href');
+          var success = function(obj) {
+            console.log(obj);
+
+            if (!teamMembers.hasOwnProperty(obj.slug)) {
+              teamMembers[obj.slug] = obj;
+            }
+            console.log(teamMembers);
+          };
+
+          if (teamMembers.hasOwnProperty(slug)) {
+            success(teamMembers[slug]);
+            return false;
+          }
+
+          ajax = $.ajax(jsonURL, {
+            type: 'GET',
+            dataType: 'json'
+          });
+
+          ajax.success(success);
+
+          return false;
+        });
+      });
     }
 
   });

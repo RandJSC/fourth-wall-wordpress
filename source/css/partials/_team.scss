@@ -1,7 +1,9 @@
 .team-member-viewer {
   position: relative;
   background: $team-viewer-grey;
-  padding-top: rem(20);
+  overflow: hidden;
+
+  @include transition(max-height 500ms ease-out);
 
   .button-row {
     @include clearfix;
@@ -17,7 +19,8 @@
     text-align: center;
     color: $team-viewer-grey;
     background: $hr-grey;
-    margin-right: rem(12);
+    margin-right: rem(22);
+    margin-top: rem(22);
 
     @include transition(background-color $transition-speed);
 
@@ -32,6 +35,11 @@
 
   .team-member-photo {
     text-align: center;
+
+    img {
+      width: rem(192);
+      height: rem(192);
+    }
   }
 
   .team-member-content {

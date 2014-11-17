@@ -20,13 +20,59 @@
   var fweUtil    = require('./jquery.fourthwall-util');
   var Handlebars = require('handlebars');
 
+  Handlebars.registerHelper('socialLink', function(icon, url) {
+    if (!url) return '';
+
+    var listItem = '<li>' +
+        '<a href="' + url + '">' +
+          '<span class="fa ' + icon + '"></span>' +
+        '</a>' +
+      '</li>';
+
+    return new Handlebars.SafeString(listItem);
+  });
+
+  Handlebars.registerHelper('emailLink', function(address) {
+    if (!address) return '';
+
+    var listItem = '<li>' +
+        '<a href="mailto:' + address + '">' +
+          '<span class="fa fa-envelope"></span>' +
+        '</a>' +
+      '</li>';
+
+    return new Handlebars.SafeString(listItem);
+  });
+
   var templates = {
     sliderArrow: Handlebars.compile(
       '<a href="" class="slider-arrow {{ side }}">' +
         '<span class="fa fa-angle-{{ side }}"></span>' +
       '</a>'
     ),
-    arrowContainer: '<div class="slider-arrows"></div>'
+    arrowContainer: '<div class="slider-arrows"></div>',
+    teamMemberDetail: Handlebars.compile(
+      '<div class="team-member-photo">' +
+        '<img src="{{ headshot.src }}" width="{{ headshot.width }}" height="{{ headshot.height }}" alt="{{ title }}">' +
+      '</div>' +
+      '<div class="team-member-content">' +
+        '<h3>{{ title }}</h3>' +
+        '<div class="title-location">' +
+          '<span class="title">{{ job_title }}</span>' +
+          '<span class="location">{{ location }}</span>' +
+        '</div>' +
+        '{{{ content }}}' +
+        '<ul class="contact">' +
+          '{{ socialLink "fa-facebook" facebook }}' +
+          '{{ socialLink "fa-twitter" twitter }}' +
+          '{{ socialLink "fa-instagram" instagram }}' +
+          '{{ socialLink "fa-linkedin" linkedin }}' +
+          '{{ socialLink "fa-pinterest" pinterest }}' +
+          '{{ socialLink "fa-google-plus" google_plus }}' +
+          '{{ emailLink email }}' +
+        '</ul>' +
+      '</div>'
+    )
   };
 
   var slickDefaults = {
@@ -232,6 +278,7 @@
       return this.each(function() {
         var $root       = $(this);
         var $thumbLinks = $root.find('.team-thumbs a');
+        var $detailArea = $root.find('.team-member-detail');
         var teamMembers = {};
 
         $thumbLinks.on('click', function(evt) {
@@ -240,12 +287,15 @@
           var slug    = $el.data('slug');
           var jsonURL = $el.attr('href');
           var success = function(obj) {
-            console.log(obj);
+            logger.log('teamMembers', 'Team member selected and loaded: %s', obj.slug);
 
             if (!teamMembers.hasOwnProperty(obj.slug)) {
+              logger.log('teamMembers', 'Caching team member: %O', obj);
               teamMembers[obj.slug] = obj;
             }
-            console.log(teamMembers);
+
+            var html = templates.teamMemberDetail(obj);
+            $detailArea.html(html);
           };
 
           if (teamMembers.hasOwnProperty(slug)) {

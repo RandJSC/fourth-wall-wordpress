@@ -29,6 +29,20 @@ class FourthWall_TeamMembers extends WP_JSON_CustomPostType {
     $post['pinterest']     = get_post_meta($post['ID'], 'pinterest', true);
     $post['google_plus']   = get_post_meta($post['ID'], 'google_plus', true);
 
+    // Custom thumbnail sizes
+    $headshot_id = get_post_thumbnail_id($post['ID']);
+
+    if ($headshot_id) {
+      list($src, $width, $height, $resized) = wp_get_attachment_image_src($headshot_id, 'team-member-headshot');
+
+      $post['headshot'] = array(
+        'ID'     => (int) $headshot_id,
+        'src'    => $src,
+        'width'  => $width,
+        'height' => $height,
+      );
+    }
+
     return $post;
   }
 

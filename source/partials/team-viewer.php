@@ -19,9 +19,11 @@ $count = 0;
     $email       = get_post_meta($id, 'email_address', true);
     ?>
     <div class="team-member-viewer">
-      <a href="" class="collapse-button">
-        <span class="fa fa-remove"></span>
-      </a>
+      <div class="button-row">
+        <a href="" class="collapse-button">
+          <span class="fa fa-remove"></span>
+        </a>
+      </div>
 
       <div class="team-member-detail">
         <?php if (has_post_thumbnail()): ?>

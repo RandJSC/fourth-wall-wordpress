@@ -1,3 +1,89 @@
 .team-member-viewer {
+  position: relative;
   background: $team-viewer-grey;
+  padding-top: rem(20);
+
+  .button-row {
+    @include clearfix;
+  }
+
+  .collapse-button {
+    display: block;
+    float: right;
+    border-radius: 50%;
+    width: rem(40);
+    font-size: rem(30);
+    line-height: rem(39);
+    text-align: center;
+    color: $team-viewer-grey;
+    background: $hr-grey;
+    margin-right: rem(12);
+
+    @include transition(background-color $transition-speed);
+
+    &:hover {
+      background: $button-bg;
+    }
+  }
+
+  .team-member-detail {
+    margin-top: rem(40);
+  }
+
+  .team-member-photo {
+    text-align: center;
+  }
+
+  .team-member-content {
+    padding: rem(24);
+
+    h3 {
+      font-size: rem(22);
+      font-weight: normal;
+      margin-bottom: 0;
+    }
+
+    .title-location {
+      margin-bottom: rem(22);
+      font-weight: 100;
+      line-height: rem(26);
+
+      .title {
+        font-style: italic;
+        font-size: rem(16);
+      }
+
+      .location {
+        font-size: rem(12);
+      }
+    }
+
+    p {
+      font-size: rem(14);
+      font-weight: 100;
+    }
+
+    ul.contact {
+      @extend %unlist;
+      margin-top: rem(30);
+
+      li {
+        display: inline-block;
+        font-size: rem(28);
+        margin-left: rem(30);
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        a {
+          color: $button-bg;
+
+          &:hover {
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
 }

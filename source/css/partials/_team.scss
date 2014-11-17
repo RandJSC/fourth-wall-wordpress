@@ -87,3 +87,38 @@
     }
   }
 }
+
+.team-thumbs {
+  padding-top: rem(60);
+  padding-bottom: rem(40);
+
+  @include clearfix;
+
+  .team-member {
+    display: block;
+    float: left;
+
+    .thumbnail, .thumbnail img {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .thumbnail {
+      border: 3px solid $team-member-border;
+      width: rem(120);
+      height: rem(120);
+      margin-left: rem(20);
+      margin-right: rem(20);
+      margin-bottom: rem(20);
+    }
+
+    .thumbnail img {
+      width: rem(120);
+      height: rem(120);
+    }
+
+    .name-title {
+      display: none;
+    }
+  }
+}

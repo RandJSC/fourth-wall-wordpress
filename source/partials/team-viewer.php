@@ -106,11 +106,37 @@ $count = 0;
   <div class="team-thumbs">
     <?php
     $team_members->rewind_posts();
+    $count      = 0;
+    $colors     = array(
+      'blue',
+      'pink',
+      'orange',
+      'green',
+    );
+    $num_colors = count($colors);
+
     while ($team_members->have_posts()): $team_members->the_post();
+      $color_idx = $count % $num_colors;
+      $color     = $colors[$color_idx];
+      $job_title = get_post_meta(get_the_ID(), 'job_title', true);
     ?>
-      <div class="team-member">
-        <?php the_title(); ?>
-      </div>
+      <?php if (has_post_thumbnail()): ?>
+        <a class="team-member" href="">
+          <div class="thumbnail">
+            <?php the_post_thumbnail('team-member-thumb'); ?>
+          </div>
+
+          <div class="name-title <?php echo $color; ?>">
+            <strong class="team-member-name">
+              <?php the_title(); ?>
+            </strong>
+            <span class="team-member-title">
+              <?php echo $job_title; ?>
+            </span>
+          </div>
+        </a>
+      <?php endif; ?>
+      <?php $count++; ?>
     <?php endwhile; ?>
   </div>
   <?php wp_reset_postdata(); ?>

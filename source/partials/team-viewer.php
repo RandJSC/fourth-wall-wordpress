@@ -18,7 +18,7 @@ $count = 0;
     $google_plus = get_post_meta($id, 'google_plus', true);
     $email       = get_post_meta($id, 'email_address', true);
     ?>
-    <div class="team-member-viewer">
+    <div class="team-member-viewer" data-visible="true">
       <div class="fade-wrap visible">
         <div class="button-row">
           <a href="" class="collapse-button">

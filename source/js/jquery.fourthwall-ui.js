@@ -278,13 +278,26 @@
 
     teamMembersShortcode: function() {
       return this.each(function() {
-        var $root       = $(this);
-        var $thumbLinks = $root.find('.team-thumbs a');
-        var $detailArea = $root.find('.team-member-detail');
-        var $fadeWrap   = $root.find('.fade-wrap');
-        var teamMembers = {};
-        var detailY     = Math.round($detailArea.offset().top);
-        var doc         = document.documentElement;
+        var $root           = $(this);
+        var $viewer         = $root.find('.team-member-viewer');
+        var $thumbLinks     = $root.find('.team-thumbs a');
+        var $detailArea     = $root.find('.team-member-detail');
+        var $fadeWrap       = $root.find('.fade-wrap');
+        var $collapseButton = $root.find('.collapse-button');
+        var teamMembers     = {};
+        var viewerHeight    = $viewer.height();
+        var detailY         = Math.round($detailArea.offset().top);
+        var doc             = document.documentElement;
+
+        logger.log('teamMembers', 'Setting viewer maxHeight to %d', viewerHeight);
+
+        $viewer.css('maxHeight', viewerHeight);
+
+        $collapseButton.on('click', function(evt) {
+          logger.log('teamMembers', 'Setting viewer maxHeight to 0');
+          $viewer.css('maxHeight', 0).data('visible', false);
+          return false;
+        });
 
         $thumbLinks.on('click', function(evt) {
           var ajax;
@@ -301,12 +314,26 @@
             }
 
             var html = templates.teamMemberDetail(obj);
+
             $detailArea.html(html);
             $fadeWrap.addClass('visible');
+            resetMaxHeight();
+          };
+          var resetMaxHeight = function() {
+            $viewer.afterTransition(function(evt) {
+              logger.log('teamMembers', 'Resetting viewer height');
+              $viewer.css('maxHeight', '');
+              viewerHeight = $viewer.height();
+              $viewer.css('maxHeight', viewerHeight);
+            }, true).css('maxHeight', viewerHeight);
           };
 
           if (scrollY !== detailY) {
             TweenLite.to(window, 0.5, { scrollTo: { y: detailY } });
+          }
+
+          if (!$viewer.data('visible')) {
+            resetMaxHeight();
           }
 
           $fadeWrap.transRemoveClass('visible', function() {

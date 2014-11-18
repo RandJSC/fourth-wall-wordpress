@@ -239,7 +239,8 @@
 
     photoSlider: function(opts) {
       var defaults = {
-        popup: false
+        popup: false,
+        container: '.stitch-slider'
       };
       var options  = isObject(opts) ? assign(defaults, opts) : defaults;
 
@@ -249,13 +250,14 @@
         var slickOpts = assign(slickDefaults, {
           onInit: function(slider) {
             var sides      = [ 'left', 'right' ];
-            var $container = slider.$slider.closest('.stitch-slider');
+            var $container = slider.$slider.closest(options.container);
 
             if (!$container.length) return;
 
             var $imgLinks = $container.find('a');
 
             if (options.popup) {
+              logger.log('gallery', 'Binding Magnific Popup to slider images');
               $imgLinks.magnificPopup({ type: 'image' });
             }
 

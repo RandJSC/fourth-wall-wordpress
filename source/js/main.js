@@ -62,7 +62,8 @@
 
   // Gallery sliders
   $gallerySliders.photoSlider({
-    popup: true
+    popup: true,
+    container: '.gallery-slider'
   });
 
   $contactForm.on('submit', function(evt) {

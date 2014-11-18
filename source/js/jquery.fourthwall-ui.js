@@ -279,6 +279,7 @@
         var $root       = $(this);
         var $thumbLinks = $root.find('.team-thumbs a');
         var $detailArea = $root.find('.team-member-detail');
+        var $fadeWrap   = $root.find('.fade-wrap');
         var teamMembers = {};
 
         $thumbLinks.on('click', function(evt) {
@@ -296,19 +297,22 @@
 
             var html = templates.teamMemberDetail(obj);
             $detailArea.html(html);
+            $fadeWrap.addClass('visible');
           };
 
-          if (teamMembers.hasOwnProperty(slug)) {
-            success(teamMembers[slug]);
-            return false;
-          }
+          $fadeWrap.transRemoveClass('visible', function() {
+            if (teamMembers.hasOwnProperty(slug)) {
+              success(teamMembers[slug]);
+              return;
+            }
 
-          ajax = $.ajax(jsonURL, {
-            type: 'GET',
-            dataType: 'json'
+            ajax = $.ajax(jsonURL, {
+              type: 'GET',
+              dataType: 'json'
+            });
+
+            ajax.success(success);
           });
-
-          ajax.success(success);
 
           return false;
         });

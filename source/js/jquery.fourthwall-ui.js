@@ -325,6 +325,7 @@
               $viewer.css('maxHeight', '');
               viewerHeight = $viewer.height();
               $viewer.css('maxHeight', viewerHeight);
+              logger.log('teamMembers', 'Viewer height is now %d', viewerHeight);
             }, true).css('maxHeight', viewerHeight);
           };
 

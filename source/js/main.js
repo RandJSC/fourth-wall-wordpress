@@ -35,6 +35,7 @@
   var $homepageSlider     = $('.slider .slides');
   var $stitchSliders      = $('.stitch-slider .slides');
   var $teamMembers        = $('.team-members');
+  var $gallerySliders     = $('.gallery-slider .slides');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -58,6 +59,9 @@
 
   // Team Members viewer shortcode
   $teamMembers.teamMembersShortcode();
+
+  // Gallery sliders
+  $gallerySliders.photoSlider();
 
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);

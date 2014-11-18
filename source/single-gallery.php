@@ -96,11 +96,13 @@ if ($has_banner) {
             <?php for ($i = 0; $i < $photo_count; $i++): ?>
               <?php
               list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'full');
-              $src = fwe_lazy_load_img_src($src, $i);
+              $src_attr = fwe_lazy_load_img_src($src, $i);
               ?>
-              <div class="slide">
-                <img <?php echo $src; ?> width="100%" alt="<?php echo $photos['title'][$i]; ?>">
-              </div>
+              <figure class="slide">
+                <a href="<?php echo $src; ?>">
+                  <img <?php echo $src_attr; ?> width="100%" alt="<?php echo $photos['title'][$i]; ?>">
+                </a>
+              </figure>
             <?php endfor; ?>
           </div>
         </div>

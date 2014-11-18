@@ -19,6 +19,8 @@
   var logger     = require('bragi-browser');
   var fweUtil    = require('./jquery.fourthwall-util');
   var Handlebars = require('handlebars');
+  var TweenLite  = require('gsap/src/uncompressed/TweenLite');
+  var ScrollTo   = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
 
   Handlebars.registerHelper('socialLink', function(icon, url) {
     if (!url) return '';
@@ -281,10 +283,13 @@
         var $detailArea = $root.find('.team-member-detail');
         var $fadeWrap   = $root.find('.fade-wrap');
         var teamMembers = {};
+        var detailY     = Math.round($detailArea.offset().top);
+        var doc         = document.documentElement;
 
         $thumbLinks.on('click', function(evt) {
           var ajax;
           var $el     = $(this);
+          var scrollY = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
           var slug    = $el.data('slug');
           var jsonURL = $el.attr('href');
           var success = function(obj) {
@@ -299,6 +304,10 @@
             $detailArea.html(html);
             $fadeWrap.addClass('visible');
           };
+
+          if (scrollY !== detailY) {
+            TweenLite.to(window, 0.5, { scrollTo: { y: detailY } });
+          }
 
           $fadeWrap.transRemoveClass('visible', function() {
             if (teamMembers.hasOwnProperty(slug)) {

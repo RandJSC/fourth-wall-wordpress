@@ -68,7 +68,7 @@ if ($has_banner) {
               <?php echo $location; ?>
             </div>
           <?php endif; ?>
-          <?php if ($event_date): ?>
+          <?php if (isset($event_date)): ?>
             <div class="date">
               <span class="fa fa-clock-o"></span>
               <?php echo $event_date; ?>

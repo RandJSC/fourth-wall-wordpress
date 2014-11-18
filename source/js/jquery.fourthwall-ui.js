@@ -21,6 +21,10 @@
   var Handlebars = require('handlebars');
   var TweenLite  = require('gsap/src/uncompressed/TweenLite');
   var ScrollTo   = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
+  var Magnific   = require('./jquery.magnific-popup');
+
+  $.magnificPopup    = Magnific.root;
+  $.fn.magnificPopup = Magnific.plugin;
 
   Handlebars.registerHelper('socialLink', function(icon, url) {
     if (!url) return '';

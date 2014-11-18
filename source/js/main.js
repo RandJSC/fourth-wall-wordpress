@@ -61,7 +61,9 @@
   $teamMembers.teamMembersShortcode();
 
   // Gallery sliders
-  $gallerySliders.photoSlider();
+  $gallerySliders.photoSlider({
+    popup: true
+  });
 
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);

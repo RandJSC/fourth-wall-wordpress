@@ -9,6 +9,7 @@
 (function(window, undefined) {
   'use strict';
 
+  var isObject   = require('lodash.isobject');
   var forEach    = require('lodash.foreach');
   var debounce   = require('lodash.debounce');
   var assign     = require('lodash.assign');
@@ -236,16 +237,27 @@
       });
     },
 
-    photoSlider: function() {
+    photoSlider: function(opts) {
+      var defaults = {
+        popup: false
+      };
+      var options  = isObject(opts) ? assign(defaults, opts) : defaults;
+
       return this.each(function() {
         var $el = $(this);
 
-        var slickOpts = assign({}, slickDefaults, {
+        var slickOpts = assign(slickDefaults, {
           onInit: function(slider) {
             var sides      = [ 'left', 'right' ];
             var $container = slider.$slider.closest('.stitch-slider');
 
             if (!$container.length) return;
+
+            var $imgLinks = $container.find('a');
+
+            if (options.popup) {
+              $imgLinks.magnificPopup({ type: 'image' });
+            }
 
             $container.append(templates.arrowContainer);
 

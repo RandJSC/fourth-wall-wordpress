@@ -67,4 +67,14 @@ piklist('field', array(
     'class' => 'text',
   ),
 ));
+
+piklist('field', array(
+  'type'        => 'file',
+  'field'       => 'where_weve_been_banner',
+  'label'       => 'Where We\'ve Been Banner',
+  'description' => 'Shown on all Galleries and Case Studies (singles and archives)',
+  'attributes'  => array(
+    'class' => 'text',
+  )
+));
 ?>

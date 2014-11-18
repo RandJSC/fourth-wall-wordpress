@@ -20,10 +20,9 @@ foreach ($case_studies as $case_study) {
 }
 
 piklist('field', array(
-  'type'        => 'text',
+  'type'        => 'date',
   'field'       => 'event_date',
   'label'       => 'Event Date',
-  'description' => 'Suggested format: YYYY-MM-DD (i.e. "' . strftime('%Y-%m-%d') . '").',
 ));
 
 piklist('field', array(

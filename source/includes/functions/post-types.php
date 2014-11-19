@@ -87,14 +87,15 @@ add_filter('piklist_post_types', 'fwe_register_post_type_call_to_action');
 function fwe_register_post_type_gallery($post_types) {
 
   $post_types['gallery'] = array(
-    'labels'    => piklist('post_type_labels', 'Gallery'),
-    'title'     => 'Enter a title...',
-    'public'    => true,
-    'menu_icon' => 'dashicons-format-gallery',
-    'rewrite'   => array(
+    'labels'      => piklist('post_type_labels', 'Gallery'),
+    'title'       => 'Enter a title...',
+    'public'      => true,
+    'menu_icon'   => 'dashicons-format-gallery',
+    'has_archive' => true,
+    'rewrite'     => array(
       'slug' => 'gallery',
     ),
-    'supports'  => array(
+    'supports'    => array(
       'title',
       'editor',
       'thumbnail',
@@ -111,14 +112,15 @@ add_filter('piklist_post_types', 'fwe_register_post_type_gallery');
 function fwe_register_post_type_case_study($post_types) {
 
   $post_types['case_study'] = array(
-    'labels'    => piklist('post_type_labels', 'Case Study'),
-    'title'     => 'Enter a title...',
-    'public'    => true,
-    'menu_icon' => 'dashicons-awards',
-    'rewrite'   => array(
+    'labels'      => piklist('post_type_labels', 'Case Study'),
+    'title'       => 'Enter a title...',
+    'public'      => true,
+    'menu_icon'   => 'dashicons-awards',
+    'has_archive' => true,
+    'rewrite'     => array(
       'slug' => 'case-study',
     ),
-    'supports'  => array(
+    'supports'    => array(
       'title',
       'editor',
       'revisions',

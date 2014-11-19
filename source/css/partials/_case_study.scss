@@ -6,4 +6,12 @@ section.content-section.case-study {
     }
   }
 
+  .post-excerpt {
+    padding-bottom: rem(20);
+  }
+
+  .gallery-images + .post-content {
+    padding-top: rem(20);
+  }
+
 }

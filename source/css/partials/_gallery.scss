@@ -1,0 +1,32 @@
+section.content-section.gallery {
+  .post-header {
+    border-bottom: 1px solid $post-byline-border;
+    margin-left: rem(22);
+    margin-right: rem(22);
+    margin-bottom: rem(40);
+
+    h1 {
+      color: $gallery-header-text;
+      margin-bottom: 0;
+    }
+
+    .details {
+      text-align: center;
+      margin-bottom: rem(16);
+      font-style: italic;
+      font-size: rem(16);
+      line-height: rem(29);
+
+      .fa {
+        font-size: rem(30);
+      }
+
+      .text {
+        display: inline-block;
+        position: relative;
+        top: rem(-5);
+        margin-left: rem(10);
+      }
+    }
+  }
+}

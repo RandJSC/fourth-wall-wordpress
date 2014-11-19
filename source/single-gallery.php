@@ -65,13 +65,13 @@ if ($has_banner) {
           <?php if ($location): ?>
             <div class="location">
               <span class="fa fa-map-marker"></span>
-              <?php echo $location; ?>
+              <span class="text"><?php echo $location; ?></span>
             </div>
           <?php endif; ?>
           <?php if (isset($event_date)): ?>
             <div class="date">
               <span class="fa fa-clock-o"></span>
-              <?php echo $event_date; ?>
+              <span class="text"><?php echo $event_date; ?></span>
             </div>
           <?php endif; ?>
         </div>

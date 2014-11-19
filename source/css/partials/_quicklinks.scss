@@ -83,7 +83,7 @@
       margin-top: 0;
       margin-bottom: 0;
       @include clearfix;
-      
+
       li {
         height: rem(100);
 
@@ -111,6 +111,26 @@
         position: relative;
         top: rem(5);
         margin-right: rem(10);
+      }
+    }
+  }
+
+  &.gallery {
+    border-top: 10px solid $gallery-links-top-border;
+    border-bottom: 10px solid $gallery-links-bottom-border;
+    margin-top: 0;
+
+    .menu {
+      margin-bottom: 0;
+      margin-top: 0;
+      @include clearfix;
+
+      li {
+        height: rem(100);
+
+        span.fa {
+          float: left;
+        }
       }
     }
   }

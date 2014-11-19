@@ -48,12 +48,20 @@ section.content-section.gallery {
       padding-bottom: rem(22);
 
       a {
-        text-decoration: none; 
+        text-decoration: none;
 
         .fa {
           margin-left: rem(10);
           font-size: rem(20);
         }
+      }
+    }
+
+    .gallery-slider {
+      position: relative;
+
+      .slider-arrows {
+        @extend %slider-arrows;
       }
     }
 

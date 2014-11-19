@@ -6,6 +6,12 @@ Context: normal
 */
 
 piklist('field', array(
+  'type'        => 'date',
+  'field'       => 'event_date',
+  'label'       => 'Event Date',
+));
+
+piklist('field', array(
   'type'       => 'text',
   'field'      => 'location_name',
   'label'      => 'Location Name',

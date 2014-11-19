@@ -20,12 +20,6 @@ foreach ($case_studies as $case_study) {
 }
 
 piklist('field', array(
-  'type'        => 'date',
-  'field'       => 'event_date',
-  'label'       => 'Event Date',
-));
-
-piklist('field', array(
   'type'    => 'select',
   'field'   => 'case_study_id',
   'label'   => 'Case Study',

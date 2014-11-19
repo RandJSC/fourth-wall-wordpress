@@ -276,7 +276,7 @@
             var sliderHeight    = $el.height();
             var arrowTop        = sliderHeight / 2 - arrowHeight;
 
-            $arrowContainer.css('top', sliderHeight / 2 - arrowHeight);
+            $arrowContainer.css('top', arrowTop);
 
             // bind click handlers to nav arrows
             $arrowContainer.find('.slider-arrow').on('click', function(evt) {

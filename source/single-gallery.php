@@ -8,24 +8,8 @@ get_header();
 
 global $post, $fwe_settings;
 
-$has_banner = array_key_exists('where_weve_been_banner', $fwe_settings) && !empty($fwe_settings['where_weve_been_banner']);
-
-if ($has_banner) {
-  $banner = wp_get_attachment_image_src($fwe_settings['where_weve_been_banner'], 'full');
-  $banner_link = get_post_type_archive_link('gallery');
-}
+include(locate_template('partials/gallery-banner.php'));
 ?>
-
-<?php if ($has_banner): ?>
-  <section class="banner">
-    <figure id="page-banner">
-      <a href="<?php echo $banner_link; ?>">
-        <img src="<?php echo $banner[0]; ?>" alt="Where We've Been" width="100%">
-        <figcaption>Where We've Been</figcaption>
-      </a>
-    </figure>
-  </section>
-<?php endif; ?>
 
 <section id="quick-links" class="gallery">
   <?php

@@ -13,6 +13,7 @@
   var forEach    = require('lodash.foreach');
   var debounce   = require('lodash.debounce');
   var assign     = require('lodash.assign');
+  var throttle   = require('lodash.throttle');
   var $          = require('jquery');
   var config     = require('./config');
   var Snap       = require('./snap.svg.custom');
@@ -265,18 +266,23 @@
 
             var $arrowContainer = $container.find('.slider-arrows');
 
+            var centerArrows = throttle(function(evt) {
+              var arrowHeight  = $arrowContainer.height();
+              var sliderHeight = $el.height();
+              var arrowTop     = Math.round(sliderHeight / 2 - arrowHeight);
+
+              $arrowContainer.css('top', arrowTop);
+            }, 100);
+
             // append nav arrows to slider container
             forEach(sides, function(side) {
               var arrow = templates.sliderArrow({ side: side });
               $arrowContainer.append(arrow);
             });
 
-            // vertically center nav arrows
-            var arrowHeight     = $arrowContainer.height();
-            var sliderHeight    = $el.height();
-            var arrowTop        = sliderHeight / 2 - arrowHeight;
-
-            $arrowContainer.css('top', arrowTop);
+            // vertically center nav arrows in slider frame
+            centerArrows();
+            $(window).on('resize', centerArrows);
 
             // bind click handlers to nav arrows
             $arrowContainer.find('.slider-arrow').on('click', function(evt) {

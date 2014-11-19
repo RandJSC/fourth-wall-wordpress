@@ -246,6 +246,8 @@
       var options  = isObject(opts) ? assign(defaults, opts) : defaults;
 
       return this.each(function() {
+        logger.log('gallery', 'Setting up photo slider on %O', this);
+
         var $el = $(this);
 
         var slickOpts = assign(slickDefaults, {

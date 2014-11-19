@@ -81,17 +81,19 @@ if ($has_banner) {
 
       <div class="gallery-images">
         <div class="gallery-slider">
-          <?php for ($i = 0; $i < $photo_count; $i++): ?>
-            <?php
-            list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'full');
-            $src_attr = fwe_lazy_load_img_src($src, $i);
-            ?>
-            <figure class="slide">
-              <a href="<?php echo $src; ?>">
-                <img <?php echo $src_attr; ?> width="100%" alt="<?php echo $photos['title'][$i]; ?>">
-              </a>
-            </figure>
-          <?php endfor; ?>
+          <div class="slides">
+            <?php for ($i = 0; $i < $photo_count; $i++): ?>
+              <?php
+              list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'full');
+              $src_attr = fwe_lazy_load_img_src($src, $i);
+              ?>
+              <figure class="slide">
+                <a href="<?php echo $src; ?>">
+                  <img <?php echo $src_attr; ?> width="100%" alt="<?php echo $photos['title'][$i]; ?>">
+                </a>
+              </figure>
+            <?php endfor; ?>
+          </div>
         </div>
       </div>
 
@@ -132,3 +134,5 @@ if ($has_banner) {
   </section>
 
 <?php endwhile; endif; ?>
+
+<?php get_footer(); ?>

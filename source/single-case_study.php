@@ -75,8 +75,58 @@ if ($has_banner) {
         </div>
       </div>
 
+      <div class="post-excerpt padded">
+        <?php the_excerpt(); ?>
+      </div>
+
+      <div class="gallery-images">
+        <div class="gallery-slider">
+          <?php for ($i = 0; $i < $photo_count; $i++): ?>
+            <?php
+            list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'full');
+            $src_attr = fwe_lazy_load_img_src($src, $i);
+            ?>
+            <figure class="slide">
+              <a href="<?php echo $src; ?>">
+                <img <?php echo $src_attr; ?> width="100%" alt="<?php echo $photos['title'][$i]; ?>">
+              </a>
+            </figure>
+          <?php endfor; ?>
+        </div>
+      </div>
+
       <div class="post-content padded">
         <?php the_content(); ?>
+      </div>
+
+      <div class="pagination">
+        <?php
+        $prev_post      = get_adjacent_post();
+        $next_post      = get_adjacent_post(false, '', false);
+        $prev_post_link = $prev_post ? get_permalink($prev_post->ID) : '';
+        $next_post_link = $next_post ? get_permalink($next_post->ID) : '';
+        ?>
+        <a class="previous" href="<?php echo $prev_post_link; ?>">
+          <?php if ($prev_post): ?>
+            <span class="arrow">
+              <span class="fa fa-arrow-left"></span>
+            </span>
+            <span class="link-text">
+              Prev
+            </span>
+          <?php endif; ?>
+        </a>
+
+        <a class="next" href="<?php echo $next_post_link; ?>">
+          <?php if ($next_post): ?>
+            <span class="link-text">
+              Next
+            </span>
+            <span class="arrow">
+              <span class="fa fa-arrow-right"></span>
+            </span>
+          <?php endif; ?>
+        </a>
       </div>
     </article>
   </section>

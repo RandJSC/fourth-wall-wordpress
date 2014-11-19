@@ -10,18 +10,8 @@ global $post, $fwe_settings;
 $banner_link = get_post_type_archive_link('case_study');
 
 include(locate_template('partials/gallery-banner.php'));
+include(locate_template('partials/gallery-quick-links.php'));
 ?>
-
-<section id="quick-links" class="gallery">
-  <?php
-  wp_nav_menu(array(
-    'theme_location' => 'gallery_quick_links',
-    'container'      => 'nav',
-    'fallback_cb'    => false,
-    'walker'         => new Walker_FWE_QuickLinks(),
-  ));
-  ?>
-</section>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
 

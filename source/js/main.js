@@ -24,6 +24,8 @@
   var Handlebars    = require('handlebars');
   var ButtonSpinner = require('./button-spinner');
 
+  var debug         = require('./jquery.debug');
+
   logger.log('timing', 'Begin docReady');
 
   var burgerSvg           = Snap('#hamburger-img');

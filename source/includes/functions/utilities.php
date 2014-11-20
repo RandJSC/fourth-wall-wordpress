@@ -265,4 +265,12 @@ function fwe_get_surname($title) {
 
   return $surname;
 }
+
+function fwe_term_links($terms) {
+  $links = array_map(function($term) {
+    return '<a href="' . get_term_link($term, $term->taxonomy) . '">' . $term->name . '</a>';
+  }, $terms);
+
+  return implode(', ', $links);
+}
 ?>

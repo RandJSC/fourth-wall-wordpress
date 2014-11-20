@@ -22,6 +22,7 @@ include(locate_template('partials/gallery-quick-links.php'));
   $gallery_id  = get_post_meta($post_id, 'gallery_id', true);
   $photos      = get_post_meta($gallery_id, 'gallery_photos', true);
   $photo_count = count($photos['photo']);
+  $categories  = get_the_terms($post_id, 'event_category');
 
   if ($date) {
     $date       = new DateTime($date);
@@ -45,6 +46,15 @@ include(locate_template('partials/gallery-quick-links.php'));
             <div class="date">
               <span class="fa fa-clock-o"></span>
               <span class="text"><?php echo $event_date; ?></span>
+            </div>
+          <?php endif; ?>
+          
+          <?php if (!empty($categories)): ?>
+            <div class="category">
+              <span class="fa fa-tag"></span>
+              <span class="text">
+                <?php echo fwe_term_links($categories); ?>
+              </span>
             </div>
           <?php endif; ?>
         </div>

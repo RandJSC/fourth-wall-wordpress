@@ -13,6 +13,15 @@ piklist('field', array(
   'attributes'  => array(
     'class' => 'text'
   ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(
@@ -23,6 +32,15 @@ piklist('field', array(
   'help'        => 'This icon is used by older versions of Internet Explorer',
   'attributes'  => array(
     'class' => 'text',
+  ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
   ),
 ));
 
@@ -35,6 +53,15 @@ piklist('field', array(
   'attributes'  => array(
     'class' => 'text',
   ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(
@@ -46,6 +73,15 @@ piklist('field', array(
   'attributes'  => array(
     'class' => 'text',
   ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(
@@ -55,6 +91,15 @@ piklist('field', array(
   'description' => 'If a category has no banner image, this one will be used.',
   'attributes'  => array(
     'class' => 'text',
+  ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
   ),
 ));
 
@@ -66,6 +111,15 @@ piklist('field', array(
   'attributes'  => array(
     'class' => 'text',
   ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 
 piklist('field', array(
@@ -75,6 +129,15 @@ piklist('field', array(
   'description' => 'Shown on all Galleries and Case Studies (singles and archives)',
   'attributes'  => array(
     'class' => 'text',
-  )
+  ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
 ));
 ?>

@@ -380,6 +380,25 @@
           return false;
         });
       });
+    },
+
+    eventCategoryPicker: function() {
+      return this.each(function() {
+        logger.log('categoryPicker', 'Setting up event category picker on %O', this);
+        
+        var $el     = $(this);
+        var $picker = $el.find('.category-picker');
+
+        // disable form submission
+        $el.on('submit', function() { return false; });
+
+        // redirect to event category on selection
+        $picker.on('change', function(evt) {
+          var slug = $picker.val();
+
+          logger.log('categoryPicker', 'Redirecting to category: %s', slug);
+        });
+      });
     }
 
   });

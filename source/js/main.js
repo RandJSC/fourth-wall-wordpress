@@ -36,6 +36,7 @@
   var $stitchSliders      = $('.stitch-slider .slides');
   var $teamMembers        = $('.team-members');
   var $gallerySliders     = $('.gallery-slider .slides');
+  var $categoryPicker     = $('#event-categories');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
@@ -65,6 +66,9 @@
     popup: true,
     container: '.gallery-slider'
   });
+
+  // Event category picker
+  $categoryPicker.eventCategoryPicker();
 
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);

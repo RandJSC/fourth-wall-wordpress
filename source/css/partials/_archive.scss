@@ -13,3 +13,40 @@
     padding: rem(5) rem(20);
   }
 }
+
+.page-header {
+  hr {
+    border: 0;
+    border-bottom: 1px solid $post-byline-border;
+    width: 100%;
+  }
+}
+
+.archive-intro {
+  font-size: rem(16);
+  line-height: rem(24);
+}
+
+.gallery-results {
+  .result {
+    margin-bottom: rem(20);
+
+    @include clearfix;
+
+    .thumbnail,
+    .title {
+      float: left;
+    }
+
+    .thumbnail {
+      img {
+        border: 5px solid $archive-thumb-border;
+      }
+    }
+
+    .title {
+      font-weight: bold;
+      margin-left: rem(8);
+    }
+  }
+}

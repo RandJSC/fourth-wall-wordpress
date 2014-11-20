@@ -1,0 +1,15 @@
+.archive-filter {
+  background: $content-bg;
+  padding: rem(30) rem(20);
+  text-align: center;
+
+  select {
+    outline: none;
+    border: 1px solid $select-border;
+    width: rem(275);
+    font-size: rem(16);
+    font-style: italic;
+    background: $white;
+    padding: rem(5) rem(20);
+  }
+}

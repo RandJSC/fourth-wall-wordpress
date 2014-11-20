@@ -22,4 +22,11 @@ piklist('field', array(
   'choices'     => $form_choices,
 ));
 
+piklist('field', array(
+  'type'        => 'editor',
+  'field'       => 'where_weve_been_intro',
+  'label'       => 'Where We\'ve Been Intro Text',
+  'description' => 'This text appears at the top of all Gallery and Case Study archive pages',
+));
+
 ?>

@@ -443,7 +443,7 @@
       var resizeHandler = throttle(function() {
         offsets = getOffsets();
         logger.log('stitchScroll', 'Stitch offsets are: %O', offsets);
-      });
+      }, 100);
 
       var scrollHandler = throttle(function() {
         var scrollTop   = $win.scrollTop();

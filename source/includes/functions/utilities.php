@@ -273,4 +273,12 @@ function fwe_term_links($terms) {
 
   return implode(', ', $links);
 }
+
+function fwe_relative_url($abs_url) {
+  if (strpos($abs_url, 'http') !== 0) return $abs_url;
+
+  $path = parse_url($abs_url, PHP_URL_PATH);
+
+  return $path;
+}
 ?>

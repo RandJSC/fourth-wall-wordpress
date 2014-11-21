@@ -1,7 +1,10 @@
+<?php
+$path = fwe_relative_url(get_permalink($stitch['stitch_page']->ID));
+?>
 <section
   class="stitch content-section"
   data-slug="<?php echo $stitch['stitch_page']->post_name; ?>"
-  data-url="<?php echo get_permalink($stitch['stitch_page']->ID); ?>"<?php echo $stitch['section_style']; ?>>
+  data-url="<?php echo $path; ?>"<?php echo $stitch['section_style']; ?>>
 
   <article class="stitch">
     <div class="post-header<?php echo $stitch['pad_header']; ?><?php echo $stitch['white_header']; ?>">

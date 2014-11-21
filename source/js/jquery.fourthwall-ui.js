@@ -9,6 +9,7 @@
 (function(window, undefined) {
   'use strict';
 
+  var has         = require('lodash.has');
   var isUndefined = require('lodash.isundefined');
   var isEmpty     = require('lodash.isempty');
   var isObject    = require('lodash.isobject');
@@ -408,8 +409,14 @@
     stitchScroll: function() {
       logger.log('stitchScroll', 'Getting stitch offsets and binding scroll handler');
 
+      // no stitch sections, no nothing
       if (!this.length) {
         logger.log('stitchScroll', 'No stitches found');
+        return this;
+      }
+
+      // do nothing if browser doesn't support pushState
+      if (!(has(window, 'history') && has(window.history, 'pushState'))) {
         return this;
       }
 
@@ -439,8 +446,8 @@
       });
 
       var scrollHandler = throttle(function() {
-        var scrollTop     = $win.scrollTop();
-        var firstStitch   = offsets[0];
+        var scrollTop   = $win.scrollTop();
+        var firstStitch = offsets[0];
 
         // remember what the previous stitch was for comparison
         lastStitch = currentStitch;
@@ -459,6 +466,10 @@
 
         if (!isUndefined(currentStitch) && currentStitch !== lastStitch) {
           logger.log('stitchScroll', 'Current stitch: %O', currentStitch);
+
+          var path = currentStitch.element.data('url');
+
+          window.history.pushState({ offset: currentStitch.offset }, '', path);
         }
       }, 100);
 

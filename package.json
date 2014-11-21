@@ -28,6 +28,7 @@
     "lodash.debounce": "^2.4.1",
     "lodash.find": "^2.4.1",
     "lodash.foreach": "^2.4.1",
+    "lodash.has": "^2.4.1",
     "lodash.isempty": "^2.4.1",
     "lodash.isobject": "^2.4.1",
     "lodash.isstring": "^2.4.1",

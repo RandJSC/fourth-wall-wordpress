@@ -469,6 +469,7 @@
 
           var path = currentStitch.element.data('url');
 
+          logger.log('stitchScroll', 'Pushing history state to %s', path);
           window.history.pushState({ offset: currentStitch.offset }, '', path);
         }
       }, 100);

@@ -74,6 +74,9 @@
   // Event category picker
   $categoryPicker.eventCategoryPicker();
 
+  // Stitch pushState scroll watcher
+  $stitches.stitchScroll();
+
   $contactForm.on('submit', function(evt) {
     var $el         = $(this);
     var name        = $el.find('#contact-name').val();

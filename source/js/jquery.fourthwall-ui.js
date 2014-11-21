@@ -9,11 +9,13 @@
 (function(window, undefined) {
   'use strict';
 
+  var isEmpty    = require('lodash.isempty');
   var isObject   = require('lodash.isobject');
   var forEach    = require('lodash.foreach');
   var debounce   = require('lodash.debounce');
   var assign     = require('lodash.assign');
   var throttle   = require('lodash.throttle');
+  var find       = require('lodash.find');
   var $          = require('jquery');
   var config     = require('./config');
   var Snap       = require('./snap.svg.custom');
@@ -402,11 +404,12 @@
     },
 
     stitchScroll: function() {
+      logger.log('stitchScroll', 'Getting stitch offsets and binding scroll handler');
+
       if (!this.length) {
+        logger.log('stitchScroll', 'No stitches found');
         return this;
       }
-
-      logger.log('stitchScroll', 'Getting stitch offsets and binding scroll handler');
 
       var $win       = $(window);
       var $stitches  = $(this);
@@ -416,7 +419,7 @@
           var offset = $(this).offset().top;
 
           return {
-            element: this,
+            element: $(this),
             offset: Math.round(offset)
           };
         }).get();
@@ -432,8 +435,19 @@
       });
 
       var scrollHandler = throttle(function() {
-        var scrollTop = $win.scrollTop();
+        var currentStitch;
+        var scrollTop     = $win.scrollTop();
+        var firstStitch   = offsets[0];
 
+        if (scrollTop < firstStitch.offset) {
+          currentStitch = null;
+        } else {
+          currentStitch = find(offsets, function(offset) {
+            return offset.offset >= scrollTop;
+          });
+        }
+
+        logger.log('stitchScroll', 'Current stitch: %O', currentStitch);
       }, 100);
 
       logger.log('stitchScroll', 'Binding resize and scroll handlers to window');

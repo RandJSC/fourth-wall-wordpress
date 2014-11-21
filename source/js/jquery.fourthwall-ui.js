@@ -9,24 +9,25 @@
 (function(window, undefined) {
   'use strict';
 
-  var isEmpty    = require('lodash.isempty');
-  var isObject   = require('lodash.isobject');
-  var forEach    = require('lodash.foreach');
-  var debounce   = require('lodash.debounce');
-  var assign     = require('lodash.assign');
-  var throttle   = require('lodash.throttle');
-  var find       = require('lodash.find');
-  var $          = require('jquery');
-  var config     = require('./config');
-  var Snap       = require('./snap.svg.custom');
-  var Hammer     = require('hammerjs');
-  var logger     = require('bragi-browser');
-  var fweUtil    = require('./jquery.fourthwall-util');
-  var Handlebars = require('handlebars');
-  var TweenLite  = require('gsap/src/uncompressed/TweenLite');
-  var ScrollTo   = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
-  var Magnific   = require('./jquery.magnific-popup');
-  var gforms     = require('./gforms-api');
+  var isUndefined = require('lodash.isundefined');
+  var isEmpty     = require('lodash.isempty');
+  var isObject    = require('lodash.isobject');
+  var forEach     = require('lodash.foreach');
+  var debounce    = require('lodash.debounce');
+  var assign      = require('lodash.assign');
+  var throttle    = require('lodash.throttle');
+  var find        = require('lodash.find');
+  var $           = require('jquery');
+  var config      = require('./config');
+  var Snap        = require('./snap.svg.custom');
+  var Hammer      = require('hammerjs');
+  var logger      = require('bragi-browser');
+  var fweUtil     = require('./jquery.fourthwall-util');
+  var Handlebars  = require('handlebars');
+  var TweenLite   = require('gsap/src/uncompressed/TweenLite');
+  var ScrollTo    = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
+  var Magnific    = require('./jquery.magnific-popup');
+  var gforms      = require('./gforms-api');
 
   $.magnificPopup    = Magnific.root;
   $.fn.magnificPopup = Magnific.plugin;
@@ -412,8 +413,10 @@
         return this;
       }
 
-      var $win       = $(window);
-      var $stitches  = $(this);
+      var currentStitch = null;
+      var lastStitch    = null;
+      var $win          = $(window);
+      var $stitches     = $(this);
 
       var getOffsets = function() {
         return $stitches.map(function() {
@@ -426,7 +429,7 @@
         }).get();
       };
 
-      var offsets    = getOffsets();
+      var offsets = getOffsets();
 
       logger.log('stitchScroll', 'Stitch offsets are: %O', offsets);
 
@@ -436,19 +439,27 @@
       });
 
       var scrollHandler = throttle(function() {
-        var currentStitch;
         var scrollTop     = $win.scrollTop();
         var firstStitch   = offsets[0];
+
+        // remember what the previous stitch was for comparison
+        lastStitch = currentStitch;
 
         if (scrollTop < firstStitch.offset) {
           currentStitch = null;
         } else {
-          currentStitch = find(offsets, function(offset) {
+          var result = find(offsets, function(offset) {
             return offset.offset >= scrollTop;
           });
+
+          if (!isUndefined(result)) {
+            currentStitch = result;
+          }
         }
 
-        logger.log('stitchScroll', 'Current stitch: %O', currentStitch);
+        if (!isUndefined(currentStitch) && currentStitch !== lastStitch) {
+          logger.log('stitchScroll', 'Current stitch: %O', currentStitch);
+        }
       }, 100);
 
       logger.log('stitchScroll', 'Binding resize and scroll handlers to window');

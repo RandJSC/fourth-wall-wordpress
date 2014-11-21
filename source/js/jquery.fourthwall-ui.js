@@ -399,6 +399,48 @@
           logger.log('categoryPicker', 'Redirecting to category: %s', slug);
         });
       });
+    },
+
+    stitchScroll: function() {
+      if (!this.length) {
+        return this;
+      }
+
+      logger.log('stitchScroll', 'Getting stitch offsets and binding scroll handler');
+
+      var $win       = $(window);
+      var $stitches  = $(this);
+
+      var getOffsets = function() {
+        return $stitches.map(function() {
+          var offset = $(this).offset().top;
+
+          return {
+            element: this,
+            offset: Math.round(offset)
+          };
+        }).get();
+      };
+
+      var offsets    = getOffsets();
+
+      logger.log('stitchScroll', 'Stitch offsets are: %O', offsets);
+
+      var resizeHandler = throttle(function() {
+        offsets = getOffsets();
+        logger.log('stitchScroll', 'Stitch offsets are: %O', offsets);
+      });
+
+      var scrollHandler = throttle(function() {
+        var scrollTop = $win.scrollTop();
+
+      }, 100);
+
+      logger.log('stitchScroll', 'Binding resize and scroll handlers to window');
+
+      $win.on('resize', resizeHandler).on('scroll', scrollHandler);
+
+      return this;
     }
 
   });

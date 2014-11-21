@@ -24,7 +24,8 @@
   var Handlebars    = require('handlebars');
   var ButtonSpinner = require('./button-spinner');
 
-  var debug         = require('./jquery.debug');
+  // remove me in production
+  var debug = require('./jquery.debug');
 
   logger.log('timing', 'Begin docReady');
 
@@ -39,6 +40,7 @@
   var $teamMembers        = $('.team-members');
   var $gallerySliders     = $('.gallery-slider .slides');
   var $categoryPicker     = $('#event-categories');
+  var $stitches           = $('section.stitch');
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;

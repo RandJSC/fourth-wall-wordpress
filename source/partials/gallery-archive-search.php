@@ -11,7 +11,11 @@ $categories = get_terms('event_category', array(
       <option value="">&ndash; Event Categories &ndash;</option>
 
       <?php foreach ($categories as $category): ?>
-        <option value="<?php echo $category->slug; ?>">
+        <?php
+        $term_link = get_term_link($category, $category->taxonomy);
+        $term_link = fwe_relative_url($term_link);
+        ?>
+        <option value="<?php echo $term_link; ?>">
           <?php echo $category->name; ?>
         </option>
       <?php endforeach; ?>

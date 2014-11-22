@@ -1,4 +1,3 @@
-<?php global $banner; ?>
 <?php if ($banner && $banner['banner']): ?>
   <?php
   $banner_src = wp_get_attachment_image_src($banner['banner']);

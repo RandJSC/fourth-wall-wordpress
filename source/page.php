@@ -1,12 +1,12 @@
 <?php
 get_header();
 
-global $post, $fwe_settings, $banner;
+global $post, $fwe_settings;
 
 $banner = fwe_get_page_banner($post->ID);
 ?>
 
-<?php get_template_part('partials/subpage', 'banner'); ?>
+<?php include(locate_template('partials/subpage-banner.php')); ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php

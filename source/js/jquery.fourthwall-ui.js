@@ -399,9 +399,12 @@
 
         // redirect to event category on selection
         $picker.on('change', function(evt) {
-          var slug = $picker.val();
+          var url = $picker.val();
 
-          logger.log('categoryPicker', 'Redirecting to category: %s', slug);
+          if (url) {
+            logger.log('categoryPicker', 'Redirecting to category: %s', url);
+            window.location.pathname = url;
+          }
         });
       });
     },

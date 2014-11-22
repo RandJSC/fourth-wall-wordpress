@@ -404,6 +404,9 @@
           if (url) {
             logger.log('categoryPicker', 'Redirecting to category: %s', url);
             window.location.pathname = url;
+          } else {
+            logger.log('categoryPicker', 'Redirecting to unfiltered gallery archive');
+            window.location.pathname = $picker.data('landingPage');
           }
         });
       });

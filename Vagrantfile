@@ -29,4 +29,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :ansible do |ansible|
     ansible.playbook = 'provision/vagrant.yml'
   end
+  
 end

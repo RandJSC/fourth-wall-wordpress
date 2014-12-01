@@ -155,5 +155,6 @@ module.exports = {
   vagrantCommand: vagrantCommand,
   copyToVagrant: copyToVagrant,
   copyFromVagrant: copyFromVagrant,
-  isVagrant: isVagrant
+  isVagrant: isVagrant,
+  isOSX: isOSX
 };

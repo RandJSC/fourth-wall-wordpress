@@ -16,7 +16,7 @@ $loc_msg       = empty($locations) ? 'Please add some locations!' : '-- Select a
 $location_opts = array( '' => $loc_msg );
 
 foreach ($locations as $loc) {
-  $location_opts[$loc->post_name] = $loc->post_title;
+  $location_opts[$loc->ID] = $loc->post_title;
 }
 
 piklist('field', array(
@@ -26,7 +26,7 @@ piklist('field', array(
 ));
 
 piklist('field', array(
-  'type'    => 'checkbox',
+  'type'    => 'select',
   'field'   => 'location_id',
   'label'   => 'Location',
   'choices' => $location_opts,

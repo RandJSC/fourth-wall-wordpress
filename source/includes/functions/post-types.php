@@ -179,4 +179,28 @@ function fwe_register_post_type_accordion($post_types) {
 }
 add_filter('piklist_post_types', 'fwe_register_post_type_accordion');
 
+/**
+ * Post Type: location
+ */
+function fwe_register_post_type_location($post_types) {
+
+  $post_types['location'] = array(
+    'labels'              => piklist('post_type_labels', 'Location'),
+    'title'               => 'Enter Location Name...',
+    'public'              => true,
+    'menu_icon'           => 'dashicons-location-alt',
+    'exclude_from_search' => true,
+    'publicly_queryable'  => true,
+    'show_in_nav_menus'   => false,
+    'rewrite'             => array( 'slug' => 'location' ),
+    'supports'            => array(
+      'title',
+      'thumbnail',
+    ),
+  );
+
+  return $post_types;
+}
+add_filter('piklist_post_types', 'fwe_register_post_type_location');
+
 ?>

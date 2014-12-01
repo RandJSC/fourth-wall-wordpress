@@ -15,6 +15,22 @@ foreach ($gforms_query as $form) {
 }
 
 piklist('field', array(
+  'type'  => 'text',
+  'field' => 'gforms_api_key',
+  'label' => 'Gravity Forms API Key',
+  'help'  => 'Get this from the Gravity Forms settings page, under API.',
+  'value' => 'bf72b8cd58',
+));
+
+piklist('field', array(
+  'type'  => 'text',
+  'field' => 'gforms_private_key',
+  'label' => 'Gravity Forms Private Key',
+  'help'  => 'Get this from the Gravity Forms settings page, under API.',
+  'value' => '3d86b92f6e1a864',
+));
+
+piklist('field', array(
   'type'        => 'select',
   'field'       => 'contact_form_id',
   'label'       => 'Contact Form',

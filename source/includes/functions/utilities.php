@@ -91,8 +91,17 @@ function fwe_google_maps_link($params = array()) {
 }
 
 function fwe_gforms_request_signature($route, $method = 'GET') {
-  $api_key     = 'bf72b8cd58';
-  $private_key = '3d86b92f6e1a864';
+
+  $settings    = get_option('fwe_settings');
+
+  if (array_key_exists('gforms_api_key', $settings) && array_key_exists('gforms_private_key', $settings)) {
+    $api_key     = $settings['gforms_api_key'];
+    $private_key = $settings['gforms_private_key'];
+  } else {
+    $api_key     = 'bf72b8cd58';
+    $private_key = '3d86b92f6e1a864';
+  }
+
   $expiration  = strtotime('+60 mins');
   $sign_string = sprintf('%s:%s:%s:%s', $api_key, $method, $route, $expires);
   $hash        = hash_hmac('sha1', $sign_string, $private_key, true);

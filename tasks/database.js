@@ -68,6 +68,7 @@ gulp.task('db:down', function() {
   gutil.log(chalk.blue('Syncing staging database down to localhost...'));
 
   var isVagrant    = helpers.isVagrant();
+  var zcat         = helpers.isOSX() ? 'gzcat' : 'zcat';
   var mysqlDumpCmd = helpers.commandTemplate([
     'mysqldump',
     '--user="{{ staging.mysql.username }}"',
@@ -88,7 +89,7 @@ gulp.task('db:down', function() {
   ]);
 
   var mysqlLoadCmd = helpers.commandTemplate([
-    'zcat',
+    zcat,
     '/tmp/{{ staging.mysql.database }}.sql.gz',
     '|',
     'mysql',

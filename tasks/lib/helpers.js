@@ -11,6 +11,7 @@ var shell      = require('gulp-shell');
 var mapStream  = require('map-stream');
 var Handlebars = require('handlebars');
 var path       = require('path');
+var os         = require('os');
 
 var localConfig  = secrets.servers.dev;
 var remoteConfig = secrets.servers.staging;
@@ -140,6 +141,10 @@ var log = function log(msg, once) {
 
 var isVagrant = function isVagrant() {
   return process.env.USER === 'vagrant';
+};
+
+var isOSX = function isOSX() {
+  return os.platform() === 'darwin';
 };
 
 module.exports = {

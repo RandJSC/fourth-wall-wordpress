@@ -12,19 +12,19 @@
 
   'use strict';
 
-  var config        = require('./config');
+  var config        = require('./lib/config');
   var $             = require('jquery');
   var fastClick     = require('fastclick');
   var logger        = require('bragi-browser');
-  var fweUtil       = require('./jquery.fourthwall-util');
-  var fweUI         = require('./jquery.fourthwall-ui');
+  var fweUtil       = require('./lib/jquery.fourthwall-util');
+  var fweUI         = require('./lib/jquery.fourthwall-ui');
   var Slick         = require('slick-carousel');
-  var Snap          = require('./snap.svg.custom');
+  var Snap          = require('./lib/snap.svg.custom');
   var Handlebars    = require('handlebars');
-  var ButtonSpinner = require('./button-spinner');
+  var ButtonSpinner = require('./lib/button-spinner');
 
   // remove me in production
-  var debug = require('./jquery.debug');
+  var debug = require('./lib/jquery.debug');
 
   logger.log('timing', 'Begin docReady');
 

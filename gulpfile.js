@@ -256,7 +256,17 @@ gulp.task('php', function() {
     .pipe($.size({ title: 'php' }));
 });
 
-gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
+gulp.task('scripts', function(cb) {
+  runSequence(
+    [ 'scripts:vendor', 'scripts:copy' ],
+    'scripts:main',
+    'scripts:eventMap',
+    'sourcemaps:fix'
+  );
+  cb();
+});
+
+gulp.task('scripts:main', function() {
   return gulp.src('source/js/main.js')
     .pipe($.browserify(browserifyConfig))
     .pipe(transform(function() { return exorcist('build/js/main.browserify.map'); }))
@@ -266,6 +276,19 @@ gulp.task('scripts', [ 'scripts:vendor', 'scripts:copy' ], function() {
       sourceRoot: webPaths.js
     })))
     .pipe($.size({ title: 'main-js' }))
+    .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('scripts:eventMap', function() {
+  return gulp.src('source/js/event-map.js')
+    .pipe($.browserify(browserifyConfig))
+    .pipe(transform(function() { return exorcist('build/js/event-map.browserify.map'); }))
+    .pipe($.if(isProduction, $.uglifyjs({
+      inSourceMap: 'event-map.browserify.map',
+      outSourceMap: 'event-map.map',
+      sourceRoot: webPaths.js
+    })))
+    .pipe($.size({ title: 'event-map.js' }))
     .pipe(gulp.dest('build/js'));
 });
 

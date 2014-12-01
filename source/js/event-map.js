@@ -8,7 +8,7 @@
   'use strict';
 
   var $      = require('jquery');
-  var config = require('./config');
+  var config = require('./lib/config');
   var logger = require('bragi-browser');
 
   $(document).ready(function() {

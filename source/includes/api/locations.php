@@ -24,14 +24,39 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
   }
 
   public function get_pins($context = 'view') {
-    $params = array(
+    global $wpdb;
+
+    $params   = array(
       'post_type'      => 'location',
       'post_status'    => 'publish',
       'orderby'        => 'name',
       'posts_per_page' => -1,
     );
+    $query    = new WP_Query();
+    $results  = $query->query($params);
+    $data     = array();
+    $response = new WP_JSON_Response();
 
-    // [todo] - get pins via WP_Query and render as WP_JSON_Response instance
+    if (!$results) {
+      $response->set_data(array());
+      return $response;
+    }
+
+    foreach ($results as $loc) {
+      $gallery_count    = (int) $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts AS p LEFT JOIN $wpdb->postmeta AS m ON p.ID = m.post_id WHERE p.post_type = 'gallery' AND m.meta_key = 'location_id' AND m.meta_value = '$loc->ID'");
+      $case_study_count = (int) $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts AS p LEFT JOIN $wpdb->postmeta AS m ON p.ID = m.post_id WHERE p.post_type = 'case_study' AND m.meta_key = 'location_id' AND m.meta_value = '$loc->ID'");
+      $permalink        = get_permalink($loc->ID);
+      $item             = get_object_vars($loc);
+
+      $item['galleries']    = $gallery_count;
+      $item['case_studies'] = $case_study_count;
+      $item['permalink']    = $permalink;
+
+      $data[] = $item;
+    }
+
+    $response->set_data($data);
+    return $response;
   }
 
   protected function prepare_post($post, $context = 'view') {

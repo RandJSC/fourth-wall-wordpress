@@ -12,9 +12,9 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
   public function register_routes($routes) {
     $routes = parent::register_routes($routes);
 
-    $routes['/fwe/location-pins'] = array(
+    $routes['/fwe/locations'] = array(
       array(
-        array($this, 'get_pins'),
+        array($this, 'get_locations'),
         WP_JSON_Server::READABLE,
       ),
     );
@@ -22,7 +22,7 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
     return $routes;
   }
 
-  public function get_pins($context = 'view') {
+  public function get_locations($context = 'view') {
     global $wpdb;
 
     $params   = array(
@@ -47,11 +47,19 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
       $permalink        = get_permalink($loc->ID);
       $item             = get_object_vars($loc);
 
+      unset($item['post_title']);
+      unset($item['post_content']);
+
+      $item['title']        = apply_filters('the_title', $loc->post_title);
+      $item['content']      = apply_filters('the_content', $loc->post_content);
       $item['galleries']    = (int) $gallery_count;
       $item['case_studies'] = (int) $case_study_count;
-      $item['permalink']    = $permalink;
       $item['latitude']     = (float) get_post_meta($loc->ID, 'latitude', true);
       $item['longitude']    = (float) get_post_meta($loc->ID, 'longitude', true);
+      $item['links']        = array(
+        'permalink' => $permalink,
+        'json'      => site_url('/wp-json/fwe/locations/' . $loc->post_name),
+      );
 
       $data[] = $item;
     }

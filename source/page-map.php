@@ -58,7 +58,9 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
         <li>
           <h3>{{ this.title }}</h3>
 
-          {{{ this.content }}}
+          <em>{{formatDate this.date}}</em>
+
+          {{{ this.excerpt }}}
         </li>
       {{/each}}
     </ol>

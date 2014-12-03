@@ -15,7 +15,12 @@
   var forEach    = require('lodash.foreach');
   var Handlebars = require('handlebars');
   var Spinner    = require('spin.js/spin');
+  var moment     = require('moment');
 
+  Handlebars.registerHelper('formatDate', function(dateStr) {
+    var date = moment(dateStr);
+    return new Handlebars.SafeString(date.format('MMMM D, YYYY'));
+  });
 
   $(document).ready(function() {
     logger.log('eventMap', 'Initializing event map');

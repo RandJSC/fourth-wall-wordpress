@@ -21,4 +21,52 @@
       @include transition(opacity 500ms);
     }
   }
+
+  .content {
+    h1 {
+      color: $green;
+      font-size: rem(40);
+    }
+
+    ol {
+      @extend %unlist;
+
+      li {
+        @include clearfix;
+      }
+    }
+
+    .thumbnail,
+    .item-content {
+      float: left;
+    }
+
+    .thumbnail img {
+      border: 5px solid $slider-stroke;
+    }
+
+    .item-content {
+      margin-left: rem(30);
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .date {
+        margin-bottom: rem(6);
+
+        .fa {
+          margin-right: rem(10);
+        }
+      }
+
+      p {
+        margin-top: 0;
+        font-size: rem(16);
+        font-weight: 100;
+        line-height: rem(28);
+      }
+    }
+  }
 }

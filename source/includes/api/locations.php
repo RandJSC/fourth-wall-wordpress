@@ -11,18 +11,10 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
 
   public function register_routes($routes) {
     $routes = parent::register_routes($routes);
-
-    $routes['/fwe/locations'] = array(
-      array(
-        array($this, 'get_locations'),
-        WP_JSON_Server::READABLE,
-      ),
-    );
-
     return $routes;
   }
 
-  public function get_locations($context = 'view') {
+  public function get_posts($filter = array(), $context = 'view', $type = 'location', $page = 1) {
     global $wpdb;
 
     $params   = array(
@@ -58,7 +50,7 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
       $item['longitude']    = (float) get_post_meta($loc->ID, 'longitude', true);
       $item['links']        = array(
         'permalink' => $permalink,
-        'json'      => site_url('/wp-json/fwe/locations/' . $loc->post_name),
+        'json'      => site_url('/wp-json/fwe/locations/' . $loc->ID),
       );
 
       $data[] = $item;

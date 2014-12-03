@@ -22,11 +22,15 @@
     var startLng   = $canvas.data('startingLongitude');
     var startZoom  = $canvas.data('zoom');
     var enableZoom = $canvas.data('enableZoom');
+    var minZoom    = $canvas.data('minZoom');
+    var maxZoom    = $canvas.data('maxZoom');
 
     var mapOpts = {
       center: new google.maps.LatLng(startLat, startLng),
       zoom: startZoom,
       zoomControl: enableZoom,
+      minZoom: minZoom,
+      maxZoom: maxZoom,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map     = new google.maps.Map($canvas[0], mapOpts);

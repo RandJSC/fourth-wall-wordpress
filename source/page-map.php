@@ -26,7 +26,9 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
     data-starting-latitude="<?php echo $fwe_settings['map_starting_latitude']; ?>"
     data-starting-longitude="<?php echo $fwe_settings['map_starting_longitude']; ?>"
     data-zoom="<?php echo $fwe_settings['map_zoom_level']; ?>"
-    data-enable-zoom="<?php echo $enable_zoom; ?>"></div>
+    data-enable-zoom="<?php echo $enable_zoom; ?>"
+    data-min-zoom="<?php echo $fwe_settings['map_min_zoom']; ?>"
+    data-max-zoom="<?php echo $fwe_settings['map_max_zoom']; ?>"></div>
 </section>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key; ?>"></script>

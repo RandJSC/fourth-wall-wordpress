@@ -26,6 +26,30 @@ piklist('field', array(
 ));
 
 piklist('field', array(
+  'type'       => 'number',
+  'field'      => 'map_min_zoom',
+  'label'      => 'Minimum Zoom Level',
+  'value'      => '1',
+  'attributes' => array(
+    'min'  => 1,
+    'max'  => 13,
+    'step' => 1,
+  ),
+));
+
+piklist('field', array(
+  'type'       => 'number',
+  'field'      => 'map_max_zoom',
+  'label'      => 'Maximum Zoom Level',
+  'value'      => '8',
+  'attributes' => array(
+    'min'  => 1,
+    'max'  => 13,
+    'step' => 1,
+  ),
+));
+
+piklist('field', array(
   'type'    => 'radio',
   'field'   => 'map_enable_zoom',
   'label'   => 'Enable Zoom Controls?',

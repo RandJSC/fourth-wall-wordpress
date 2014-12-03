@@ -14,18 +14,24 @@
   var logger     = require('bragi-browser');
   var forEach    = require('lodash.foreach');
   var Handlebars = require('handlebars');
+  var Spinner    = require('spin.js/spin');
 
-  var templates  = {
-    markerTitle: Handlebars.compile('{{ title }} ({{ count }})')
-  };
 
   $(document).ready(function() {
     logger.log('eventMap', 'Initializing event map');
 
-    var loaded   = false;
-    var $canvas  = $('#map-canvas');
-    var data     = $canvas.data();
-    var mapOpts  = {
+    var templates  = {
+      markerTitle: Handlebars.compile('{{ title }} ({{ count }})'),
+      locationContent: Handlebars.compile($('#tpl-location-content').html())
+    };
+
+    var loaded      = false;
+    var $canvas     = $('#map-canvas');
+    var $locContent = $('#location-content');
+    var $spinner    = $locContent.children('.spinner');
+    var $content    = $locContent.children('.content');
+    var data        = $canvas.data();
+    var mapOpts     = {
       center: new google.maps.LatLng(data.startingLatitude, data.startingLongitude),
       zoom: data.zoom,
       zoomControl: data.enableZoom,
@@ -33,7 +39,20 @@
       maxZoom: data.maxZoom,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var eventMap = new google.maps.Map($canvas[0], mapOpts);
+    var eventMap    = new google.maps.Map($canvas[0], mapOpts);
+    var spinner     = new Spinner({
+      lines: 11,
+      length: 16,
+      width: 7,
+      radius: 17,
+      corners: 1.0,
+      trail: 60,
+      color: '#000',
+      className: 'wheel'
+    });
+
+    logger.log('eventMap', 'Appending spinner to #location-content');
+    $spinner.html(spinner.spin().el);
 
     eventMap.addListener('tilesloaded', function(evt) {
       if (loaded) {
@@ -73,11 +92,21 @@
             logger.log('eventMap', 'Marker clicked: %s', loc.title);
             var contentReq = $.ajax(jsonLink, {
               type: 'GET',
-              dataType: 'json'
+              dataType: 'json',
+              beforeSend: function() {
+                logger.log('eventMap', 'Showing spinner');
+                $spinner.addClass('visible');
+              }
             });
 
             contentReq.success(function(content) {
-              
+              logger.log('eventMap', 'Loaded location content: %O', content);
+              logger.log('eventMap', 'Hiding spinner');
+
+              $spinner.removeClass('visible');
+
+              logger.log('eventMap', 'Appending galleries and case studies');
+              $content.html(templates.locationContent(content));
             });
           });
         });

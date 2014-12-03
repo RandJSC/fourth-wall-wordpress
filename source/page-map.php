@@ -32,6 +32,39 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
     data-pins-url="<?php echo site_url('/wp-json/fwe/locations'); ?>"></div>
 </section>
 
+<section id="location-content">
+  <div class="spinner"></div>
+  <div class="content"></div>
+</section>
+
+<script type="text/x-handlebars" id="tpl-location-content">
+  <h1>{{ title }}</h1>
+
+  {{#if case_studies}}
+    <h2>Case Studies</h2>
+    <ol>
+      {{#each case_studies}}
+        <li>
+          {{ this.title }}
+        </li>
+      {{/each}}
+    </ol>
+  {{/if}}
+
+  {{#if galleries}}
+    <h2>Galleries</h2>
+    <ol>
+      {{#each galleries}}
+        <li>
+          <h3>{{ this.title }}</h3>
+
+          {{{ this.content }}}
+        </li>
+      {{/each}}
+    </ol>
+  {{/if}}
+</script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key; ?>"></script>
 <script src="<?php echo $theme_uri; ?>/js/event-map.js"></script>
 

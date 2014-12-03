@@ -28,7 +28,8 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
     data-zoom="<?php echo $fwe_settings['map_zoom_level']; ?>"
     data-enable-zoom="<?php echo $enable_zoom; ?>"
     data-min-zoom="<?php echo $fwe_settings['map_min_zoom']; ?>"
-    data-max-zoom="<?php echo $fwe_settings['map_max_zoom']; ?>"></div>
+    data-max-zoom="<?php echo $fwe_settings['map_max_zoom']; ?>"
+    data-pins-url="<?php echo site_url('/wp-json/fwe/locations'); ?>"></div>
 </section>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key; ?>"></script>

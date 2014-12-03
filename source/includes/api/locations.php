@@ -68,6 +68,8 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
       $post['longitude']    = get_post_meta($post['ID'], 'longitude', true);
       $post['case_studies'] = $this->get_linked_content($post['ID'], 'case_study');
       $post['galleries']    = $this->get_linked_content($post['ID'], 'gallery');
+    } else {
+      $post['event_date']   = get_post_meta($post['ID'], 'event_date', true);
     }
 
     return $post;

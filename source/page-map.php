@@ -56,11 +56,25 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
     <ol>
       {{#each galleries}}
         <li>
-          <h3>{{ this.title }}</h3>
+          <div class="thumbnail">
+            {{#if this.featured_image}}
+              <a href="{{ this.link }}">
+                {{#with this.featured_image.attachment_meta.sizes.thumbnail}}
+                  <img src="{{ url }}" width="{{ width }}" height="{{ height }}">
+                {{/with}}
+              </a>
+            {{/if}}
+          </div>
+          <div class="content">
+            <h3>
+              <a href="{{ this.link }}">{{ this.title }}</a>
+            </h3>
+            <div class="date">
+              {{ formatDate this.event_date }}
+            </div>
 
-          <em>{{formatDate this.date}}</em>
-
-          {{{ this.excerpt }}}
+            {{{ this.excerpt }}}
+          </div>
         </li>
       {{/each}}
     </ol>

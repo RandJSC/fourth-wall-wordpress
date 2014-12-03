@@ -18,8 +18,9 @@
   var moment     = require('moment');
 
   Handlebars.registerHelper('formatDate', function(dateStr) {
-    var date = moment(dateStr);
-    return new Handlebars.SafeString(date.format('MMMM D, YYYY'));
+    var date   = moment(dateStr);
+    var result = date.isValid() ? '<span class="fa fa-clock-o"></span><span class="formatted-date">' + date.format('MMMM D, YYYY') + '</span>' : '';
+    return new Handlebars.SafeString(result);
   });
 
   $(document).ready(function() {

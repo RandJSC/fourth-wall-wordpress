@@ -31,6 +31,13 @@ piklist('field', array(
 ));
 
 piklist('field', array(
+  'type'  => 'text',
+  'field' => 'google_maps_api_key',
+  'label' => 'Google Maps API Key',
+  'value' => 'AIzaSyBi9BiBeHzphNOXhiyaZTWdUtncrD3afdg',
+));
+
+piklist('field', array(
   'type'        => 'select',
   'field'       => 'contact_form_id',
   'label'       => 'Contact Form',

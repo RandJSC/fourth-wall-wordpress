@@ -17,14 +17,16 @@
   var Spinner    = require('spin.js/spin');
   var moment     = require('moment');
 
-  Handlebars.registerHelper('formatDate', function(dateStr) {
-    var date   = moment(dateStr);
-    var result = date.isValid() ? '<span class="fa fa-clock-o"></span><span class="formatted-date">' + date.format('MMMM D, YYYY') + '</span>' : '';
-    return new Handlebars.SafeString(result);
-  });
-
   $(document).ready(function() {
     logger.log('eventMap', 'Initializing event map');
+
+    Handlebars.registerHelper('formatDate', function(dateStr) {
+      var date   = moment(dateStr);
+      var result = date.isValid() ? '<span class="fa fa-clock-o"></span><span class="formatted-date">' + date.format('MMMM D, YYYY') + '</span>' : '';
+      return new Handlebars.SafeString(result);
+    });
+
+    Handlebars.registerPartial('item', $('#tpl-item-partial').html());
 
     var templates  = {
       markerTitle: Handlebars.compile('{{ title }} ({{ count }})'),

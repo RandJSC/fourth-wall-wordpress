@@ -96,6 +96,8 @@
             animation: google.maps.Animation.DROP
           });
 
+          window.marker = marker;
+
           google.maps.event.addListener(marker, 'click', function() {
             logger.log('eventMap', 'Marker clicked: %s', loc.title);
             var contentReq = $.ajax(jsonLink, {
@@ -104,6 +106,7 @@
               beforeSend: function() {
                 logger.log('eventMap', 'Showing spinner');
                 $spinner.addClass('visible');
+                marker.setAnimation(google.maps.Animation.BOUNCE);
               }
             });
 
@@ -112,6 +115,7 @@
               logger.log('eventMap', 'Hiding spinner');
 
               $spinner.removeClass('visible');
+              marker.setAnimation(null);
 
               logger.log('eventMap', 'Appending galleries and case studies');
               $content.html(templates.locationContent(content));

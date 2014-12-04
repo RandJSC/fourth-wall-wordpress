@@ -37,51 +37,8 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
   <div class="content"></div>
 </section>
 
-<script type="text/x-handlebars-template" id="tpl-location-content">
-  <h1>{{ title }}</h1>
-
-  {{#if case_studies}}
-    <h2>Case Studies</h2>
-    <ol>
-      {{#each case_studies}}
-        {{> item}}
-      {{/each}}
-    </ol>
-  {{/if}}
-
-  {{#if galleries}}
-    <h2>Galleries</h2>
-    <ol>
-      {{#each galleries}}
-        {{> item}}
-      {{/each}}
-    </ol>
-  {{/if}}
-</script>
-
-<script type="text/x-handlebars-template" id="tpl-item-partial">
-  <li>
-    <div class="thumbnail">
-      {{#if this.featured_image}}
-        <a href="{{ this.link }}">
-          {{#with this.featured_image.attachment_meta.sizes.thumbnail}}
-            <img src="{{ url }}" width="{{ width }}" height="{{ height }}">
-          {{/with}}
-        </a>
-      {{/if}}
-    </div>
-    <div class="item-content">
-      <h3>
-        <a href="{{ this.link }}">{{ this.title }}</a>
-      </h3>
-      <div class="date">
-        {{ formatDate this.event_date }}
-      </div>
-
-      {{{ this.excerpt }}}
-    </div>
-  </li>
-</script>
+<?php include(locate_template('partials/map-location-content-template.php')); ?>
+<?php include(locate_template('partials/map-content-item-template.php')); ?>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $api_key; ?>"></script>
 <script src="<?php echo $theme_uri; ?>/js/event-map.js"></script>

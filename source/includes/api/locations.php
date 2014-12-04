@@ -34,8 +34,8 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
     }
 
     foreach ($results as $loc) {
-      $gallery_count    = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts AS p LEFT JOIN $wpdb->postmeta AS m ON p.ID = m.post_id WHERE p.post_type = 'gallery' AND m.meta_key = 'location_id' AND m.meta_value = '$loc->ID'");
-      $case_study_count = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts AS p LEFT JOIN $wpdb->postmeta AS m ON p.ID = m.post_id WHERE p.post_type = 'case_study' AND m.meta_key = 'location_id' AND m.meta_value = '$loc->ID'");
+      $gallery_count    = (int) $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts AS p LEFT JOIN $wpdb->postmeta AS m ON p.ID = m.post_id WHERE p.post_type = 'gallery' AND m.meta_key = 'location_id' AND m.meta_value = '$loc->ID'");
+      $case_study_count = (int) $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts AS p LEFT JOIN $wpdb->postmeta AS m ON p.ID = m.post_id WHERE p.post_type = 'case_study' AND m.meta_key = 'location_id' AND m.meta_value = '$loc->ID'");
       $permalink        = get_permalink($loc->ID);
       $item             = get_object_vars($loc);
 
@@ -44,8 +44,9 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
 
       $item['title']        = apply_filters('the_title', $loc->post_title);
       $item['content']      = apply_filters('the_content', $loc->post_content);
-      $item['galleries']    = (int) $gallery_count;
-      $item['case_studies'] = (int) $case_study_count;
+      $item['galleries']    = $gallery_count;
+      $item['case_studies'] = $case_study_count;
+      $item['has_events']   = ($gallery_count + $case_study_count) > 0;
       $item['latitude']     = (float) get_post_meta($loc->ID, 'latitude', true);
       $item['longitude']    = (float) get_post_meta($loc->ID, 'longitude', true);
       $item['links']        = array(
@@ -68,6 +69,7 @@ class FourthWall_Locations extends WP_JSON_CustomPostType {
       $post['longitude']    = get_post_meta($post['ID'], 'longitude', true);
       $post['case_studies'] = $this->get_linked_content($post['ID'], 'case_study');
       $post['galleries']    = $this->get_linked_content($post['ID'], 'gallery');
+      $post['has_events']   = count($post['case_studies']) + count($post['galleries']) > 0;
     } else {
       $post['event_date']   = get_post_meta($post['ID'], 'event_date', true);
     }

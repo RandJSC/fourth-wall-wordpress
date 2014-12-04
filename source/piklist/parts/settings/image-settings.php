@@ -140,4 +140,21 @@ piklist('field', array(
     ),
   ),
 ));
+
+piklist('field', array(
+  'type'        => 'file',
+  'field'       => 'whats_new_banner',
+  'label'       => 'What\'s New Banner',
+  'description' => 'Shown on all news, blog, and author pages',
+  'attributes'  => array( 'class' => 'text' ),
+  'validate'    => array(
+    array(
+      'type'    => 'limit',
+      'options' => array(
+        'min' => 0,
+        'max' => 1,
+      ),
+    ),
+  ),
+));
 ?>

@@ -124,3 +124,7 @@ $transition-easing: ease-out;
 $light: 100;
 $normal: 400;
 $bold: 700;
+
+// Responsive Breakpoints
+$bp-above-tablet: rem(1025);
+$bp-above-mobile: rem(768);

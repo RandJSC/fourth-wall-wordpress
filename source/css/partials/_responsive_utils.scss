@@ -1,0 +1,15 @@
+.show-desktop {
+  display: none !important;
+
+  @include media($bp-above-tablet) {
+    display: block !important;
+  }
+}
+
+.show-tablet {
+  display: none !important;
+
+  @include media($bp-above-mobile) {
+    display: block !important;
+  }
+}

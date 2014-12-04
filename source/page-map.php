@@ -13,6 +13,7 @@ $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
 ?>
 
 <?php include(locate_template('partials/subpage-banner.php')); ?>
+<?php include(locate_template('partials/gallery-quick-links.php')); ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
 

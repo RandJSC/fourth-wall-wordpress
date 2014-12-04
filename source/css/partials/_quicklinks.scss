@@ -37,12 +37,21 @@
     }
 
     li {
-      @include span-columns(6 of 12);
-      @include omega;
+      //@include span-columns(6 of 12);
+      //@include omega;
+      float: left;
       height: rem(140);
       width: 50%;
       margin-right: 0;
       margin-left: 0;
+
+      &.menu-item-map {
+        display: none;
+
+        @include media(min-width $bp-above-tablet) {
+          display: block !important;
+        }
+      }
 
       &:nth-child(1) {
         @include quick-link(

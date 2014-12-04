@@ -16,7 +16,19 @@
 
   .search-form {
     background: $search-box-bg;
-    padding: rem(15);
+    padding: rem(13);
+
+    label {
+      position: relative;
+    }
+
+    .fa {
+      position: absolute;
+      top: rem(2);
+      right: rem(10);
+      font-size: rem(18);
+      color: $text-color;
+    }
 
     span.screen-reader-text {
       display: none;
@@ -24,9 +36,9 @@
 
     input[type="search"],
     input[type="text"] {
-      padding: rem(10);
+      padding: rem(10) rem(15);
       font-size: rem(13);
-      border: 1px solid $search-box-border;
+      border: 1px solid $select-border;
       width: 90%;
       color: darken($text-color, 20%);
       @include appearance(none);
@@ -63,6 +75,48 @@
       &:hover {
         background: $blue;
         color: $white;
+      }
+    }
+  }
+}
+
+@include media($bp-above-tablet) {
+  #main-nav {
+    position: static;
+    top: auto;
+    right: auto;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+
+    @include transform(none);
+    @include transition(none);
+
+    .search-form {
+      float: right;
+      border: 1px solid $select-border;
+      border-top: 0;
+      width: rem(280);
+    }
+
+    ul {
+      @include clearfix;
+
+      li {
+        float: left;
+        border-bottom: 0;
+      }
+
+      a {
+        color: $text-color;
+        font-size: rem(18);
+
+        &:active,
+        &:hover {
+          text-decoration: underline;
+          background: $white;
+          color: $text-color;
+        }
       }
     }
   }

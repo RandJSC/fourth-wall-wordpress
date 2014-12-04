@@ -14,6 +14,11 @@
     }
   };
 
+  config.breakpoints = {
+    aboveTablet: 1025,
+    aboveMobile: 768
+  };
+
   config.colors = {
     blue: '#008fd1',
     text: '#747474'

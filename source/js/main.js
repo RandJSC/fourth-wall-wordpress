@@ -5,7 +5,7 @@
  * by Fifth Room Creative <info@fifthroomcreative.com>
  */
 
-/* global Modernizr */
+/* global Modernizr, matchMedia */
 /* jshint -W064 */
 
 (function(window, undefined) {
@@ -44,8 +44,32 @@
   // Console access to jQuery:
   window.jQuery = window.$ = $;
 
+  var navListener = function navListener(mq) {
+    var $mainNav   = $('#main-nav');
+    var $mobileNav = $('#mobile-nav');
+
+    if (mq.matches && $mobileNav.children().length) {
+      logger.log('mobileNav', 'Moving mobile nav contents to main nav container');
+      $mobileNav.children().prependTo($mainNav);
+    } else if (!mq.matches && $mainNav.children().length) {
+      logger.log('mobileNav', 'Moving main nav contents to mobile nav container');
+      $mainNav.children().prependTo($mobileNav);
+    } else {
+      logger.log('mobileNav', 'Nothing needs to be done');
+    }
+  };
+
   // Attach fastclick to body
   fastClick(document.body);
+
+  if (Modernizr.matchmedia) {
+    var navMQ = matchMedia('screen and (min-width: ' + config.breakpoints.aboveTablet + 'px)');
+    navListener(navMQ);
+
+    if (Modernizr.matchmedialistener) {
+      navMQ.addListener(navListener);
+    }
+  }
 
   $hamburger.toggleNav($container, burgerSvg);
 

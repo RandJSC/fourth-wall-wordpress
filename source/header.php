@@ -49,16 +49,7 @@ $fwe_settings = get_option('fwe_settings');
   <?php get_template_part('partials/facebook', 'init'); ?>
 
   <div id="master-container" class="full-width">
-    <div id="main-nav" class="menu">
-      <?php
-      get_search_form();
-
-      wp_nav_menu(array(
-        'theme_location' => 'main_nav',
-        'container'      => 'nav',
-        'fallback_cb'    => false,
-      ));
-      ?>
+    <div id="mobile-nav" class="menu">
     </div><!-- /#main-nav -->
 
     <div class="pusher">
@@ -80,5 +71,17 @@ $fwe_settings = get_option('fwe_settings');
               </svg>
 
             </a><!-- /#hamburger -->
+            
+            <div id="main-nav" class="menu">
+              <?php
+              get_search_form();
+
+              wp_nav_menu(array(
+                'theme_location' => 'main_nav',
+                'container'      => 'nav',
+                'fallback_cb'    => false,
+              ));
+              ?>
+            </div>
           </header><!-- /#logo-nav-search -->
           <div id="main-content">

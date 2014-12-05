@@ -22,6 +22,45 @@
   nav {
     float: left;
     @include calc(width, '100% - 200px');
+
+    ul {
+      @extend %unlist;
+
+      margin-top: rem(105);
+      padding-left: (75% / 1060 * 100);
+
+      @include clearfix;
+
+      li {
+        float: left;
+        margin-left: rem(15);
+        font-size: rem(18);
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:after {
+          content: '|';
+          display: block;
+          float: right;
+          margin-left: rem(15);
+          font-size: rem(18);
+        }
+
+        &:last-child:after {
+          display: none;
+        }
+
+        a {
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 }
 

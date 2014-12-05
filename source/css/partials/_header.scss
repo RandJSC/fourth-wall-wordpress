@@ -21,15 +21,20 @@
   @include clearfix;
 
   @include media($bp-above-tablet) {
-    height: rem(212);
+    height: rem(222);
     overflow: visible;
     max-width: $max-width;
     margin: 0 auto;
+    padding-top: rem(10);
   }
 
   #logo {
     display: block;
     float: left;
+
+    @include media($bp-above-tablet) {
+      width: rem(200);
+    }
 
     img {
       width: rem(115);

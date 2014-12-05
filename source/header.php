@@ -71,7 +71,7 @@ $fwe_settings = get_option('fwe_settings');
               </svg>
 
             </a><!-- /#hamburger -->
-            
+
             <div id="main-nav" class="menu">
               <?php
               get_search_form();

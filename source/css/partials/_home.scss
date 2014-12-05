@@ -27,6 +27,15 @@
         family: $source-sans;
         weight: 200;
       };
+
+      @include media($bp-above-tablet) {
+        right: 0;
+        width: 47%;
+        text-align: left;
+        font-size: rem(54);
+        padding-left: rem(92);
+        text-shadow: rem(1) rem(1) rem(3) rgba(0, 0, 0, .75);
+      }
     }
   }
 

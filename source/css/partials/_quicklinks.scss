@@ -1,7 +1,17 @@
 #quick-links {
-  margin-top: rem(-15);
   border-bottom: 10px solid $orange;
+  margin-top: rem(-15);
+
   @include clearfix;
+
+  @include media($bp-above-mobile) {
+    background: $quick-links-bg;
+  }
+
+  nav {
+    max-width: rem(1200);
+    margin: 0 auto;
+  }
 
   .menu {
     list-style: none;
@@ -26,6 +36,12 @@
       };
       @include transition(text-shadow 400ms ease-out);
 
+      @include media($bp-above-mobile) {
+        text-align: left;
+        font-size: rem(23);
+        padding-top: rem(40);
+      }
+
       &:hover {
         text-shadow: 0 0 8px rgba(0, 0, 0, .8);
       }
@@ -34,6 +50,11 @@
     span.fa {
       display: block;
       font-size: rem(36);
+
+      @include media($bp-above-mobile) {
+        float: left;
+        margin-right: rem(12);
+      }
     }
 
     li {
@@ -44,6 +65,11 @@
       width: 50%;
       margin-right: 0;
       margin-left: 0;
+
+      @include media($bp-above-mobile) {
+        height: rem(104);
+        width: 25%;
+      }
 
       &.menu-item-map {
         display: none;

@@ -10,7 +10,7 @@
     @include transform(translate3d(rem(-250), 0, 0));
   }
 
-  &.menu-open #main-nav {
+  &.menu-open #mobile-nav {
     @include transform(translate3d(0, 0, 0));
   }
 }

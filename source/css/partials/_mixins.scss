@@ -21,6 +21,62 @@
   }
 }
 
+/**
+ * Search box styles
+ * @param {String} $position
+ * @param {Number} $top
+ * @param {Number} $right
+ */
+@mixin search-box($position: static, $top: 0, $right: 0, $width: auto) {
+  position: $position;
+
+  @if $position == absolute {
+    top: $top;
+    right: $right;
+    border: 1px solid $select-border;
+    border-top: 0;
+  }
+
+  background: $search-box-bg;
+  padding: rem(13);
+  width: $width;
+  text-align: center;
+
+  label {
+    position: relative;
+  }
+
+  .fa {
+    position: absolute;
+    top: rem(2);
+    right: rem(10);
+    font-size: rem(18);
+    color: $text-color;
+  }
+
+  span.screen-reader-text {
+    display: none;
+  }
+
+  input[type="search"],
+  input[type="text"] {
+    border: 1px solid $select-border;
+    padding: rem(10) rem(5);
+    font-size: rem(13);
+    width: 90%;
+    color: darken($text-color, 20%);
+    @include appearance(none);
+
+    @include placeholder {
+      color: $search-box-border;
+    }
+  }
+
+  input[type="submit"] {
+    display: none;
+  }
+}
+
 %button {
   position: relative;
   font-weight: 600;

@@ -5,7 +5,8 @@
   @include clearfix;
 
   @include media($bp-above-mobile) {
-    background: $quick-links-bg;
+    background: $quick-links-bg url('../img/bg-beige.svg') left top repeat;
+    background-size: 32%;
   }
 
   nav {

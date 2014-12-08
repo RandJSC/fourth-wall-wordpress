@@ -45,4 +45,10 @@ piklist('field', array(
   'description' => 'This text appears at the top of all Gallery and Case Study archive pages',
 ));
 
+piklist('field', array(
+  'type'        => 'editor',
+  'field'       => 'email_signup_copy',
+  'label'       => 'Email Signup Intro Copy',
+  'description' => 'Displayed above the email signup form in the footer',
+));
 ?>

@@ -48,25 +48,21 @@ if (isset($post) && fwe_is_post($post)) {
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
-  $post_id        = get_the_ID();
+  global $post;
+  $post_id        = $post->ID;
   $team_member_id = get_post_meta($post_id, 'team_member_id', true);
   $post_tags      = get_the_tags();
-
-  if (!empty($team_member_id)) {
-    $team_member = get_post($team_member_id);
-  }
+  $author_id      = $post->post_author;
+  $google_plus    = get_user_meta($author_id, 'googleplus', true);
   ?>
   <section id="main-page-content" class="content-section">
     <article <?php post_class(); ?>>
       <div class="post-header padded">
         <h1><?php the_title(); ?></h1>
 
-        <?php if (!empty($team_member_id)): ?>
-          <div class="byline">
-            <span class="fa fa-user"></span>
-            <a href="<?php echo get_permalink($team_member_id); ?>">Posted by <?php echo apply_filters('the_title', $team_member->post_title); ?></a>
-          </div>
-        <?php endif; ?>
+        <div class="byline">
+          <span class="fa fa-user"></span>
+          <a rel="me" href="<?php echo $google_plus; ?>" target="_blank">Posted by <?php the_author(); ?></a>
       </div>
 
       <div class="post-date padded">

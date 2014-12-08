@@ -11,6 +11,11 @@ div.content-section {
     background-position: 65% 100%;
     color: $white;
 
+    @include media($bp-above-mobile) {
+      background-size: 80%;
+      background-position: 150% 100%;
+    }
+
     h2 {
       border-color: $white;
     }
@@ -44,6 +49,10 @@ div.content-section {
 
   .section-inner {
     padding: rem(25);
+
+    @include media($bp-above-tablet) {
+      max-width: $max-width;
+    }
   }
 
   h1,

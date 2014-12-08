@@ -44,3 +44,23 @@
   }
 }
 
+#main-page-content.home {
+  max-width: $max-width;
+  margin: 0 auto;
+  @include clearfix;
+
+  p {
+    padding-right: rem(56);
+    padding-left: rem(56);
+  }
+
+  .column-left {
+    float: left;
+    width: 30.188679245%;
+  }
+
+  .column-right {
+    float: right;
+    width: 69.811320755%;
+  }
+}

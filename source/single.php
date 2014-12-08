@@ -63,6 +63,7 @@ if (isset($post) && fwe_is_post($post)) {
         <div class="byline">
           <span class="fa fa-user"></span>
           <a rel="me" href="<?php echo $google_plus; ?>" target="_blank">Posted by <?php the_author(); ?></a>
+        </div>
       </div>
 
       <div class="post-date padded">

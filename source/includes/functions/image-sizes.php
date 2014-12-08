@@ -11,7 +11,7 @@ function fwe_image_sizes() {
   // set_post_thumbnail_size($width, $height, $crop);
   // add_image_size($name, $width, $height, $crop);
 
-  add_image_size('tiny-thumb', 95, 75, true);
+  add_image_size('tiny-thumb', 162, 128, true);
   add_image_size('team-member-headshot', 275, 275, true);
   add_image_size('team-member-thumb', 200, 200, true);
   add_image_size('homepage-slider', 1856, 720, true);

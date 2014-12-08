@@ -52,6 +52,7 @@ div.content-section {
 
     @include media($bp-above-tablet) {
       max-width: $max-width;
+      margin: 0 auto;
     }
   }
 
@@ -102,6 +103,11 @@ div.content-section {
   ul.thumb-list {
     @extend %unlist;
 
+    @include media($bp-above-mobile) {
+      margin: 0 auto;
+      max-width: rem(560);
+    }
+
     li {
       @include clearfix;
       margin-bottom: rem(20);
@@ -112,17 +118,37 @@ div.content-section {
       float: left;
       margin-right: rem(10);
       min-width: rem(95);
+      max-width: 30%;
+
+      @include media($bp-above-mobile) {
+        margin-right: rem(30);
+      }
     }
 
     a.thumb img {
       border: rem(5) solid $white;
       background: $white;
+      width: rem(95);
+      height: rem(75);
+
+      @include media($bp-above-mobile) {
+        width: rem(162);
+        height: rem(128);
+      }
     }
 
     a {
       color: $white;
       font-weight: 600;
+    }
+
+    .float {
       float: left;
+      @include calc(width, '100% - 105px');
+
+      @include media($bp-above-mobile) {
+        @include calc(width, '100% - 192px');
+      }
     }
   }
 }

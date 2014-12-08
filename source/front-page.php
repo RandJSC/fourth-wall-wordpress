@@ -48,7 +48,7 @@ get_header();
     ?>
   </section>
 
-  <section id="main-page-content" class="content-section padded">
+  <section id="main-page-content" class="content-section padded home">
     <h1><?php the_title(); ?></h1>
 
     <?php the_content(); ?>
@@ -77,22 +77,7 @@ if ($blog_query->have_posts()):
 
       <ul class="thumb-list">
         <?php while ($blog_query->have_posts()): $blog_query->the_post(); ?>
-          <?php
-          $blog_id   = get_the_ID();
-          $has_thumb = has_post_thumbnail();
-          $li_class  = $has_thumb ? '' : ' class="no-thumb"';
-          $permalink = get_permalink($blog_id);
-          ?>
-          <li<?php echo $li_class; ?>>
-            <?php if ($has_thumb): ?>
-              <a href="<?php echo $permalink; ?>" class="thumb">
-                <?php the_post_thumbnail('tiny-thumb'); ?>
-              </a>
-            <?php endif; ?>
-            <a href="<?php echo $permalink; ?>">
-              <?php the_title(); ?>
-            </a>
-          </li>
+          <?php include(locate_template('partials/homepage-posts.php')); ?>
         <?php endwhile; wp_reset_postdata(); ?>
       </ul>
     </div>
@@ -116,30 +101,14 @@ if ($news_query->have_posts()):
 
       <ul class="thumb-list">
         <?php while ($news_query->have_posts()): $news_query->the_post(); ?>
-          <?php
-          $news_id   = get_the_ID();
-          $has_thumb = has_post_thumbnail();
-          $li_class  = $has_thumb ? '' : ' class="no-thumb"';
-          $permalink = get_permalink($news_id);
-          ?>
-          <li<?php echo $li_class; ?>>
-            <?php if ($has_thumb): ?>
-              <a href="<?php echo $permalink; ?>" class="thumb">
-                <?php the_post_thumbnail('tiny-thumb'); ?>
-              </a>
-            <?php endif; ?>
-            <a href="<?php echo $permalink; ?>">
-              <?php the_title(); ?>
-            </a>
-          </li>
+          <?php include(locate_template('partials/homepage-posts.php')); ?>
         <?php endwhile; wp_reset_postdata(); ?>
       </ul>
     </div>
   </section>
 <?php endif; ?>
 
-<?php get_template_part('partials/email', 'signup'); ?>
-
-<?php get_template_part('partials/facebook', 'feed'); ?>
+<?php include(locate_template('partials/email-signup.php')); ?>
+<?php include(locate_template('partials/facebook-feed.php')); ?>
 
 <?php get_footer(); ?>

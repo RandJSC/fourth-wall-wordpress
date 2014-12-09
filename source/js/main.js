@@ -100,6 +100,9 @@
   // Stitch pushState scroll watcher
   $stitches.stitchScroll();
 
+  // Set up breakpoints for responsive stitch backgrounds
+  $stitches.setupResponsiveBackgrounds();
+
   // Footer contact form
   $contactForm.contactForm();
 

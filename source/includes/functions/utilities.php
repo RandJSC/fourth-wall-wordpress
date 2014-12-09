@@ -35,7 +35,7 @@ function fwe_get_random_cta() {
   return null;
 }
 
-function fwe_style_attribute($params = array()) {
+function fwe_style_attribute($params = array(), $leading_space = false) {
   $value = '';
 
   foreach ($params as $key => $val) {
@@ -46,7 +46,12 @@ function fwe_style_attribute($params = array()) {
   }
 
   if (!empty($value)) {
-    $value = ' style="' . $value . '"';
+    $value = 'style="' . $value . '"';
+
+    if ($leading_space) {
+      $value = ' ' . $value;
+    }
+
     return $value;
   }
 
@@ -281,7 +286,13 @@ function fwe_build_page_background_object($arr) {
 
 
   for ($i = 0; $i < $length; $i++) {
-    $bg_image = wp_get_attachment_image_src($arr['background_image'][$i][0], 'full');
+    $images   = array_filter($arr['background_image'][$i], function($img) {
+      $int_val = (int) $img;
+      return $int_val > 0;
+    });
+    $images   = array_values($images);
+
+    $bg_image = wp_get_attachment_image_src($images[0], 'full');
     $output[] = array(
       'minWidth'           => $arr['min_width'][$i],
       'backgroundColor'    => $arr['background_color'][$i],

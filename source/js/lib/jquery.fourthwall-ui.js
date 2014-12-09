@@ -18,6 +18,7 @@
   var assign      = require('lodash.assign');
   var throttle    = require('lodash.throttle');
   var find        = require('lodash.find');
+  var sortBy      = require('lodash.sortby');
   var $           = require('jquery');
   var config      = require('./config');
   var Snap        = require('./snap.svg.custom');
@@ -533,6 +534,78 @@
 
         return false;
       });
+    },
+
+    setupResponsiveBackgrounds: function(options) {
+      if (!this.length) return this;
+
+      logger.log('stitchBackgrounds', 'Setting up responsive stitch backgrounds');
+
+      var defaults = {
+        throttle: 50,
+        dataKey: 'data-backgrounds'
+      };
+      var opts     = assign(defaults, options);
+
+      // We only care about stitch sections w/ data-backgrounds attributes
+      var $stitches     = this.filter('[' + opts.dataKey + ']');
+
+      // Iterate through breakpoints for each stitch every time the window is resized
+      var resizeHandler = throttle(function(evt) {
+        var $win  = $(window);
+        var width = $win.width();
+
+        //logger.log('stitchBackgrounds:verbose', 'Window resized: %d', width);
+
+        $stitches.each(function() {
+          var $stitch          = $(this);
+          var $content         = $stitch.find('.post-content');
+          var breakpoints      = $stitch.data('_backgrounds');
+          var oldBreakpoint    = $stitch.data('oldBreakpoint');
+          var oldMin           = oldBreakpoint ? parseInt(oldBreakpoint.minWidth, 10) : 0;
+          var newBreakpoint    = find(breakpoints, function(bp) {
+            return width >= parseInt(bp.minWidth, 10);
+          });
+          var newMin           = parseInt(newBreakpoint.minWidth, 10);
+
+          if (!oldBreakpoint || oldMin !== newMin) {
+            logger.log(
+              'stitchBackgrounds',
+              'Switching stitch background to min-width: %d for %O',
+              newMin,
+              $stitch[0]
+            );
+
+            $stitch.data('oldBreakpoint', newBreakpoint).css({
+              backgroundImage: 'url(' + newBreakpoint.backgroundImage + ')',
+              backgroundSize: newBreakpoint.backgroundSize,
+              backgroundPosition: newBreakpoint.backgroundPosition,
+              backgroundRepeat: newBreakpoint.backgroundRepeat
+            });
+
+            $content.css({
+              backgroundColor: newBreakpoint.backgroundColor
+            });
+          }
+        });
+      }, opts.throttle);
+
+      // Parse, sort, and store stitch background JSON
+      $stitches.each(function() {
+        var backgrounds = $(this).data('backgrounds');
+
+        backgrounds     = sortBy(backgrounds, function(bg) {
+          return parseInt(bg.minWidth, 10);
+        });
+        backgrounds.reverse();
+
+        $(this).data('_backgrounds', backgrounds);
+      });
+
+      $(window).on('resize', resizeHandler);
+      resizeHandler();
+
+      return this;
     }
 
   });

@@ -38,6 +38,19 @@ piklist('field', array(
     ),
 
     array(
+      'type'       => 'range',
+      'field'      => 'color_opacity',
+      'label'      => 'Background Color Opacity',
+      'columns'    => 6,
+      'value'      => 100,
+      'attributes' => array(
+        'min'  => 0,
+        'max'  => 100,
+        'step' => 1,
+      ),
+    ),
+
+    array(
       'type'        => 'file',
       'field'       => 'background_image',
       'label'       => 'Background Image',

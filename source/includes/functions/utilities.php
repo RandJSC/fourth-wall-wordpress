@@ -296,6 +296,7 @@ function fwe_build_page_background_object($arr) {
     $output[] = array(
       'minWidth'           => $arr['min_width'][$i],
       'backgroundColor'    => $arr['background_color'][$i],
+      'colorOpacity'       => $arr['color_opacity'][$i],
       'backgroundImage'    => $bg_image ? $bg_image[0] : '',
       'backgroundSize'     => $arr['background_size'][$i],
       'backgroundPosition' => $arr['background_position'][$i],
@@ -317,5 +318,30 @@ function fwe_build_page_background_object($arr) {
   }
 
   return $output;
+}
+
+function fwe_hex_to_rgba($color, $opacity = 1) {
+  $nothing = 'rgba(0, 0, 0, 0)';
+
+  if (!is_string($color)) {
+    return $nothing;
+  }
+
+  if ((!$opacity && $opacity !== 0) || !($opacity >= 0 && $opacity <= 1)) {
+    $opacity = 1;
+  }
+
+  // Strip garbage characters out of hex string
+  $color = preg_replace('/[^A-F0-9a-f]/', '', $color);
+
+  if (strlen($color) !== 6) {
+    return $nothing;
+  }
+
+  $red   = hexdec(substr($color, 0, 2));
+  $green = hexdec(substr($color, 2, 2));
+  $blue  = hexdec(substr($color, 4, 2));
+
+  return "rgba($red, $green, $blue, $opacity)";
 }
 ?>

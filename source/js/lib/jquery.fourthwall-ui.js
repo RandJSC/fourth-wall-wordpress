@@ -30,6 +30,9 @@
   var ScrollTo    = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
   var Magnific    = require('./jquery.magnific-popup');
   var gforms      = require('./gforms-api');
+  var colors      = require('./colors');
+
+  window.colors = colors;
 
   $.magnificPopup    = Magnific.root;
   $.fn.magnificPopup = Magnific.plugin;
@@ -571,9 +574,10 @@
           if (!oldBreakpoint || oldMin !== newMin) {
             logger.log(
               'stitchBackgrounds',
-              'Switching stitch background to min-width: %d for %O',
+              'Switching stitch background to min-width: %d for %O %O',
               newMin,
-              $stitch[0]
+              $stitch[0],
+              newBreakpoint
             );
 
             $stitch.data('oldBreakpoint', newBreakpoint).css({
@@ -584,7 +588,7 @@
             });
 
             $content.css({
-              backgroundColor: newBreakpoint.backgroundColor
+              backgroundColor: colors.hexToRGBA(newBreakpoint.backgroundColor, (parseInt(newBreakpoint.colorOpacity, 10) / 100))
             });
           }
         });

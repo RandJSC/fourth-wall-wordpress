@@ -219,37 +219,21 @@ function fwe_get_stitch_vars($page_id = 0) {
   $stitch_page    = get_post($page_id);
   $stitch_content = get_post_meta($page_id, 'stitch_content', true);
   $stitch_content = apply_filters('the_content', $stitch_content);
-
-  $bg_image       = get_post_meta($page_id, 'background_image', true);
-  $bg_image       = wp_get_attachment_image_src($bg_image, 'full');
-  $bg_image       = $bg_image[0];
-  $bg_image       = empty($bg_image) ? null : 'url(\'' . $bg_image . '\')';
-
-  $bg_color       = get_post_meta($page_id, 'background_color', true);
-  $bg_size        = get_post_meta($page_id, 'background_size', true);
-  $bg_pos         = get_post_meta($page_id, 'background_position', true);
-  $bg_repeat      = get_post_meta($page_id, 'background_repeat', true);
   $pad_content    = get_post_meta($page_id, 'pad_content', true);
   $pad_content    = ($pad_content === 'no') ? false : true;
   $pad_content    = $pad_content ? ' padded' : '';
   $pad_header     = get_post_meta($page_id, 'pad_header', true);
   $pad_header     = ($pad_header === 'no') ? false : true;
   $pad_header     = $pad_header ? ' padded' : '';
-
-  $section_style  = fwe_style_attribute(array(
-    'background-image'    => $bg_image,
-    'background-size'     => $bg_size,
-    'background-position' => $bg_pos,
-    'background-repeat'   => $bg_repeat,
-  ));
-  $content_style  = fwe_style_attribute(array(
-    'background-color' => $bg_color,
-  ));
-
-  $white_header   = $bg_image ? ' white' : '';
   $slider_images  = get_post_meta($page_id, 'slider_images', true);
   $has_slides     = !empty($slider_images) && !empty($slider_images[0][0]);
   $slide_count    = $has_slides ? count($slider_images['image']) : 0;
+  $backgrounds    = get_post_meta($page_id, 'page_backgrounds', true);
+  $white_header   = '';
+
+  if (!empty($backgrounds) && $backgrounds['background_image'][0]) {
+    $white_header = ' white';
+  }
 
   return array(
     'stitch_page'    => $stitch_page,
@@ -261,8 +245,6 @@ function fwe_get_stitch_vars($page_id = 0) {
     'slide_count'    => $slide_count,
     'slider_images'  => $slider_images,
     'stitch_content' => $stitch_content,
-    'section_style'  => $section_style,
-    'content_style'  => $content_style,
   );
 }
 

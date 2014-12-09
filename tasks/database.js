@@ -108,9 +108,19 @@ gulp.task('db:down', function() {
     '{{ dev.mysql.database }}'
   ]);
 
-  var optionsQuery = helpers.commandTemplate("UPDATE wp_options SET option_value = 'http://{{ dev.url }}' WHERE option_name = 'home' OR option_name = 'siteurl';");
-  var postGuids    = helpers.commandTemplate("UPDATE wp_posts SET guid = REPLACE(guid, 'http://{{ staging.url }}', 'http://{{ dev.url }}');");
-  var postContent  = helpers.commandTemplate("UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://{{ staging.url }}', 'http://{{ dev.url }}');");
+  var changeUrlsCmd = helpers.commandTemplate([
+    'vagrant',
+    'ssh',
+    '--command="{{ searchReplace }}"'
+  ], {
+    searchReplace: helpers.commandTemplate([
+      'bin/wp',
+      'search-replace',
+      'http://{{ staging.url }}',
+      'http://{{ dev.url }}',
+      '--path={{ dev.public_html }}'
+    ])
+  });
 
   return gulp.src('')
     .pipe(helpers.log(chalk.yellow('Dumping remote database')))
@@ -120,8 +130,6 @@ gulp.task('db:down', function() {
     .pipe(helpers.log(chalk.yellow('Loading database dump')))
     .pipe(shell(mysqlLoadCmd, { quiet: true }))
     .pipe(helpers.log(chalk.yellow('Changing URLs in database')))
-    .pipe(shell(helpers.mysqlQuery(optionsQuery), { quiet: true }))
-    .pipe(shell(helpers.mysqlQuery(postGuids), { quiet: true }))
-    .pipe(shell(helpers.mysqlQuery(postContent), { quiet: true }))
+    .pipe(shell(changeUrlsCmd, { quiet: true }))
     .pipe(helpers.log(chalk.green('Done!')));
 });

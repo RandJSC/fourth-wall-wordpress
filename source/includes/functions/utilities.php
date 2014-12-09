@@ -287,4 +287,42 @@ function fwe_relative_url($abs_url) {
   if (strpos($abs_url, 'http') !== 0) return $abs_url;
   return parse_url($abs_url, PHP_URL_PATH);
 }
+
+function fwe_build_page_background_object($arr) {
+  if (empty($arr) || !array_key_exists('min_width', $arr)) {
+    return array();
+  }
+
+
+  $length = count($arr['min_width']);
+  $output = array();
+
+
+  for ($i = 0; $i < $length; $i++) {
+    $bg_image = wp_get_attachment_image_src($arr['background_image'][$i][0], 'full');
+    $output[] = array(
+      'minWidth'           => $arr['min_width'][$i],
+      'backgroundColor'    => $arr['background_color'][$i],
+      'backgroundImage'    => $bg_image ? $bg_image[0] : '',
+      'backgroundSize'     => $arr['background_size'][$i],
+      'backgroundPosition' => $arr['background_position'][$i],
+      'backgroundRepeat'   => $arr['background_repeat'][$i][0],
+    );
+  }
+
+  if (count($output) > 1) {
+    usort($output, function($a, $b) {
+      $min_a = (int) $a['minWidth'];
+      $min_b = (int) $b['minWidth'];
+
+      if ($min_a === $min_b) {
+        return 0;
+      }
+
+      return ($min_a < $min_b) ? -1 : 1;
+    });
+  }
+
+  return $output;
+}
 ?>

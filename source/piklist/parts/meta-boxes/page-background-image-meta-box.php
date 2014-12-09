@@ -40,15 +40,6 @@ piklist('field', array(
       'label'       => 'Background Image',
       'description' => 'This image will be used as the page\'s background, stretched to fill the width of the user\'s screen. For best results, use an SVG.',
       'columns'     => 12,
-      'validate'    => array(
-        array(
-          'type' => 'limit',
-          'options' => array(
-            'min' => 0,
-            'max' => 1,
-          ),
-        ),
-      ),
     ),
 
     array(

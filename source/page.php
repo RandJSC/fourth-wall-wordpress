@@ -19,7 +19,7 @@ $banner = fwe_get_page_banner($post->ID);
   ?>
 
   <?php // This page's content: ?>
-  <?php get_template_part('partials/subpage', 'main-content'); ?>
+  <?php include(locate_template('partials/subpage-main-content.php')); ?>
 
   <?php
   // Stitched subpage content (if any):

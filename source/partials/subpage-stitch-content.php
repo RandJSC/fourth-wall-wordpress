@@ -1,10 +1,16 @@
 <?php
-$path = fwe_relative_url(get_permalink($stitch['stitch_page']->ID));
+$page_id     = $stitch['stitch_page']->ID;
+$path        = fwe_relative_url(get_permalink($page_id));
+$backgrounds = get_post_meta($page_id, 'page_backgrounds', true);
+$backgrounds = fwe_build_page_background_object($backgrounds);
+$bg_data     = !empty($backgrounds) ? json_encode($backgrounds) : '';
+$bg_data     = htmlspecialchars($bg_data);
 ?>
 <section
   class="stitch content-section"
   data-slug="<?php echo $stitch['stitch_page']->post_name; ?>"
-  data-url="<?php echo $path; ?>"<?php echo $stitch['section_style']; ?>>
+  data-url="<?php echo $path; ?>"<?php echo $stitch['section_style']; ?>
+  data-backgrounds="<?php echo $bg_data; ?>">
 
   <article class="stitch">
     <div class="post-header<?php echo $stitch['pad_header']; ?><?php echo $stitch['white_header']; ?>">

@@ -49,9 +49,15 @@ gulp.task('db:up', function() {
     '-u {{ staging.mysql.username }}',
     '-p "{{ staging.mysql.password }}"',
     '-d {{ staging.mysql.database }}',
-    '-o "http://{{ dev.url }}"',
-    '-n "http://{{ staging.url }}"',
     '-x'
+  ]);
+
+  var changeUrlsCmd = helpers.commandTemplate([
+    'bin/wp',
+    'search-replace',
+    'http://{{ dev.url }}',
+    'http://{{ staging.url }}',
+    '--path="{{ staging.rsync.public_html }}"'
   ]);
 
   return gulp.src('')
@@ -61,6 +67,8 @@ gulp.task('db:up', function() {
     .pipe(shell(scpCmd, { quiet: true }))
     .pipe(helpers.log(chalk.blue('Loading database dump on staging')))
     .pipe(helpers.remoteShell(loadDumpCmd, { quiet: true }))
+    .pipe(helpers.log(chalk.blue('Changing URLs in database')))
+    .pipe(helpers.remoteShell(changeUrlsCmd, { quiet: true }))
     .pipe(helpers.log(chalk.green('Done!')));
 });
 

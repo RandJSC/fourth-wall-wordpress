@@ -587,6 +587,8 @@
               backgroundRepeat: newBreakpoint.backgroundRepeat
             });
 
+            var rgba = colors.hexToRGBA(newBreakpoint.backgroundColor, parseInt(newBreakpoint.colorOpacity, 10) / 100);
+            console.log(rgba);
             $content.css({
               backgroundColor: colors.hexToRGBA(newBreakpoint.backgroundColor, (parseInt(newBreakpoint.colorOpacity, 10) / 100))
             });

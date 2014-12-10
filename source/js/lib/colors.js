@@ -16,7 +16,7 @@
 
   module.exports = {
     hexToRGBA: function hexToRGBA(colorString, opacity) {
-      if (!opacity || !(opacity >= 0 && opacity <= 1)) {
+      if ((!opacity && opacity !== 0) || !(opacity >= 0 && opacity <= 1)) {
         opacity = 1;
       }
 

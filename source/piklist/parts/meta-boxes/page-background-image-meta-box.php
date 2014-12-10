@@ -7,12 +7,13 @@ Priority: high
 */
 
 piklist('field', array(
-  'type'     => 'group',
-  'field'    => 'page_backgrounds',
-  'label'    => 'Responsive Backgrounds',
-  'add_more' => true,
-  'columns'  => 12,
-  'fields'   => array(
+  'type'        => 'group',
+  'field'       => 'page_backgrounds',
+  'label'       => 'Responsive Backgrounds',
+  'add_more'    => true,
+  'columns'     => 12,
+  'description' => 'When it\'s displayed as a section of a parent page, you can customize this page\'s background and text color.',
+  'fields'      => array(
     array(
       'type'        => 'number',
       'field'       => 'min_width',
@@ -33,6 +34,17 @@ piklist('field', array(
       'description' => 'The background color shown if the image is too small for the page. Leave blank for transparent.',
       'columns'     => 2,
       'attributes'  => array(
+        'pattern' => '#[a-fA-F0-9]{6}',
+      ),
+    ),
+
+    array(
+      'type'       => 'color',
+      'field'      => 'text_color',
+      'label'      => 'Text Color',
+      'columns'    => 2,
+      'value'      => '#747474',
+      'attributes' => array(
         'pattern' => '#[a-fA-F0-9]{6}',
       ),
     ),

@@ -35,12 +35,16 @@
             <div class="call-to-action"<?php echo $style_attr; ?>>
               <div class="cta-body">
                 <div class="cta-contents">
-                  <?php echo apply_filters('the_content', $cta->post_content); ?>
+                  <div class="cta-text">
+                    <?php echo apply_filters('the_content', $cta->post_content); ?>
+                  </div>
 
                   <?php if (!empty($btn_txt) && !empty($link_url)): ?>
-                    <a class="button center block" href="<?php echo esc_url($link_url); ?>"<?php echo $target; ?>>
-                      <?php echo $btn_txt; ?>
-                    </a>
+                    <div class="cta-button">
+                      <a class="button center block" href="<?php echo esc_url($link_url); ?>"<?php echo $target; ?>>
+                        <?php echo $btn_txt; ?>
+                      </a>
+                    </div>
                   <?php endif; ?>
                 </div>
               </div>

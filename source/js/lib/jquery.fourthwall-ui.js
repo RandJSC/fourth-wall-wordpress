@@ -32,8 +32,6 @@
   var gforms      = require('./gforms-api');
   var colors      = require('./colors');
 
-  window.colors = colors;
-
   $.magnificPopup    = Magnific.root;
   $.fn.magnificPopup = Magnific.plugin;
 

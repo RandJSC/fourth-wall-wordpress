@@ -43,6 +43,8 @@ $fwe_settings = get_option('fwe_settings');
 
   <script src="<?php echo $theme_uri; ?>/js/bundle.js"></script>
 
+  <?php include(locate_template('partials/addthis.php')); ?>
+
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

@@ -5,7 +5,7 @@
  * by Fifth Room Creative <info@fifthroomcreative.com>
  */
 
-/* global Modernizr, matchMedia */
+/* global Modernizr, matchMedia, addthis */
 /* jshint -W064 */
 
 (function(window, undefined) {
@@ -43,6 +43,9 @@
 
   // Console access to jQuery:
   window.jQuery = window.$ = $;
+
+  // Setup AddThis sharing buttons
+  addthis.button('.addthis-share');
 
   var navListener = function navListener(mq) {
     var $mainNav   = $('#main-nav');

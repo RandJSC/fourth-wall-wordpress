@@ -4,6 +4,7 @@
 #main-nav {
   display: none;
   position: relative;
+  z-index: 9;
 
   @include clearfix;
 

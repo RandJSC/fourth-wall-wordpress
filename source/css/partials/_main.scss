@@ -296,11 +296,24 @@ button {
   }
 
   form > p {
-    float: left;
-    @include calc(width, '50% - 10px');
+    @include media($bp-above-tablet) {
+      float: left;
+      text-align: left;
+      @include calc(width, '50% - 10px');
+    }
 
     &:first-child {
-      margin-right: rem(20);
+      @include media($bp-above-tablet) {
+        margin-right: rem(20);
+      }
+    }
+
+    input {
+      width: 100%;
+
+      @include media($bp-above-tablet) {
+        @include calc(width, '100% - 10px');
+      }
     }
   }
 }

@@ -41,4 +41,15 @@ piklist('field', array(
     ),
   ),
 ));
+
+piklist('field', array(
+  'type'    => 'radio',
+  'field'   => 'facebook_widget_border',
+  'label'   => 'Show border around widget?',
+  'value'   => 'false',
+  'choices' => array(
+    'true'  => 'Yes',
+    'false' => 'No',
+  ),
+))
 ?>

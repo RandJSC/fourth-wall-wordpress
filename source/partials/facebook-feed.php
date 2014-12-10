@@ -20,7 +20,7 @@ if (array_key_exists('facebook_page_url', $fwe_settings) && $fwe_settings['faceb
         data-show-faces="false"
         data-header="false"
         data-stream="true"
-        data-show-border="true"></div>
+        data-show-border="<?php echo $fwe_settings['facebook_widget_border']; ?>"></div>
 
       <a href="<?php echo esc_url($fwe_settings['facebook_page_url']); ?>" class="button block center" target="_blank">
         Like on Facebook

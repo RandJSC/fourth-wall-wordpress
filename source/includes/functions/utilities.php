@@ -297,6 +297,7 @@ function fwe_build_page_background_object($arr) {
       'minWidth'           => $arr['min_width'][$i],
       'backgroundColor'    => $arr['background_color'][$i],
       'colorOpacity'       => $arr['color_opacity'][$i],
+      'textColor'          => $arr['text_color'][$i],
       'backgroundImage'    => $bg_image ? $bg_image[0] : '',
       'backgroundSize'     => $arr['background_size'][$i],
       'backgroundPosition' => $arr['background_position'][$i],

@@ -18,6 +18,7 @@ if (!empty($backgrounds)) {
     'background-repeat'   => $first_bg['backgroundRepeat'],
   ), true);
   $content_style = fwe_style_attribute(array(
+    'color'            => $first_bg['textColor'],
     'background-color' => fwe_hex_to_rgba($first_bg['backgroundColor'], $first_bg['colorOpacity']),
   ), true);
 }

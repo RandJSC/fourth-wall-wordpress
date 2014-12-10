@@ -590,6 +590,7 @@
             var rgba = colors.hexToRGBA(newBreakpoint.backgroundColor, parseInt(newBreakpoint.colorOpacity, 10) / 100);
             console.log(rgba);
             $content.css({
+              color: newBreakpoint.textColor,
               backgroundColor: colors.hexToRGBA(newBreakpoint.backgroundColor, (parseInt(newBreakpoint.colorOpacity, 10) / 100))
             });
           }

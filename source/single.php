@@ -55,10 +55,10 @@ if (isset($post) && fwe_is_post($post)) {
   $author_id      = $post->post_author;
   $google_plus    = get_user_meta($author_id, 'googleplus', true);
   ?>
-  <section id="main-page-content" class="content-section">
+  <section id="main-page-content" class="content-section" itemscope itemtype="http://schema.org/BlogPosting">
     <article <?php post_class(); ?>>
       <div class="post-header padded">
-        <h1><?php the_title(); ?></h1>
+        <h1 itemprop="headline"><?php the_title(); ?></h1>
 
         <div class="byline">
           <span class="fa fa-user"></span>
@@ -68,7 +68,7 @@ if (isset($post) && fwe_is_post($post)) {
 
       <div class="post-date padded">
         <span class="fa fa-clock-o"></span>
-        <?php the_date(); ?>
+        <time itemprop="datePublished" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
       </div>
 
       <?php if ($post_tags): ?>
@@ -78,7 +78,7 @@ if (isset($post) && fwe_is_post($post)) {
         </div>
       <?php endif; ?>
 
-      <div class="post-excerpt padded">
+      <div class="post-excerpt padded" itemtype="description">
         <?php the_excerpt(); ?>
       </div>
 
@@ -88,11 +88,11 @@ if (isset($post) && fwe_is_post($post)) {
         $thumb_src = wp_get_attachment_image_src($thumb_id, 'full');
         ?>
         <div class="post-featured-image">
-          <img src="<?php echo $thumb_src[0]; ?>" width="100%" alt="<?php the_title(); ?>">
+          <img src="<?php echo $thumb_src[0]; ?>" width="100%" alt="<?php the_title(); ?>" itemprop="thumbnailImage">
         </div>
       <?php endif; ?>
 
-      <div class="post-content padded">
+      <div class="post-content padded" itemprop="articleBody">
         <?php the_content(); ?>
       </div>
     </article>

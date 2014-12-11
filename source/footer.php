@@ -68,6 +68,9 @@
             <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
             <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
 
+            <p class="hide" itemprop="name"><?php echo $fwe_settings['company_name']; ?></p>
+            <p class="hide" itemprop="description"><?php echo $fwe_settings['description']; ?></p>
+
             <div class="street-address contact">
               <div class="icon">
                 <a href="<?php echo $map_link; ?>" target="_blank">
@@ -95,8 +98,8 @@
               </div>
 
               <div class="info">
-                <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>" itemprop="email">
-                  <?php echo $fwe_settings['contact_email']; ?>
+                <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>">
+                  <span itemprop="email"><?php echo $fwe_settings['contact_email']; ?></span>
                 </a>
               </div>
             </div>

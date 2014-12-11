@@ -120,12 +120,14 @@
 
           <div id="contact-form">
             <form action="" method="post" data-form-id="<?php echo $fwe_settings['contact_form_id']; ?>">
-              <p class="split">
-                <input type="text" placeholder="Your Name" name="contact_name" id="contact-name" required>
-              </p>
-              <p class="split">
-                <input type="email" placeholder="Your Email" name="contact_email" id="contact-email" required>
-              </p>
+              <div class="row">
+                <p class="split">
+                  <input type="text" placeholder="Your Name" name="contact_name" id="contact-name" required>
+                </p>
+                <p class="split">
+                  <input type="email" placeholder="Your Email" name="contact_email" id="contact-email" required>
+                </p>
+              </div>
               <p>
                 <textarea name="contact_message" id="contact-message"></textarea>
               </p>

@@ -14,6 +14,11 @@
     padding: 0 rem(20);
     color: $cta-text;
     font-size: rem(18);
+
+    @include media($bp-above-tablet) {
+      font-size: rem(22);
+      line-height: rem(28);
+    }
   }
 
   .cta-text {
@@ -117,6 +122,14 @@
   .contact {
     margin-bottom: rem(40);
 
+    @include media($bp-above-mobile) {
+      margin-bottom: 0;
+
+      &:last-child {
+        margin-bottom: rem(40);
+      }
+    }
+
     @include clearfix;
 
     .icon {
@@ -162,8 +175,24 @@
       }
     }
 
+    .row {
+      @include clearfix;
+    }
+
     p {
       margin-bottom: 0;
+
+      &.split {
+        @include media($bp-above-tablet) {
+          float: left;
+          width: 48%;
+          margin-right: 4%;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
     }
 
     textarea {
@@ -182,9 +211,13 @@
 
     li {
       display: inline-block;
-      padding: 0 rem(20);
       border-right: 1px solid $white;
+      padding: 0 rem(20);
       font-size: rem(20);
+
+      @include media($bp-above-tablet) {
+        font-size: rem(26);
+      }
 
       &:last-child {
         border-right: 0;
@@ -207,12 +240,19 @@
   background: $footer-credits;
   padding-top: rem(30);
   padding-bottom: rem(30);
+  @include clearfix;
 
   p {
     margin-top: 0;
     margin-bottom: rem(10);
     text-align: center;
     font-style: italic;
+
+    @include media($bp-above-tablet) {
+      float: left;
+      width: 50%;
+      font-size: rem(15);
+    }
 
     &:last-child {
       margin-bottom: 0;

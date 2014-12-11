@@ -13,12 +13,32 @@ section.content-section article.stitch {
   .padded {
     padding-left: rem(25);
     padding-right: rem(25);
+
+    @include media($bp-above-mobile) {
+      width: 100%;
+      max-width: $max-width;
+      margin: 0 auto rem(40);
+    }
   }
 
   .post-header {
+
     h1 {
       margin-top: rem(5);
       margin-bottom: rem(5);
+
+      @include media($bp-above-mobile) {
+        font-size: rem(40);
+        text-align: center;
+        margin-bottom: rem(40);
+      }
+    }
+
+    &.padded.white {
+      @include media($bp-above-mobile) {
+        padding-left: 0;
+        padding-right: 0;
+      }
     }
   }
 

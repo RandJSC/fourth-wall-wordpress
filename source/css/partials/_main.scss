@@ -3,6 +3,10 @@
 .sharing {
   @include clearfix;
 
+  @include media($bp-above-mobile) {
+    margin-bottom: rem(40);
+  }
+
   a.addthis-share {
     display: block;
     float: right;
@@ -97,7 +101,6 @@ div.content-section {
   }
 
   h2 {
-    border-bottom: 1px solid $hr-grey;
     padding-bottom: rem(25);
 
     @include media($bp-above-mobile) {
@@ -107,6 +110,40 @@ div.content-section {
     a {
       text-decoration: none;
       color: inherit;
+    }
+  }
+
+  .stitch {
+    h2 {
+      border-bottom: 1px solid $hr-grey;
+
+      @include media($bp-above-mobile) {
+        margin-bottom: rem(40);
+      }
+    }
+
+    .post-content.padded {
+      @include media($bp-above-mobile) {
+        border-radius: rem(18);
+        padding: rem(40) rem(100);
+        max-width: $max-width;
+      }
+
+      p {
+        @include media($bp-above-mobile) {
+          font-size: rem(22);
+          line-height: rem(29);
+          font-weight: 100;
+        }
+      }
+
+      p:first-child,
+      p:last-child {
+        @include media($bp-above-mobile) {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
     }
   }
 
@@ -265,6 +302,11 @@ button {
   border-top: rem(10) solid $banner-border;
   min-height: rem(50);
 
+  @include media($bp-above-mobile) {
+    border-bottom: rem(12) solid $blue;
+    margin-bottom: rem(40);
+  }
+
   img {
     max-height: 720px;
   }
@@ -279,6 +321,15 @@ button {
     font-size: rem(31);
     font-weight: 200;
     padding: rem(2) rem(22) rem(5);
+
+    @include media($bp-above-mobile) {
+      width: auto;
+      background: rgba(0, 0, 0, 0.69);
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+      font-size: rem(54);
+      padding-left: rem(28);
+      padding-right: rem(64);
+    }
   }
 }
 

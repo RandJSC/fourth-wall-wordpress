@@ -7,6 +7,10 @@
     @extend %unlist;
     margin-bottom: rem(12);
 
+    @include media($bp-above-mobile) {
+      margin-bottom: rem(40);
+    }
+
     li {
       @include clearfix;
     }
@@ -19,6 +23,10 @@
       width: rem(53);
       padding-left: rem(14);
 
+      @include media($bp-above-mobile) {
+        font-size: rem(102);
+      }
+
       &.right {
         text-align: right;
         padding-right: rem(14);
@@ -29,7 +37,8 @@
     blockquote {
       float: left;
       margin: 0;
-      width: rem(214);
+      min-width: rem(214);
+      @include calc(width, '100% - 106px');
       text-align: center;
       padding: rem(8);
 
@@ -41,6 +50,21 @@
         margin-top: rem(10);
         margin-bottom: rem(6);
         line-height: rem(24);
+
+        &:first-child {
+          padding-top: rem(8) !important;
+        }
+
+        @include media($bp-above-mobile) {
+          font-size: rem(22);
+          line-height: rem(26);
+        }
+      }
+
+      footer {
+        @include media($bp-above-mobile) {
+          margin-top: rem(40);
+        }
       }
 
       cite {

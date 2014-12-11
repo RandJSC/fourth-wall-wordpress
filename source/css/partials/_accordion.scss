@@ -1,6 +1,8 @@
 .accordion {
   visibility: hidden;
   opacity: 0;
+  max-width: $max-width;
+  margin: 0 auto;
   @include transition(opacity $transition-speed);
 
   &.initialized {
@@ -18,36 +20,66 @@
       display: block;
       width: 100%;
       padding: rem(25);
-      padding-left: 30%;
+      padding-left: rem(104);
       color: $white;
       font-size: rem(24);
       line-height: rem(29);
       background-position: 7.8125% 0;
       @include clearfix;
+
+      @include media($bp-above-mobile) {
+        font-size: rem(35);
+        line-height: 1.2;
+      }
+    }
+
+    .icon {
+      float: left;
+      width: rem(40);
+      margin-right: rem(28);
     }
 
     .title {
       float: left;
-      width: 76.5625%;
+      @include calc(width, '100% - 180px');
     }
 
     .plusminus {
+      display: block;
       float: left;
-      width: 23.4375%;
+      width: rem(30);
       text-align: right;
       color: $white;
       font-size: rem(65);
       line-height: rem(26);
+
+      @include media($bp-above-mobile) {
+        margin-top: rem(10);
+      }
     }
   }
 
   .pane-content {
     overflow: hidden;
-    @include transition(max-height 500ms ease-out);
+    @include transition(max-height 500ms ease-out, padding 500ms ease-out);
 
     &.closed {
       //max-height: 0;
-      @include transition(max-height 500ms ease-out);
+      @include transition(max-height 500ms ease-out, padding 500ms ease-out);
+    }
+
+    .pane-body {
+      @include media($bp-above-mobile) {
+        padding: rem(40) rem(104);
+      }
+
+      h2 {
+        border-bottom: 0;
+      }
+    }
+
+    h2 {
+      font-size: rem(20);
     }
   }
 }

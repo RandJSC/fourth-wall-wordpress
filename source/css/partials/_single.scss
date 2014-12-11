@@ -34,7 +34,7 @@ section.content-section article.stitch {
       }
     }
 
-    &.padded.white {
+    &.padded {
       @include media($bp-above-mobile) {
         padding-left: 0;
         padding-right: 0;

@@ -139,15 +139,14 @@ function fwe_accordion_shortcode($atts) {
       $header_style = fwe_style_attribute(array(
         'background-color' => $panes['header_background'][$i],
       ));
-      $link_style   = fwe_style_attribute(array(
-        'background-image'    => 'url(' . $pane_icon[0] . ')',
-        'background-repeat'   => 'no-repeat',
-      ));
       ?>
       <div class="pane">
         <div class="pane-header" id="<?php echo $header_id; ?>"<?php echo $header_style; ?>>
           <?php echo '<' . $header . '>'; ?>
-            <a href="#<?php echo $pane_id; ?>"<?php echo $link_style; ?>>
+            <a href="#<?php echo $pane_id; ?>">
+              <div class="icon">
+                <img src="<?php echo $pane_icon[0]; ?>">
+              </div>
               <div class="title"><?php echo apply_filters('the_title', $panes['title'][$i]); ?></div>
               <div class="plusminus">+</div>
             </a>

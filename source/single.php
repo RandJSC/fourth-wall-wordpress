@@ -88,7 +88,7 @@ if (isset($post) && fwe_is_post($post)) {
         $thumb_src = wp_get_attachment_image_src($thumb_id, 'full');
         ?>
         <div class="post-featured-image">
-          <img src="<?php echo $thumb_src[0]; ?>" width="100%" alt="<?php the_title(); ?>" itemprop="thumbnailImage">
+          <img src="<?php echo $thumb_src[0]; ?>" width="100%" alt="<?php the_title(); ?>" itemprop="thumbnailUrl">
         </div>
       <?php endif; ?>
 

@@ -30,25 +30,25 @@ include(locate_template('partials/gallery-quick-links.php'));
   }
   ?>
   <section id="main-page-content" class="content-section case-study">
-    <article <?php post_class(); ?>>
+    <article itemscope itemtype="http://schema.org/WebPage" <?php post_class(); ?>>
       <div class="post-header padded">
-        <h1><?php the_title(); ?></h1>
+        <h1 itemprop="headline"><?php the_title(); ?></h1>
 
-        <div class="details">
+        <div class="details" itemprop="recordedAt" itemscope itemtype="http://schema.org/Event">
           <?php if ($location): ?>
-            <div class="location">
+            <div class="location" itemprop="location" itemscope itemtype="http://schema.org/Place">
               <span class="fa fa-map-marker"></span>
-              <span class="text"><?php echo $location; ?></span>
+              <span class="text" itemprop="name"><?php echo $location; ?></span>
             </div>
           <?php endif; ?>
 
           <?php if (isset($event_date)): ?>
             <div class="date">
               <span class="fa fa-clock-o"></span>
-              <span class="text"><?php echo $event_date; ?></span>
+              <span class="text" itemprop="startDate"><?php echo $event_date; ?></span>
             </div>
           <?php endif; ?>
-          
+
           <?php if (!empty($categories)): ?>
             <div class="category">
               <span class="fa fa-tag"></span>
@@ -60,7 +60,7 @@ include(locate_template('partials/gallery-quick-links.php'));
         </div>
       </div>
 
-      <div class="post-excerpt padded">
+      <div class="post-excerpt padded" itemprop="about">
         <?php the_excerpt(); ?>
       </div>
 
@@ -82,7 +82,7 @@ include(locate_template('partials/gallery-quick-links.php'));
         </div>
       </div>
 
-      <div class="post-content padded">
+      <div class="post-content padded" itemprop="text">
         <?php the_content(); ?>
       </div>
 

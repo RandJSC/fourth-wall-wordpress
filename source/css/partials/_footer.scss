@@ -46,6 +46,10 @@
     max-width: rem(270);
     text-align: center;
     @include clearfix;
+
+    @include media($bp-above-mobile) {
+      max-width: rem(380);
+    }
   }
 
   li {
@@ -53,6 +57,11 @@
     width: rem(32);
     text-align: center;
     margin-right: rem(12);
+
+    @include media($bp-above-mobile) {
+      width: rem(40);
+      margin-right: rem(22);
+    }
 
     &:last-child {
       margin-right: 0;
@@ -63,6 +72,10 @@
     font-size: rem(32);
     color: $white;
     text-decoration: none;
+
+    @include media($bp-above-mobile) {
+      font-size: rem(40);
+    }
 
     &:hover {
       color: $green;

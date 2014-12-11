@@ -16,7 +16,7 @@ $post_date = get_the_date('F j, Y');
   <?php endif; ?>
 
   <div class="float">
-    <a href="<?php echo $permalink; ?>">
+    <a href="<?php echo $permalink; ?>" class="title">
       <?php the_title(); ?>
     </a>
 

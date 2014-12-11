@@ -28,6 +28,12 @@
 
 section.content-section,
 div.content-section {
+  &#main-page-content {
+    h2 {
+      font-size: rem(24);
+    }
+  }
+
   &.padded {
     padding: rem(25);
   }
@@ -93,6 +99,10 @@ div.content-section {
   h2 {
     border-bottom: 1px solid $hr-grey;
     padding-bottom: rem(25);
+
+    @include media($bp-above-mobile) {
+      font-size: rem(40);
+    }
 
     a {
       text-decoration: none;
@@ -179,6 +189,13 @@ div.content-section {
     a {
       color: $white;
       font-weight: 600;
+
+      &.title {
+        @include media($bp-above-mobile) {
+          font-size: rem(20);
+          line-height: rem(26);
+        }
+      }
     }
 
     .float {
@@ -187,6 +204,14 @@ div.content-section {
 
       @include media($bp-above-mobile) {
         @include calc(width, '100% - 192px');
+      }
+    }
+
+    .excerpt {
+      margin-top: rem(2);
+
+      p {
+        margin-top: 0;
       }
     }
   }

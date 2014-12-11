@@ -78,7 +78,7 @@ if (isset($post) && fwe_is_post($post)) {
         </div>
       <?php endif; ?>
 
-      <div class="post-excerpt padded" itemtype="description">
+      <div class="post-excerpt padded" itemprop="description">
         <?php the_excerpt(); ?>
       </div>
 

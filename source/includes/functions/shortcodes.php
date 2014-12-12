@@ -75,6 +75,8 @@ function fwe_accordion_shortcode($atts) {
     'header' => 'h3',
   ), $atts));
 
+  if (!$id) return '';
+
   $accordion = get_post($id);
 
   if (!$accordion || $accordion->post_type !== 'accordion') return '';

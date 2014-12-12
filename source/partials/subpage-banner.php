@@ -1,6 +1,6 @@
 <?php if ($banner && $banner['banner']): ?>
   <?php
-  $banner_src = wp_get_attachment_image_src($banner['banner']);
+  $banner_src = wp_get_attachment_image_src($banner['banner'], 'full');
   ?>
   <section class="banner">
     <figure id="page-banner">

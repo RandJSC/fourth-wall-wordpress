@@ -72,6 +72,8 @@
     }
 
     .pane-body {
+      padding: rem(40) rem(24);
+
       @include media($bp-above-mobile) {
         padding: rem(40) rem(104);
       }

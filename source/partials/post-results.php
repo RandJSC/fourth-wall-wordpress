@@ -14,6 +14,16 @@
           <a href="<?php the_permalink(); ?>">
             <?php the_title(); ?>
           </a>
+          <div class="show-desktop">
+            <div class="date">
+              <span class="fa fa-clock-o"></span>
+              <span class="text"><?php echo get_the_date(); ?></span>
+            </div>
+
+            <div class="excerpt">
+              <?php the_excerpt(); ?>
+            </div>
+          </div>
         </div>
       </div>
     <?php endwhile; ?>

@@ -39,6 +39,14 @@ piklist('field', array(
 ));
 
 piklist('field', array(
+  'type'        => 'select',
+  'field'       => 'hire_us_form_id',
+  'label'       => '"Hire Us" Form',
+  'description' => 'Which Gravity Form should the "Hire Us" page send its responses to?',
+  'choices'     => $form_choices,
+));
+
+piklist('field', array(
   'type'        => 'editor',
   'field'       => 'where_weve_been_intro',
   'label'       => 'Where We\'ve Been Intro Text',

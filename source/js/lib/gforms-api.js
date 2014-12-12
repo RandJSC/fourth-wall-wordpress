@@ -19,7 +19,7 @@
     return base64;
   };
 
-  module.exports = {
+  module.exports = window.gforms = {
     getSignature: function getSignature(route, method) {
       route          = route ? route : '/';
       method         = method ? method : 'GET';

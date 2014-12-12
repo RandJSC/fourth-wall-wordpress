@@ -20,14 +20,14 @@
       display: block;
       width: 100%;
       padding: rem(25);
-      padding-left: rem(104);
+      padding-left: rem(32);
       color: $white;
       font-size: rem(24);
       line-height: rem(29);
-      background-position: 7.8125% 0;
       @include clearfix;
 
       @include media($bp-above-mobile) {
+        padding-left: rem(104);
         font-size: rem(35);
         line-height: 1.2;
       }
@@ -41,7 +41,11 @@
 
     .title {
       float: left;
-      @include calc(width, '100% - 180px');
+      @include calc(width, '100% - 120px');
+
+      @include media($bp-above-mobile) {
+        @include calc(width, '100% - 180px');
+      }
     }
 
     .plusminus {

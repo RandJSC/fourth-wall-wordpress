@@ -44,6 +44,9 @@
   // Console access to jQuery:
   window.jQuery = window.$ = $;
 
+  // Console access to Bragi logger:
+  window.logger = logger;
+
   // Setup AddThis sharing buttons
   if (window.hasOwnProperty('addthis')) {
     addthis.button('.addthis-share');

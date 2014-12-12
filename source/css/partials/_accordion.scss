@@ -64,7 +64,6 @@
     @include transition(max-height 500ms ease-out, padding 500ms ease-out);
 
     &.closed {
-      //max-height: 0;
       @include transition(max-height 500ms ease-out, padding 500ms ease-out);
     }
 

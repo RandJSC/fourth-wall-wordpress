@@ -26,25 +26,12 @@ if (isset($post) && fwe_is_post($post)) {
   <?php
   $caption = get_term_meta($categories[0]->term_id, 'banner_caption', true);
   $caption = !empty($caption) ? $caption : $categories[0]->name;
+
+  include(locate_template('partials/generic-banner.php'));
   ?>
-  <section class="banner">
-    <figure id="page-banner">
-      <img src="<?php echo $banner[0]; ?>" alt="<?php echo $caption; ?>" width="100%">
-      <figcaption><?php echo $caption; ?></figcaption>
-    </figure>
-  </section>
 <?php endif; ?>
 
-<section id="quick-links" class="posts">
-  <?php
-  wp_nav_menu(array(
-    'theme_location' => 'post_quick_links',
-    'container'      => 'nav',
-    'fallback_cb'    => false,
-    'walker'         => new Walker_FWE_QuickLinks(),
-  ));
-  ?>
-</section>
+<?php include(locate_template('partials/post-quick-links.php')); ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php

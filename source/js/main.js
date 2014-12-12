@@ -45,7 +45,7 @@
   window.jQuery = window.$ = $;
 
   // Setup AddThis sharing buttons
-  if ('addthis' in window) {
+  if (window.hasOwnProperty('addthis')) {
     addthis.button('.addthis-share');
   }
 

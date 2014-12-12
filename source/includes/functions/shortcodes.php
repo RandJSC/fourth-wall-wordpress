@@ -182,7 +182,9 @@ function fwe_team_members_shortcode($atts, $content = null) {
     'meta_key'       => $meta_key,
   ));
 
+  ob_start();
   include(locate_template('partials/team-viewer.php'));
+  return ob_get_clean();
 }
 add_shortcode('team_members', 'fwe_team_members_shortcode');
 ?>

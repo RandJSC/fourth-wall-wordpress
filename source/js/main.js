@@ -45,7 +45,9 @@
   window.jQuery = window.$ = $;
 
   // Setup AddThis sharing buttons
-  addthis.button('.addthis-share');
+  if ('addthis' in window) {
+    addthis.button('.addthis-share');
+  }
 
   var navListener = function navListener(mq) {
     var $mainNav   = $('#main-nav');

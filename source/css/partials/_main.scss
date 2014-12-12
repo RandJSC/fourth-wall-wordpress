@@ -1,9 +1,11 @@
 // Main Content Area
 
 .sharing {
+  display: none;
   @include clearfix;
 
   @include media($bp-above-mobile) {
+    display: block;
     margin-bottom: rem(40);
   }
 

@@ -8,6 +8,9 @@
 
   var config = {};
 
+  // turn off in production
+  config.debug = true;
+
   config.defaults = {
     animation: {
       speed: 350

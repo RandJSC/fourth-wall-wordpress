@@ -41,11 +41,18 @@
   var $categoryPicker     = $('#event-categories');
   var $stitches           = $('section.stitch');
 
-  // Console access to jQuery:
-  window.jQuery = window.$ = $;
-
-  // Console access to Bragi logger:
-  window.logger = logger;
+  // Console access to libraries (debug mode only):
+  if (config.debug) {
+    window.jQuery        = window.$ = $;
+    window.logger        = logger;
+    window.FastClick     = fastClick;
+    window.Snap          = Snap;
+    window.Handlebars    = Handlebars;
+    window.ButtonSpinner = ButtonSpinner;
+  } else {
+    // If not in debug mode, disable all logged messages
+    logger.options.groupsEnabled = false;
+  }
 
   // Setup AddThis sharing buttons
   if (window.hasOwnProperty('addthis')) {

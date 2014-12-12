@@ -19,7 +19,7 @@
     return base64;
   };
 
-  module.exports = window.gforms = {
+  var gforms = module.exports = {
     getSignature: function getSignature(route, method) {
       route          = route ? route : '/';
       method         = method ? method : 'GET';
@@ -44,5 +44,9 @@
       };
     }
   };
+
+  if (config.debug) {
+    window.gforms = gforms;
+  }
 
 })(window);

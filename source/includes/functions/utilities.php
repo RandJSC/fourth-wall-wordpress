@@ -286,6 +286,10 @@ function fwe_build_page_background_object($arr) {
 
 
   for ($i = 0; $i < $length; $i++) {
+    if (!$arr['min_width'][$i] && $arr['min_width'][$i] !== '0') {
+      continue;
+    }
+
     $images   = array_filter($arr['background_image'][$i], function($img) {
       $int_val = (int) $img;
       return $int_val > 0;

@@ -20,6 +20,7 @@ piklist('field', array(
       'label'       => 'Minimum Window Width (in pixels)',
       'description' => 'Window width in pixels. Images with higher minimum widths override lower ones.',
       'columns'     => 8,
+      'value'       => 0,
       'attributes'  => array(
         'min'  => 0,
         'max'  => 1920,
@@ -31,7 +32,7 @@ piklist('field', array(
       'type'        => 'color',
       'field'       => 'background_color',
       'label'       => 'Background Color',
-      'description' => 'The background color shown if the image is too small for the page. Leave blank for transparent.',
+      'description' => 'The background color shown behind the content. Leave blank for transparent.',
       'columns'     => 2,
       'attributes'  => array(
         'pattern' => '#[a-fA-F0-9]{6}',

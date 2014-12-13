@@ -4,7 +4,7 @@
  */
 
 /* jshint -W064 */
-/* global Modernizr */
+/* global Modernizr, FileReader, JSON */
 
 (function(window, undefined) {
   'use strict';
@@ -614,19 +614,104 @@
 
     hireUsForm: function(options) {
       options      = options ? options : {};
-      var defaults = {};
+      var defaults = {
+        fileTypes: [
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // *.docx
+          'application/msword',                                                      // *.doc
+          'application/pdf',                                                         // *.pdf
+          'application/vnd.oasis.opendocument.text',                                 // *.odt
+          'text/plain',                                                              // *.txt
+          'text/richtext'                                                            // *.rtf
+        ]
+      };
       var opts     = assign(defaults, options);
 
-      this.each(function() {
+      return this.each(function() {
         logger.log('hireUsForm', 'Setting up Hire Us form');
 
         var $el        = $(this);
         var $fileInput = $el.find('input[type="file"]');
+        var $rfpData   = $el.find('input#hire-rfp-file-data');
+        var $submit    = $el.find('#hire-submit');
 
         if (!window.hasOwnProperty('FileReader') || !window.hasOwnProperty('File')) {
           var $rfpParagraph = $fileInput.closest('p');
           $rfpParagraph.html('<em>Your browser does not support file uploads. To send us an RFP, please email it to info@fourthwallevents.com.</em>');
+          $fileInput = $([]);
         }
+
+        $fileInput.on('change', function() {
+          var $input     = $(this);
+          var input      = $input[0];
+          var file       = input.files[0];
+          var mimeType   = find(opts.fileTypes, function(ft) { return ft === file.type; });
+
+          logger.log('hireUsForm:rfpInput', 'User added a file to RFP input: %O', file);
+
+          if (isUndefined(mimeType)) {
+            logger.log('hireUsForm:rfpInput', 'Invalid MIME type: "%s". Resetting RFP file input.', file.type);
+            $input.val('');
+            window.alert('Invalid file format! Only PDFs, MS Word documents, and text files are allowed.');
+            return false;
+          }
+
+          logger.log('hireUsForm:rfpInput', 'Disabling form submission until RFP file is read.');
+
+          $submit.prop('disabled', true);
+
+          var reader       = new FileReader();
+
+          reader.onloadend = function() {
+            logger.log('hireUsForm:rfpInput', 'Finished reading RFP file as data URL.');
+
+            $rfpData.val(reader.result);
+
+            logger.log('hireUsForm:rfpInput', 'Re-enabling form submission.');
+
+            $submit.prop('disabled', false);
+          };
+
+          reader.readAsDataURL(file);
+        });
+
+        $el.on('submit', function() {
+          logger.log('hireUsForm:submission', 'Submitting "Hire Us" form');
+
+          var jsonSubmission, ajax;
+          var submission = {};
+          var $inputs    = $el.find('input, select');
+          var submitURL  = $el.attr('action');
+
+          $inputs.each(function() {
+            var $input = $(this);
+
+            // skip file input, use hidden field instead
+            if ($input.attr('type') !== 'file') {
+              submission[ String($input.attr('name')) ] = $input.val();
+            }
+          });
+
+          logger.log('hireUsForm:submission', 'JSON-encoding submission object: %O', submission);
+
+          jsonSubmission = JSON.stringify(submission);
+
+          ajax = $.ajax(submitURL, {
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            accepts: 'application/json',
+            data: jsonSubmission,
+            beforeSend: function(xhr, settings) {
+              logger.log('hireUsForm:submission:ajax', 'Sending JSON form data to server');
+            }
+          });
+
+          ajax.success(function(json) {
+            logger.log('hireUsForm:submission:ajax', 'Received response from server: %O', json);
+          });
+
+          return false;
+        });
       });
     }
 

@@ -87,7 +87,12 @@ $banner = fwe_get_page_banner($post->ID);
             </p>
 
             <input type="hidden" id="hire-rfp-file-data" name="<?php echo esc_attr($fields[15]['id']); ?>" value="">
+
+            <p class="right">
+              <button id="hire-submit" type="submit">Submit &raquo;</button>
+            </p>
           </form>
+          <?php var_dump($fields); ?>
         </div>
       <?php endif; ?>
 

@@ -40,6 +40,7 @@
   var $gallerySliders     = $('.gallery-slider .slides');
   var $categoryPicker     = $('#event-categories');
   var $stitches           = $('section.stitch');
+  var $hireForm           = $('#hire-form');
 
   // Console access to libraries (debug mode only):
   if (config.debug) {
@@ -120,6 +121,9 @@
 
   // Footer contact form
   $contactForm.contactForm();
+
+  // Hire Us form
+  $hireForm.hireUsForm();
 
   logger.log('timing', 'End docReady');
 

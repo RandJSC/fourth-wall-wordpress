@@ -73,7 +73,7 @@ $banner = fwe_get_page_banner($post->ID);
             </p>
 
             <p>
-              <label for="hire-rfp">I have an RFP that you can fill out</label> <input type="file" id="hire-rfp" placeholder="Browse" name="<?php echo esc_attr($fields[11]['id']); ?>" class="madlib">.
+              <label for="hire-rfp">I have an RFP that you can fill out</label> <input type="file" id="hire-rfp" placeholder="Browse" name="rfp_file" class="madlib">.
             </p>
 
             <p>

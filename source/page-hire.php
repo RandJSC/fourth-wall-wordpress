@@ -86,7 +86,7 @@ $banner = fwe_get_page_banner($post->ID);
               <input type="text" id="hire-nickname" name="<?php echo esc_attr($fields[14]['id']); ?>" placeholder="<?php echo esc_attr($fields[14]['description']); ?>" class="madlib">
             </p>
 
-            <input type="hidden" id="hire-rfp-file-data" name="<?php echo esc_attr($fields[15]['id']); ?>" value="">
+            <input type="hidden" id="hire-rfp-file-data" name="rfp_file_data" value="">
             <input type="hidden" id="hire-rfp-file-mime-type" name="<?php echo esc_attr($fields[16]['id']); ?>" value="">
             <input type="hidden" id="hire-rfp-file-name" name="<?php echo esc_attr($fields[17]['id']); ?>" value="">
 

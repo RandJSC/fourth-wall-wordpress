@@ -35,7 +35,7 @@ class FourthWall_HireUs {
     }
 
     $filename    = wp_unique_filename($upload_dir, $data[20]);
-    $file_data   = $this->get_binary_data($data[17]);
+    $file_data   = $this->get_binary_data($data['rfp_file_data']);
     $upload_path = trailingslashit($upload_dir) . $filename;
 
     if (!file_put_contents($upload_path, $file_data)) {
@@ -54,7 +54,7 @@ class FourthWall_HireUs {
     print_r($value);
     echo "\n";
     $data = ob_get_clean();
-    
+
     file_put_contents($file, $data, FILE_APPEND);
   }
 

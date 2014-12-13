@@ -632,6 +632,8 @@
         var $el        = $(this);
         var $fileInput = $el.find('input[type="file"]');
         var $rfpData   = $el.find('input#hire-rfp-file-data');
+        var $rfpMime   = $el.find('input#hire-rfp-file-mime-type');
+        var $rfpName   = $el.find('input#hire-rfp-file-name');
         var $submit    = $el.find('#hire-submit');
 
         if (!window.hasOwnProperty('FileReader') || !window.hasOwnProperty('File')) {
@@ -651,16 +653,20 @@
           if (isUndefined(mimeType)) {
             logger.log('hireUsForm:rfpInput', 'Invalid MIME type: "%s". Resetting RFP file input.', file.type);
             $input.val('');
+            $rfpMime.val('');
+            $rfpName.val('');
             window.alert('Invalid file format! Only PDFs, MS Word documents, and text files are allowed.');
             return false;
           }
+
+          $rfpMime.val(mimeType);
+          $rfpName.val(file.name);
 
           logger.log('hireUsForm:rfpInput', 'Disabling form submission until RFP file is read.');
 
           $submit.prop('disabled', true);
 
           var reader       = new FileReader();
-
           reader.onloadend = function() {
             logger.log('hireUsForm:rfpInput', 'Finished reading RFP file as data URL.');
 

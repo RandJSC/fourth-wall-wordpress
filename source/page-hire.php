@@ -42,7 +42,7 @@ $banner = fwe_get_page_banner($post->ID);
           $form   = GFAPI::get_form($fwe_settings['hire_us_form_id']);
           $fields = $form['fields'];
           ?>
-          <form action="<?php echo site_url('/wp-json/fwe/hire-form'); ?>" method="post">
+          <form action="<?php echo site_url('/wp-json/fwe/hire-us'); ?>" method="post">
             <p>
               Hi, <label for="hire-name">my name is</label> <input type="text" class="madlib" id="hire-name" placeholder="<?php echo esc_attr($fields[0]['description']); ?>" name="<?php echo esc_attr($fields[0]['id']); ?>">, and <label for="hire-company">I work at</label> <input type="text" class="madlib" id="hire-company" placeholder="<?php echo esc_attr($fields[1]['description']); ?>" name="<?php echo esc_attr($fields[1]['id']); ?>">.
               <label for="hire-address">We're located at</label> <input type="text" class="madlib" id="hire-address" placeholder="<?php echo esc_attr($fields[2]['description']); ?>" name="<?php echo esc_attr($fields[2]['id']); ?>"> <label for="hire-city">in</label> <input type="text" class="madlib" id="hire-city" placeholder="<?php echo esc_attr($fields[3]['description']); ?>" name="<?php echo esc_attr($fields[3]['id']); ?>">,
@@ -87,6 +87,8 @@ $banner = fwe_get_page_banner($post->ID);
             </p>
 
             <input type="hidden" id="hire-rfp-file-data" name="<?php echo esc_attr($fields[15]['id']); ?>" value="">
+            <input type="hidden" id="hire-rfp-file-mime-type" name="<?php echo esc_attr($fields[16]['id']); ?>" value="">
+            <input type="hidden" id="hire-rfp-file-name" name="<?php echo esc_attr($fields[17]['id']); ?>" value="">
 
             <p class="right">
               <button id="hire-submit" type="submit">Submit &raquo;</button>

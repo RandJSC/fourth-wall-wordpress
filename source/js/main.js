@@ -40,7 +40,7 @@
   var $gallerySliders     = $('.gallery-slider .slides');
   var $categoryPicker     = $('#event-categories');
   var $stitches           = $('section.stitch');
-  var $hireForm           = $('#hire-form');
+  var $hireForm           = $('#hire-form form');
 
   // Console access to libraries (debug mode only):
   if (config.debug) {

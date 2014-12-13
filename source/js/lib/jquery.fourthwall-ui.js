@@ -610,6 +610,24 @@
       resizeHandler();
 
       return this;
+    },
+
+    hireUsForm: function(options) {
+      options      = options ? options : {};
+      var defaults = {};
+      var opts     = assign(defaults, options);
+
+      this.each(function() {
+        logger.log('hireUsForm', 'Setting up Hire Us form');
+
+        var $el        = $(this);
+        var $fileInput = $el.find('input[type="file"]');
+
+        if (!window.hasOwnProperty('FileReader') || !window.hasOwnProperty('File')) {
+          var $rfpParagraph = $fileInput.closest('p');
+          $rfpParagraph.html('<em>Your browser does not support file uploads. To send us an RFP, please email it to info@fourthwallevents.com.</em>');
+        }
+      });
     }
 
   });

@@ -42,49 +42,52 @@ $banner = fwe_get_page_banner($post->ID);
           $form   = GFAPI::get_form($fwe_settings['hire_us_form_id']);
           $fields = $form['fields'];
           ?>
-          <p>
-            Hi, <label for="hire-name">my name is</label> <input type="text" class="madlib" id="hire-name" placeholder="<?php echo esc_attr($fields[0]['description']); ?>" name="0">, and <label for="hire-company">I work at</label> <input type="text" class="madlib" id="hire-company" placeholder="<?php echo esc_attr($fields[1]['description']); ?>" name="1">.
-            <label for="hire-address">We're located at</label> <input type="text" class="madlib" id="hire-address" placeholder="<?php echo esc_attr($fields[2]['description']); ?>" name="2"> <label for="hire-city">in</label> <input type="text" class="madlib" id="hire-city" placeholder="<?php echo esc_attr($fields[3]['description']); ?>" name="3">,
-            <select id="hire-state" name="4" class="madlib">
-              <?php foreach ($fields[4]['choices'] as $state): ?>
-                <option value="<?php echo esc_attr($state['value']); ?>">
-                  <?php echo $state['text']; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>.
-            <label for="hire-email">My email address is</label> <input type="email" id="hire-email" class="madlib" placeholder="<?php echo esc_attr($fields[5]['description']); ?>" name="5">, and <label for="hire-phone">my phone number is</label> <input type="phone" id="hire-phone" class="madlib" placeholder="<?php echo esc_attr($fields[6]['description']); ?>" name="6">.
-          </p>
+          <form action="<?php echo site_url('/wp-json/fwe/hire-form'); ?>" method="post">
+            <p>
+              Hi, <label for="hire-name">my name is</label> <input type="text" class="madlib" id="hire-name" placeholder="<?php echo esc_attr($fields[0]['description']); ?>" name="<?php echo esc_attr($fields[0]['id']); ?>">, and <label for="hire-company">I work at</label> <input type="text" class="madlib" id="hire-company" placeholder="<?php echo esc_attr($fields[1]['description']); ?>" name="<?php echo esc_attr($fields[1]['id']); ?>">.
+              <label for="hire-address">We're located at</label> <input type="text" class="madlib" id="hire-address" placeholder="<?php echo esc_attr($fields[2]['description']); ?>" name="<?php echo esc_attr($fields[2]['id']); ?>"> <label for="hire-city">in</label> <input type="text" class="madlib" id="hire-city" placeholder="<?php echo esc_attr($fields[3]['description']); ?>" name="<?php echo esc_attr($fields[3]['id']); ?>">,
+              <select id="hire-state" name="<?php echo esc_attr($fields[4]['id']); ?>" class="madlib">
+                <?php foreach ($fields[4]['choices'] as $state): ?>
+                  <option value="<?php echo esc_attr($state['value']); ?>">
+                    <?php echo $state['text']; ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>.
+              <label for="hire-email">My email address is</label> <input type="email" id="hire-email" class="madlib" placeholder="<?php echo esc_attr($fields[5]['description']); ?>" name="<?php echo esc_attr($fields[5]['id']); ?>">, and <label for="hire-phone">my phone number is</label> <input type="tel" id="hire-phone" class="madlib" placeholder="<?php echo esc_attr($fields[6]['description']); ?>" name="<?php echo esc_attr($fields[6]['id']); ?>">.
+            </p>
 
-          <p>
-            <label for="hire-service">I'm really interested in talking about</label>
-            <select id="hire-service" name="7" class="madlib">
-              <?php foreach ($fields[7]['choices'] as $service): ?>
-                <option value="<?php echo esc_attr($service['value']); ?>">
-                  <?php echo $service['text']; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-            for my company.
-            <label for="hire-date">We have an event on</label> <input type="date" id="hire-date" class="madlib" name="8"> that we think Fourth Wall Events would be perfect for.
-            <label for="hire-budget">We've got a budget range of</label> <input type="text" id="hire-budget" class="madlib" placeholder="<?php echo esc_attr($fields[9]['description']); ?>" name="9">
-            and are looking for some great ideas.
-            We thought that <label for="hire-location">the event could take place in</label> <input type="text" id="hire-location" class="madlib" placeholder="<?php echo esc_attr($fields[10]['description']); ?>" name="10">.
-          </p>
+            <p>
+              <label for="hire-service">I'm really interested in talking about</label>
+              <select id="hire-service" name="<?php echo esc_attr($fields[7]['id']); ?>" class="madlib">
+                <?php foreach ($fields[7]['choices'] as $service): ?>
+                  <option value="<?php echo esc_attr($service['value']); ?>">
+                    <?php echo $service['text']; ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+              for my company.
+              <label for="hire-date">We have an event on</label> <input type="date" id="hire-date" class="madlib" name="<?php echo esc_attr($fields[8]['id']); ?>"> that we think Fourth Wall Events would be perfect for.
+              <label for="hire-budget">We've got a budget range of</label> <input type="text" id="hire-budget" class="madlib" placeholder="<?php echo esc_attr($fields[9]['description']); ?>" name="<?php echo esc_attr($fields[9]['id']); ?>">
+              and are looking for some great ideas.
+              We thought that <label for="hire-location">the event could take place in</label> <input type="text" id="hire-location" class="madlib" placeholder="<?php echo esc_attr($fields[10]['description']); ?>" name="<?php echo esc_attr($fields[10]['id']); ?>">.
+            </p>
 
-          <p>
-            <label for="hire-rfp">I have an RFP that you can fill out</label> <input type="file" id="hire-rfp" placeholder="Browse" name="11" class="madlib">.
-          </p>
+            <p>
+              <label for="hire-rfp">I have an RFP that you can fill out</label> <input type="file" id="hire-rfp" placeholder="Browse" name="<?php echo esc_attr($fields[11]['id']); ?>" class="madlib">.
+            </p>
 
-          <p>
-            I look forward to hearing back from you soon. <label for="hire-contact">I'd prefer if you'd contact me via</label> <input type="text" id="hire-contact" class="madlib" placeholder="<?php echo esc_attr($fields[12]['description']); ?>" name="12">, and <label for="hire-time">the best time to reach me is usually</label> <input type="text" id="hire-time" class="madlib" placeholder="<?php echo esc_attr($fields[13]['description']); ?>" name="13">
-            <select id="hire-am-pm" name="14">
-              <?php foreach ($fields[14]['choices'] as $time): ?>
-                <option value="<?php echo $time['value']; ?>">
-                  <?php echo $time['text']; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-          </p>
+            <p>
+              I look forward to hearing back from you soon. <label for="hire-contact">I'd prefer if you'd contact me via</label> <input type="text" id="hire-contact" class="madlib" placeholder="<?php echo esc_attr($fields[12]['description']); ?>" name="<?php echo esc_attr($fields[12]['id']); ?>">, and <label for="hire-time">the best time to reach me is usually</label> <input type="time" id="hire-time" class="madlib" placeholder="<?php echo esc_attr($fields[13]['description']); ?>" name="<?php echo esc_attr($fields[13]['id']); ?>">.
+            </p>
+
+            <p>
+              Thanks,
+              <br>
+              <input type="text" id="hire-nickname" name="<?php echo esc_attr($fields[14]['id']); ?>" placeholder="<?php echo esc_attr($fields[14]['description']); ?>" class="madlib">
+            </p>
+
+            <input type="hidden" id="hire-rfp-file-data" name="<?php echo esc_attr($fields[15]['id']); ?>" value="">
+          </form>
         </div>
       <?php endif; ?>
 

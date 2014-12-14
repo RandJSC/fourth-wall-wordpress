@@ -8,7 +8,10 @@ $pad_content = $pad_content === 'yes' ? ' padded' : '';
   <article itemscope itemtype="http://schema.org/WebPage" <?php post_class(); ?>>
 
     <div class="post-header padded">
-      <?php include(locate_template('partials/sharing-link.php')); ?>
+      <div class="post-top">
+        <?php include(locate_template('partials/sharing-link.php')); ?>
+      </div>
+
       <h1 itemprop="headline"><?php the_title(); ?></h1>
       <hr>
     </div>

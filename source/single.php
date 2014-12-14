@@ -24,8 +24,9 @@ if (isset($post) && fwe_is_post($post)) {
 
 <?php if ($banner): ?>
   <?php
-  $caption = get_term_meta($categories[0]->term_id, 'banner_caption', true);
-  $caption = !empty($caption) ? $caption : $categories[0]->name;
+  $caption        = get_term_meta($categories[0]->term_id, 'banner_caption', true);
+  $caption        = !empty($caption) ? $caption : $categories[0]->name;
+  $banner_classes = 'post';
 
   include(locate_template('partials/generic-banner.php'));
   ?>
@@ -43,8 +44,14 @@ if (isset($post) && fwe_is_post($post)) {
   $google_plus    = get_user_meta($author_id, 'googleplus', true);
   ?>
   <section id="main-page-content" class="content-section" itemscope itemtype="http://schema.org/BlogPosting">
+
     <article <?php post_class(); ?>>
       <div class="post-header padded">
+        <div class="post-top single">
+          <?php include(locate_template('partials/breadcrumbs.php')); ?>
+          <?php include(locate_template('partials/sharing-link.php')); ?>
+        </div>
+
         <h1 itemprop="headline"><?php the_title(); ?></h1>
 
         <div class="byline">

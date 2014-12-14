@@ -1,0 +1,12 @@
+// Percent values for the lazy
+@function percent($numerator, $denominator) {
+  @if not unitless($numerator) {
+    $numerator: strip-units($numerator);
+  }
+
+  @if not unitless($denominator) {
+    $denominator: strip-units($denominator);
+  }
+
+  @return ($numerator / $denominator * 100) * 1%;
+}

@@ -22,6 +22,12 @@ section.content-section article.stitch {
   }
 
   .post-header {
+    &.padded {
+      @include media($bp-above-mobile) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
 
     h1 {
       margin-top: rem(5);
@@ -34,10 +40,22 @@ section.content-section article.stitch {
       }
     }
 
-    &.padded {
-      @include media($bp-above-mobile) {
-        padding-left: 0;
-        padding-right: 0;
+    .post-top {
+      padding-top: rem(40);
+      @include clearfix;
+
+      &.single {
+        padding: rem(40) rem(22) 0;
+      }
+
+      #breadcrumbs {
+        float: left;
+        margin-top: 0;
+        font-size: rem(18);
+        font-weight: 300;
+        line-height: rem(30);
+        color: $text-color;
+        @include calc(width, '100% - 76px');
       }
     }
   }
@@ -72,6 +90,23 @@ section.content-section article.stitch {
 
     p {
       font-style: italic;
+    }
+  }
+}
+
+section.content-section article.post {
+  .post-header {
+    h1 {
+      @include media($bp-above-mobile) {
+        text-align: left;
+        padding: 0 percent(125, 1060);
+      }
+    }
+
+    .byline {
+      @include media($bp-above-mobile) {
+        padding: 0 percent(125, 1060) rem(20);
+      }
     }
   }
 }

@@ -57,7 +57,9 @@
 
   // Setup AddThis sharing buttons
   if (window.hasOwnProperty('addthis')) {
-    addthis.button('.addthis-share');
+    addthis.button('.addthis-share', {
+      ui_offset_top: 15
+    });
   }
 
   var navListener = function navListener(mq) {

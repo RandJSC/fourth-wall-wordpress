@@ -49,7 +49,9 @@ get_header();
   </section>
 
   <section id="main-page-content" class="content-section padded home">
-    <?php include(locate_template('partials/sharing-link.php')); ?>
+    <div class="post-top">
+      <?php include(locate_template('partials/sharing-link.php')); ?>
+    </div>
 
     <h1><?php the_title(); ?></h1>
 

@@ -215,5 +215,14 @@ section.content-section article.post {
         margin-bottom: rem(40);
       }
     }
+
+    blockquote {
+      @include media($bp-above-mobile) {
+        padding: 0 rem(90);
+        font-style: italic;
+        font-size: rem(22);
+        line-height: rem(29);
+      }
+    }
   }
 }

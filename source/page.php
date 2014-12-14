@@ -11,11 +11,13 @@ $banner = fwe_get_page_banner($post->ID);
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
   // Fetch the pages whose stitch_content should be pulled into this one:
-  $post_id  = get_the_ID();
-  $stitches = get_post_meta($post_id, 'stitch_children');
-  $stitches = array_filter($stitches, function($item) {
+  $post_id       = get_the_ID();
+  $stitches      = get_post_meta($post_id, 'stitch_children');
+  $stitches      = array_filter($stitches, function($item) {
     return !empty($item);
   });
+  $slider_images = get_post_meta($post_id, 'slider_images', true);
+  $has_slides    = !empty($slider_images) && !empty($slider_images['image'][0][0]);
   ?>
 
   <?php // This page's content: ?>

@@ -13,7 +13,9 @@ $pad_content = $pad_content === 'yes' ? ' padded' : '';
       <hr>
     </div>
 
-    <?php if (has_post_thumbnail()): ?>
+    <?php if ($has_slides): ?>
+      <?php include(locate_template('partials/page-slider.php')); ?>
+    <?php elseif (has_post_thumbnail()): ?>
       <?php
       $thumb_id  = get_post_thumbnail_id();
       $thumb_src = wp_get_attachment_image_src($thumb_id, 'full');

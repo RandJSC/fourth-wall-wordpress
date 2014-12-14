@@ -56,21 +56,25 @@ if (isset($post) && fwe_is_post($post)) {
 
         <div class="byline">
           <span class="fa fa-user"></span>
-          <a rel="me" href="<?php echo $google_plus; ?>" target="_blank">Posted by <?php the_author(); ?></a>
+          <a rel="me" href="<?php echo $google_plus; ?>" target="_blank" class="author">Posted by <?php the_author(); ?></a>
         </div>
       </div>
 
-      <div class="post-date padded">
-        <span class="fa fa-clock-o"></span>
-        <time itemprop="datePublished" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
-      </div>
-
-      <?php if ($post_tags): ?>
-        <div class="post-tags padded">
-          <span class="fa fa-tags"></span>
-          <?php fwe_tag_list($post_tags); ?>
+      <div class="date-tags">
+        <div class="post-date padded">
+          <span class="fa fa-clock-o"></span>
+          <time itemprop="datePublished" datetime="<?php echo get_the_date('Y-m-d'); ?>"><?php echo get_the_date(); ?></time>
         </div>
-      <?php endif; ?>
+
+        <?php if ($post_tags): ?>
+          <div class="post-tags padded">
+            <span class="fa fa-tags"></span>
+            <span class="tags">
+              <?php fwe_tag_list($post_tags); ?>
+            </span>
+          </div>
+        <?php endif; ?>
+      </div>
 
       <div class="post-excerpt padded" itemprop="description">
         <?php the_excerpt(); ?>

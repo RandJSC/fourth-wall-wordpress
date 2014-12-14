@@ -70,6 +70,14 @@ div.content-section {
     }
   }
 
+  .post-content {
+    @include media($bp-above-mobile) {
+      width: 100%;
+      max-width: $max-width;
+      margin: 0 auto;
+    }
+  }
+
   &.blue {
     background-image: url('../img/bg-blue.svg');
   }
@@ -264,6 +272,8 @@ div.content-section {
     li {
       @include clearfix;
       margin-bottom: rem(20);
+      background: 0;
+      padding-left: 0;
     }
 
     a.thumb {

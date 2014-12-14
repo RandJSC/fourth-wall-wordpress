@@ -126,7 +126,7 @@ $count = 0;
     ?>
       <?php if (has_post_thumbnail()): ?>
         <a class="team-member" href="<?php echo site_url('/wp-json/fwe/team-members/' . get_the_ID()); ?>" data-slug="<?php echo esc_attr($post->post_name); ?>">
-          <div class="thumbnail">
+          <div class="thumbnail <?php echo $color; ?>">
             <?php the_post_thumbnail('team-member-thumb'); ?>
           </div>
 

@@ -41,6 +41,8 @@
   var $categoryPicker     = $('#event-categories');
   var $stitches           = $('section.stitch');
   var $hireForm           = $('#hire-form form');
+  var $nameTitles         = $('.name-title');
+  var $teamThumbs         = $('a.team-member');
 
   // Console access to libraries (debug mode only):
   if (config.debug) {
@@ -91,6 +93,12 @@
       navMQ.addListener(navListener);
     }
   }
+
+  // Team Members Stuff
+  $nameTitles.verticallyCenter();
+  $teamThumbs.hover(function() {
+    $(this).toggleClass('hovering');
+  });
 
   $hamburger.toggleNav($container, burgerSvg);
 

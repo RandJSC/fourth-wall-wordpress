@@ -89,6 +89,8 @@
         display: inline-block;
         font-size: rem(28);
         margin-left: rem(30);
+        background: none;
+        padding-left: 0;
 
         &:first-child {
           margin-left: 0;
@@ -115,10 +117,16 @@
   .team-member {
     display: block;
     float: left;
+    position: relative;
 
     .thumbnail, .thumbnail img {
       border-radius: 50%;
       overflow: hidden;
+      @include transition(
+        border $transition-speed linear,
+        left $transition-speed linear,
+        top $transition-speed linear
+      );
     }
 
     .thumbnail {
@@ -128,15 +136,95 @@
       margin-left: rem(20);
       margin-right: rem(20);
       margin-bottom: rem(20);
+
+      @include media($bp-above-mobile) {
+        width: rem(200);
+        height: rem(200);
+        margin: 0 rem(20) rem(20);
+      }
+
     }
 
     .thumbnail img {
+      position: relative;
+      top: 0;
+      left: 0;
+      border: 0;
       width: rem(120);
       height: rem(120);
+      margin-top: 0;
+      margin-bottom: 0;
+
+      @include media($bp-above-mobile) {
+        width: rem(200);
+        height: rem(200);
+      }
     }
 
     .name-title {
-      display: none;
+      position: absolute;
+      left: rem(28);
+      top: rem(8);
+      border-radius: 50%;
+      width: rem(182);
+      height: rem(182);
+      opacity: 0;
+      color: $white;
+      padding: 0 rem(32);
+      text-align: center;
+      @include transition(opacity $transition-speed linear);
+
+      strong,
+      span {
+        display: block;
+      }
+
+      &.blue {
+        background-color: $trans-blue;
+      }
+
+      &.green {
+        background-color: $trans-green;
+      }
+
+      &.pink {
+        background-color: $trans-pink;
+      }
+
+      &.orange {
+        background-color: $trans-orange;
+      }
+    }
+
+    &.hovering {
+      .thumbnail {
+        border: rem(18) solid $team-member-border;
+
+        &.blue {
+          border-color: $blue;
+        }
+
+        &.green {
+          border-color: $green;
+        }
+
+        &.orange {
+          border-color: $orange;
+        }
+
+        &.pink {
+          border-color: $button-bg;
+        }
+
+        img {
+          left: rem(-14);
+          top: rem(-14);
+        }
+      }
+
+      .name-title {
+        opacity: 1;
+      }
     }
   }
 }

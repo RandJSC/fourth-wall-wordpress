@@ -236,7 +236,7 @@ function fwe_get_stitch_vars($page_id = 0) {
   $backgrounds    = get_post_meta($page_id, 'page_backgrounds', true);
   $white_header   = '';
 
-  if (!empty($backgrounds) && $backgrounds['background_image'][0]) {
+  if (!empty($backgrounds) && $backgrounds['background_image'][0][0]) {
     $white_header = ' white';
   }
 
@@ -287,6 +287,10 @@ function fwe_build_page_background_object($arr) {
 
   for ($i = 0; $i < $length; $i++) {
     if (!$arr['min_width'][$i] && $arr['min_width'][$i] !== '0') {
+      continue;
+    }
+
+    if (!$arr['background_image'][$i] || !$arr['background_image'][$i][0]) {
       continue;
     }
 

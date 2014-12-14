@@ -177,13 +177,23 @@ div.content-section {
       }
     }
 
-    .post-content.padded {
+    .post-content {
+
       @include clearfix;
 
       @include media($bp-above-mobile) {
-        border-radius: rem(18);
-        padding: rem(40) rem(100);
         max-width: $max-width;
+        margin: 0 auto;
+      }
+
+      @include media($bp-above-tablet) {
+        border-radius: rem(18);
+      }
+
+      &.padded {
+        @include media($bp-above-mobile) {
+          padding: rem(40) rem(100);
+        }
       }
 
       p {

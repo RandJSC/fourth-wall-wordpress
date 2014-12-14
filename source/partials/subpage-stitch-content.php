@@ -7,7 +7,6 @@ $bg_data       = '';
 $section_style = '';
 $content_style = '';
 
-
 if (!empty($backgrounds)) {
   $bg_data       = !empty($backgrounds) ? ' data-backgrounds="' . htmlspecialchars(json_encode($backgrounds)) . '"' : '';
   $first_bg      = $backgrounds[0];
@@ -55,7 +54,7 @@ if (!empty($backgrounds)) {
       </div>
     <?php endif; ?>
 
-    <div class="post-content<?php echo $stitch['pad_content']; ?>"<?php echo $content_style; ?>>
+    <div class="post-content<?php echo $stitch['pad_content']; ?><?php echo ' ' . $stitch['stitch_page']->post_name; ?>"<?php echo $content_style; ?>>
       <?php echo $stitch['stitch_content']; ?>
     </div>
   </article>

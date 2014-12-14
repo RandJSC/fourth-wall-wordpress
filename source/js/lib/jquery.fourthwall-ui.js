@@ -74,6 +74,7 @@
         '<h3>{{ title }}</h3>' +
         '<div class="title-location">' +
           '<span class="title">{{ job_title }}</span>' +
+          '&ndash;' +
           '<span class="location">{{ location }}</span>' +
         '</div>' +
         '{{{ content }}}' +

@@ -298,39 +298,47 @@ button {
   }
 }
 
-#page-banner {
-  position: relative;
-  margin: 0;
-  border-top: rem(10) solid $banner-border;
-  min-height: rem(50);
-
-  @include media($bp-above-mobile) {
-    border-bottom: rem(12) solid $blue;
-    margin-bottom: rem(40);
-  }
-
-  img {
-    max-height: 720px;
-  }
-
-  figcaption {
-    position: absolute;
-    display: block;
-    bottom: 0;
-    width: 100%;
-    background: $banner-background;
-    color: $white;
-    font-size: rem(31);
-    font-weight: 200;
-    padding: rem(2) rem(22) rem(5);
+.banner {
+  #page-banner {
+    position: relative;
+    margin: 0;
+    border-top: rem(10) solid $banner-border;
+    min-height: rem(50);
 
     @include media($bp-above-mobile) {
-      width: auto;
-      background: rgba(0, 0, 0, 0.69);
-      text-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
-      font-size: rem(54);
-      padding-left: rem(28);
-      padding-right: rem(64);
+      border-bottom: rem(12) solid $blue;
+      margin-bottom: rem(40);
+    }
+
+    img {
+      max-height: 720px;
+    }
+
+    figcaption {
+      position: absolute;
+      display: block;
+      bottom: 0;
+      width: 100%;
+      background: $banner-background;
+      color: $white;
+      font-size: rem(31);
+      font-weight: 200;
+      padding: rem(2) rem(22) rem(5);
+
+      @include media($bp-above-mobile) {
+        width: auto;
+        background: rgba(0, 0, 0, 0.69);
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.75);
+        font-size: rem(54);
+        padding-left: rem(28);
+        padding-right: rem(64);
+      }
+    }
+  }
+
+  &.who-we-are {
+    #page-banner {
+      border-bottom: rem(12) solid #a0cd60;
     }
   }
 }

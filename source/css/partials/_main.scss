@@ -148,6 +148,22 @@ div.content-section {
     }
   }
 
+  img {
+    border: rem(6) solid $slider-stroke;
+    margin-top: 0;
+    margin-bottom: rem(20);
+
+    &.alignleft {
+      float: left;
+      margin-right: rem(20);
+    }
+
+    &.alignright {
+      float: right;
+      margin-left: rem(20);
+    }
+  }
+
   .stitch {
     h2 {
       border-bottom: 1px solid $hr-grey;

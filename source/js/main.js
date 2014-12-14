@@ -62,6 +62,9 @@
     });
   }
 
+  // Colored OL numbers, regular color text
+  $('#main-page-content ol li').wrapInner('<span class="li-content"/>');
+
   var navListener = function navListener(mq) {
     var $mainNav   = $('#main-nav');
     var $mobileNav = $('#mobile-nav');

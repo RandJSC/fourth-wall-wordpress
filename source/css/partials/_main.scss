@@ -126,6 +126,28 @@ div.content-section {
     }
   }
 
+  ul {
+    padding-left: rem(10);
+
+    li {
+      list-style: none;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3IiBoZWlnaHQ9IjciPjxwYXRoIGQ9Ik01LjExIDIuNjA3YTIuNTIzIDIuNTg3IDAgMSAxLTUuMDQ1IDAgMi41MjMgMi41ODcgMCAxIDEgNS4wNDUgMHoiIHRyYW5zZm9ybT0ibWF0cml4KDEuMTkgMCAwIDEuMTYgLjQxNiAuOTMpIiBmaWxsPSIjZjE2YTIyIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=') left rem(11) no-repeat;
+      padding-left: rem(20);
+    }
+  }
+
+  ol {
+    padding-left: rem(30);
+
+    li {
+      color: #f16a22;
+
+      span.li-content {
+        color: $text-color;
+      }
+    }
+  }
+
   .stitch {
     h2 {
       border-bottom: 1px solid $hr-grey;

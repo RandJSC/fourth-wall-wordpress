@@ -95,10 +95,13 @@
   }
 
   // Team Members Stuff
-  $nameTitles.verticallyCenter();
-  $teamThumbs.hover(function() {
-    $(this).toggleClass('hovering');
-  });
+  if (!Modernizr.touch) {
+    $nameTitles.verticallyCenter();
+
+    $teamThumbs.hover(function() {
+      $(this).toggleClass('hovering');
+    });
+  }
 
   $hamburger.toggleNav($container, burgerSvg);
 

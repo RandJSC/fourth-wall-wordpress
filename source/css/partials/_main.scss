@@ -162,6 +162,10 @@ div.content-section {
       float: right;
       margin-left: rem(20);
     }
+
+    &.no-border {
+      border: 0;
+    }
   }
 
   .stitch {

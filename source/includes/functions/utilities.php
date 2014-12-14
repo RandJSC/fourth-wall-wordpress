@@ -349,4 +349,22 @@ function fwe_hex_to_rgba($color, $opacity = 1) {
 
   return "rgba($red, $green, $blue, $opacity)";
 }
+
+function fwe_get_root_parent($post) {
+  if (is_int($post)) {
+    $post = get_post($post);
+  }
+
+  if (!fwe_is_post($post)) {
+    return null;
+  }
+
+  if ($post->post_parent == 0) {
+    return $post;
+  }
+
+  $parent = get_post($post->post_parent);
+
+  return fwe_get_root_parent($parent);
+}
 ?>

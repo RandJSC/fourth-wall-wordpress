@@ -91,7 +91,7 @@
           '{{ socialLink "fa-linkedin" linkedin }}' +
           '{{ socialLink "fa-pinterest" pinterest }}' +
           '{{ socialLink "fa-google-plus" google_plus }}' +
-          '{{ emailLink email }}' +
+          '{{ emailLink email_address }}' +
         '</ul>' +
       '</div>'
     )

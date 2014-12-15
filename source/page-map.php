@@ -10,6 +10,8 @@ global $post, $fwe_settings;
 $banner      = fwe_get_page_banner($post->ID);
 $api_key     = $fwe_settings['google_maps_api_key'];
 $enable_zoom = $fwe_settings['map_enable_zoom'] ? 'true' : 'false';
+$stitches    = array();
+$has_slides  = false;
 ?>
 
 <?php include(locate_template('partials/subpage-banner.php')); ?>

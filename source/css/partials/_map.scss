@@ -7,6 +7,11 @@
 }
 
 #location-content {
+  @include media($bp-above-mobile) {
+    max-width: $max-width;
+    margin: 0 auto rem(80);
+  }
+
   .spinner {
     position: relative;
     width: rem(100);
@@ -26,6 +31,7 @@
     h1 {
       color: $green;
       font-size: rem(40);
+      margin-top: 0;
     }
 
     ol {
@@ -45,9 +51,11 @@
       border: 5px solid $slider-stroke;
     }
 
-    .item-content {
+    .thumbnail + .item-content {
       margin-left: rem(30);
+    }
 
+    .item-content {
       h3 {
         margin-top: 0;
         margin-bottom: 0;

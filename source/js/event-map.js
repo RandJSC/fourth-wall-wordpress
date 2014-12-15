@@ -16,6 +16,8 @@
   var Handlebars = require('handlebars');
   var Spinner    = require('spin.js/spin');
   var moment     = require('moment');
+  var TweenLite  = require('gsap/src/uncompressed/TweenLite');
+  var ScrollTo   = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
 
   $(document).ready(function() {
     logger.log('eventMap', 'Initializing event map');
@@ -119,6 +121,7 @@
 
               logger.log('eventMap', 'Appending galleries and case studies');
               $content.html(templates.locationContent(content));
+              TweenLite.to(window, 0.5, { scrollTo: { y: $locContent.offset().top } });
             });
           });
         });

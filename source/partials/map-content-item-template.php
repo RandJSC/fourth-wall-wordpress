@@ -1,14 +1,14 @@
 <script type="text/x-handlebars-template" id="tpl-item-partial">
   <li>
-    <div class="thumbnail">
-      {{#if this.featured_image}}
+    {{#if this.featured_image}}
+      <div class="thumbnail">
         <a href="{{ this.link }}">
           {{#with this.featured_image.attachment_meta.sizes.thumbnail}}
             <img src="{{ url }}" width="{{ width }}" height="{{ height }}">
           {{/with}}
         </a>
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
     <div class="item-content">
       <h3>
         <a href="{{ this.link }}">{{ this.title }}</a>

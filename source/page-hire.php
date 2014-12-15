@@ -94,7 +94,6 @@ $banner = fwe_get_page_banner($post->ID);
               <button id="hire-submit" type="submit">Submit &raquo;</button>
             </p>
           </form>
-          <?php var_dump($fields); ?>
         </div>
       <?php endif; ?>
 

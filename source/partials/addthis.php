@@ -13,4 +13,4 @@ if (is_single() || is_page()) {
     addthis_share.description = description;
   }
 </script>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5488abf7308ad1fd" async="async"></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5488abf7308ad1fd"></script>

@@ -60,6 +60,8 @@
 
   // Setup AddThis sharing buttons
   if (window.hasOwnProperty('addthis')) {
+    logger.log('addthis', 'Setting up AddThis share link');
+
     addthis.button('.addthis-share', {
       ui_offset_top: 15
     });

@@ -17,6 +17,7 @@ $count = 0;
     $pinterest   = get_post_meta($id, 'pinterest', true);
     $google_plus = get_post_meta($id, 'google_plus', true);
     $email       = get_post_meta($id, 'email_address', true);
+    $first_name  = get_post_meta($id, 'given_name', true);
     ?>
     <div class="team-member-viewer" data-visible="true">
       <div class="fade-wrap visible">
@@ -100,6 +101,12 @@ $count = 0;
               <?php endif; ?>
             </ul>
           </div>
+        </div>
+
+        <div class="get-talking">
+          <?php if ($first_name): ?>
+            get <?php echo $first_name; ?> talking
+          <?php endif; ?>
         </div>
       </div>
     </div>

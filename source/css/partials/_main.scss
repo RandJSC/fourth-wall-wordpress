@@ -1,5 +1,13 @@
 // Main Content Area
 
+#breadcrumbs {
+  display: none;
+
+  @include media($bp-above-mobile) {
+    display: block;
+  }
+}
+
 .sharing {
   display: none;
   @include clearfix;

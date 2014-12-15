@@ -1,7 +1,16 @@
 .archive-filter {
   background: $content-bg;
   padding: rem(30) rem(20);
-  text-align: center;
+
+  #event-categories {
+    text-align: center;
+
+    @include media($bp-above-mobile) {
+      text-align: left;
+      max-width: $max-width;
+      margin: 0 auto;
+    }
+  }
 
   select {
     outline: none;

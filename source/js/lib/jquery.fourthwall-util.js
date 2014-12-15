@@ -44,20 +44,36 @@
 
     verticallyCenter: function(options) {
       var defaults = {
-        property: 'paddingTop'
+        property: 'paddingTop',
+        height: 'sum'
       };
 
-      var opts            = assign(defaults, options);
+      var opts = assign(defaults, options);
 
       return this.each(function() {
         var $root           = $(this);
         var $children       = $root.children();
         var rootHeight      = $root.innerHeight();
         var childrenHeights = 0;
+        var tallestHeight   = 0;
 
-        $children.each(function() {
-          childrenHeights += $(this).height();
-        });
+        if (opts.height === 'sum') {
+          $children.each(function() {
+            childrenHeights += $(this).height();
+          });
+        } else if (opts.height === 'tallest') {
+          $children.each(function() {
+            var height = $(this).height();
+
+            if (height > tallestHeight) {
+              tallestHeight = height;
+            }
+          });
+
+          childrenHeights = tallestHeight;
+        }
+
+        logger.log('verticallyCenter', 'Vertically centering %O (%d)', $root, childrenHeights);
 
         var topPad = ( rootHeight - childrenHeights ) / 2;
 

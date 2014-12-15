@@ -43,6 +43,7 @@
   var $hireForm           = $('#hire-form form');
   var $nameTitles         = $('.name-title');
   var $teamThumbs         = $('a.team-member');
+  var $quickLinks         = $('#quick-links a');
 
   // Console access to libraries (debug mode only):
   if (config.debug) {
@@ -63,6 +64,9 @@
       ui_offset_top: 15
     });
   }
+
+  // Vertically center quicklink text
+  $quickLinks.verticallyCenter({ height: 'tallest' });
 
   // Colored OL numbers, regular color text
   $('#main-page-content ol li').wrapInner('<span class="li-content"/>');

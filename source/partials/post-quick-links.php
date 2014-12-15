@@ -5,6 +5,8 @@
     'container'      => 'nav',
     'fallback_cb'    => false,
     'walker'         => new Walker_FWE_QuickLinks(),
+    'link_before'    => '<span class="text">',
+    'link_after'     => '</span>',
   ));
   ?>
 </section>

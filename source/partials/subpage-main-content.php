@@ -8,7 +8,10 @@ $pad_content = $pad_content === 'yes' ? ' padded' : '';
   <article itemscope itemtype="http://schema.org/WebPage" <?php post_class(); ?>>
 
     <div class="post-header padded">
-      <div class="post-top">
+      <div class="post-top page">
+        <?php if (!(is_array($stitches) && count($stitches))): ?>
+          <?php include(locate_template('partials/breadcrumbs.php')); ?>
+        <?php endif; ?>
         <?php include(locate_template('partials/sharing-link.php')); ?>
       </div>
 

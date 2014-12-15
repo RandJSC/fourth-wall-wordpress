@@ -23,6 +23,14 @@
   }
 }
 
+#main-page-content.archive {
+  @include media($bp-above-mobile) {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
 .page-header {
   hr {
     border: 0;
@@ -33,14 +41,29 @@
 
 .archive-intro {
   font-size: rem(16);
+  font-weight: 300;
   line-height: rem(24);
+
+  @include media($bp-above-mobile) {
+    font-size: rem(22);
+    line-height: rem(29);
+    margin-bottom: rem(80);
+  }
 }
 
 .gallery-results {
+  @include media($bp-above-mobile) {
+    margin-bottom: rem(80);
+  }
+
   .result {
     margin-bottom: rem(20);
 
     @include clearfix;
+
+    @include media($bp-above-mobile) {
+      margin-bottom: rem(40);
+    }
 
     .thumbnail,
     .title {
@@ -50,12 +73,42 @@
     .thumbnail {
       img {
         border: 5px solid $archive-thumb-border;
+        width: rem(95);
+        height: rem(75);
+        margin: 0;
+
+        @include media($bp-above-mobile) {
+          width: rem(162);
+          height: rem(128);
+        }
       }
     }
 
     .title {
-      font-weight: bold;
       margin-left: rem(8);
+
+      @include media($bp-above-mobile) {
+        margin-left: rem(30);
+      }
+
+      a {
+        font-weight: bold;
+
+        @include media($bp-above-mobile) {
+          font-size: rem(20);
+          line-height: rem(28);
+        }
+      }
+
+      .excerpt {
+        font-size: rem(16);
+        line-height: rem(28);
+        font-weight: 300;
+
+        p {
+          margin: 0;
+        }
+      }
     }
   }
 }

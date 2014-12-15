@@ -13,7 +13,7 @@ include(locate_template('partials/gallery-quick-links.php'));
 include(locate_template('partials/gallery-archive-search.php'));
 ?>
 
-<section id="main-page-content" class="content-section padded">
+<section id="main-page-content" class="content-section padded archive galleries">
   <div class="page-header">
     <h1><?php post_type_archive_title(); ?></h1>
     <hr>

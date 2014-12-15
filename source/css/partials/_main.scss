@@ -176,13 +176,17 @@ div.content-section {
     margin-bottom: rem(20);
 
     &.alignleft {
-      float: left;
-      margin-right: rem(20);
+      @include media($bp-above-mobile) {
+        float: left;
+        margin-right: rem(20);
+      }
     }
 
     &.alignright {
-      float: right;
-      margin-left: rem(20);
+      @include media($bp-above-mobile) {
+        float: right;
+        margin-left: rem(20);
+      }
     }
 
     &.no-border {

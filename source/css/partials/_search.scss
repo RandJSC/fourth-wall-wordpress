@@ -2,14 +2,25 @@ section.content-section .search-header {
   padding-left: rem(20);
   padding-right: rem(20);
 
+  @include media($bp-above-mobile) {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding-bottom: rem(40);
+  }
+
   h1 {
     text-align: left;
-    font-weight: 100;
+    font-weight: 300;
     font-style: italic;
     font-size: rem(24);
     color: $text-color;
     margin-bottom: 0;
     margin-top: rem(30);
+
+    @include media($bp-above-mobile) {
+      display: inline-block;
+      font-size: rem(44);
+    }
   }
 
   #search-query {
@@ -17,16 +28,42 @@ section.content-section .search-header {
     font-weight: 100;
     color: $text-color;
     margin-top: 0;
+
+    @include media($bp-above-mobile) {
+      display: inline-block;
+      margin-left: rem(10);
+      margin-bottom: 0;
+      font-size: rem(30);
+      font-style: italic;
+    }
   }
 }
 
 ol.search-results {
-  padding-left: 0;
+  padding-left: 0 !important;
   list-style: none;
+
+  @include media($bp-above-mobile) {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0;
+  }
 
   li {
     border-top: 1px solid $hr-grey;
     padding: rem(20);
+    color: $text-color !important;
+
+    @include media($bp-above-mobile) {
+      padding: 0;
+    }
+
+    .result-internal {
+      @include media($bp-above-mobile) {
+        max-width: rem(780);
+        margin: 0 auto;
+      }
+    }
 
     &:last-child {
       border-bottom: 1px solid $text-color;

@@ -436,6 +436,12 @@ button {
       border-bottom: 0;
     }
   }
+
+  &.search {
+    #page-banner {
+      border-bottom: rem(12) solid #575757;
+    }
+  }
 }
 
 .pagination {

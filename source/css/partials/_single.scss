@@ -17,7 +17,7 @@ section.content-section article.stitch {
     @include media($bp-above-mobile) {
       width: 100%;
       max-width: $max-width;
-      margin: 0 auto rem(40);
+      margin: 0 auto rem(80);
     }
   }
 

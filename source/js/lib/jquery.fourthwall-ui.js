@@ -325,7 +325,6 @@
 
             // vertically center nav arrows in slider frame
             imagesLoaded($container[0], centerArrows);
-            //centerArrows();
             $(window).on('resize', centerArrows);
 
             // bind click handlers to nav arrows

@@ -35,6 +35,11 @@
   $.magnificPopup    = Magnific.root;
   $.fn.magnificPopup = Magnific.plugin;
 
+  var getScrollY = function getScrollY() {
+    var doc = document.documentElement;
+    return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+  };
+
   Handlebars.registerHelper('socialLink', function(icon, url) {
     if (!url) return '';
 
@@ -249,7 +254,9 @@
     photoSlider: function(opts) {
       var defaults = {
         popup: false,
-        container: '.stitch-slider'
+        container: '.stitch-slider',
+        navLinks: null,
+        scrollThreshold: 100
       };
       var options  = isObject(opts) ? assign(defaults, opts) : defaults;
 
@@ -264,6 +271,29 @@
             var $container = slider.$slider.closest(options.container);
 
             if (!$container.length) return;
+
+            if (options.navLinks) {
+              logger.log('gallery', 'Setting up slide seek links');
+
+              $container.parent().find(options.navLinks).on('click', function() {
+                var sliderTop = $el.offset().top;
+                var scrollY   = getScrollY();
+                var idx       = $(this).data('index');
+                var slideSeek = function() {
+                  logger.log('gallery:seek', 'Seeking to slide %d', idx);
+                  $el.slickGoTo(idx);
+                };
+
+                if (scrollY !== (sliderTop + options.scrollThreshold) || scrollY !== (sliderTop - options.scrollThreshold)) {
+                  logger.log('gallery:scroll', 'Scrolling up to offset %d', sliderTop);
+                  TweenLite.to(window, 0.5, { scrollTo: { y: sliderTop }, onComplete: slideSeek });
+                } else {
+                  slideSeek();
+                }
+
+                return false;
+              });
+            }
 
             var $imgLinks = $container.find('a');
 
@@ -321,7 +351,6 @@
         var teamMembers     = {};
         var viewerHeight    = $viewer.height();
         var detailY         = Math.round($detailArea.offset().top);
-        var doc             = document.documentElement;
 
         logger.log('teamMembers', 'Setting viewer maxHeight to %d', viewerHeight);
 
@@ -336,7 +365,7 @@
         $thumbLinks.on('click', function(evt) {
           var ajax;
           var $el     = $(this);
-          var scrollY = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+          var scrollY = getScrollY();
           var slug    = $el.data('slug');
           var jsonURL = $el.attr('href');
           var success = function(obj) {

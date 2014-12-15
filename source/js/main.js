@@ -127,7 +127,8 @@
   // Gallery sliders
   $gallerySliders.photoSlider({
     popup: true,
-    container: '.gallery-slider'
+    container: '.gallery-slider',
+    navLinks: '.photo-grid .photo a'
   });
 
   // Event category picker

@@ -118,6 +118,14 @@
   padding-left: rem(8);
   padding-right: rem(8);
 
+  .slider-arrows {
+    position: absolute;
+    width: 100%;
+    height: rem(36);
+    padding: 0 rem(16);
+    padding-right: rem(24);
+  }
+
   .slider-arrow {
     float: left;
     display: block;

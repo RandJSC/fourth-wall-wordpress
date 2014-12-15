@@ -22,6 +22,7 @@ section.stitch {
 }
 
 section.content-section article.stitch {
+  position: relative;
 
   .post-header {
     h2 {
@@ -39,6 +40,12 @@ section.content-section article.stitch {
 
   .stitch-slider {
     @extend %slider-arrows;
+    position: relative;
+
+    @include media($bp-above-mobile) {
+      max-width: $max-width;
+      margin: 0 auto;
+    }
   }
 
   .post-content {

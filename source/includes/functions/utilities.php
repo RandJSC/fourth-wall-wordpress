@@ -236,7 +236,7 @@ function fwe_get_stitch_vars($page_id = 0) {
   $pad_header     = ($pad_header === 'no') ? false : true;
   $pad_header     = $pad_header ? ' padded' : '';
   $slider_images  = get_post_meta($page_id, 'slider_images', true);
-  $has_slides     = !empty($slider_images) && !empty($slider_images[0][0]);
+  $has_slides     = !empty($slider_images) && array_key_exists('image', $slider_images) && !empty($slider_images['image'][0]);
   $slide_count    = $has_slides ? count($slider_images['image']) : 0;
   $backgrounds    = get_post_meta($page_id, 'page_backgrounds', true);
   $white_header   = '';
@@ -245,7 +245,7 @@ function fwe_get_stitch_vars($page_id = 0) {
     $white_header = ' white';
   }
 
-  return array(
+  $result = array(
     'stitch_page'    => $stitch_page,
     'stitch_id'      => $page_id,
     'pad_header'     => $pad_header,
@@ -256,6 +256,8 @@ function fwe_get_stitch_vars($page_id = 0) {
     'slider_images'  => $slider_images,
     'stitch_content' => $stitch_content,
   );
+
+  return $result;
 }
 
 function fwe_get_surname($title) {

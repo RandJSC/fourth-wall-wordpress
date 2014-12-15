@@ -9,28 +9,29 @@
 (function(window, undefined) {
   'use strict';
 
-  var has         = require('lodash.has');
-  var isUndefined = require('lodash.isundefined');
-  var isEmpty     = require('lodash.isempty');
-  var isObject    = require('lodash.isobject');
-  var forEach     = require('lodash.foreach');
-  var debounce    = require('lodash.debounce');
-  var assign      = require('lodash.assign');
-  var throttle    = require('lodash.throttle');
-  var find        = require('lodash.find');
-  var sortBy      = require('lodash.sortby');
-  var $           = require('jquery');
-  var config      = require('./config');
-  var Snap        = require('./snap.svg.custom');
-  var Hammer      = require('hammerjs');
-  var logger      = require('bragi-browser');
-  var fweUtil     = require('./jquery.fourthwall-util');
-  var Handlebars  = require('handlebars');
-  var TweenLite   = require('gsap/src/uncompressed/TweenLite');
-  var ScrollTo    = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
-  var Magnific    = require('./jquery.magnific-popup');
-  var gforms      = require('./gforms-api');
-  var colors      = require('./colors');
+  var has          = require('lodash.has');
+  var isUndefined  = require('lodash.isundefined');
+  var isEmpty      = require('lodash.isempty');
+  var isObject     = require('lodash.isobject');
+  var forEach      = require('lodash.foreach');
+  var debounce     = require('lodash.debounce');
+  var assign       = require('lodash.assign');
+  var throttle     = require('lodash.throttle');
+  var find         = require('lodash.find');
+  var sortBy       = require('lodash.sortby');
+  var $            = require('jquery');
+  var config       = require('./config');
+  var Snap         = require('./snap.svg.custom');
+  var Hammer       = require('hammerjs');
+  var logger       = require('bragi-browser');
+  var fweUtil      = require('./jquery.fourthwall-util');
+  var Handlebars   = require('handlebars');
+  var TweenLite    = require('gsap/src/uncompressed/TweenLite');
+  var ScrollTo     = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
+  var Magnific     = require('./jquery.magnific-popup');
+  var gforms       = require('./gforms-api');
+  var colors       = require('./colors');
+  var imagesLoaded = require('imagesloaded');
 
   $.magnificPopup    = Magnific.root;
   $.fn.magnificPopup = Magnific.plugin;
@@ -308,8 +309,10 @@
 
             var centerArrows = throttle(function(evt) {
               var arrowHeight  = $arrowContainer.height();
-              var sliderHeight = $el.height();
+              var sliderHeight = $container.height();
               var arrowTop     = Math.round(sliderHeight / 2 - arrowHeight);
+
+              logger.log('gallery', 'Vertically centering nav arrows. sliderHeight = %d arrowTop = %d $el = %O', sliderHeight, arrowTop, $el);
 
               $arrowContainer.css('top', arrowTop);
             }, 100);
@@ -321,7 +324,8 @@
             });
 
             // vertically center nav arrows in slider frame
-            centerArrows();
+            imagesLoaded($container[0], centerArrows);
+            //centerArrows();
             $(window).on('resize', centerArrows);
 
             // bind click handlers to nav arrows

@@ -7,6 +7,8 @@ $bg_data       = '';
 $section_style = '';
 $content_style = '';
 
+var_dump($stitch['has_slides']);
+
 if (!empty($backgrounds)) {
   $bg_data       = !empty($backgrounds) ? ' data-backgrounds="' . htmlspecialchars(json_encode($backgrounds)) . '"' : '';
   $first_bg      = $backgrounds[0];

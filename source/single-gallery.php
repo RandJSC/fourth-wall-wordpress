@@ -83,13 +83,26 @@ include(locate_template('partials/gallery-quick-links.php'));
               list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'full');
               $src_attr = fwe_lazy_load_img_src($src, $i);
               ?>
-              <figure class="slide">
+              <figure class="slide" data-index="<?php echo $i; ?>">
                 <a href="<?php echo $src; ?>">
                   <img <?php echo $src_attr; ?> width="100%" alt="<?php echo $photos['title'][$i]; ?>">
                 </a>
               </figure>
             <?php endfor; ?>
           </div>
+        </div>
+
+        <div class="photo-grid">
+          <?php for ($i = 0; $i < $photo_count; $i++): ?>
+            <?php
+            list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'tiny-thumb');
+            ?>
+            <div class="photo">
+              <a href="#" class="slide-link" data-index="<?php echo $i; ?>">
+                <img src="<?php echo $src; ?>" alt="Photo <?php echo $i; ?>">
+              </a>
+            </div>
+          <?php endfor; ?>
         </div>
       </div>
 

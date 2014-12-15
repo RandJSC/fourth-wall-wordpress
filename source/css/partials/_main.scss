@@ -444,19 +444,46 @@ button {
   padding: rem(30) rem(22);
   @include clearfix;
 
+  @include media($bp-above-mobile) {
+    font-size: rem(25);
+    line-height: rem(25);
+  }
+
+  .pagination-internal {
+    @include media($bp-above-mobile) {
+      width: 100%;
+      max-width: $max-width;
+      margin: 0 auto;
+    }
+  }
+
   a {
     display: block;
     width: (100% / 3);
     text-decoration: none;
     min-height: 1px;
 
+    .mobile-text {
+      @include media($bp-above-mobile) {
+        display: none;
+      }
+    }
+
     &.next {
       float: right;
       text-align: right;
+
+      .arrow {
+        margin-left: rem(30);
+      }
     }
 
     &.previous {
       float: left;
+
+      .arrow {
+        margin-right: rem(30);
+      }
     }
   }
 

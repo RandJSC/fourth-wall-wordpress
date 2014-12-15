@@ -8,6 +8,16 @@ Priority: high
 
 piklist('field', array(
   'type'       => 'text',
+  'field'      => 'given_name',
+  'label'      => 'Given (First) Name',
+  'help'       => 'If you leave this blank, we\'ll try to guess it from the team member\'s full name.',
+  'attributes' => array(
+    'class' => 'text',
+  ),
+));
+
+piklist('field', array(
+  'type'       => 'text',
   'field'      => 'surname',
   'label'      => 'Surname',
   'help'       => 'If you leave this blank, we\'ll try to guess it from the team member\'s full name.',

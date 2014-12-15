@@ -447,6 +447,7 @@ button {
   @include media($bp-above-mobile) {
     font-size: rem(25);
     line-height: rem(25);
+    margin-top: rem(80);
   }
 
   .pagination-internal {

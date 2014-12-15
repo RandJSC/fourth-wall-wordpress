@@ -449,6 +449,12 @@ button {
       border-bottom: rem(12) solid #575757;
     }
   }
+
+  &.whats-new {
+    #page-banner {
+      border-bottom: 0;
+    }
+  }
 }
 
 .pagination {

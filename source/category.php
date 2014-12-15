@@ -8,10 +8,11 @@ get_header();
 
 global $wp_query, $fwe_settings;
 
-$banner   = $fwe_settings['default_category_banner'];
-$banner   = wp_get_attachment_image_src($banner, 'full');
-$caption  = "What's New";
-$category = $wp_query->queried_object;
+$banner         = $fwe_settings['default_category_banner'];
+$banner         = wp_get_attachment_image_src($banner, 'full');
+$caption        = "What's New";
+$category       = $wp_query->queried_object;
+$banner_classes = 'whats-new';
 ?>
 
 <?php if ($banner): ?>

@@ -340,14 +340,30 @@
       });
     },
 
-    teamMembersShortcode: function() {
+    teamMembersShortcode: function(options) {
+      if (!isObject(options) || !options) {
+        options = {};
+      }
+
+      var defaults = {
+        viewer: '.team-member-viewer',
+        thumbLinks: '.team-thumbs a',
+        detailArea: '.team-member-detail',
+        fadeWrap: '.fade-wrap',
+        collapseButton: '.collapse-button',
+        getTalking: '.get-talking'
+      };
+
+      var opts = assign(defaults, options);
+
       return this.each(function() {
         var $root           = $(this);
-        var $viewer         = $root.find('.team-member-viewer');
-        var $thumbLinks     = $root.find('.team-thumbs a');
-        var $detailArea     = $root.find('.team-member-detail');
-        var $fadeWrap       = $root.find('.fade-wrap');
-        var $collapseButton = $root.find('.collapse-button');
+        var $viewer         = $root.find(opts.viewer);
+        var $thumbLinks     = $root.find(opts.thumbLinks);
+        var $detailArea     = $root.find(opts.detailArea);
+        var $fadeWrap       = $root.find(opts.fadeWrap);
+        var $collapseButton = $root.find(opts.collapseButton);
+        var $getTalking     = $root.find(opts.getTalking);
         var teamMembers     = {};
         var viewerHeight    = $viewer.height();
         var detailY         = Math.round($detailArea.offset().top);
@@ -379,6 +395,7 @@
             var html = templates.teamMemberDetail(obj);
 
             $detailArea.html(html);
+            $getTalking.text('get ' + obj.given_name + ' talking');
             $fadeWrap.addClass('visible');
             resetMaxHeight();
           };

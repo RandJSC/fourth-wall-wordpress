@@ -18,6 +18,7 @@ class FourthWall_TeamMembers extends WP_JSON_CustomPostType {
     $post = parent::prepare_post($post, $context);
 
     // Add custom fields
+    $post['given_name']    = get_post_meta($post['ID'], 'given_name', true);
     $post['surname']       = get_post_meta($post['ID'], 'surname', true);
     $post['job_title']     = get_post_meta($post['ID'], 'job_title', true);
     $post['location']      = get_post_meta($post['ID'], 'location', true);

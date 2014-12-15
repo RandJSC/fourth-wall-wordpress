@@ -55,12 +55,16 @@
   }
 
   .column-left {
-    float: left;
-    width: 30.188679245%;
+    @include media($bp-above-tablet) {
+      float: left;
+      width: 30.188679245%;
+    }
   }
 
   .column-right {
-    float: right;
-    width: 69.811320755%;
+    @include media($bp-above-tablet) {
+      float: right;
+      width: 69.811320755%;
+    }
   }
 }

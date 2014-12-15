@@ -155,6 +155,18 @@
   }
 }
 
+.get-talking {
+  display: none;
+  text-align: center;
+  font-size: rem(52);
+  font-weight: 300;
+  margin-top: rem(30);
+
+  @include media($bp-above-mobile) {
+    display: block;
+  }
+}
+
 .team-thumbs {
   padding-top: rem(60);
   padding-bottom: rem(40);

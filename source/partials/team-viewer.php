@@ -103,12 +103,12 @@ $count = 0;
           </div>
         </div>
 
-        <div class="get-talking">
-          <?php if ($first_name): ?>
-            get <?php echo $first_name; ?> talking
-          <?php endif; ?>
-        </div>
       </div>
+    </div>
+    <div class="get-talking">
+      <?php if ($first_name): ?>
+        get <?php echo $first_name; ?> talking
+      <?php endif; ?>
     </div>
   <?php endif; ?>
 

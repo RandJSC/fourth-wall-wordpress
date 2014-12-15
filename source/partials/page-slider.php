@@ -6,7 +6,7 @@
       $link_url = $slider_images['link_url'][$i];
       $image    = $slider_images['image'][$i][0];
       $image    = wp_get_attachment_image_src($image, 'full');
-      $src_attr = fwe_lazy_load_image_src($image[0], $i);
+      $src_attr = fwe_lazy_load_img_src($image[0], $i);
       ?>
       <figure class="slide">
         <a href="<?php echo esc_url($link_url); ?>">

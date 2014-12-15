@@ -7,6 +7,13 @@ div.content-section article.page {
       width: 100%;
     }
   }
+
+  .post-content {
+    h3 {
+      font-size: rem(24);
+      color: $blue;
+    }
+  }
 }
 
 section.stitch {

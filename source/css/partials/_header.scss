@@ -64,3 +64,28 @@
     }
   }
 }
+
+.breadcrumbs-share {
+  display: none;
+  max-width: $max-width;
+  margin: 0 auto;
+
+  #breadcrumbs {
+    float: left;
+    font-size: rem(18);
+    font-weight: 300;
+    line-height: rem(30);
+    @include calc(width, '100% - 76px');
+  }
+
+  .sharing {
+    float: left;
+    width: rem(76);
+    margin: rem(20) 0;
+  }
+
+  @include media($bp-above-mobile) {
+    display: block;
+    @include clearfix;
+  }
+}

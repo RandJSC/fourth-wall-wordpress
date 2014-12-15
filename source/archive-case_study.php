@@ -10,8 +10,14 @@ get_header();
 
 include(locate_template('partials/gallery-banner.php'));
 include(locate_template('partials/gallery-quick-links.php'));
-include(locate_template('partials/gallery-archive-search.php'));
 ?>
+
+<div class="breadcrumbs-share">
+  <?php include(locate_template('partials/breadcrumbs.php')); ?>
+  <?php include(locate_template('partials/sharing-link.php')); ?>
+</div>
+
+<?php include(locate_template('partials/gallery-archive-search.php')); ?>
 
 <section id="main-page-content" class="content-section padded">
   <div class="page-header">

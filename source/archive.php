@@ -21,7 +21,7 @@ $caption = "What's New";
 
 <section id="main-page-content" class="content-section padded">
   <div class="page-header">
-    <h1><?php post_type_archive_title(); ?></h1>
+    <h1>Archive</h1>
     <hr>
   </div>
 

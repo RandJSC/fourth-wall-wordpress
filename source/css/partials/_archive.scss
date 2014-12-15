@@ -51,7 +51,8 @@
   }
 }
 
-.gallery-results {
+.gallery-results,
+.post-results {
   @include media($bp-above-mobile) {
     margin-bottom: rem(80);
   }
@@ -112,3 +113,19 @@
     }
   }
 }
+
+.post-results {
+
+  @include media($bp-above-mobile) {
+    margin-top: rem(80);
+  }
+
+  .result {
+    .title {
+      @include media($bp-above-mobile) {
+        @include calc(width, '100% - 192px');
+      }
+    }
+  }
+}
+

@@ -5,6 +5,7 @@ if (is_single() || is_page()) {
 }
 ?>
 <script>
+  <?php $description = isset($description) ? $description : ''; ?>
   var description   = '<?php echo $description; ?>';
   var addthis_share = {};
 

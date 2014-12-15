@@ -179,6 +179,10 @@
       li {
         height: rem(100);
 
+        @include media($bp-above-mobile) {
+          width: (100% / 3);
+        }
+
         span.fa {
           float: left;
         }

@@ -19,6 +19,22 @@ function fwe_team_member_set_surname($post_id) {
 }
 add_action('save_post', 'fwe_team_member_set_surname');
 
+// Automatically set a team member's first name
+function fwe_team_member_set_given_name($post_id) {
+  if (wp_is_post_revision($post_id)) return;
+  if (!array_key_exists('post_type', $_POST)) return;
+  if ($_POST['post_type'] !== 'team_member') return;
+
+  $given_name = get_post_meta($post_id, 'given_name', true);
+
+  if (!$given_name) {
+    $name_parts = explode(' ', $_POST['post_title']);
+    $given_name = $name_parts[0];
+    update_post_meta($post_id, 'given_name', $given_name);
+  }
+}
+add_action('save_post', 'fwe_team_member_set_given_name');
+
 // When a gallery is saved w/ a case study selected, automatically set that case study's associated gallery and vice-versa.
 function fwe_gallery_case_study_association($post_id) {
   if (wp_is_post_revision($post_id)) return;

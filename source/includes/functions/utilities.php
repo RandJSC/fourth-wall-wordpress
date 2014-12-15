@@ -192,27 +192,32 @@ function fwe_pagination_links($query = null) {
   if ($pages > 1):
 ?>
     <div class="pagination">
-      <a class="previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
-        <?php if ($paged > 1): ?>
-          <span class="arrow">
-            <span class="fa fa-arrow-left"></span>
-          </span>
-          <span class="link-text">Prev</span>
-        <?php endif; ?>
-      </a>
+      <div class="pagination-internal">
+        <a class="previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
+          <?php if ($paged > 1): ?>
+            <span class="arrow">
+              <span class="fa fa-arrow-left"></span>
+            </span>
+            <span class="link-text">
+              <span class="mobile-text">Prev</span>
+              <span class="show-tablet-inline">Previous</span>
+            </span>
+          <?php endif; ?>
+        </a>
 
-      <span class="current">
-        <?php echo $paged; ?>
-      </span>
+        <span class="current">
+          <?php echo $paged; ?>
+        </span>
 
-      <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
-        <?php if ($paged <= $pages - 1): ?>
-          <span class="link-text">Next</span>
-          <span class="arrow">
-            <span class="fa fa-arrow-right"></span>
-          </span>
-        <?php endif; ?>
-      </a>
+        <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
+          <?php if ($paged <= $pages - 1): ?>
+            <span class="link-text">Next</span>
+            <span class="arrow">
+              <span class="fa fa-arrow-right"></span>
+            </span>
+          <?php endif; ?>
+        </a>
+      </div>
     </div>
 <?php
   endif;

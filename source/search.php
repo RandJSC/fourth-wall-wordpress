@@ -6,7 +6,7 @@ global $fwe_settings;
 $banner = $fwe_settings['search_banner'];
 ?>
 
-<section class="banner">
+<section class="banner search">
   <figure id="page-banner">
     <?php if ($banner): ?>
       <?php $banner_src = wp_get_attachment_image_src($banner, 'full'); ?>
@@ -32,13 +32,15 @@ $banner = $fwe_settings['search_banner'];
     <ol class="search-results">
       <?php while (have_posts()): the_post(); ?>
         <li class="result">
-          <h2>
-            <a href="<?php the_permalink(); ?>">
-              <?php the_title(); ?>
-            </a>
-          </h2>
-          <div class="result-excerpt">
-            <?php the_excerpt(); ?>
+          <div class="result-internal">
+            <h2>
+              <a href="<?php the_permalink(); ?>">
+                <?php the_title(); ?>
+              </a>
+            </h2>
+            <div class="result-excerpt">
+              <?php the_excerpt(); ?>
+            </div>
           </div>
         </li>
       <?php endwhile; ?>

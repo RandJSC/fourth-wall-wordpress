@@ -13,6 +13,8 @@
 
     li {
       @include clearfix;
+      background: none !important;
+      padding-left: 0 !important;
     }
 
     .quote {

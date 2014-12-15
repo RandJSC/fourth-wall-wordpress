@@ -9,8 +9,11 @@
  */
 function fwe_register_post_type_team_member($post_types) {
 
+  $labels         = piklist('post_type_labels', 'Team Members');
+  $labels['name'] = 'Team Members';
+
   $post_types['team_member'] = array(
-    'labels'    => piklist('post_type_labels', 'Team Member'),
+    'labels'    => $labels,
     'title'     => 'Enter a title...',
     'public'    => true,
     'menu_icon' => 'dashicons-admin-users',
@@ -86,8 +89,11 @@ add_filter('piklist_post_types', 'fwe_register_post_type_call_to_action');
  */
 function fwe_register_post_type_gallery($post_types) {
 
+  $labels         = piklist('post_type_labels', 'Galleries');
+  $labels['name'] = 'Galleries';
+
   $post_types['gallery'] = array(
-    'labels'      => piklist('post_type_labels', 'Gallery'),
+    'labels'      => $labels,
     'title'       => 'Enter a title...',
     'public'      => true,
     'menu_icon'   => 'dashicons-format-gallery',
@@ -111,8 +117,11 @@ add_filter('piklist_post_types', 'fwe_register_post_type_gallery');
  */
 function fwe_register_post_type_case_study($post_types) {
 
+  $labels         = piklist('post_type_labels', 'Case Studies');
+  $labels['name'] = 'Case Studies';
+
   $post_types['case_study'] = array(
-    'labels'      => piklist('post_type_labels', 'Case Study'),
+    'labels'      => $labels,
     'title'       => 'Enter a title...',
     'public'      => true,
     'menu_icon'   => 'dashicons-awards',
@@ -137,8 +146,11 @@ add_filter('piklist_post_types', 'fwe_register_post_type_case_study');
  */
 function fwe_register_post_type_testimonial($post_types) {
 
+  $labels         = piklist('post_type_labels', 'Testimonials');
+  $labels['name'] = 'Testimonials';
+
   $post_types['testimonial'] = array(
-    'labels'              => piklist('post_type_labels', 'Testimonial'),
+    'labels'              => $labels,
     'title'               => 'Enter a Title...',
     'public'              => true,
     'menu_icon'           => 'dashicons-testimonial',
@@ -161,8 +173,11 @@ add_filter('piklist_post_types', 'fwe_register_post_type_testimonial');
  */
 function fwe_register_post_type_accordion($post_types) {
 
+  $labels         = piklist('post_type_labels', 'Accordions');
+  $labels['name'] = 'Accordions';
+
   $post_types['accordion'] = array(
-    'labels'              => piklist('post_type_labels', 'Accordion'),
+    'labels'              => $labels,
     'title'               => 'Enter a Title...',
     'public'              => true,
     'menu_icon'           => 'dashicons-editor-justify',
@@ -184,8 +199,11 @@ add_filter('piklist_post_types', 'fwe_register_post_type_accordion');
  */
 function fwe_register_post_type_location($post_types) {
 
+  $labels         = piklist('post_type_labels', 'Locations');
+  $labels['name'] = 'Locations';
+
   $post_types['location'] = array(
-    'labels'              => piklist('post_type_labels', 'Location'),
+    'labels'              => $labels,
     'title'               => 'Enter Location Name...',
     'public'              => true,
     'menu_icon'           => 'dashicons-location-alt',

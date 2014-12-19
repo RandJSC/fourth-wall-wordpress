@@ -381,4 +381,20 @@ function fwe_get_root_parent($post) {
 
   return fwe_get_root_parent($parent);
 }
+
+function fwe_get_first_valid_image($images) {
+  if (!is_array($images)) return 0;
+
+  $intval = 0;
+
+  foreach ($images as $image) {
+    $intval = (int) $image;
+
+    if ($intval > 0) {
+      break;
+    }
+  }
+
+  return $intval;
+}
 ?>

@@ -5,7 +5,8 @@
 
     $header_id    = 'accordion-' . $id . '-header-' . $i;
     $pane_id      = 'accordion-' . $id . '-pane-' . $i;
-    $pane_icon    = wp_get_attachment_image_src($panes['icon'][$i][0], 'full');
+    $pane_icon_id = fwe_get_first_valid_image($panes['icon'][$i]);
+    $pane_icon    = wp_get_attachment_image_src($pane_icon_id, 'full');
     $header_style = fwe_style_attribute(array(
       'background-color' => $panes['header_background'][$i],
     ));

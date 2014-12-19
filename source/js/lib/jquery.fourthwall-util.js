@@ -79,6 +79,24 @@
 
         $root.css(opts.property, '' + topPad + 'px');
       });
+    },
+
+    newWindowIfOffsite: function() {
+      var pageHost = window.location.host;
+
+      return this.each(function() {
+        var $link = $(this);
+
+        if ($link[0].host !== pageHost) {
+          logger.log('offsiteLinks', 'Binding new window click handler to %O', $link[0]);
+
+          $link.on('click', function(evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            window.open( $(this).attr('href'), '_blank' );
+          });
+        }
+      });
     }
 
   });

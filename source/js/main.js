@@ -88,6 +88,9 @@
     }
   };
 
+  // Tag offsite links to open in new tab/window
+  $('a').newWindowIfOffsite();
+
   // Attach fastclick to body
   fastClick(document.body);
 

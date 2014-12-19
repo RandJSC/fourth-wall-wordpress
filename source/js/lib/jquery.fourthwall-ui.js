@@ -45,7 +45,7 @@
     if (!url) return '';
 
     var listItem = '<li>' +
-        '<a href="' + url + '">' +
+        '<a href="' + url + '" target="_blank">' +
           '<span class="fa ' + icon + '"></span>' +
         '</a>' +
       '</li>';

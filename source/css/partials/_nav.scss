@@ -22,6 +22,7 @@
 
   nav {
     float: left;
+    font-weight: 300;
     @include calc(width, '100% - 200px');
 
     ul {
@@ -80,6 +81,10 @@
 
   .search-form {
     @include search-box;
+  }
+
+  nav {
+    font-weight: 300;
   }
 
   ul {

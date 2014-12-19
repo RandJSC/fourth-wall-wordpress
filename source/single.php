@@ -93,6 +93,8 @@ if (isset($post) && fwe_is_post($post)) {
       <div class="post-content padded" itemprop="articleBody">
         <?php the_content(); ?>
       </div>
+
+      <?php include(locate_template('partials/single-pagination.php')); ?>
     </article>
   </section>
 <?php endwhile; endif; ?>

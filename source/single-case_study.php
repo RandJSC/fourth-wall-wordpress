@@ -17,7 +17,8 @@ include(locate_template('partials/gallery-quick-links.php'));
 
   <?php
   $post_id     = get_the_ID();
-  $location    = get_post_meta($post_id, 'location_name', true);
+  $location_id = get_post_meta($post_id, 'location_id', true);
+  $location    = $location_id ? get_the_title($location_id) : '';
   $date        = get_post_meta($post_id, 'event_date', true);
   $gallery_id  = get_post_meta($post_id, 'gallery_id', true);
   $photos      = get_post_meta($gallery_id, 'gallery_photos', true);

@@ -15,6 +15,10 @@ section.content-section.case-study {
     h1 {
       color: $gallery-header-text;
       margin-bottom: 0;
+
+      @include media($bp-above-mobile) {
+        font-size: rem(40);
+      }
     }
 
     .details {
@@ -28,6 +32,22 @@ section.content-section.case-study {
         margin-top: rem(10);
         font-size: rem(22);
         line-height: rem(22);
+        @include clearfix;
+      }
+
+      .date,
+      .location {
+        @include media($bp-above-mobile) {
+          display: inline-block;
+        }
+      }
+
+      .location + .date {
+        @include media($bp-above-mobile) {
+          padding-left: rem(22);
+          margin-left: rem(22);
+          border-left: 1px solid $text-color;
+        }
       }
 
       .fa {

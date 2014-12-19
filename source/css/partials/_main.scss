@@ -549,5 +549,17 @@ button {
         @include calc(width, '100% - 10px');
       }
     }
+
+    &.text-right {
+      clear: both;
+      float: none;
+      width: 100%;
+      margin: 0;
+
+      @include media($bp-above-mobile) {
+        text-align: right;
+        padding-right: rem(10);
+      }
+    }
   }
 }

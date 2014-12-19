@@ -25,9 +25,11 @@ global $fwe_settings;
         <input type="email" name="email" placeholder="Email Address" required>
         <span class="required">*</span>
       </p>
-      <button type="submit" class="fwe-button">
-        <span class="button-label">Submit &raquo;</span>
-      </button>
+      <p class="text-right">
+        <button type="submit" class="fwe-button">
+          <span class="button-label">Submit &raquo;</span>
+        </button>
+      </p>
     </form>
   </div>
 </section>

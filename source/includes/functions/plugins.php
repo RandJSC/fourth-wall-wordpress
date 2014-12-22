@@ -49,6 +49,11 @@ function fwe_register_plugins() {
       'slug'     => 'regenerate-thumbnails',
       'required' => false,
     ),
+    array(
+      'name'     => 'Asset Queue Manager',
+      'slug'     => 'asset-queue-manager',
+      'required' => false,
+    ),
   );
 
   $config = array(

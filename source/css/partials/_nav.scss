@@ -55,10 +55,34 @@
         }
 
         a {
+          position: relative;
           text-decoration: none;
+          padding-bottom: rem(5);
+
+          &:after {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: rem(4);
+            background: $blue;
+            opacity: 0;
+            @include transform(translateY(rem(10)));
+            @include transition(
+              opacity 300ms,
+              transform 300ms
+            );
+          }
 
           &:hover {
-            text-decoration: underline;
+            color: $blue;
+            text-decoration: none;
+
+            &:after {
+              opacity: 1;
+              @include transform(translateY(0));
+            }
           }
         }
       }

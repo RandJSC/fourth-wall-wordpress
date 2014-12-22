@@ -165,10 +165,30 @@ div.content-section {
   }
 
   ol {
+    list-style-type: none;
+    counter-reset: li-counter;
     padding-left: rem(30);
 
     li {
-      color: #f16a22;
+      position: relative;
+      padding-left: rem(8);
+      line-height: rem(20);
+      font-weight: 300;
+      margin-bottom: rem(6);
+
+      &:before {
+        position: absolute;
+        top: 0;
+        left: -1em;
+        content: counter(li-counter) '.';
+        width: .8em;
+        font-size: rem(20);
+        line-height: rem(20);
+        font-weight: bold;
+        text-align: right;
+        counter-increment: li-counter;
+        color: #f16a22;
+      }
 
       span.li-content {
         color: $text-color;

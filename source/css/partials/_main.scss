@@ -135,6 +135,7 @@ div.content-section {
 
   h2 {
     padding-bottom: rem(25);
+    padding-top: rem(25);
 
     @include media($bp-above-mobile) {
       font-size: rem(40);

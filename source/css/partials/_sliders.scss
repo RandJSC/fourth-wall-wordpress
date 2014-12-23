@@ -5,4 +5,7 @@ figure.slide {
 .main-page-slider {
   @extend %slider-arrows;
   position: relative;
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
 }

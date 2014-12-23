@@ -1,3 +1,8 @@
 figure.slide {
   margin: 0;
 }
+
+.main-page-slider {
+  @extend %slider-arrows;
+  position: relative;
+}

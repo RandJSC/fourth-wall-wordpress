@@ -35,6 +35,7 @@
   var $testimonialSliders = $('.testimonial-slider');
   var $accordions         = $('.accordion');
   var $homepageSlider     = $('.slider .slides');
+  var $pageSlider         = $('.main-page-slider .slides');
   var $stitchSliders      = $('.stitch-slider .slides');
   var $teamMembers        = $('.team-members');
   var $gallerySliders     = $('.gallery-slider .slides');
@@ -113,6 +114,11 @@
 
   // Homepage slider (if present)
   $homepageSlider.homepageSlider();
+
+  // Main Page slider (on generic pages)
+  $pageSlider.photoSlider({
+    container: '.main-page-slider'
+  });
 
   // Photo sliders
   $stitchSliders.photoSlider();

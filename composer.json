@@ -1,0 +1,12 @@
+{
+  "name": "fifthroom/fourthwall",
+  "version": "0.2.0",
+  "description": "Fourth Wall Events WordPress Theme",
+  "type": "project",
+  "config": {
+    "vendor-dir": "build/includes/vendor"
+  },
+  "require": {
+    "drewm/mailchimp-api": "dev-master"
+  }
+}

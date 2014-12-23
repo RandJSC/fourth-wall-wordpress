@@ -90,6 +90,7 @@ var resources = {
   ],
   themeJSON: './theme.json',
   packageJSON: './package.json',
+  composerJSON: './composer.json',
   misc: [ 'source/*', '!source/*.php', './theme.json' ]
 };
 

@@ -250,11 +250,20 @@ gulp.task('sassdoc', function() {
     }));
 });
 
-gulp.task('php', function() {
+gulp.task('php', function(cb) {
+  runSequence('php:copy', 'php:composer');
+  cb();
+});
+
+gulp.task('php:copy', function() {
   return gulp.src(resources.php)
     .pipe(gulp.dest('build'))
-    //.pipe($.livereload({ auto: false }))
     .pipe($.size({ title: 'php' }));
+});
+
+gulp.task('php:composer', function() {
+  return gulp.src('')
+    .pipe($.shell('php composer.phar install'));
 });
 
 gulp.task('scripts', function(cb) {

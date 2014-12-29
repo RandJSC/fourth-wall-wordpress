@@ -272,6 +272,13 @@ function fwe_get_surname($title) {
   return $surname;
 }
 
+function fwe_get_given_name($name) {
+  $titles = array('Mr.', 'Dr.', 'Mrs.', 'Ms.');
+  $pieces = explode(' ', $name);
+  $given_name = in_array($pieces[0], $titles) ? $pieces[1] : $pieces[0];
+  return $given_name;
+}
+
 function fwe_term_links($terms) {
   $links = array_map(function($term) {
     return '<a href="' . get_term_link($term, $term->taxonomy) . '">' . $term->name . '</a>';

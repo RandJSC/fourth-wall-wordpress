@@ -28,13 +28,13 @@
   var Handlebars   = require('handlebars');
   var TweenLite    = require('gsap/src/uncompressed/TweenLite');
   var ScrollTo     = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
-  var Magnific     = require('./jquery.magnific-popup');
+  var Magnific     = require('./jquery.magnific-popup.min');
   var gforms       = require('./gforms-api');
   var colors       = require('./colors');
   var imagesLoaded = require('imagesloaded');
 
-  $.magnificPopup    = Magnific.root;
-  $.fn.magnificPopup = Magnific.plugin;
+  //$.magnificPopup    = Magnific.root;
+  //$.fn.magnificPopup = Magnific.plugin;
 
   var getScrollY = function getScrollY() {
     var doc = document.documentElement;

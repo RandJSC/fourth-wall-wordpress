@@ -117,11 +117,12 @@
 
   // Main Page slider (on generic pages)
   $pageSlider.photoSlider({
-    container: '.main-page-slider'
+    container: '.main-page-slider',
+    popup: true
   });
 
   // Photo sliders
-  $stitchSliders.photoSlider();
+  $stitchSliders.photoSlider({ popup: true });
 
   // Testimonial sliders
   $testimonialSliders.testimonialSlider();

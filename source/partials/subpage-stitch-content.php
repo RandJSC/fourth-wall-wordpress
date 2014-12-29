@@ -45,7 +45,7 @@ if (!empty($backgrounds)) {
             $src_attr = fwe_lazy_load_img_src($image[0], $i);
             ?>
             <figure class="slide">
-              <a href="<?php echo esc_url($link_url); ?>">
+              <a href="<?php echo esc_url($image[0]); ?>">
                 <img <?php echo $src_attr; ?> alt="<?php echo $title; ?>" width="100%">
               </a>
             </figure>

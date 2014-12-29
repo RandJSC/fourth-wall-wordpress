@@ -16,13 +16,13 @@ global $fwe_settings;
       <?php endif; ?>
     </div>
 
-    <form action="" method="post">
+    <form action="<?php echo site_url('/wp-json/fwe/subscriptions'); ?>" method="post">
       <p>
-        <input type="text" name="name" placeholder="Your Name" required>
+        <input id="subscribe-name" type="text" name="name" placeholder="Your Name" required>
         <span class="required">*</span>
       </p>
       <p>
-        <input type="email" name="email" placeholder="Email Address" required>
+        <input id="subscribe-email" type="email" name="email" placeholder="Email Address" required>
         <span class="required">*</span>
       </p>
       <p class="text-right">

@@ -556,6 +556,10 @@ button {
     margin: rem(20) auto;
   }
 
+  form {
+    @include clearfix;
+  }
+
   form > p {
     @include media($bp-above-tablet) {
       float: left;

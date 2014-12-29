@@ -94,6 +94,15 @@
           '{{ emailLink email_address }}' +
         '</ul>' +
       '</div>'
+    ),
+    formConfirmation: Handlebars.compile(
+      '<div id="form-feedback" class="popup white">' +
+        '<h1>{{ header }}</h1>' +
+        '<p>' +
+          '{{ message }}' +
+        '</p>' +
+        '<a class="button" href="">Close</a>' +
+      '</div>'
     )
   };
 
@@ -584,6 +593,64 @@
         });
 
         return false;
+      });
+    },
+
+    subscribeForm: function(options) {
+      var defaults = {
+        endpoint: this.attr('action'),
+      };
+      var opts     = assign(defaults, options);
+
+      return this.each(function() {
+        var $form = $(this);
+
+        logger.log('subscribeForm', 'Setting up subscribe form submission handler on %O', $form[0]);
+
+        $form.on('submit', function(evt) {
+          evt.preventDefault();
+          evt.stopPropagation();
+
+          var payload = {
+            name: $form.find('#subscribe-name').val(),
+            email: $form.find('#subscribe-email').val()
+          };
+
+          logger.log('subscribeForm:ajax', 'Sending subscription payload to server: %O', payload);
+
+          var ajax = $.ajax(opts.endpoint, {
+            type: 'POST',
+            dataType: 'json',
+            accepts: 'application/json',
+            contentType: 'application/json',
+            data: JSON.stringify(payload)
+          });
+
+          // TODO - Write error handler, especially to handle people who are already subscribed. That throws an error.
+
+          ajax.success(function(json) {
+            $.magnificPopup.open({
+              items: [
+                {
+                  type: 'inline',
+                  src: templates.formConfirmation({
+                    header: 'Thank for Subscribing!',
+                    message: json.message
+                  })
+                }
+              ],
+              callbacks: {
+                open: function() {
+                  this.container.find('a.button').on('click', function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    $.magnificPopup.close();
+                  });
+                }
+              }
+            });
+          });
+        });
       });
     },
 

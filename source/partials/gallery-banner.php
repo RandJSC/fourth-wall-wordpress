@@ -1,7 +1,7 @@
 <?php
 global $fwe_settings;
 
-$has_banner = array_key_exists('where_weve_been_banner', $fwe_settings) && !empty($fwe_settings['where_weve_been_banner']);
+$has_banner = fwe_theme_option_exists('where_weve_been_banner');
 
 $banner_link = isset($banner_link) ? $banner_link : get_post_type_archive_link('gallery');
 

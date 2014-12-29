@@ -36,7 +36,7 @@ $banner = fwe_get_page_banner($post->ID);
         <?php the_content(); ?>
       </div>
 
-      <?php if (array_key_exists('hire_us_form_id', $fwe_settings) && $fwe_settings['hire_us_form_id']): ?>
+      <?php if (fwe_theme_option_exists('hire_us_form_id')): ?>
         <div id="hire-form" class="post-content">
           <?php
           $form   = GFAPI::get_form($fwe_settings['hire_us_form_id']);

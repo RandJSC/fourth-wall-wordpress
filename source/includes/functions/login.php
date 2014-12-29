@@ -7,7 +7,7 @@
 function fwe_login_logo() {
   $settings = get_option('fwe_settings');
 
-  if (!array_key_exists('admin_logo', $settings) || !$settings['admin_logo']) {
+  if (fwe_theme_option_exists('admin_logo')) {
     return;
   }
 

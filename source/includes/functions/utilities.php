@@ -99,7 +99,7 @@ function fwe_gforms_request_signature($route, $method = 'GET') {
 
   $settings    = get_option('fwe_settings');
 
-  if (array_key_exists('gforms_api_key', $settings) && array_key_exists('gforms_private_key', $settings)) {
+  if (fwe_theme_option_exists('gforms_api_key') && fwe_theme_option_exists('gforms_private_key')) {
     $api_key     = $settings['gforms_api_key'];
     $private_key = $settings['gforms_private_key'];
   } else {
@@ -396,5 +396,15 @@ function fwe_get_first_valid_image($images) {
   }
 
   return $intval;
+}
+
+function fwe_theme_option_exists($key) {
+  global $fwe_settings;
+
+  if (!$fwe_settings) {
+    $fwe_settings = get_option('fwe_settings');
+  }
+
+  return (array_key_exists($key, $fwe_settings) && $fwe_settings[$key]);
 }
 ?>

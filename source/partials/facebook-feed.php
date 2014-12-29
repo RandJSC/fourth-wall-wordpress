@@ -5,7 +5,7 @@
 
 global $fwe_settings;
 
-if (array_key_exists('facebook_page_url', $fwe_settings) && $fwe_settings['facebook_page_url']):
+if (fwe_theme_option_exists('facebook_page_url')):
 ?>
   <section id="facebook" class="content-section bg-none">
     <div class="section-inner">

@@ -19,7 +19,7 @@ piklist('field', array(
   'value'       => 'cbb2a7e4d7c04540270ae1d494efe0c0-us8',
 ));
 
-if (array_key_exists('mailchimp_api_key', $fwe_settings) && $fwe_settings['mailchimp_api_key']) {
+if (fwe_theme_option_exists('mailchimp_api_key')) {
   $mc    = new \Drewm\MailChimp($fwe_settings['mailchimp_api_key']);
   $lists = $mc->call('lists/list');
 

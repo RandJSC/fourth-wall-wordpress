@@ -55,9 +55,19 @@
     margin-bottom: rem(18);
   }
 
+  h2 {
+    color: $blue;
+    text-align: left;
+    padding-bottom: 0;
+  }
+
   p {
-    padding-right: rem(56);
-    padding-left: rem(56);
+    @include media($bp-above-mobile) {
+      font-size: rem(22);
+      line-height: rem(29);
+      font-weight: 300;
+      padding-left: 0;
+    }
   }
 
   .column-left {

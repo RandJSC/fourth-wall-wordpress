@@ -9,3 +9,7 @@ figure.slide {
   max-width: $max-width;
   margin: 0 auto;
 }
+
+section.slider.banner.home {
+  border-top: rem(10) solid $slider-top-border;
+}

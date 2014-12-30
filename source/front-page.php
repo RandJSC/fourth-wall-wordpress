@@ -15,7 +15,7 @@ get_header();
 
   if ($image_count):
   ?>
-    <section class="slider banner">
+    <section class="slider banner home">
       <div class="slides">
         <?php for ($i = 0; $i < $image_count; $i++): ?>
           <?php

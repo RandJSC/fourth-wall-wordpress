@@ -1,9 +1,10 @@
           <?php
           global $fwe_settings, $theme_uri;
 
-          $cta = fwe_get_cta();
+          $cta      = fwe_get_cta();
+          $map_link = $fwe_settings['google_maps_link'];
 
-          if ($fwe_settings['address']) {
+          if (!$map_link && fwe_theme_option_exists('address')) {
             $map_link = fwe_google_maps_link(array(
               'address'  => $fwe_settings['address'],
               'city'     => $fwe_settings['city'],

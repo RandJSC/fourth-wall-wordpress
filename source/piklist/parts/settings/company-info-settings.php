@@ -53,4 +53,11 @@ piklist('field', array(
   'field' => 'contact_email',
   'label' => 'Contact Email',
 ));
+
+piklist('field', array(
+  'type'  => 'text',
+  'field' => 'google_maps_link',
+  'label' => 'Google Maps Link',
+  'value' => 'https://www.google.com/maps/place/Fourth+Wall+Events/@40.755227,-73.988349,15z/data=!4m2!3m1!1s0x0:0x9051d405614e4d61',
+));
 ?>

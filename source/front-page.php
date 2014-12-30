@@ -37,7 +37,7 @@ get_header();
     </section>
   <?php endif; ?>
 
-  <section id="quick-links">
+  <section id="quick-links" class="home">
     <?php
     wp_nav_menu(array(
       'theme_location' => 'quick_links',

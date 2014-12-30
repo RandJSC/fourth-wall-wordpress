@@ -4,6 +4,11 @@
 
   @include clearfix;
 
+  &.home {
+    border: 0;
+    margin-top: rem(36);
+  }
+
   @include media($bp-above-mobile) {
     background: $quick-links-bg url('../img/bg-beige.svg') left top repeat;
     background-size: 20%;
@@ -28,7 +33,7 @@
       background-repeat: repeat;
       color: $white;
       font: {
-        weight: 600;
+        weight: 400;
         size: rem(20);
       }
       text: {

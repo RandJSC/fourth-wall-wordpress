@@ -2,6 +2,10 @@ section.content-section .search-header {
   padding-left: rem(20);
   padding-right: rem(20);
 
+  &.no-results {
+    margin-bottom: rem(160);
+  }
+
   @include media($bp-above-mobile) {
     max-width: $max-width;
     margin: 0 auto;

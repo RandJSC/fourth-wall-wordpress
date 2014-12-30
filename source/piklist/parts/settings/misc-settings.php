@@ -59,4 +59,16 @@ piklist('field', array(
   'label'       => 'Email Signup Intro Copy',
   'description' => 'Displayed above the email signup form in the footer',
 ));
+
+piklist('field', array(
+  'type'        => 'textarea',
+  'field'       => 'contact_success_message',
+  'label'       => 'Contact Form Success Message',
+  'description' => 'Shown to users upon successful submission of the contact form. No HTML allowed.',
+  'value'       => 'Thanks! We\'ll get back to you shortly.',
+  'attributes'  => array(
+    'rows' => 4,
+    'cols' => 40,
+  ),
+));
 ?>

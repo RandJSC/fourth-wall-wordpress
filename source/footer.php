@@ -63,7 +63,9 @@
 
         <footer id="contact">
           <h2>Contact</h2>
+
           <p>Drop us a line. Give us a call. Let us know how we can help get your audience talking.</p>
+
           <div id="address" itemscope itemtype="http://schema.org/LocalBusiness">
             <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
             <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
@@ -122,7 +124,7 @@
           </div>
 
           <div id="contact-form">
-            <form action="" method="post" data-form-id="<?php echo $fwe_settings['contact_form_id']; ?>">
+            <form action="" method="post" data-form-id="<?php echo $fwe_settings['contact_form_id']; ?>" data-confirmation="<?php echo esc_attr($fwe_settings['contact_success_message']); ?>">
               <div class="row">
                 <p class="split">
                   <input type="text" placeholder="Your Name" name="contact_name" id="contact-name" required>

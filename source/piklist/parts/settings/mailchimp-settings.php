@@ -38,10 +38,14 @@ if (fwe_theme_option_exists('mailchimp_api_key')) {
 }
 
 piklist('field', array(
-  'type'        => 'text',
+  'type'        => 'textarea',
   'field'       => 'subscribe_success_message',
   'label'       => 'Subscription Success Message',
-  'description' => 'Displayed to users upon successful subscription to FWE\'s email list',
+  'description' => 'Displayed to users upon successful subscription to FWE\'s email list. No HTML allowed.',
   'value'       => 'Thanks for subscribing! Please check your inbox for a confirmation link.',
+  'attributes'  => array(
+    'rows' => 4,
+    'cols' => 40,
+  ),
 ));
 ?>

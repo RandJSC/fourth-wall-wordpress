@@ -553,48 +553,105 @@
     contactForm: function() {
       logger.log('contactForm', 'Binding footer contact form submit handler');
 
-      return this.on('submit', function(evt) {
-        var $el         = $(this);
-        var name        = $el.find('#contact-name').val();
-        var email       = $el.find('#contact-email').val();
-        var message     = $el.find('#contact-message').val();
-        var formID      = $el.data('formId');
-        var route       = 'forms/' + formID + '/entries';
-        var signature   = gforms.getSignature(route, 'POST');
-        var urlTemplate = Handlebars.compile('/gravityformsapi/{{ route }}?api_key={{ api_key }}&signature={{ signature }}&expires={{ expires }}');
-        var fullURL     = urlTemplate({
-          route: route,
-          api_key: encodeURIComponent(config.gravityForms.apiKey),
-          signature: encodeURIComponent(signature.signature),
-          expires: encodeURIComponent(signature.expires)
-        });
+      return this.each(function() {
+        var $el  = $(this);
+        var $btn = $el.find('button');
 
-        logger.log('form', 'Contact form submission: %O', {
-          name: name,
-          email: email,
-          message: message,
-          formID: formID,
-          route: route
-        });
+        $btn.buttonSpinner();
 
-        var ajax = $.ajax(fullURL, {
-          accepts: 'application/json',
-          type: 'POST',
-          dataType: 'json',
-          contentType: 'application/json',
-          data: JSON.stringify([{
-            '1': name,
-            '2': email,
-            '3': message
-          }])
-        });
+        $el.on('submit', function(evt) {
+          var name        = $el.find('#contact-name').val();
+          var email       = $el.find('#contact-email').val();
+          var message     = $el.find('#contact-message').val();
+          var formID      = $el.data('formId');
+          var route       = 'forms/' + formID + '/entries';
+          var signature   = gforms.getSignature(route, 'POST');
+          var urlTemplate = Handlebars.compile('/gravityformsapi/{{ route }}?api_key={{ api_key }}&signature={{ signature }}&expires={{ expires }}');
+          var fullURL     = urlTemplate({
+            route: route,
+            api_key: encodeURIComponent(config.gravityForms.apiKey),
+            signature: encodeURIComponent(signature.signature),
+            expires: encodeURIComponent(signature.expires)
+          });
 
-        ajax.success(function(json, txt, xhr) {
-          logger.log('ajax', 'Received response from server: %O', json);
-          $el[0].reset();
-        });
+          logger.log('form', 'Contact form submission: %O', {
+            name: name,
+            email: email,
+            message: message,
+            formID: formID,
+            route: route
+          });
 
-        return false;
+          var ajax = $.ajax(fullURL, {
+            accepts: 'application/json',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify([{
+              '1': name,
+              '2': email,
+              '3': message
+            }]),
+            beforeSend: function() {
+              $btn.buttonSpinner('start');
+            }
+          });
+
+          ajax.fail(function(xhr) {
+            $btn.buttonSpinner('stop');
+            logger.log('form:ajax', 'AJAX error: %O', xhr);
+
+            $.magnificPopup.open({
+              items: [
+                {
+                  type: 'inline',
+                  src: templates.formConfirmation({
+                    header: 'Error!',
+                    message: 'There was a problem with your submission. Please try again.'
+                  })
+                }
+              ],
+              callbacks: {
+                open: function() {
+                  this.container.find('a.button').on('click', function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    $.magnificPopup.close();
+                  });
+                }
+              }
+            });
+          });
+
+          ajax.done(function(json, txt, xhr) {
+            logger.log('form:ajax', 'Received response from server: %O', json);
+            $btn.buttonSpinner('stop');
+
+            $.magnificPopup.open({
+              items: [
+                {
+                  type: 'inline',
+                  src: templates.formConfirmation({
+                    header: 'Thanks!',
+                    message: $el.data('confirmation')
+                  })
+                }
+              ],
+              callbacks: {
+                open: function() {
+                  this.container.find('a.button').on('click', function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    $el[0].reset();
+                    $.magnificPopup.close();
+                  });
+                }
+              }
+            });
+          });
+
+          return false;
+        });
       });
     },
 

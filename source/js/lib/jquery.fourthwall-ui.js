@@ -9,32 +9,34 @@
 (function(window, undefined) {
   'use strict';
 
-  var has          = require('lodash.has');
-  var isUndefined  = require('lodash.isundefined');
-  var isEmpty      = require('lodash.isempty');
-  var isObject     = require('lodash.isobject');
-  var forEach      = require('lodash.foreach');
-  var debounce     = require('lodash.debounce');
-  var assign       = require('lodash.assign');
-  var throttle     = require('lodash.throttle');
-  var find         = require('lodash.find');
-  var sortBy       = require('lodash.sortby');
-  var $            = require('jquery');
-  var config       = require('./config');
-  var Snap         = require('./snap.svg.custom');
-  var Hammer       = require('hammerjs');
-  var logger       = require('bragi-browser');
-  var fweUtil      = require('./jquery.fourthwall-util');
-  var Handlebars   = require('handlebars');
-  var TweenLite    = require('gsap/src/uncompressed/TweenLite');
-  var ScrollTo     = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
-  var Magnific     = require('./jquery.magnific-popup.min');
-  var gforms       = require('./gforms-api');
-  var colors       = require('./colors');
-  var imagesLoaded = require('imagesloaded');
+  var has           = require('lodash.has');
+  var isUndefined   = require('lodash.isundefined');
+  var isEmpty       = require('lodash.isempty');
+  var isObject      = require('lodash.isobject');
+  var forEach       = require('lodash.foreach');
+  var debounce      = require('lodash.debounce');
+  var assign        = require('lodash.assign');
+  var throttle      = require('lodash.throttle');
+  var find          = require('lodash.find');
+  var sortBy        = require('lodash.sortby');
+  var $             = require('jquery');
+  var config        = require('./config');
+  var Snap          = require('./snap.svg.custom');
+  var Hammer        = require('hammerjs');
+  var logger        = require('bragi-browser');
+  var fweUtil       = require('./jquery.fourthwall-util');
+  var Handlebars    = require('handlebars');
+  var TweenLite     = require('gsap/src/uncompressed/TweenLite');
+  var ScrollTo      = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
+  var Magnific      = require('./jquery.magnific-popup.min');
+  var gforms        = require('./gforms-api');
+  var colors        = require('./colors');
+  var imagesLoaded  = require('imagesloaded');
+  var ButtonSpinner = require('./button-spinner');
 
-  //$.magnificPopup    = Magnific.root;
-  //$.fn.magnificPopup = Magnific.plugin;
+  if (config.debug) {
+    window.ButtonSpinner = ButtonSpinner;
+  }
 
   var getScrollY = function getScrollY() {
     var doc = document.documentElement;
@@ -604,6 +606,10 @@
 
       return this.each(function() {
         var $form = $(this);
+        var $btn  = $form.find('button');
+
+        // Setup button spinner for progress events
+        $btn.buttonSpinner();
 
         logger.log('subscribeForm', 'Setting up subscribe form submission handler on %O', $form[0]);
 
@@ -623,7 +629,10 @@
             dataType: 'json',
             accepts: 'application/json',
             contentType: 'application/json',
-            data: JSON.stringify(payload)
+            data: JSON.stringify(payload),
+            beforeSend: function() {
+              $btn.buttonSpinner('start');
+            }
           });
 
           // TODO - Write error handler, especially to handle people who are already subscribed. That throws an error.
@@ -658,6 +667,8 @@
               });
             };
 
+            $btn.buttonSpinner('stop');
+
             try {
               error   = JSON.parse(xhr.responseText);
               message = error[0].message;
@@ -669,6 +680,8 @@
           });
 
           ajax.done(function(json) {
+            $btn.buttonSpinner('stop');
+
             $.magnificPopup.open({
               items: [
                 {

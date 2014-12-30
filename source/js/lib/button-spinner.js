@@ -99,7 +99,7 @@
     buttonSpinner: function buttonSpinner() {
       var slice  = [].slice;
       var option = arguments[0];
-      var args   = args.length >= 2 ? slice.call(arguments, 1) : [];
+      var args   = arguments.length >= 2 ? slice.call(arguments, 1) : [];
 
       this.each(function() {
         var $elem = $(this);

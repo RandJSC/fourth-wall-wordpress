@@ -21,7 +21,6 @@
   var Slick         = require('slick-carousel');
   var Snap          = require('./lib/snap.svg.custom');
   var Handlebars    = require('handlebars');
-  var ButtonSpinner = require('./lib/button-spinner');
 
   // remove me in production
   var debug = require('./lib/jquery.debug');
@@ -54,7 +53,6 @@
     window.FastClick     = fastClick;
     window.Snap          = Snap;
     window.Handlebars    = Handlebars;
-    window.ButtonSpinner = ButtonSpinner;
   } else {
     // If not in debug mode, disable all logged messages
     logger.options.groupsEnabled = false;

@@ -33,8 +33,10 @@
   var colors        = require('./colors');
   var imagesLoaded  = require('imagesloaded');
   var ButtonSpinner = require('./button-spinner');
+  var Isotope       = require('isotope-layout');
 
   if (config.debug) {
+    window.Isotope       = Isotope;
     window.ButtonSpinner = ButtonSpinner;
   }
 

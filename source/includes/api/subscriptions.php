@@ -48,7 +48,7 @@ class FourthWall_EmailSubscriptions {
 
     $resp              = new WP_JSON_Response();
     $result['status']  = 'success';
-    $result['message'] = 'Thanks for subscribing! Please check your inbox for a confirmation email.';
+    $result['message'] = $settings['subscribe_success_message'];
 
     $resp->set_data($result);
 

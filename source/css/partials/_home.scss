@@ -49,6 +49,12 @@
   margin: 0 auto;
   @include clearfix;
 
+  h1 {
+    font-size: rem(40);
+    font-weight: 400;
+    margin-bottom: rem(18);
+  }
+
   p {
     padding-right: rem(56);
     padding-left: rem(56);

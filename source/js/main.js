@@ -45,6 +45,7 @@
   var $nameTitles         = $('.name-title');
   var $teamThumbs         = $('a.team-member');
   var $quickLinks         = $('#quick-links a');
+  var $emailSignup        = $('#email-signup form');
 
   // Console access to libraries (debug mode only):
   if (config.debug) {
@@ -154,6 +155,9 @@
 
   // Hire Us form
   $hireForm.hireUsForm();
+
+  // AJAX email subscription form
+  $emailSignup.subscribeForm();
 
   logger.log('timing', 'End docReady');
 

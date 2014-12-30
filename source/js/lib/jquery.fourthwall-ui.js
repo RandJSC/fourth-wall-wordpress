@@ -627,8 +627,48 @@
           });
 
           // TODO - Write error handler, especially to handle people who are already subscribed. That throws an error.
+          ajax.fail(function(xhr) {
+            logger.log('subscribeForm', 'MailChimp API error occurred: %O', xhr);
 
-          ajax.success(function(json) {
+            var error;
+            var message;
+            var failNotification = function(message) {
+              return $.magnificPopup.open({
+                items: [
+                  {
+                    type: 'inline',
+                    src: templates.formConfirmation({
+                      header: 'Subscription Error',
+                      message: message
+                    })
+                  }
+                ],
+                callbacks: {
+                  open: function() {
+                    this.container.find('a.button').on('click', function(evt) {
+                      evt.preventDefault();
+                      evt.stopPropagation();
+                      $.magnificPopup.close();
+                    });
+                  },
+                  close: function() {
+                    $form[0].reset();
+                  }
+                }
+              });
+            };
+
+            try {
+              error   = JSON.parse(xhr.responseText);
+              message = error[0].message;
+
+              failNotification(message);
+            } catch (err) {
+              failNotification(err);
+            }
+          });
+
+          ajax.done(function(json) {
             $.magnificPopup.open({
               items: [
                 {
@@ -646,6 +686,9 @@
                     evt.stopPropagation();
                     $.magnificPopup.close();
                   });
+                },
+                close: function() {
+                  $form[0].reset();
                 }
               }
             });

@@ -1,10 +1,13 @@
 <?php
-$page_id     = get_the_ID();
-$images      = get_post_meta($page_id, 'slider_images', true);
-$pad_content = get_post_meta($page_id, 'pad_content', true);
-$pad_content = $pad_content === 'yes' ? ' padded' : '';
+$page_id           = get_the_ID();
+$images            = get_post_meta($page_id, 'slider_images', true);
+$pad_content       = get_post_meta($page_id, 'pad_content', true);
+$pad_content       = $pad_content === 'yes' ? ' padded' : '';
+$section_classes   = array('content-section');
+$section_classes[] = $has_stitches ? 'has-stitches' : 'no-stitches';
+$section_classes   = implode(' ', $section_classes);
 ?>
-<section id="main-page-content" class="content-section">
+<section id="main-page-content" class="<?php echo $section_classes; ?>">
   <article itemscope itemtype="http://schema.org/WebPage" <?php post_class(); ?>>
 
     <div class="post-header padded">

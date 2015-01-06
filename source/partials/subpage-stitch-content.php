@@ -40,7 +40,7 @@ if (!empty($backgrounds)) {
             <?php
             $title    = $stitch['slider_images']['title'][$i];
             $link_url = $stitch['slider_images']['link_url'][$i];
-            $image    = $stitch['slider_images']['image'][$i][0];
+            $image    = fwe_get_first_valid_image($stitch['slider_images']['image'][$i]);
             $image    = wp_get_attachment_image_src($image, 'full');
             $src_attr = fwe_lazy_load_img_src($image[0], $i);
             ?>

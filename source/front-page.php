@@ -21,7 +21,8 @@ get_header();
           <?php
           $title    = $images['title'][$i];
           $link_url = $images['link_url'][$i];
-          $src      = wp_get_attachment_image_src($images['image'][$i][0], 'homepage-slider');
+          $img_id   = fwe_get_first_valid_image($images['image'][$i]);
+          $src      = wp_get_attachment_image_src($img_id, 'homepage-slider');
           ?>
           <figure class="slide">
             <a href="<?php echo $link_url; ?>">

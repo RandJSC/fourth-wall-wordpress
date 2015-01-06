@@ -4,7 +4,7 @@
       <?php
       $title    = $slider_images['title'][$i];
       $link_url = $slider_images['link_url'][$i];
-      $image    = $slider_images['image'][$i][0];
+      $image    = fwe_get_first_valid_image($slider_images['image'][$i]);
       $image    = wp_get_attachment_image_src($image, 'full');
       $src_attr = fwe_lazy_load_img_src($image[0], $i);
       ?>

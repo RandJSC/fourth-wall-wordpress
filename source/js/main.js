@@ -158,6 +158,7 @@
   // AJAX email subscription form
   $emailSignup.subscribeForm();
 
+  // Who We've Worked With, etc. logo grids
   $logoGrids.logoGrid();
 
   logger.log('timing', 'End docReady');

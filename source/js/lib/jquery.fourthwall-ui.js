@@ -33,10 +33,11 @@
   var colors        = require('./colors');
   var imagesLoaded  = require('imagesloaded');
   var ButtonSpinner = require('./button-spinner');
-  //var Isotope       = require('isotope-layout');
+  var Isotope       = require('isotope-layout');
+  var cellsByRow    = require('isotope-cells-by-row');
 
   if (config.debug) {
-    //window.Isotope       = Isotope;
+    window.Isotope       = Isotope;
     window.ButtonSpinner = ButtonSpinner;
   }
 
@@ -950,6 +951,22 @@
 
           return false;
         });
+      });
+    },
+
+    logoGrid: function(options) {
+      var defaults = {
+        layoutMode: 'cellsByRow',
+        itemSelector: 'img',
+        transitionDuration: '0.4s'
+      };
+      var opts     = assign(defaults, options);
+
+      logger.log('logoGrid', 'Initializing logo grid w/ configuration: %O', opts);
+
+      return this.each(function() {
+        var isotope = new Isotope(this, opts);
+        $(this).data('_isotope', isotope);
       });
     }
 

@@ -45,6 +45,7 @@
   var $teamThumbs         = $('a.team-member');
   var $quickLinks         = $('#quick-links a');
   var $emailSignup        = $('#email-signup form');
+  var $logoGrids          = $('.logo-grid');
 
   // Console access to libraries (debug mode only):
   if (config.debug) {
@@ -156,6 +157,8 @@
 
   // AJAX email subscription form
   $emailSignup.subscribeForm();
+
+  $logoGrids.logoGrid();
 
   logger.log('timing', 'End docReady');
 

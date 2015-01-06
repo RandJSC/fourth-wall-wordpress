@@ -16,6 +16,7 @@ $banner = fwe_get_page_banner($post->ID);
   $stitches      = array_filter($stitches, function($item) {
     return !empty($item);
   });
+  $has_stitches  = is_array($stitches) && count($stitches);
   $slider_images = get_post_meta($post_id, 'slider_images', true);
   $has_slides    = !empty($slider_images) && !empty($slider_images['image'][0][0]);
   ?>
@@ -26,7 +27,7 @@ $banner = fwe_get_page_banner($post->ID);
   <?php
   // Stitched subpage content (if any):
 
-  if (is_array($stitches) && count($stitches)):
+  if ($has_stitches):
     foreach ($stitches as $stitch_id) {
       $stitch = fwe_get_stitch_vars($stitch_id);
       include(locate_template('partials/subpage-stitch-content.php'));

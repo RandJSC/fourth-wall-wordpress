@@ -74,7 +74,7 @@ div.content-section {
     }
 
     h2 {
-      border-color: $white;
+      border-bottom: 1px solid $white;
     }
   }
 
@@ -109,6 +109,10 @@ div.content-section {
   &.bg-none {
     h1, h2, h3, h4 {
       color: $blue;
+    }
+
+    h2 {
+      border-bottom: 1px solid $blue;
     }
 
     ul.thumb-list a {

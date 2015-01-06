@@ -16,6 +16,8 @@
     font-size: rem(18);
     font-weight: 300;
 
+    @include clearfix;
+
     @include media($bp-above-tablet) {
       font-size: rem(22);
       line-height: rem(28);

@@ -19,7 +19,7 @@ $count = 0;
     $email       = get_post_meta($id, 'email_address', true);
     $first_name  = get_post_meta($id, 'given_name', true);
     ?>
-    <div class="team-member-viewer" data-visible="true">
+    <div class="team-member-viewer" data-visible="false" style="max-height: 0;">
       <div class="fade-wrap visible">
         <div class="button-row">
           <a href="" class="collapse-button">
@@ -105,11 +105,7 @@ $count = 0;
 
       </div>
     </div>
-    <div class="get-talking">
-      <?php if ($first_name): ?>
-        get <?php echo $first_name; ?> talking
-      <?php endif; ?>
-    </div>
+    <div class="get-talking"></div>
   <?php endif; ?>
 
   <ul class="team-thumbs">

@@ -126,4 +126,18 @@ function fwe_team_members_shortcode($atts, $content = null) {
   return ob_get_clean();
 }
 add_shortcode('team_members', 'fwe_team_members_shortcode');
+
+function fwe_button_shortcode($atts, $content = null) {
+  extract(shortcode_atts(array(
+    'href' => '',
+  ), $atts));
+
+  ob_start();
+?>
+  <a href="<?php echo esc_url($href); ?>" class="button">
+    <?php echo $content; ?>
+  </a>
+<?php
+  return ob_get_clean();
+}
 ?>

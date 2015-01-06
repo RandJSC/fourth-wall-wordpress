@@ -169,68 +169,52 @@
 .team-thumbs {
   padding-top: rem(60);
   padding-bottom: rem(40);
+  padding-left: 0;
+  list-style: none;
 
   @include clearfix;
 
-  .team-member {
+  li {
+    display: inline-block;
+    width: rem(120);
+    height: rem(120);
+    padding-left: 0 !important;
+    background: none !important;
+
+    @include media($bp-above-mobile) {
+      width: rem(200);
+      height: rem(200);
+    }
+  }
+
+  a.team-member {
+    $hover-shadows: inset 0 0 0 rem(16) rgba(255, 255, 255, .6), 0 1px 2px rgba(0, 0, 0, .1);
+
     display: block;
-    float: left;
     position: relative;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: rem(120);
+    box-shadow: $team-member-normal-shadows;
+    @include transition(box-shadow $transition-speed ease-in-out);
 
-    .thumbnail, .thumbnail img {
-      border-radius: 50%;
-      overflow: hidden;
-      @include transition(
-        border $transition-speed linear,
-        left $transition-speed linear,
-        top $transition-speed linear
-      );
-    }
-
-    .thumbnail {
-      border: 3px solid $team-member-border;
-      width: rem(120);
-      height: rem(120);
-      margin-left: rem(20);
-      margin-right: rem(20);
-      margin-bottom: rem(20);
-
-      @include media($bp-above-mobile) {
-        width: rem(200);
-        height: rem(200);
-        margin: 0 rem(20) rem(20);
-      }
-
-    }
-
-    .thumbnail img {
-      position: relative;
-      top: 0;
-      left: 0;
-      border: 0;
-      width: rem(120);
-      height: rem(120);
-      margin-top: 0;
-      margin-bottom: 0;
-
-      @include media($bp-above-mobile) {
-        width: rem(200);
-        height: rem(200);
-      }
+    @include media($bp-above-mobile) {
+      background-size: rem(200);
     }
 
     .name-title {
       position: absolute;
-      left: rem(28);
-      top: rem(8);
       border-radius: 50%;
-      width: rem(182);
-      height: rem(182);
+      width: inherit;
+      height: inherit;
       opacity: 0;
       color: $white;
       padding: 0 rem(32);
       text-align: center;
-      @include transition(opacity $transition-speed linear);
+      @include transition(opacity $transition-speed ease-in-out, transform $transition-speed ease-in-out);
+      @include transform(scale(0));
 
       strong,
       span {
@@ -255,33 +239,11 @@
     }
 
     &.hovering {
-      .thumbnail {
-        border: rem(18) solid $team-member-border;
-
-        &.blue {
-          border-color: $blue;
-        }
-
-        &.green {
-          border-color: $green;
-        }
-
-        &.orange {
-          border-color: $orange;
-        }
-
-        &.pink {
-          border-color: $button-bg;
-        }
-
-        img {
-          left: rem(-14);
-          top: rem(-14);
-        }
-      }
+      box-shadow: $team-member-hover-shadows;
 
       .name-title {
         opacity: 1;
+        @include transform(scale(1));
       }
     }
   }

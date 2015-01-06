@@ -112,7 +112,7 @@ $count = 0;
     </div>
   <?php endif; ?>
 
-  <div class="team-thumbs">
+  <ul class="team-thumbs">
     <?php
     $team_members->rewind_posts();
     $count      = 0;
@@ -132,23 +132,29 @@ $count = 0;
       $job_title = get_post_meta(get_the_ID(), 'job_title', true);
     ?>
       <?php if (has_post_thumbnail()): ?>
-        <a class="team-member" href="<?php echo site_url('/wp-json/fwe/team-members/' . get_the_ID()); ?>" data-slug="<?php echo esc_attr($post->post_name); ?>">
-          <div class="thumbnail <?php echo $color; ?>">
-            <?php the_post_thumbnail('team-member-thumb'); ?>
-          </div>
+        <?php
+        $thumb = get_post_thumbnail_id();
+        $thumb = wp_get_attachment_image_src($thumb);
+        ?>
+        <li class="<?php echo $color; ?>">
+          <a class="team-member"
+            href="<?php echo site_url('/wp-json/fwe/team-members/' . get_the_ID()); ?>"
+            data-slug="<?php echo esc_attr($post->post_name); ?>"
+            style="background-image:url('<?php echo $thumb[0]; ?>')">
 
-          <div class="name-title <?php echo $color; ?>">
-            <strong class="team-member-name">
-              <?php the_title(); ?>
-            </strong>
-            <span class="team-member-title">
-              <?php echo $job_title; ?>
-            </span>
-          </div>
-        </a>
+            <div class="name-title <?php echo $color; ?>">
+              <strong class="team-member-name">
+                <?php the_title(); ?>
+              </strong>
+              <span class="team-member-title">
+                <?php echo $job_title; ?>
+              </span>
+            </div>
+          </a>
+        </li>
       <?php endif; ?>
       <?php $count++; ?>
     <?php endwhile; ?>
-  </div>
+  </ul>
   <?php wp_reset_postdata(); ?>
 </div>

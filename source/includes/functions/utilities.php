@@ -176,11 +176,10 @@ function fwe_lazy_load_img_src($src, $index) {
   return ($index === 0) ? 'src="' . $src . '"' : 'data-lazy="' . $src . '"';
 }
 
-function fwe_pagination_links($query = null) {
+function fwe_pagination_links($query = null, $window = 2) {
   global $paged, $wp_query;
 
   $paged = $paged ? $paged : 1;
-
 
   if (is_null($query)) {
     $query = $wp_query;
@@ -189,38 +188,54 @@ function fwe_pagination_links($query = null) {
   $pages = $query->max_num_pages;
   $pages = $pages ? $pages : 1;
 
-  if ($pages > 1):
+  if ($pages < 2) {
+    return;
+  }
+
+  $min_page    = (int) max(1, $paged - $window);
+  $max_page    = (int) min($pages, $paged + $window);
+  $begin_pages = range($min_page, $paged);
+  $end_pages   = $paged === $max_page ? array() : range($paged + 1, $max_page);
+  $page_nums   = array_merge($begin_pages, $end_pages);
+
 ?>
-    <div class="pagination">
-      <div class="pagination-internal">
-        <a class="previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
-          <?php if ($paged > 1): ?>
-            <span class="arrow">
-              <span class="fa fa-arrow-left"></span>
-            </span>
-            <span class="link-text">
-              <span class="mobile-text">Prev</span>
-              <span class="show-tablet-inline">Previous</span>
-            </span>
-          <?php endif; ?>
-        </a>
+  <div class="pagination">
+    <div class="pagination-internal">
+      <a class="previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
+        <?php if ($paged > 1): ?>
+          <span class="arrow">
+            <span class="fa fa-arrow-left"></span>
+          </span>
+          <span class="link-text">
+            <span class="mobile-text">Prev</span>
+            <span class="show-tablet-inline">Previous</span>
+          </span>
+        <?php endif; ?>
+      </a>
 
-        <span class="current">
-          <?php echo $paged; ?>
-        </span>
+      <?php foreach ($page_nums as $num): ?>
+        <?php if ($num == $paged): ?>
+          <span class="current">
+            <?php echo $num; ?>
+          </span>
+        <?php else: ?>
+          <a href="<?php echo get_pagenum_link($num); ?>" class="page-num">
+            <?php echo $num; ?>
+          </a>
+        <?php endif; ?>
+      <?php endforeach; ?>
 
-        <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
-          <?php if ($paged <= $pages - 1): ?>
-            <span class="link-text">Next</span>
-            <span class="arrow">
-              <span class="fa fa-arrow-right"></span>
-            </span>
-          <?php endif; ?>
-        </a>
-      </div>
+      <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
+        <?php if ($paged <= $pages - 1): ?>
+          <span class="link-text">Next</span>
+          <span class="arrow">
+            <span class="fa fa-arrow-right"></span>
+          </span>
+        <?php endif; ?>
+      </a>
     </div>
+  </div>
 <?php
-  endif;
 }
 
 function fwe_get_stitch_vars($page_id = 0) {

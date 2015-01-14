@@ -553,20 +553,28 @@ button {
     a,
     span.current {
       display: inline-block;
-      width: rem(26);
-      font-size: rem(15);
       font-weight: bold;
-      margin-right: rem(4);
 
-      &:last-child {
-        margin-right: 0;
+      @include media($bp-above-mobile) {
+        width: rem(26);
+        font-size: rem(15);
+        margin-right: rem(4);
+
+        &:last-child {
+          margin-right: 0;
+        }
       }
+
     }
 
     span.current {
-      border: rem(2) solid $button-bg;
-      color: $content-bg;
-      background: $button-bg;
+      font-size: rem(23);
+
+      @include media($bp-above-mobile) {
+        border: rem(2) solid $button-bg;
+        color: $content-bg;
+        background: $button-bg;
+      }
     }
 
     a {

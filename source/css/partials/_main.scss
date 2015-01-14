@@ -514,7 +514,7 @@ button {
     }
   }
 
-  a {
+  a.pagination-arrow {
     display: block;
     width: (100% / 3);
     text-decoration: none;
@@ -544,12 +544,46 @@ button {
     }
   }
 
-  .current {
+  .page-nums {
     display: block;
     float: left;
     width: (100% / 3);
-    font-weight: bold;
     text-align: center;
+
+    a,
+    span.current {
+      display: inline-block;
+      width: rem(26);
+      font-size: rem(15);
+      font-weight: bold;
+      margin-right: rem(4);
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    span.current {
+      border: rem(2) solid $button-bg;
+      color: $content-bg;
+      background: $button-bg;
+    }
+
+    a {
+      display: none;
+      border: rem(2) solid $button-bg;
+      text-decoration: none;
+      @include transition(border $transition-speed);
+
+      @include media($bp-above-mobile) {
+        display: inline-block;
+      }
+
+      &:hover {
+        border: rem(2) solid $green;
+        color: $text-color;
+      }
+    }
   }
 }
 

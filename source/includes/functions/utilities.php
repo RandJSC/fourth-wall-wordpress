@@ -197,11 +197,10 @@ function fwe_pagination_links($query = null, $window = 2) {
   $begin_pages = range($min_page, $paged);
   $end_pages   = $paged === $max_page ? array() : range($paged + 1, $max_page);
   $page_nums   = array_merge($begin_pages, $end_pages);
-
 ?>
   <div class="pagination">
     <div class="pagination-internal">
-      <a class="previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
+      <a class="pagination-arrow previous" href="<?php echo get_pagenum_link($paged - 1); ?>">
         <?php if ($paged > 1): ?>
           <span class="arrow">
             <span class="fa fa-arrow-left"></span>
@@ -227,7 +226,7 @@ function fwe_pagination_links($query = null, $window = 2) {
         <?php endforeach; ?>
       </div>
 
-      <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
+      <a class="pagination-arrow next" href="<?php echo get_pagenum_link($paged + 1); ?>">
         <?php if ($paged <= $pages - 1): ?>
           <span class="link-text">Next</span>
           <span class="arrow">

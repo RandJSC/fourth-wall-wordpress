@@ -213,17 +213,19 @@ function fwe_pagination_links($query = null, $window = 2) {
         <?php endif; ?>
       </a>
 
-      <?php foreach ($page_nums as $num): ?>
-        <?php if ($num == $paged): ?>
-          <span class="current">
-            <?php echo $num; ?>
-          </span>
-        <?php else: ?>
-          <a href="<?php echo get_pagenum_link($num); ?>" class="page-num">
-            <?php echo $num; ?>
-          </a>
-        <?php endif; ?>
-      <?php endforeach; ?>
+      <div class="page-nums">
+        <?php foreach ($page_nums as $num): ?>
+          <?php if ($num == $paged): ?>
+            <span class="current">
+              <?php echo $num; ?>
+            </span>
+          <?php else: ?>
+            <a href="<?php echo get_pagenum_link($num); ?>" class="page-num">
+              <?php echo $num; ?>
+            </a>
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </div>
 
       <a class="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
         <?php if ($paged <= $pages - 1): ?>

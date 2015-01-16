@@ -10,6 +10,7 @@
     $header_style = fwe_style_attribute(array(
       'background-color' => $panes['header_background'][$i],
     ));
+    $pane_content = apply_filters('the_content', $panes['content'][$i]);
     ?>
     <div class="pane">
       <div class="pane-header" id="<?php echo $header_id; ?>"<?php echo $header_style; ?>>
@@ -26,7 +27,7 @@
 
       <div class="pane-content" id="<?php echo $pane_id; ?>">
         <div class="pane-body">
-          <?php echo apply_filters('the_content', $panes['content'][$i]); ?>
+          <?php echo $pane_content; ?>
         </div>
       </div>
     </div>

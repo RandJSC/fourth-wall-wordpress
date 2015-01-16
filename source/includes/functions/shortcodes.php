@@ -140,4 +140,5 @@ function fwe_button_shortcode($atts, $content = null) {
 <?php
   return ob_get_clean();
 }
+add_shortcode('button', 'fwe_button_shortcode');
 ?>

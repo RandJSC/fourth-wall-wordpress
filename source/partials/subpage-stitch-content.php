@@ -25,6 +25,7 @@ if (!empty($backgrounds)) {
 <section
   <?php echo $bg_data; ?><?php echo $section_style; ?>
   class="stitch content-section"
+  id="<?php echo $stitch['stitch_page']->post_name; ?>"
   data-slug="<?php echo $stitch['stitch_page']->post_name; ?>"
   data-url="<?php echo $path; ?>">
 

@@ -8,6 +8,18 @@ $base_path = trailingslashit(dirname(__FILE__)) . 'includes/';
 $functions = $base_path . 'functions/';
 $walkers   = $base_path . 'walkers/';
 
+// Make sure Piklist is installed and activated
+function fwe_admin_init() {
+  if (is_admin()) {
+    include_once $base_path . 'class-piklist-checker.php';
+
+    if (!piklist_checker::check(__FILE__, 'theme')) {
+      return;
+    }
+  }
+}
+add_action('init', 'fwe_admin_init');
+
 if (file_exists($base_path . 'vendor/autoload.php')) {
   require_once $base_path . 'vendor/autoload.php';
 }

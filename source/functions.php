@@ -11,7 +11,7 @@ $walkers   = $base_path . 'walkers/';
 // Make sure Piklist is installed and activated
 function fwe_admin_init() {
   if (is_admin()) {
-    include_once $base_path . 'class-piklist-checker.php';
+    include_once dirname(__FILE__) . '/includes/class-piklist-checker.php';
 
     if (!piklist_checker::check(__FILE__, 'theme')) {
       return;

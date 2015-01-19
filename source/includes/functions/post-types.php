@@ -105,6 +105,7 @@ function fwe_register_post_type_gallery($post_types) {
       'title',
       'editor',
       'thumbnail',
+      'excerpt',
     ),
   );
 
@@ -134,6 +135,7 @@ function fwe_register_post_type_case_study($post_types) {
       'editor',
       'revisions',
       'thumbnail',
+      'excerpt',
     ),
   );
 

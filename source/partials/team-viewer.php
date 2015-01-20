@@ -130,7 +130,7 @@ $count = 0;
       <?php if (has_post_thumbnail()): ?>
         <?php
         $thumb = get_post_thumbnail_id();
-        $thumb = wp_get_attachment_image_src($thumb);
+        $thumb = wp_get_attachment_image_src($thumb, 'team-member-thumb');
         ?>
         <li class="<?php echo $color; ?>">
           <a class="team-member"

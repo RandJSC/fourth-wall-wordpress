@@ -97,6 +97,22 @@
           });
         }
       });
+    },
+
+    pngFallback: function() {
+      return this.each(function() {
+        var $elem = $(this);
+        var bgImg = $elem.css('backgroundImage');
+        var isSVG = (/\.svg/).test(bgImg);
+
+        if ($elem.is('img')) {
+          $elem.attr('src', $elem.attr('src').replace('.svg', '.png'));
+        }
+
+        if (isSVG) {
+          $elem.css('backgroundImage', bgImg.replace('.svg', '.png'));
+        }
+      });
     }
 
   });

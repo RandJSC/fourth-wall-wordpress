@@ -19,11 +19,12 @@
   var throttle      = require('lodash.throttle');
   var find          = require('lodash.find');
   var sortBy        = require('lodash.sortby');
+  var ie            = require('./ie-detect');
   var $             = require('jquery');
   var config        = require('./config');
   var Snap          = require('./snap.svg.custom');
   var Hammer        = require('hammerjs');
-  var logger        = require('bragi-browser');
+  var logger        = ie.lte(9) ? console : require('bragi-browser');
   var fweUtil       = require('./jquery.fourthwall-util');
   var Handlebars    = require('handlebars');
   var TweenLite     = require('gsap/src/uncompressed/TweenLite');

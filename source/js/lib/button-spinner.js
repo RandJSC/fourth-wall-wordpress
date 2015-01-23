@@ -10,10 +10,11 @@
   'use strict';
 
   var $        = require('jquery');
+  var ie       = require('./ie-detect');
   var util     = require('./jquery.fourthwall-util');
   var Spinner  = require('spin.js');
   var isString = require('lodash.isstring');
-  var logger   = require('bragi-browser');
+  var logger   = ie.lte(9) ? console : require('bragi-browser');
 
   var ButtonSpinner = function ButtonSpinner(elem, options) {
     logger.log('buttonSpinner:init', 'Initializing button spinner on element: %O', elem);

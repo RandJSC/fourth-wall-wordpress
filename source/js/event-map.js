@@ -10,8 +10,9 @@
   'use strict';
 
   var $          = require('jquery');
+  var ie         = require('./lib/ie-detect');
   var config     = require('./lib/config');
-  var logger     = require('bragi-browser');
+  var logger     = ie.lte(9) ? console : require('bragi-browser');
   var forEach    = require('lodash.foreach');
   var Handlebars = require('handlebars');
   var Spinner    = require('spin.js/spin');

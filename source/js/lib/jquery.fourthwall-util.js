@@ -9,8 +9,9 @@
   'use strict';
 
   var $      = require('jquery');
+  var ie     = require('./ie-detect');
   var config = require('./config');
-  var logger = require('bragi-browser');
+  var logger = ie.lte(9) ? console : require('bragi-browser');
   var assign = require('lodash.assign');
 
   // Private helper functions

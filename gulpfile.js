@@ -153,8 +153,14 @@ gulp.task('jshint', function() {
     .pipe($.jshint.reporter('jshint-stylish'));
 });
 
+// Run all image related tasks
+gulp.task('images', function(cb) {
+  runSequence('images:vendor', 'images:optimize', 'images:rasterize');
+  cb();
+});
+
 // Optimize images
-gulp.task('images', [ 'images:vendor' ], function() {
+gulp.task('images:optimize', [ 'images:vendor' ], function() {
   return gulp.src(resources.images)
     .pipe($.imagemin({
       progressive: true,
@@ -172,6 +178,12 @@ gulp.task('images:vendor', function() {
   }
 
   return gulp.src(resources.vendorImages)
+    .pipe(gulp.dest('build/img'));
+});
+
+gulp.task('images:rasterize', function() {
+  return gulp.src(resources.svgs)
+    .pipe($.rsvg({ scale: 4, format: 'png' }))
     .pipe(gulp.dest('build/img'));
 });
 

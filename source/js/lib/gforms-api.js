@@ -8,7 +8,7 @@
   'use strict';
 
   var ie     = require('./ie-detect');
-  var logger = ie.lte(9) ? console : require('bragi-browser');
+  var logger = require('./logger').getInstance();
   var config = require('./config');
   var HMAC   = require('crypto-js/hmac-sha1');
   var Base64 = require('crypto-js/enc-base64');

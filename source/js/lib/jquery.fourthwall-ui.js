@@ -24,7 +24,7 @@
   var config        = require('./config');
   var Snap          = require('./snap.svg.custom');
   var Hammer        = require('hammerjs');
-  var logger        = ie.lte(9) ? console : require('bragi-browser');
+  var logger        = require('./logger').getInstance();
   var fweUtil       = require('./jquery.fourthwall-util');
   var Handlebars    = require('handlebars');
   var TweenLite     = require('gsap/src/uncompressed/TweenLite');

@@ -26,7 +26,7 @@
 
   var methods = {
     fallback: function fallback() {
-      return hasConditionalClass('ie');
+      return hasConditionalClass('ie') || (/MSIE/i).test(window.navigator.userAgent);
     },
     8: function isIE8() {
       if (hasClassList) {
@@ -60,6 +60,20 @@
 
       var verClass = 'lt-ie' + (ver + 1);
       return hasConditionalClass(verClass);
+    },
+    version: function version() {
+      if (!methods.fallback.call(this)) {
+        return null;
+      }
+
+      var pattern = /MSIE\ ([\d\.]+);/;
+      var matches = window.navigator.userAgent.match(pattern);
+
+      if (matches.length > 1) {
+        return matches[1];
+      }
+
+      return null;
     }
   };
 

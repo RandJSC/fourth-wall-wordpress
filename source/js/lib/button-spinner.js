@@ -14,7 +14,7 @@
   var util     = require('./jquery.fourthwall-util');
   var Spinner  = require('spin.js');
   var isString = require('lodash.isstring');
-  var logger   = ie.lte(9) ? console : require('bragi-browser');
+  var logger   = require('./logger').getInstance();
 
   var ButtonSpinner = function ButtonSpinner(elem, options) {
     logger.log('buttonSpinner:init', 'Initializing button spinner on element: %O', elem);

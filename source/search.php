@@ -18,7 +18,7 @@ $banner = $fwe_settings['search_banner'];
 
 <section id="main-page-content" class="content-section">
   <?php if (!have_posts()): ?>
-    <div class="search-header">
+    <div class="search-header no-results">
       <h1>No Search Results Found</h1>
       <p>
         We're sorry, we couldn't find anything that matches &ldquo;<strong><em><?php the_search_query(); ?></em></strong>&rdquo;.
@@ -26,7 +26,7 @@ $banner = $fwe_settings['search_banner'];
       </p>
     </div>
   <?php else: ?>
-    <div class="search-header no-results">
+    <div class="search-header">
       <h1>Your Search Results:</h1>
       <p id="search-query">
         <?php the_search_query(); ?>

@@ -118,7 +118,8 @@
     slidesToScroll: 1,
     dots: false,
     arrows: false,
-    slide: 'figure'
+    slide: 'figure',
+    adaptiveHeight: true
   };
 
   module.exports = $.fn.extend({
@@ -185,7 +186,9 @@
         var $dots   = $(this).find('a.slider-dot');
 
         $slider.slick({
-          infinite: false,
+          autoplay: true,
+          autoplaySpeed: 5e3,
+          infinite: true,
           arrows: false,
           dots: false,
           draggable: false,

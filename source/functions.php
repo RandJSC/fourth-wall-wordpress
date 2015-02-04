@@ -24,6 +24,9 @@ if (file_exists($base_path . 'vendor/autoload.php')) {
   require_once $base_path . 'vendor/autoload.php';
 }
 
+require_once $base_path . 'PiklistHelper.php';
+PiklistHelper::Initiate();
+
 require_once $walkers . 'class.walker-fwe-quicklinks.php';
 require_once $walkers . 'class.walker-fwe-socials.php';
 

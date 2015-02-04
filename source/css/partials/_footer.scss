@@ -112,7 +112,7 @@
   }
 
   p,
-  #address,
+  .address,
   #contact-form {
     max-width: rem(800);
     margin: 0 auto;
@@ -122,7 +122,7 @@
     max-width: $max-width;
   }
 
-  #address {
+  .address {
     margin-top: rem(40);
   }
 

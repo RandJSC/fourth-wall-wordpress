@@ -1,18 +1,7 @@
           <?php
           global $fwe_settings, $theme_uri;
 
-          $cta      = fwe_get_cta();
-          $map_link = $fwe_settings['google_maps_link'];
-
-          if (!$map_link && fwe_theme_option_exists('address')) {
-            $map_link = fwe_google_maps_link(array(
-              'address'  => $fwe_settings['address'],
-              'city'     => $fwe_settings['city'],
-              'state'    => $fwe_settings['state'],
-              'zip_code' => $fwe_settings['zip_code'],
-            ));
-          }
-
+          $cta = fwe_get_cta();
 
           if ($cta):
             $bg_img    = get_post_meta($cta->ID, 'background_image', true);
@@ -67,62 +56,66 @@
 
           <p>Drop us a line. Give us a call. Let us know how we can help get your audience talking.</p>
 
-          <div id="address" itemscope itemtype="http://schema.org/LocalBusiness">
-            <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
-            <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
+          <?php
+          $locations = PiklistHelper::parse_array($fwe_settings['locations']);
 
-            <p class="hide" itemprop="name"><?php echo $fwe_settings['company_name']; ?></p>
-            <p class="hide" itemprop="description"><?php echo $fwe_settings['description']; ?></p>
+          foreach ($locations as $location):
+          ?>
+            <div class="address" itemscope itemtype="http://schema.org/LocalBusiness">
+              <strong><?php echo $location['location_name']; ?></strong>
+              <meta itemprop="name" content="<?php echo esc_attr($fwe_settings['company_name']); ?>">
+              <meta itemprop="description" content="<?php echo esc_attr($fwe_settings['description']); ?>">
 
-            <div class="street-address contact">
-              <div class="icon">
-                <a href="<?php echo $map_link; ?>" target="_blank">
-                  <span class="fa fa-map-marker"></span>
-                </a>
+              <div class="street-address contact">
+                <div class="icon">
+                  <a href="<?php echo esc_url($location['google_maps_link']); ?>" target="_blank">
+                    <span class="fa fa-map-marker"></span>
+                  </a>
+                </div>
+
+                <div class="info">
+                  <a href="<?php echo esc_url($location['google_maps_link']); ?>" target="_blank">
+                    <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                      <span itemprop="streetAddress"><?php echo $location['address']; ?>,</span>
+                      <span itemprop="addressLocality"><?php echo $location['city']; ?>,</span>
+                      <span itemprop="addressRegion"><?php echo $location['state']; ?></span>
+                      <span itemprop="postalCode"><?php echo $location['zip_code']; ?></span>
+                    </address>
+                  </a>
+                </div>
               </div>
 
-              <div class="info">
-                <a href="<?php echo $map_link; ?>" target="_blank">
-                  <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                    <span itemprop="streetAddress"><?php echo $fwe_settings['address']; ?>,</span>
-                    <span itemprop="addressLocality"><?php echo $fwe_settings['city']; ?>,</span>
-                    <span itemprop="addressRegion"><?php echo $fwe_settings['state']; ?></span>
-                    <span itemprop="postalCode"><?php echo $fwe_settings['zip_code']; ?></span>
-                  </address>
-                </a>
+              <div class="email contact">
+                <div class="icon">
+                  <a href="mailto:<?php echo esc_attr($location['contact_email']); ?>">
+                    <span class="fa fa-envelope"></span>
+                  </a>
+                </div>
+
+                <div class="info">
+                  <a href="mailto:<?php echo esc_attr($location['contact_email']); ?>">
+                    <span itemprop="email"><?php echo $location['contact_email']; ?></span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="phone contact">
+                <div class="icon">
+                  <a href="tel://<?php echo esc_attr($location['phone']); ?>">
+                    <span class="fa fa-phone"></span>
+                  </a>
+                </div>
+
+                <div class="info">
+                  <a href="tel://<?php echo esc_attr($location['phone']); ?>">
+                    <span itemprop="telephone">
+                      <?php echo $location['phone']; ?>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
-
-            <div class="email contact">
-              <div class="icon">
-                <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>">
-                  <span class="fa fa-envelope"></span>
-                </a>
-              </div>
-
-              <div class="info">
-                <a href="mailto:<?php echo esc_attr($fwe_settings['contact_email']); ?>">
-                  <span itemprop="email"><?php echo $fwe_settings['contact_email']; ?></span>
-                </a>
-              </div>
-            </div>
-
-            <div class="phone contact">
-              <div class="icon">
-                <a href="tel://<?php echo esc_attr($fwe_settings['phone']); ?>">
-                  <span class="fa fa-phone"></span>
-                </a>
-              </div>
-
-              <div class="info">
-                <a href="tel://<?php echo esc_attr($fwe_settings['phone']); ?>">
-                  <span itemprop="telephone">
-                    <?php echo $fwe_settings['phone']; ?>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
           <div id="contact-form">
             <form action="" method="post" data-form-id="<?php echo $fwe_settings['contact_form_id']; ?>" data-confirmation="<?php echo esc_attr($fwe_settings['contact_success_message']); ?>">

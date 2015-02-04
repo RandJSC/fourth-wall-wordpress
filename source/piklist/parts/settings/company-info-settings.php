@@ -65,13 +65,13 @@ piklist('field', array(
       'type'    => 'text',
       'field'   => 'city',
       'label'   => 'City',
-      'columns' => 5,
+      'columns' => 7,
     ),
     array(
       'type'    => 'text',
       'field'   => 'state',
       'label'   => 'State',
-      'columns' => 7,
+      'columns' => 5,
     ),
     array(
       'type'    => 'text',

@@ -873,6 +873,8 @@
         var $rfpName   = $el.find('input#hire-rfp-file-name');
         var $submit    = $el.find('#hire-submit');
 
+        $submit.buttonSpinner();
+
         if (!window.hasOwnProperty('FileReader') || !window.hasOwnProperty('File')) {
           var $rfpParagraph = $fileInput.closest('p');
           $rfpParagraph.html('<em>Your browser does not support file uploads. To send us an RFP, please email it to info@fourthwallevents.com.</em>');
@@ -946,11 +948,13 @@
             data: jsonSubmission,
             beforeSend: function(xhr, settings) {
               logger.log('hireUsForm:submission:ajax', 'Sending JSON form data to server');
+              $submit.buttonSpinner('start');
             }
           });
 
           ajax.success(function(json) {
             logger.log('hireUsForm:submission:ajax', 'Received response from server: %O', json);
+            $submit.buttonSpinner('stop');
           });
 
           return false;

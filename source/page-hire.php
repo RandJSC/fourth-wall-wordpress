@@ -14,10 +14,14 @@ $banner = fwe_get_page_banner($post->ID);
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
 
-  <section id="main-page-content" class="content-section">
+  <section id="main-page-content" class="content-section hire-us">
     <article itemscope itemtype="http://schema.org/WebPage" <?php post_class('hire-us'); ?>>
 
       <div class="post-header">
+        <div class="post-top page hire-us">
+          <?php include(locate_template('partials/sharing-link.php')); ?>
+        </div>
+
         <h1 itemprop="headline"><?php the_title(); ?></h1>
         <hr>
       </div>
@@ -32,8 +36,10 @@ $banner = fwe_get_page_banner($post->ID);
         </div>
       <?php endif; ?>
 
-      <div class="post-content" itemprop="text">
-        <?php the_content(); ?>
+      <div class="post-intro" itemprop="text">
+        <div class="intro-inner">
+          <?php the_content(); ?>
+        </div>
       </div>
 
       <?php if (fwe_theme_option_exists('hire_us_form_id')): ?>
@@ -91,7 +97,9 @@ $banner = fwe_get_page_banner($post->ID);
             <input type="hidden" id="hire-rfp-file-name" name="<?php echo esc_attr($fields[17]['id']); ?>" value="">
 
             <p class="right">
-              <button id="hire-submit" type="submit">Submit &raquo;</button>
+              <button id="hire-submit" type="submit">
+                <label class="button-label">Submit &raquo;</label>
+              </button>
             </p>
           </form>
         </div>

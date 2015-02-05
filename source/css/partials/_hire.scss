@@ -1,0 +1,62 @@
+section.content-section.hire-us,
+div.content-section.hire-us {
+  background: $content-bg;
+
+  .post-intro {
+    background: $white;
+    width: 100%;
+    padding-top: rem(53);
+    padding-bottom: rem(53);
+    font-size: rem(22);
+    font-weight: 100;
+
+    .intro-inner {
+      max-width: rem(1060);
+      margin: 0 auto;
+    }
+
+    p {
+      margin: 0;
+      line-height: rem(29);
+    }
+  }
+
+  .post-header,
+  .post-content {
+    background: $white;
+  }
+
+  .post-header {
+    hr {
+      height: 1px;
+      margin-bottom: 0;
+    }
+  }
+  
+  .post-content {
+    margin-top: rem(32);
+    padding: rem(55) rem(50);
+  }
+
+  #hire-form {
+    font-size: rem(22);
+    line-height: rem(40);
+
+    p {
+      line-height: rem(40);
+    }
+
+    input {
+      border: 0;
+      border-bottom: $blue 1px dashed;
+      padding: rem(2) rem(14);
+      text-align: center;
+      font-size: rem(17);
+      line-height: rem(40);
+
+      @include placeholder {
+        font-style: italic;
+      }
+    }
+  }
+}

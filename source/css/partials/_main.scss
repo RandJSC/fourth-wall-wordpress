@@ -129,6 +129,15 @@ div.content-section {
     }
   }
 
+  a {
+    color: $button-bg;
+    @include transition(color $transition-speed);
+
+    &:hover {
+      color: $text-color;
+    }
+  }
+
   h1,
   h2,
   h3,

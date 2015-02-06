@@ -2,6 +2,11 @@ section.content-section.hire-us,
 div.content-section.hire-us {
   background: $content-bg;
 
+  .post-top.hire-us {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
   .post-intro {
     background: $white;
     width: 100%;
@@ -41,6 +46,10 @@ div.content-section.hire-us {
   #hire-form {
     font-size: rem(22);
     line-height: rem(40);
+
+    form {
+      text-align: left;
+    }
 
     p {
       line-height: rem(40);

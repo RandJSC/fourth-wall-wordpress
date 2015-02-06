@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f8e6646fac6cfdd6e2d773f875987da3",
+    "hash": "7b8204f3d8281a7f175d1d0729e0c8c0",
     "packages": [
         {
             "name": "drewm/mailchimp-api",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/drewm/mailchimp-api.git",
-                "reference": "0b763f05fe18610061b8289a399a9d0569036a50"
+                "reference": "b17c0fa6188f4b993ee8bd18460c0872a4944677"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/0b763f05fe18610061b8289a399a9d0569036a50",
-                "reference": "0b763f05fe18610061b8289a399a9d0569036a50",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/b17c0fa6188f4b993ee8bd18460c0872a4944677",
+                "reference": "b17c0fa6188f4b993ee8bd18460c0872a4944677",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
             ],
             "description": "Super-simple, minimum abstraction MailChimp API v2 wrapper",
             "homepage": "https://github.com/drewm/mailchimp-api",
-            "time": "2014-05-30 16:51:39"
+            "time": "2015-01-05 17:18:13"
         }
     ],
     "packages-dev": [],

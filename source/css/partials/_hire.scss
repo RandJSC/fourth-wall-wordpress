@@ -32,7 +32,7 @@ div.content-section.hire-us {
       margin-bottom: 0;
     }
   }
-  
+
   .post-content {
     margin-top: rem(32);
     padding: rem(55) rem(50);
@@ -65,7 +65,7 @@ div.content-section.hire-us {
         border-bottom-color: $button-bg;
       }
 
-      &:invalid {
+      &.invalid {
         border-bottom: 2px solid #f00;
       }
     }

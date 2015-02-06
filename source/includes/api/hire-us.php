@@ -15,6 +15,23 @@ class FourthWall_HireUs {
     'text/richtext',
   );
 
+  protected $required_fields = array(
+    2, // Name
+    3, // Company
+    4, // Address
+    5, // City
+    6, // State
+    7, // Email
+    16, // Phone
+    8, // Service
+    9, // Event Date
+    10, // Budget
+    11, // Location
+    13, // Contact Method
+    14, // Contact Time
+    18, // Nickname
+  );
+
   public function register_routes( $routes ) {
     $routes['/fwe/hire-us'] = array(
       array( array($this, 'create_submission'), WP_JSON_Server::CREATABLE | WP_JSON_Server::ACCEPT_JSON ),
@@ -25,9 +42,21 @@ class FourthWall_HireUs {
 
   public function create_submission( $data = null ) {
 
-    $settings   = get_option('fwe_settings');
-    $form_id    = $settings['hire_us_form_id'];
-    $upload_dir = WP_CONTENT_DIR . '/rfp-uploads';
+    $settings    = get_option('fwe_settings');
+    $form_id     = $settings['hire_us_form_id'];
+    $upload_dir  = WP_CONTENT_DIR . '/rfp-uploads';
+    $success_msg = array_key_exists('hire_us_success_message', $settings) ? $settings['hire_us_success_message'] : 'Thank you!';
+    $mime_type   = $data[19];
+
+    if (!in_array($mime_type, $this->allowed_mime_types)) {
+      return new WP_Error('That file type is not allowed.');
+    }
+
+    $invalid_fields = $this->validate_submission($data);
+
+    if (!empty($invalid_fields)) {
+      return new WP_Error('The following required fields were invalid: ' . implode(', ', $invalid_fields));
+    }
 
     // Make the uploads folder if it doesn't exist
     if (!is_dir($upload_dir)) {
@@ -61,13 +90,29 @@ class FourthWall_HireUs {
     $entry_id = GFAPI::add_entry($data);
 
     // Give the user back a sanitized version of their input for displaying on the Thank You message
-    $response_data = array_merge($data, array('status' => 'OK', 'entry_id' => $entry_id));
+    $response_data = array_merge($data, array(
+      'status'   => 'OK',
+      'entry_id' => $entry_id,
+      'message'  => $success_msg,
+    ));
     unset($response_data[21]);
 
     $response = new WP_JSON_Response();
     $response->set_data($response_data);
 
     return $response;
+  }
+
+  private function validate_submission($data) {
+    $invalid_fields  = array();
+
+    foreach ($this->required_fields as $field) {
+      if (!array_key_exists($field, $data) || empty($data[$field])) {
+        $invalid_fields[] = $field;
+      }
+    }
+
+    return $invalid_fields;
   }
 
   private function log($value, $file = '/home/vagrant/wp-api.log') {

@@ -71,4 +71,16 @@ piklist('field', array(
     'cols' => 40,
   ),
 ));
+
+piklist('field', array(
+  'type'        => 'textarea',
+  'field'       => 'hire_us_success_message',
+  'label'       => 'Hire Us Form Success Message',
+  'description' => 'Shown to users upon successful submission of the Hire Us form. No HTML allowed.',
+  'value'       => 'Thanks! We\'ll get back to you shortly.',
+  'attributes'  => array(
+    'rows' => 4,
+    'cols' => 40,
+  ),
+));
 ?>

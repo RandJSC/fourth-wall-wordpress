@@ -39,17 +39,19 @@ class FourthWall_HireUs {
     }
 
     // Save the RFP file data as a file on the server
-    $filename    = wp_unique_filename($upload_dir, $data[20]);
-    $file_data   = $this->get_binary_data($data['rfp_file_data']);
-    $upload_path = trailingslashit($upload_dir) . $filename;
-    $file_url    = content_url('/rfp-uploads/' . $filename);
+    if (!empty($data['rfp_file_data'])) {
+      $filename    = wp_unique_filename($upload_dir, $data[20]);
+      $file_data   = $this->get_binary_data($data['rfp_file_data']);
+      $upload_path = trailingslashit($upload_dir) . $filename;
+      $file_url    = content_url('/rfp-uploads/' . $filename);
 
-    if (!file_put_contents($upload_path, $file_data)) {
-      return new WP_Error('Error saving RFP file.');
+      if (!file_put_contents($upload_path, $file_data)) {
+        return new WP_Error('Error saving RFP file.');
+      }
+
+      // Don't store base64 garbage in the database
+      unset($data['rfp_file_data']);
     }
-
-    // Don't store base64 garbage in the database
-    unset($data['rfp_file_data']);
 
     // Store the form responses in Gravity Forms
     $data['form_id']      = $form_id;

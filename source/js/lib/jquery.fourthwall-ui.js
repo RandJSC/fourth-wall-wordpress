@@ -952,9 +952,56 @@
             }
           });
 
-          ajax.success(function(json) {
+          ajax.fail(function(xhr, text, err) {
+            $submit.buttonSpinner('stop');
+            logger.log('hireUsForm:submission:ajax', 'AJAX error: %O', xhr);
+
+            $.magnificPopup.open({
+              items: [
+                {
+                  type: 'inline',
+                  src: templates.formConfirmation({
+                    header: 'Error!',
+                    message: 'There was a problem with your submission. Please try again.'
+                  })
+                }
+              ],
+              callbacks: {
+                open: function() {
+                  this.container.find('a.button').on('click', function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    $.magnificPopup.close();
+                  });
+                }
+              }
+            });
+          });
+
+          ajax.done(function(json) {
             logger.log('hireUsForm:submission:ajax', 'Received response from server: %O', json);
             $submit.buttonSpinner('stop');
+
+            $.magnificPopup.open({
+              items: [
+                {
+                  type: 'inline',
+                  src: templates.formConfirmation({
+                    header: 'Thanks!',
+                    message: 'We\'ll be in touch with you shortly.'
+                  })
+                }
+              ],
+              callbacks: {
+                open: function() {
+                  this.container.find('a.button').on('click', function(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    $.magnificPopup.close();
+                  });
+                }
+              }
+            });
           });
 
           return false;

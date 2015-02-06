@@ -430,4 +430,32 @@ function fwe_theme_option_exists($key) {
 
   return (array_key_exists($key, $fwe_settings) && $fwe_settings[$key]);
 }
+
+function fwe_gform_input($field, $attrs = array()) {
+  $tag                  = '<input';
+  $attrs['name']        = $field['id'];
+  $attrs['placeholder'] = $field['description'];
+
+  if (!array_key_exists('type', $attrs)) {
+    $attrs['type'] = 'text';
+  }
+
+  if ($field['isRequired']) {
+    $attrs['required'] = '';
+  }
+
+  foreach ($attrs as $attr => $value) {
+    $str = ' ' . $attr;
+
+    if ($value) {
+      $str .= '="' . esc_attr($value) . '"';
+    }
+
+    $tag .= $str;
+  }
+
+  $tag .= '>';
+
+  echo $tag;
+}
 ?>

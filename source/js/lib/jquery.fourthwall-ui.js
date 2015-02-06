@@ -1029,7 +1029,7 @@
                 }
               ],
               callbacks: {
-                open: bindMagnificClose
+                open: bindMagnificClose(function() { $el[0].reset(); })
               }
             });
           });

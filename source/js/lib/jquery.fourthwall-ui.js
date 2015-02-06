@@ -19,6 +19,7 @@
   var throttle      = require('lodash.throttle');
   var find          = require('lodash.find');
   var sortBy        = require('lodash.sortby');
+  var isFunction    = require('lodash.isfunction');
   var ie            = require('./ie-detect');
   var $             = require('jquery');
   var config        = require('./config');
@@ -111,14 +112,19 @@
       '</div>'
     ),
     formErrors: Handlebars.compile(
-      '<ul class="form-errors">' +
-        '{{#each comments}}' +
-          '<li>' +
-            '<strong>{{label}}:</strong>' +
-            '{{message}}' +
-          '</li>' +
-        '{{/each}}' +
-      '</ul>'
+      '<div id="form-feedback" class="popup white">' +
+        '<h1>Error</h1>' +
+        '<p>The following errors prevented the form from being submitted:</p>' +
+        '<ul class="form-errors">' +
+          '{{#each errors}}' +
+            '<li>' +
+              '<strong>{{label}}:</strong> ' +
+              '{{message}}' +
+            '</li>' +
+          '{{/each}}' +
+        '</ul>' +
+        '<a class="button" href="">Close</a>' +
+      '</div>'
     )
   };
 
@@ -137,7 +143,10 @@
       evt.preventDefault();
       evt.stopPropagation();
       $.magnificPopup.close();
-      cb.call(this);
+
+      if (isFunction(cb)) {
+        cb.call(this);
+      }
     });
   };
 
@@ -907,6 +916,7 @@
             evt.stopPropagation();
 
             dialog = templates.formErrors({ errors: errors });
+            console.log(dialog, errors);
 
             $.magnificPopup.open({
               items: [

@@ -28,6 +28,18 @@ function fwe_register_plugins() {
       'required' => true,
     ),
 
+    array(
+      'name'     => 'Google Analytics by Yoast',
+      'slug'     => 'google-analytics-for-wordpress',
+      'required' => true,
+    ),
+
+    array(
+      'name'     => 'Disqus Comment System',
+      'slug'     => 'disqus-comment-system',
+      'required' => true,
+    ),
+
     // Debug + Optimization
     array(
       'name'     => 'Debug Bar',

@@ -109,6 +109,16 @@
         '</p>' +
         '<a class="button" href="">Close</a>' +
       '</div>'
+    ),
+    formErrors: Handlebars.compile(
+      '<ul class="form-errors">' +
+        '{{#each comments}}' +
+          '<li>' +
+            '<strong>{{label}}:</strong>' +
+            '{{message}}' +
+          '</li>' +
+        '{{/each}}' +
+      '</ul>'
     )
   };
 
@@ -120,6 +130,15 @@
     arrows: false,
     slide: 'figure',
     adaptiveHeight: true
+  };
+
+  var bindMagnificClose = function(cb) {
+    this.container.find('a.button').on('click', function(evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      $.magnificPopup.close();
+      cb.call(this);
+    });
   };
 
   module.exports = $.fn.extend({
@@ -619,13 +638,7 @@
                 }
               ],
               callbacks: {
-                open: function() {
-                  this.container.find('a.button').on('click', function(evt) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
-                    $.magnificPopup.close();
-                  });
-                }
+                open: bindMagnificClose
               }
             });
           });
@@ -645,14 +658,9 @@
                 }
               ],
               callbacks: {
-                open: function() {
-                  this.container.find('a.button').on('click', function(evt) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
-                    $el[0].reset();
-                    $.magnificPopup.close();
-                  });
-                }
+                open: bindMagnificClose(function() {
+                  $el[0].reset();
+                })
               }
             });
           });
@@ -881,6 +889,40 @@
           $fileInput = $([]);
         }
 
+        $submit.on('click', function(evt) {
+          var dialog;
+          var errors = [];
+          var $invalid = $el.find(':invalid').each(function(idx, node) {
+            var $input  = $(this);
+            var message = node.validationMessage || 'is required';
+
+            errors.push({
+              label: $input.attr('placeholder'),
+              message: message
+            });
+          });
+
+          if (errors.length) {
+            evt.preventDefault();
+            evt.stopPropagation();
+
+            dialog = templates.formErrors({ errors: errors });
+
+            $.magnificPopup.open({
+              items: [
+                {
+                  type: 'inline',
+                  src: dialog
+                }
+              ],
+              callbacks: {
+                open: bindMagnificClose
+              }
+            });
+          }
+
+        });
+
         $fileInput.on('change', function() {
           var $input     = $(this);
           var input      = $input[0];
@@ -967,13 +1009,7 @@
                 }
               ],
               callbacks: {
-                open: function() {
-                  this.container.find('a.button').on('click', function(evt) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
-                    $.magnificPopup.close();
-                  });
-                }
+                open: bindMagnificClose
               }
             });
           });
@@ -988,18 +1024,12 @@
                   type: 'inline',
                   src: templates.formConfirmation({
                     header: 'Thanks!',
-                    message: 'We\'ll be in touch with you shortly.'
+                    message: json.message
                   })
                 }
               ],
               callbacks: {
-                open: function() {
-                  this.container.find('a.button').on('click', function(evt) {
-                    evt.preventDefault();
-                    evt.stopPropagation();
-                    $.magnificPopup.close();
-                  });
-                }
+                open: bindMagnificClose
               }
             });
           });

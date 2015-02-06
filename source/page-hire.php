@@ -50,8 +50,8 @@ $banner = fwe_get_page_banner($post->ID);
           ?>
           <form action="<?php echo site_url('/wp-json/fwe/hire-us'); ?>" method="post">
             <p>
-              Hi, <label for="hire-name">my name is</label> <input type="text" class="madlib" id="hire-name" placeholder="<?php echo esc_attr($fields[0]['description']); ?>" name="<?php echo esc_attr($fields[0]['id']); ?>">, and <label for="hire-company">I work at</label> <input type="text" class="madlib" id="hire-company" placeholder="<?php echo esc_attr($fields[1]['description']); ?>" name="<?php echo esc_attr($fields[1]['id']); ?>">.
-              <label for="hire-address">We're located at</label> <input type="text" class="madlib" id="hire-address" placeholder="<?php echo esc_attr($fields[2]['description']); ?>" name="<?php echo esc_attr($fields[2]['id']); ?>"> <label for="hire-city">in</label> <input type="text" class="madlib" id="hire-city" placeholder="<?php echo esc_attr($fields[3]['description']); ?>" name="<?php echo esc_attr($fields[3]['id']); ?>">,
+            Hi, <label for="hire-name">my name is</label> <?php fwe_gform_input($fields[0], array('class' => 'madlib', 'id' => 'hire-name')); ?>, and <label for="hire-company">I work at</label> <?php fwe_gform_input($fields[1], array('id' => 'hire-company', 'class' => 'madlib')); ?>.
+            <label for="hire-address">We're located at</label> <?php fwe_gform_input($fields[2], array('id' => 'hire-address', 'class' => 'madlib')); ?> <label for="hire-city">in</label> <?php fwe_gform_input($fields[3], array('id' => 'hire-city', 'class' => 'madlib')); ?>,
               <select id="hire-state" name="<?php echo esc_attr($fields[4]['id']); ?>" class="madlib">
                 <?php foreach ($fields[4]['choices'] as $state): ?>
                   <option value="<?php echo esc_attr($state['value']); ?>">
@@ -59,7 +59,7 @@ $banner = fwe_get_page_banner($post->ID);
                   </option>
                 <?php endforeach; ?>
               </select>.
-              <label for="hire-email">My email address is</label> <input type="email" id="hire-email" class="madlib" placeholder="<?php echo esc_attr($fields[5]['description']); ?>" name="<?php echo esc_attr($fields[5]['id']); ?>">, and <label for="hire-phone">my phone number is</label> <input type="tel" id="hire-phone" class="madlib" placeholder="<?php echo esc_attr($fields[6]['description']); ?>" name="<?php echo esc_attr($fields[6]['id']); ?>">.
+                <label for="hire-email">My email address is</label> <?php fwe_gform_input($fields[5], array('type' => 'email', 'id' => 'hire-email', 'class' => 'madlib')); ?>, and <label for="hire-phone">my phone number is</label> <?php fwe_gform_input($fields[6], array('type' => 'tel', 'id' => 'hire-phone', 'class' => 'madlib')); ?>.
             </p>
 
             <p>
@@ -72,10 +72,10 @@ $banner = fwe_get_page_banner($post->ID);
                 <?php endforeach; ?>
               </select>
               for my company.
-              <label for="hire-date">We have an event on</label> <input type="date" id="hire-date" class="madlib" name="<?php echo esc_attr($fields[8]['id']); ?>"> that we think Fourth Wall Events would be perfect for.
-              <label for="hire-budget">We've got a budget range of</label> <input type="text" id="hire-budget" class="madlib" placeholder="<?php echo esc_attr($fields[9]['description']); ?>" name="<?php echo esc_attr($fields[9]['id']); ?>">
+                <label for="hire-date">We have an event on</label> <?php fwe_gform_input($fields[8], array('type' => 'date', 'id' => 'hire-date', 'class' => 'madlib')); ?> that we think Fourth Wall Events would be perfect for.
+                <label for="hire-budget">We've got a budget range of</label> <?php fwe_gform_input($fields[9], array('id' => 'hire-budget', 'class' => 'madlib')); ?>
               and are looking for some great ideas.
-              We thought that <label for="hire-location">the event could take place in</label> <input type="text" id="hire-location" class="madlib" placeholder="<?php echo esc_attr($fields[10]['description']); ?>" name="<?php echo esc_attr($fields[10]['id']); ?>">.
+                We thought that <label for="hire-location">the event could take place in</label> <?php fwe_gform_input($fields[10], array('id' => 'hire-location', 'class' => 'madlib')); ?>.
             </p>
 
             <p>
@@ -83,13 +83,13 @@ $banner = fwe_get_page_banner($post->ID);
             </p>
 
             <p>
-              I look forward to hearing back from you soon. <label for="hire-contact">I'd prefer if you'd contact me via</label> <input type="text" id="hire-contact" class="madlib" placeholder="<?php echo esc_attr($fields[12]['description']); ?>" name="<?php echo esc_attr($fields[12]['id']); ?>">, and <label for="hire-time">the best time to reach me is usually</label> <input type="time" id="hire-time" class="madlib" placeholder="<?php echo esc_attr($fields[13]['description']); ?>" name="<?php echo esc_attr($fields[13]['id']); ?>">.
+            I look forward to hearing back from you soon. <label for="hire-contact">I'd prefer if you'd contact me via</label> <?php fwe_gform_input($fields[12], array('id' => 'hire-contact', 'class' => 'madlib')); ?>, and <label for="hire-time">the best time to reach me is usually</label> <?php fwe_gform_input($fields[13], array('type' => 'time', 'id' => 'hire-time', 'class' => 'madlib')); ?>.
             </p>
 
             <p>
               Thanks,
               <br>
-              <input type="text" id="hire-nickname" name="<?php echo esc_attr($fields[14]['id']); ?>" placeholder="<?php echo esc_attr($fields[14]['description']); ?>" class="madlib">
+              <?php fwe_gform_input($fields[14], array('id' => 'hire-nickname', 'class' => 'madlib')); ?>
             </p>
 
             <input type="hidden" id="hire-rfp-file-data" name="rfp_file_data" value="">

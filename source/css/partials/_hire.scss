@@ -47,16 +47,31 @@ div.content-section.hire-us {
     }
 
     input {
+      outline: none;
       border: 0;
       border-bottom: $blue 1px dashed;
-      padding: rem(2) rem(14);
+      padding: 0 rem(12);
       text-align: center;
       font-size: rem(17);
       line-height: rem(40);
+      color: $text-color;
 
       @include placeholder {
         font-style: italic;
       }
+
+      &:focus {
+        border-bottom-style: solid;
+        border-bottom-color: $button-bg;
+      }
+
+      &:invalid {
+        border-bottom: 2px solid #f00;
+      }
+    }
+
+    select {
+      font-size: rem(16);
     }
   }
 }

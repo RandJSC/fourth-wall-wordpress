@@ -31,6 +31,10 @@
         font-size: rem(35);
         line-height: 1.2;
       }
+
+      &:hover {
+        color: $white !important;
+      }
     }
 
     .icon {
@@ -85,6 +89,10 @@
 
       h2 {
         border-bottom: 0;
+      }
+
+      h3 {
+        margin-top: 0;
       }
     }
 

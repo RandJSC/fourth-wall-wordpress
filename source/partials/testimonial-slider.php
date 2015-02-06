@@ -1,4 +1,8 @@
 <div class="testimonial-slider">
+  <div class="quotes">
+    <div class="quote left">&ldquo;</div>
+    <div class="quote right">&rdquo;</div>
+  </div>
   <ul class="testimonials">
     <?php while ($query->have_posts()): $query->the_post(); ?>
       <?php

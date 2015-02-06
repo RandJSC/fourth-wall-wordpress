@@ -1,7 +1,39 @@
 .testimonial-slider {
+  position: relative;
   max-width: rem(650);
   width: 100%;
   margin: 0 auto;
+
+  .quotes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    @include clearfix;
+
+    .quote {
+      float: left;
+      z-index: 4;
+      width: 50%;
+      font-family: $source-sans;
+      font-size: rem(75);
+      color: $button-bg;
+      width: rem(53);
+      padding-left: rem(14);
+
+      @include media($bp-above-mobile) {
+        font-size: rem(102);
+      }
+
+      &.right {
+        float: right;
+        text-align: right;
+        padding-left: 0;
+        padding-right: rem(14);
+      }
+    }
+  }
 
   ul.testimonials {
     @extend %unlist;
@@ -15,25 +47,6 @@
       @include clearfix;
       background: none !important;
       padding-left: 0 !important;
-    }
-
-    .quote {
-      float: left;
-      font-size: rem(75);
-      font-family: $source-sans;
-      color: $button-bg;
-      width: rem(53);
-      padding-left: rem(14);
-
-      @include media($bp-above-mobile) {
-        font-size: rem(102);
-      }
-
-      &.right {
-        text-align: right;
-        padding-right: rem(14);
-        padding-left: 0;
-      }
     }
 
     blockquote {

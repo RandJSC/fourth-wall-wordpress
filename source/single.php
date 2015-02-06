@@ -94,6 +94,10 @@ if (isset($post) && fwe_is_post($post)) {
         <?php the_content(); ?>
       </div>
 
+      <div id="comments-container" class="post-content">
+        <?php comments_template(); ?>
+      </div>
+
       <?php include(locate_template('partials/single-pagination.php')); ?>
     </article>
   </section>

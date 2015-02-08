@@ -22,7 +22,7 @@ div.content-section article.page {
 
     &.padded {
       @include media($bp-above-mobile) {
-        padding: rem(40) rem(100);
+        padding: rem(5) rem(100);
       }
     }
   }

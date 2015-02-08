@@ -27,7 +27,7 @@ piklist('field', array(
       'type'        => 'file',
       'field'       => 'image',
       'label'       => 'Upload an Image',
-      'description' => 'TODO: dimension requirements',
+      'description' => 'Suggested Dimensions: 1044x522 pixels',
     ),  
   ),
 ));

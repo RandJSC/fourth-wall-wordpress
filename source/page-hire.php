@@ -72,10 +72,8 @@ $banner = fwe_get_page_banner($post->ID);
                 <?php endforeach; ?>
               </select>
               for my company.
-                <label for="hire-date">We have an event on</label> <?php fwe_gform_input($fields[8], array('type' => 'date', 'id' => 'hire-date', 'class' => 'madlib')); ?> that we think Fourth Wall Events would be perfect for.
-                <label for="hire-budget">We've got a budget range of</label> <?php fwe_gform_input($fields[9], array('id' => 'hire-budget', 'class' => 'madlib')); ?>
-              and are looking for some great ideas.
-                We thought that <label for="hire-location">the event could take place in</label> <?php fwe_gform_input($fields[10], array('id' => 'hire-location', 'class' => 'madlib')); ?>.
+              <label for="hire-date">We have an event on</label> <?php fwe_gform_input($fields[8], array('type' => 'date', 'id' => 'hire-date', 'class' => 'madlib')); ?> that we think Fourth Wall Events would be perfect for.
+              We thought that <label for="hire-location">the event could take place in</label> <?php fwe_gform_input($fields[10], array('id' => 'hire-location', 'class' => 'madlib')); ?>.
             </p>
 
             <p>

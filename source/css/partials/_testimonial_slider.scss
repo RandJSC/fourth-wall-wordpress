@@ -50,8 +50,7 @@
     }
 
     blockquote {
-      float: left;
-      margin: 0;
+      margin: 0 auto;
       min-width: rem(214);
       @include calc(width, '100% - 106px');
       text-align: center;

@@ -11,7 +11,6 @@
       $author_title = get_post_meta($post_id, 'author_position', true);
       ?>
       <li <?php post_class(); ?>>
-        <div class="quote left">&ldquo;</div>
         <blockquote>
           <?php the_content(); ?>
 
@@ -23,7 +22,6 @@
             </cite>
           </footer>
         </blockquote>
-        <div class="quote right">&rdquo;</div>
       </li>
     <?php endwhile; wp_reset_postdata(); ?>
   </ul>

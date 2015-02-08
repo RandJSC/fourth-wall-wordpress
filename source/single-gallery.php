@@ -35,6 +35,11 @@ include(locate_template('partials/gallery-quick-links.php'));
   <section id="main-page-content" class="content-section gallery">
     <article itemscope itemtype="http://schema.org/WebPage" <?php post_class(); ?>>
       <div class="post-header padded">
+        <div class="post-top single">
+          <?php include(locate_template('partials/breadcrumbs.php')); ?>
+          <?php include(locate_template('partials/sharing-link.php')); ?>
+        </div>
+
         <h1 itemprop="headline"><?php the_title(); ?></h1>
 
         <div class="details" itemprop="recordedAt" itemscope itemtype="http://schema.org/Event">

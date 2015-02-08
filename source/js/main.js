@@ -50,6 +50,7 @@
     var $emailSignup        = $('#email-signup form');
     var $logoGrids          = $('.logo-grid');
     var $cta                = $('.call-to-action');
+    var $banner             = $('section.banner');
 
     // Console access to libraries (debug mode only):
     if (config.debug) {
@@ -118,6 +119,9 @@
     }
 
     $hamburger.toggleNav($container, burgerSvg);
+
+    // Banner height
+    $banner.fixBannerHeight();
 
     // Homepage slider (if present)
     $homepageSlider.homepageSlider();

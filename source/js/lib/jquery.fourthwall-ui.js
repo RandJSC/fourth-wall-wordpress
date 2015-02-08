@@ -152,6 +152,22 @@
 
   module.exports = $.fn.extend({
 
+    fixBannerHeight: function() {
+      return this.each(function() {
+        var $el       = $(this);
+        var $fig      = $el.find('figure');
+        var $img      = $fig.find('img');
+        var fixHeight = function() {
+          var imgHeight = $img.height();
+          logger.log('banner:fixHeight', 'Fixing banner height: %d', imgHeight);
+          $fig.height(imgHeight);
+        };
+
+        imagesLoaded($el[0], fixHeight);
+        $(window).on('resize', fixHeight);
+      });
+    },
+
     toggleNav: function(container, svg) {
       var $hamburger = this;
       var $container = $(container);

@@ -49,6 +49,7 @@
     var $quickLinks         = $('#quick-links a');
     var $emailSignup        = $('#email-signup form');
     var $logoGrids          = $('.logo-grid');
+    var $cta                = $('.call-to-action');
 
     // Console access to libraries (debug mode only):
     if (config.debug) {
@@ -166,6 +167,19 @@
 
     // Who We've Worked With, etc. logo grids
     $logoGrids.logoGrid();
+
+    // Vertically center CTA button
+    var centerCTA = function() {
+      logger.log('callToAction:button', 'Vertically centering Call To Action button');
+      var $container = $cta.find('.cta-contents');
+      var $button    = $cta.find('.cta-button');
+      var marginTop  = ($container.height() - $button.height()) / 2;
+
+      $button.css('marginTop', marginTop + 'px');
+    };
+
+    centerCTA();
+    $(window).on('resize', centerCTA);
 
     logger.log('timing', 'End docReady');
 

@@ -131,7 +131,7 @@ div.content-section {
 
   a {
     color: $button-bg;
-    @include transition(color $transition-speed);
+    @include transition(all $transition-speed);
 
     &:hover {
       color: $text-color;

@@ -41,6 +41,7 @@ a {
   }
 
   &.button {
+    color: $white !important;
     @extend %button;
 
     &:hover {

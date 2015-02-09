@@ -13,6 +13,7 @@ $banner         = wp_get_attachment_image_src($banner, 'full');
 $caption        = "What's New";
 $category       = $wp_query->queried_object;
 $banner_classes = 'whats-new';
+$border_class   = $category->slug;
 ?>
 
 <?php if ($banner): ?>

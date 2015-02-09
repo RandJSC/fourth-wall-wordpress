@@ -435,6 +435,14 @@ button {
 }
 
 .banner {
+  &.map {
+    #page-banner {
+      @include media($bp-above-mobile) {
+        border-bottom: 0;
+      }
+    }
+  }
+
   #page-banner {
     position: relative;
     margin: 0;

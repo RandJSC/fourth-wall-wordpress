@@ -117,7 +117,15 @@
   &.posts {
     margin-top: 0;
     border-top: 10px solid $post-links-top-border;
-    border-bottom: 10px solid $post-links-bottom-border;
+    border-bottom: 10px solid $post-links-blog-border;
+
+    &.blog {
+      border-bottom-color: $post-links-blog-border;
+    }
+
+    &.news {
+      border-bottom-color: $post-links-news-border;
+    }
 
     .menu {
       margin-top: 0;
@@ -175,6 +183,18 @@
     border-top: 10px solid $gallery-links-top-border;
     border-bottom: 10px solid $gallery-links-bottom-border;
     margin-top: 0;
+
+    &.map {
+      border-bottom-color: $gallery-links-map-border;
+    }
+
+    &.case-studies {
+      border-bottom-color: $gallery-links-case-studies-border;
+    }
+
+    &.galleries {
+      border-bottom-color: $gallery-links-galleries-border;
+    }
 
     .menu {
       margin-bottom: 0;

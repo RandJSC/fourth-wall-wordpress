@@ -8,6 +8,8 @@ global $wp_query;
 
 get_header();
 
+$border_class = 'galleries';
+
 include(locate_template('partials/gallery-banner.php'));
 include(locate_template('partials/gallery-quick-links.php'));
 include(locate_template('partials/gallery-archive-search.php'));

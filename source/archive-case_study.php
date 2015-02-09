@@ -12,14 +12,11 @@ include(locate_template('partials/gallery-banner.php'));
 include(locate_template('partials/gallery-quick-links.php'));
 ?>
 
-<div class="breadcrumbs-share">
-  <?php include(locate_template('partials/breadcrumbs.php')); ?>
-  <?php include(locate_template('partials/sharing-link.php')); ?>
-</div>
-
-<?php include(locate_template('partials/gallery-archive-search.php')); ?>
-
 <section id="main-page-content" class="content-section padded archive case-studies">
+  <div class="breadcrumbs-share">
+    <?php include(locate_template('partials/breadcrumbs.php')); ?>
+    <?php include(locate_template('partials/sharing-link.php')); ?>
+  </div>
   <div class="page-header">
     <h1><?php post_type_archive_title(); ?></h1>
     <hr>

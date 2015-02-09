@@ -90,6 +90,7 @@
 
       @include media($bp-above-mobile) {
         margin-left: rem(30);
+        @include calc(width, '100% - 192px');
       }
 
       a {

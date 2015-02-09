@@ -43,7 +43,6 @@
       @include transition(text-shadow 400ms ease-out);
 
       @include media($bp-above-mobile) {
-        text-align: left;
         font-size: rem(23);
       }
 
@@ -57,7 +56,8 @@
       font-size: rem(36);
 
       @include media($bp-above-mobile) {
-        float: left;
+        display: inline;
+        float: none;
         margin-right: rem(12);
       }
     }
@@ -186,10 +186,6 @@
 
         @include media($bp-above-mobile) {
           width: (100% / 3);
-        }
-
-        span.fa {
-          float: left;
         }
       }
     }

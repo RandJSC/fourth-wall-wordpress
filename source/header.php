@@ -40,11 +40,11 @@ $fwe_settings = get_option('fwe_settings');
     <meta name="msapplication-TileImage" content="<?php echo $touch_icon; ?>">
   <?php endif; ?>
 
-  <script src="<?php echo $theme_uri; ?>/js/bundle.js"></script>
-
   <?php include(locate_template('partials/addthis.php')); ?>
 
   <?php wp_head(); ?>
+
+  <script src="<?php echo $theme_uri; ?>/js/bundle.js"></script>
 </head>
 <body <?php body_class(); ?>>
   <?php include(locate_template('partials/facebook-init.php')); ?>

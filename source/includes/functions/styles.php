@@ -5,6 +5,11 @@
  */
 
 function fwe_enqueue_styles() {
+  // Disable dashicons if we don't need them
+  if (!is_user_logged_in() && !is_admin()) {
+    wp_deregister_style('dashicons');
+  }
+
   $theme_uri = get_stylesheet_directory_uri();
   $styles    = array(
     'source-sans-pro' => array(

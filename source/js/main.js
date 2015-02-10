@@ -5,7 +5,7 @@
  * by Fifth Room Creative <info@fifthroomcreative.com>
  */
 
-/* global Modernizr, matchMedia, addthis */
+/* global matchMedia, addthis */
 /* jshint -W064 */
 
 (function(window, undefined) {
@@ -22,6 +22,8 @@
   var Snap       = require('./lib/snap.svg.custom');
   var Handlebars = require('handlebars');
   var logger     = require('./lib/logger').getInstance();
+  var features   = require('./lib/feature-detection');
+  var matchMedia = require('./lib/match-media-polyfill');
 
   // remove me in production
   var debug  = require('./lib/jquery.debug');
@@ -29,6 +31,8 @@
   $(function() {
 
     logger.log('timing', 'Begin docReady');
+
+    $(document.documentElement).removeClass('no-js').addClass('js');
 
     var burgerSvg           = Snap('#hamburger-img');
     var $container          = $('#master-container');
@@ -100,17 +104,17 @@
     // Attach fastclick to body
     fastClick(document.body);
 
-    if (Modernizr.matchmedia) {
+    if (features.matchMedia) {
       var navMQ = matchMedia('screen and (min-width: ' + config.breakpoints.aboveTablet + 'px)');
       navListener(navMQ);
 
-      if (Modernizr.matchmedialistener) {
+      if (features.matchMediaListener) {
         navMQ.addListener(navListener);
       }
     }
 
     // Team Members Stuff
-    if (!Modernizr.touch) {
+    if (!features.touch) {
       $nameTitles.verticallyCenter();
 
       $teamThumbs.hover(function() {

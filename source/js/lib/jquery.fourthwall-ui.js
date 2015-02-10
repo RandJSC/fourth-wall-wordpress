@@ -4,7 +4,7 @@
  */
 
 /* jshint -W064 */
-/* global Modernizr, FileReader, JSON */
+/* global FileReader, JSON */
 
 (function(window, undefined) {
   'use strict';
@@ -37,6 +37,7 @@
   var ButtonSpinner = require('./button-spinner');
   var Isotope       = require('isotope-layout');
   var cellsByRow    = require('isotope-cells-by-row');
+  var features      = require('./feature-detection');
 
   if (config.debug) {
     window.Isotope       = Isotope;
@@ -179,7 +180,7 @@
         return menuOpen;
       };
 
-      if (Modernizr.touch) {
+      if (features.touch) {
         logger.log('touch', 'Registering swipe handler');
 
         var hammertime = new Hammer.Manager($container[0], {});

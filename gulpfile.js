@@ -71,11 +71,7 @@ var resources = {
   vendorStyles: [],
   scripts: [ 'source/js/**/*.js' ],
   vendorScripts: [],
-  standaloneScripts: [
-    'source/js/modernizr.js',
-    'source/js/modernizr-tests.js',
-    'source/js/matchMedia.js'
-  ],
+  standaloneScripts: [],
   images: 'source/img/**/*.{png,jpg,gif,svg}',
   vendorImages: [
     'node_modules/slick-carousel/slick/ajax-loader.gif'
@@ -330,6 +326,11 @@ gulp.task('scripts:vendor', function() {
 
 gulp.task('scripts:copy', function() {
   del.sync(['build/js/*.map']);
+
+  if (!resources.standaloneScripts.length) {
+    $.util.log(chalk.cyan('No standalone scripts to copy. Skipping.'));
+    return;
+  }
 
   return gulp.src(resources.standaloneScripts)
     .pipe($.if(isProduction, $.uglifyjs('bundle.js', {

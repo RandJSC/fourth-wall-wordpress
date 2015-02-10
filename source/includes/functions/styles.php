@@ -34,10 +34,8 @@ function fwe_enqueue_styles() {
     'fwe-main' => array(
       'src'     => "$theme_uri/css/style.css",
       'deps'    => array(
-        'normalize',
         'font-awesome',
         'source-sans-pro',
-        'slick-carousel',
       ),
       'version' => '0.1.0',
       'media'   => 'screen',

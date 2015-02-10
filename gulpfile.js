@@ -32,21 +32,15 @@ if ($.util.env.dev) {
   isProduction = false;
 }
 
-var AUTOPREFIXER_BROWSERS = [
-  'ie >= 8',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 6',
-  'android >= 4.4',
-  'bb >= 10'
-];
-
 var baseUrl  = 'http://' + (isProduction ? 'fourthwall.fifthroomhosting.com' : 'localhost:8888') + '/wp-content/themes/fourthwall';
 var webPaths = {
   js: baseUrl + '/js'
+};
+
+var gzipConfig = {
+  gzipOptions: {
+    level: 9
+  }
 };
 
 var browserifyConfig = {
@@ -63,6 +57,14 @@ var sassConfig = {
     'source/css',
     'node_modules'
   ]
+};
+
+var pleeeaseConfig = {
+  browsers: [ 'last 3 versions' ],
+  minifier: {
+    preserveHacks: true,
+    removeAllComments: isProduction
+  }
 };
 
 var resources = {
@@ -217,8 +219,9 @@ gulp.task('styles', [ 'styles:vendor' ], function() {
     .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
     .pipe($.if(isProduction, $.sourcemaps.init()))
-    .pipe($.if(isProduction, $.pleeease()))
+    .pipe($.if(isProduction, $.pleeease(pleeeaseConfig)))
     .pipe($.if(isProduction, $.sourcemaps.write()))
+    .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe(gulp.dest('build/css'))
     .pipe($.size({ title: 'scss' }));
 });
@@ -293,7 +296,7 @@ gulp.task('scripts:main', function() {
       sourceRoot: webPaths.js
     })))
     .pipe(gulp.dest('build/js'))
-    .pipe($.if(isProduction, $.gzip({ gzipOptions: { level: 9 } })))
+    .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });

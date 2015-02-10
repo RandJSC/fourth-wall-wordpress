@@ -34,7 +34,6 @@ function fwe_enqueue_styles() {
     'fwe-main' => array(
       'src'     => "$theme_uri/css/style.css",
       'deps'    => array(
-        'font-awesome',
         'source-sans-pro',
       ),
       'version' => '0.1.0',

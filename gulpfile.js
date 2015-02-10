@@ -60,16 +60,15 @@ var sassConfig = {
   debugInfo: !isProduction,
   precision: 10,
   loadPath: [
-    'source/css'
+    'source/css',
+    'node_modules'
   ]
 };
 
 var resources = {
   scss: 'source/css/**/*.scss',
   css: 'source/css/**/*.css',
-  vendorStyles: [
-    'node_modules/font-awesome/css/font-awesome.min.css'
-  ],
+  vendorStyles: [],
   scripts: [ 'source/js/**/*.js' ],
   vendorScripts: [],
   standaloneScripts: [

@@ -62,7 +62,7 @@ var sassConfig = {
 var pleeeaseConfig = {
   browsers: [ 'last 3 versions' ],
   minifier: isProduction ? { preserveHacks: true, removeAllComments: true } : false,
-  sourcemaps: !isProduction
+  sourcemaps: false
 };
 
 var resources = {

@@ -50,8 +50,8 @@ $banner = fwe_get_page_banner($post->ID);
           ?>
           <form action="<?php echo site_url('/wp-json/fwe/hire-us'); ?>" method="post">
             <p>
-            Hi, <label for="hire-name">my name is</label> <?php fwe_gform_input($fields[0], array('class' => 'madlib', 'id' => 'hire-name')); ?>, and <label for="hire-company">I work at</label> <?php fwe_gform_input($fields[1], array('id' => 'hire-company', 'class' => 'madlib')); ?>.
-            <label for="hire-address">We're located at</label> <?php fwe_gform_input($fields[2], array('id' => 'hire-address', 'class' => 'madlib')); ?> <label for="hire-city">in</label> <?php fwe_gform_input($fields[3], array('id' => 'hire-city', 'class' => 'madlib')); ?>,
+              Hi, <label for="hire-name">my name is</label> <?php fwe_gform_input($fields[0], array('class' => 'madlib', 'id' => 'hire-name')); ?>, and <label for="hire-company">I work at</label> <?php fwe_gform_input($fields[1], array('id' => 'hire-company', 'class' => 'madlib')); ?>.
+              <label for="hire-address">We're located at</label> <?php fwe_gform_input($fields[2], array('id' => 'hire-address', 'class' => 'madlib')); ?> <label for="hire-city">in</label> <?php fwe_gform_input($fields[3], array('id' => 'hire-city', 'class' => 'madlib')); ?>,
               <select id="hire-state" name="<?php echo esc_attr($fields[4]['id']); ?>" class="madlib">
                 <?php foreach ($fields[4]['choices'] as $state): ?>
                   <option value="<?php echo esc_attr($state['value']); ?>">
@@ -81,7 +81,14 @@ $banner = fwe_get_page_banner($post->ID);
             </p>
 
             <p>
-            I look forward to hearing back from you soon. <label for="hire-contact">I'd prefer if you'd contact me via</label> <?php fwe_gform_input($fields[12], array('id' => 'hire-contact', 'class' => 'madlib')); ?>, and <label for="hire-time">the best time to reach me is usually</label> <?php fwe_gform_input($fields[13], array('type' => 'time', 'id' => 'hire-time', 'class' => 'madlib')); ?>.
+              I look forward to hearing back from you soon. <label for="hire-contact">I'd prefer if you'd contact me via</label> <?php fwe_gform_input($fields[12], array('id' => 'hire-contact', 'class' => 'madlib')); ?>, and <label for="hire-time">the best time to reach me is usually</label>
+              <select id="hire-time" name="<?php echo esc_attr($fields[13]['id']); ?>" class="madlib">
+                <?php foreach ($fields[13]['choices'] as $time): ?>
+                  <option value="<?php echo esc_attr($time['value']); ?>">
+                    <?php echo $time['text']; ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>.
             </p>
 
             <p>

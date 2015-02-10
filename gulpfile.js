@@ -297,6 +297,8 @@ gulp.task('scripts:main', function() {
       outSourceMap: 'main.js.map',
       sourceRoot: webPaths.js
     })))
+    .pipe(gulp.dest('build/js'))
+    .pipe($.if(isProduction, $.gzip({ gzipOptions: { level: 9 } })))
     .pipe($.size({ title: 'main-js' }))
     .pipe(gulp.dest('build/js'));
 });
@@ -310,6 +312,8 @@ gulp.task('scripts:eventMap', function() {
       outSourceMap: 'event-map.map',
       sourceRoot: webPaths.js
     })))
+    .pipe(gulp.dest('build/js'))
+    .pipe($.if(isProduction, $.gzip({ gzipOptions: { level: 9 } })))
     .pipe($.size({ title: 'event-map.js' }))
     .pipe(gulp.dest('build/js'));
 });

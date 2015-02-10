@@ -61,10 +61,8 @@ var sassConfig = {
 
 var pleeeaseConfig = {
   browsers: [ 'last 3 versions' ],
-  minifier: {
-    preserveHacks: true,
-    removeAllComments: isProduction
-  }
+  minifier: isProduction ? { preserveHacks: true, removeAllComments: true } : false,
+  sourcemaps: !isProduction
 };
 
 var resources = {
@@ -218,11 +216,10 @@ gulp.task('styles', [ 'styles:vendor' ], function() {
     .pipe(helpers.log(chalk.yellow('Compiling SCSS')))
     .pipe($.rubySass(sassConfig))
     .on('error', console.error.bind(console))
-    .pipe($.if(isProduction, $.sourcemaps.init()))
-    .pipe($.if(isProduction, $.pleeease(pleeeaseConfig)))
-    .pipe($.if(isProduction, $.sourcemaps.write()))
-    .pipe($.if(isProduction, $.gzip(gzipConfig)))
+    .pipe($.pleeease(pleeeaseConfig))
     .pipe(gulp.dest('build/css'))
+    .pipe($.if(isProduction, $.gzip(gzipConfig)))
+    .pipe($.if(isProduction, gulp.dest('build/css')))
     .pipe($.size({ title: 'scss' }));
 });
 
@@ -289,31 +286,23 @@ gulp.task('scripts', function(cb) {
 gulp.task('scripts:main', function() {
   return gulp.src('source/js/main.js')
     .pipe($.browserify(browserifyConfig))
-    .pipe(transform(function() { return exorcist('build/js/main.browserify.map'); }))
-    .pipe($.if(isProduction, $.uglifyjs({
-      inSourceMap: 'main.browserify.map',
-      outSourceMap: 'main.js.map',
-      sourceRoot: webPaths.js
-    })))
+    .pipe($.if(!isProduction, transform(function() { return exorcist('build/js/main.map'); })))
+    .pipe($.if(isProduction, $.uglifyjs()))
     .pipe(gulp.dest('build/js'))
     .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe($.size({ title: 'main-js' }))
-    .pipe(gulp.dest('build/js'));
+    .pipe($.if(isProduction, gulp.dest('build/js')));
 });
 
 gulp.task('scripts:eventMap', function() {
   return gulp.src('source/js/event-map.js')
     .pipe($.browserify(browserifyConfig))
-    .pipe(transform(function() { return exorcist('build/js/event-map.browserify.map'); }))
-    .pipe($.if(isProduction, $.uglifyjs({
-      inSourceMap: 'event-map.browserify.map',
-      outSourceMap: 'event-map.map',
-      sourceRoot: webPaths.js
-    })))
+    .pipe($.if(!isProduction, transform(function() { return exorcist('build/js/event-map.map'); })))
+    .pipe($.if(isProduction, $.uglifyjs()))
     .pipe(gulp.dest('build/js'))
-    .pipe($.if(isProduction, $.gzip({ gzipOptions: { level: 9 } })))
+    .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe($.size({ title: 'event-map.js' }))
-    .pipe(gulp.dest('build/js'));
+    .pipe($.if(isProduction, gulp.dest('build/js')));
 });
 
 gulp.task('scripts:vendor', function() {

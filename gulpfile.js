@@ -22,6 +22,8 @@ var exorcist    = require('exorcist');
 var transform   = require('vinyl-transform');
 var glob        = require('glob');
 var notifier    = require('node-notifier');
+var exec        = require('child_process').exec;
+var spawn       = require('child_process').spawn;
 
 // All optimizations are turned on by default. Pass --dev to
 // enable the creation of source maps and other things that
@@ -361,6 +363,32 @@ gulp.task('totalsize', function() {
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'build']));
+
+gulp.task('vagrant:ssh-config', function(cb) {
+  var configPath = path.join(__dirname, 'vagrant-ssh.config');
+
+  if (fs.existsSync(configPath)) {
+    $.util.log(chalk.cyan('Vagrant SSH config already exists. Delete it to regenerate.'));
+    return cb();
+  }
+
+  exec('vagrant ssh-config', function(err, stdout, stderr) {
+    if (err) {
+      $.util.log(chalk.red('Cannot save Vagrant ssh config unless VM is running! Please run `vagrant up`'));
+      return cb();
+    }
+
+    fs.writeFile(configPath, stdout, function(err) {
+      if (err) {
+        $.util.log(chalk.red('Error saving Vagrant SSH config'));
+        return cb();
+      }
+
+      $.util.log(chalk.green('Vagrant SSH config saved!'));
+      return cb();
+    });
+  });
+});
 
 gulp.task('default', ['clean'], function(cb) {
   runSequence('styles', [ 'images', 'copy', 'php', 'fonts', 'scripts' ], 'totalsize', cb);

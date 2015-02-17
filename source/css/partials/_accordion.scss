@@ -94,6 +94,26 @@
       h3 {
         margin-top: 0;
       }
+
+      .float-container {
+        @include clearfix;
+
+        .images {
+          @include media($bp-above-mobile) {
+            float: left;
+            width: rem(200);
+          }
+        }
+
+        .content {
+          @include media($bp-above-mobile) {
+            float: left;
+            margin-left: rem(40);
+            overflow: visible;
+            @include calc(width, '100% - 240px');
+          }
+        }
+      }
     }
 
     h2 {

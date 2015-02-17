@@ -152,8 +152,7 @@ gulp.task('jshint', function() {
 
 // Run all image related tasks
 gulp.task('images', function(cb) {
-  runSequence('images:vendor', 'images:optimize', 'images:rasterize');
-  cb();
+  runSequence('images:vendor', 'images:optimize', cb);
 });
 
 // Optimize images

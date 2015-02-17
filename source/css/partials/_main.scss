@@ -536,6 +536,7 @@ button {
     width: (100% / 3);
     text-decoration: none;
     min-height: 1px;
+    color: $text-color;
 
     .mobile-text {
       @include media($bp-above-mobile) {

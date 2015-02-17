@@ -132,6 +132,7 @@ section.content-section.case-study {
 
       .slider-arrows {
         @extend %slider-arrows;
+        @include transition(top 500ms);
       }
     }
 

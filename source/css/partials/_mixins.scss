@@ -124,6 +124,7 @@
     height: rem(36);
     padding: 0 rem(16);
     padding-right: rem(24);
+    @include transition(top 500ms);
   }
 
   .slider-arrow {

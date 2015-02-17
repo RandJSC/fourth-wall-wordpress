@@ -41,7 +41,7 @@
     "lodash.throttle": "^2.4.1",
     "moment": "^2.8.4",
     "q": "^1.0.1",
-    "slick-carousel": "^1.3.13",
+    "slick-carousel": "^1.4.1",
     "spin.js": "^2.0.1",
     "validate.js": "^0.3.2"
   },

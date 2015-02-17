@@ -130,7 +130,7 @@
   };
 
   var slickDefaults = {
-    lazyLoad: 'ondemand',
+    lazyLoad: 'progressive',
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: false,
@@ -230,6 +230,21 @@
         var $slider = $el.find('ul');
         var $dots   = $(this).find('a.slider-dot');
 
+        $slider.on('init', function(evt, slider) {
+          logger.log('testimonialSlider', 'Slider initialized: %O', slider);
+
+          $dots.on('click', function(evt) {
+            var slideNum = $(this).data('index');
+            $slider.slickGoTo(slideNum);
+            $dots.removeClass('current');
+            $(this).addClass('current');
+            return false;
+          });
+        }).on('afterChange', function(evt, slider, current) {
+          logger.log('testimonialSlider', 'Slide transition: %d', current);
+          $dots.removeClass('current').eq(slider.currentSlide).addClass('current');
+        });
+
         $slider.slick({
           autoplay: true,
           autoplaySpeed: 5e3,
@@ -237,22 +252,7 @@
           arrows: false,
           dots: false,
           draggable: false,
-          slide: 'li',
-          onInit: function(slider) {
-            logger.log('testimonialSlider', 'Slider initialized: %O', slider);
-
-            $dots.on('click', function(evt) {
-              var slideNum = $(this).data('index');
-              $slider.slickGoTo(slideNum);
-              $dots.removeClass('current');
-              $(this).addClass('current');
-              return false;
-            });
-          },
-          onAfterChange: function(slider) {
-            logger.log('testimonialSlider', 'Slide transition');
-            $dots.removeClass('current').eq(slider.currentSlide).addClass('current');
-          }
+          slide: 'li'
         });
       });
     },
@@ -329,80 +329,86 @@
 
         var $el = $(this);
 
-        var slickOpts = assign(slickDefaults, {
-          onInit: function(slider) {
-            var sides      = [ 'left', 'right' ];
-            var $container = slider.$slider.closest(options.container);
+        $el.on('init', function(evt, slider) {
+          var sides      = [ 'left', 'right' ];
+          var $container = slider.$slider.closest(options.container);
 
-            if (!$container.length) return;
+          if (!$container.length) return;
 
-            if (options.navLinks) {
-              logger.log('gallery', 'Setting up slide seek links');
+          if (options.navLinks) {
+            logger.log('gallery', 'Setting up slide seek links');
 
-              $container.parent().find(options.navLinks).on('click', function() {
-                var sliderTop = $el.offset().top;
-                var scrollY   = getScrollY();
-                var idx       = $(this).data('index');
-                var slideSeek = function() {
-                  logger.log('gallery:seek', 'Seeking to slide %d', idx);
-                  $el.slickGoTo(idx);
-                };
+            $container.parent().find(options.navLinks).on('click', function() {
+              var sliderTop = $el.offset().top;
+              var scrollY   = getScrollY();
+              var idx       = $(this).data('index');
+              var slideSeek = function() {
+                logger.log('gallery:seek', 'Seeking to slide %d', idx);
+                $el.slick('slickGoTo', idx);
+              };
 
-                if (scrollY !== (sliderTop + options.scrollThreshold) || scrollY !== (sliderTop - options.scrollThreshold)) {
-                  logger.log('gallery:scroll', 'Scrolling up to offset %d', sliderTop);
-                  TweenLite.to(window, 0.5, { scrollTo: { y: sliderTop }, onComplete: slideSeek });
-                } else {
-                  slideSeek();
-                }
-
-                return false;
-              });
-            }
-
-            var $imgLinks = $container.find('a');
-
-            if (options.popup) {
-              logger.log('gallery', 'Binding Magnific Popup to slider images');
-              $imgLinks.magnificPopup({ type: 'image' });
-            }
-
-            $container.append(templates.arrowContainer);
-
-            var $arrowContainer = $container.find('.slider-arrows');
-
-            var centerArrows = throttle(function(evt) {
-              var arrowHeight  = $arrowContainer.height();
-              var sliderHeight = $container.height();
-              var arrowTop     = Math.round(sliderHeight / 2 - arrowHeight);
-
-              logger.log('gallery', 'Vertically centering nav arrows. sliderHeight = %d arrowTop = %d $el = %O', sliderHeight, arrowTop, $el);
-
-              $arrowContainer.css('top', arrowTop);
-            }, 100);
-
-            // append nav arrows to slider container
-            forEach(sides, function(side) {
-              var arrow = templates.sliderArrow({ side: side });
-              $arrowContainer.append(arrow);
-            });
-
-            // vertically center nav arrows in slider frame
-            imagesLoaded($container[0], centerArrows);
-            $(window).on('resize', centerArrows);
-
-            // bind click handlers to nav arrows
-            $arrowContainer.find('.slider-arrow').on('click', function(evt) {
-              if ($(this).hasClass('left')) {
-                $el.slickPrev();
+              if (scrollY !== (sliderTop + options.scrollThreshold) || scrollY !== (sliderTop - options.scrollThreshold)) {
+                logger.log('gallery:scroll', 'Scrolling up to offset %d', sliderTop);
+                TweenLite.to(window, 0.5, { scrollTo: { y: sliderTop }, onComplete: slideSeek });
               } else {
-                $el.slickNext();
+                slideSeek();
               }
+
               return false;
             });
           }
+
+          var $imgLinks = $container.find('a');
+
+          if (options.popup) {
+            logger.log('gallery', 'Binding Magnific Popup to slider images');
+            $imgLinks.magnificPopup({ type: 'image' });
+          }
+
+          $container.append(templates.arrowContainer);
+
+          var $arrowContainer = $container.find('.slider-arrows');
+
+          var centerArrows = throttle(function(evt, slider, current, next) {
+            var sliderHeight;
+            var arrowHeight  = $arrowContainer.height();
+
+            if (evt.type === 'beforeChange') {
+              sliderHeight = slider.$slides.eq(next).height();
+            } else {
+              sliderHeight = $container.height();
+            }
+
+            var arrowTop = Math.round(sliderHeight / 2 - arrowHeight);
+
+            logger.log('gallery', 'Vertically centering nav arrows. sliderHeight = %d arrowTop = %d $el = %O', sliderHeight, arrowTop, $el);
+
+            $arrowContainer.css('top', arrowTop);
+          }, 100);
+
+          // append nav arrows to slider container
+          forEach(sides, function(side) {
+            var arrow = templates.sliderArrow({ side: side });
+            $arrowContainer.append(arrow);
+          });
+
+          // vertically center nav arrows in slider frame
+          imagesLoaded($container[0], centerArrows);
+          $(window).on('resize', centerArrows);
+          $el.on('beforeChange', centerArrows);
+
+          // bind click handlers to nav arrows
+          $arrowContainer.find('.slider-arrow').on('click', function(evt) {
+            if ($(this).hasClass('left')) {
+              $el.slick('slickPrev');
+            } else {
+              $el.slick('slickNext');
+            }
+            return false;
+          });
         });
 
-        $el.slick(slickOpts);
+        $el.slick(slickDefaults);
       });
     },
 

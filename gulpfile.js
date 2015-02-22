@@ -24,6 +24,8 @@ var glob        = require('glob');
 var notifier    = require('node-notifier');
 var exec        = require('child_process').exec;
 var spawn       = require('child_process').spawn;
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
 // All optimizations are turned on by default. Pass --dev to
 // enable the creation of source maps and other things that
@@ -143,6 +145,19 @@ gulp.task('watch', function() {
   gulp.watch(resources.themeJSON, [ 'styles' ]);
 });
 
+gulp.task('serve', function() {
+  browserSync({
+    proxy: 'localhost:8888'
+  });
+
+  gulp.watch(resources.scss, [ 'styles' ]);
+  gulp.watch(resources.css, [ 'copy', reload ]);
+  gulp.watch(resources.images, [ 'images', reload ]);
+  gulp.watch(resources.scripts, [ 'scripts' ]);
+  gulp.watch(resources.php, [ 'php', reload ]);
+  gulp.watch(resources.fonts, [ 'fonts', reload ]);
+})
+
 // Lint JavaScript
 gulp.task('jshint', function() {
   return gulp.src(resources.scripts)
@@ -221,6 +236,7 @@ gulp.task('styles', [ 'styles:vendor' ], function() {
     .pipe(gulp.dest('build/css'))
     .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe($.if(isProduction, gulp.dest('build/css')))
+    .pipe(reload({ stream: true }))
     .pipe($.size({ title: 'scss' }));
 });
 
@@ -278,7 +294,8 @@ gulp.task('scripts:main', function() {
     .pipe(gulp.dest('build/js'))
     .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe($.size({ title: 'main-js' }))
-    .pipe($.if(isProduction, gulp.dest('build/js')));
+    .pipe($.if(isProduction, gulp.dest('build/js')))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('scripts:eventMap', function() {
@@ -289,7 +306,8 @@ gulp.task('scripts:eventMap', function() {
     .pipe(gulp.dest('build/js'))
     .pipe($.if(isProduction, $.gzip(gzipConfig)))
     .pipe($.size({ title: 'event-map.js' }))
-    .pipe($.if(isProduction, gulp.dest('build/js')));
+    .pipe($.if(isProduction, gulp.dest('build/js')))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('scripts:vendor', function() {
@@ -300,7 +318,8 @@ gulp.task('scripts:vendor', function() {
 
   return gulp.src(resources.vendorScripts)
     .pipe(gulp.dest('build/js'))
-    .pipe($.size({ title: 'vendorScripts' }));
+    .pipe($.size({ title: 'vendorScripts' }))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('scripts:copy', function() {
@@ -317,7 +336,8 @@ gulp.task('scripts:copy', function() {
       sourceRoot: webPaths.js
     }), $.concat('bundle.js')))
     .pipe($.size({ title: 'uglified-js' }))
-    .pipe(gulp.dest('build/js'));
+    .pipe(gulp.dest('build/js'))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('sourcemaps:fix', function(cb) {

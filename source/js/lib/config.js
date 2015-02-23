@@ -10,6 +10,7 @@
 
   // turn off in production
   config.debug = true;
+  config.showMemoryStats = false;
 
   config.defaults = {
     animation: {

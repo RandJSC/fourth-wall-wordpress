@@ -26,7 +26,24 @@
   var matchMedia = require('./lib/match-media-polyfill');
 
   // remove me in production
-  var debug  = require('./lib/jquery.debug');
+  if (config.debug) {
+    var debug       = require('./lib/jquery.debug');
+    var MemoryStats = require('memory-stats/memory-stats');
+
+    if (config.showMemoryStats) {
+      var stats = new MemoryStats();
+      stats.domElement.style.position = 'fixed';
+      stats.domElement.style.right    = '0px';
+      stats.domElement.style.bottom   = '0px';
+      stats.domElement.style.zIndex   = 1000;
+      document.body.appendChild(stats.domElement);
+
+      window.requestAnimationFrame(function rafLoop() {
+        stats.update();
+        window.requestAnimationFrame(rafLoop);
+      });
+    }
+  }
 
   $(function() {
 

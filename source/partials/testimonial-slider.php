@@ -1,4 +1,13 @@
-<div class="testimonial-slider">
+<?php
+global $fwe_settings;
+
+if (array_key_exists('testimonial_slider_speed', $fwe_settings)) {
+  $slider_speed = ' data-autoplay-speed="' . $fwe_settings['testimonial_slider_speed'] . '"';
+} else {
+  $slider_speed = '';
+}
+?>
+<div class="testimonial-slider"<?php echo $slider_speed; ?>>
   <div class="quotes">
     <div class="quote left">&ldquo;</div>
     <div class="quote right">&rdquo;</div>

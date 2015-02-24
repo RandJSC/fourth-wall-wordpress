@@ -145,7 +145,7 @@
     $banner.fixBannerHeight();
 
     // Homepage slider (if present)
-    $homepageSlider.homepageSlider();
+    $homepageSlider.homepageSlider({ autoplay: true, autoplaySpeed: 5000 });
 
     // Main Page slider (on generic pages)
     $pageSlider.photoSlider({

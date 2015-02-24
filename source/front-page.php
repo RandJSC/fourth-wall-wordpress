@@ -5,6 +5,8 @@
  */
 
 get_header();
+
+global $fwe_settings;
 ?>
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
@@ -13,10 +15,16 @@ get_header();
   $images      = get_post_meta($post_id, 'slider_images', true);
   $image_count = count($images['image']);
 
+  if (array_key_exists('homepage_slider_speed', $fwe_settings)) {
+    $slider_speed_attr = ' data-autoplay-speed="' . $fwe_settings['homepage_slider_speed'] . '"';
+  } else {
+    $slider_speed_attr = '';
+  }
+
   if ($image_count):
   ?>
     <section class="slider banner home">
-      <div class="slides">
+      <div class="slides"<?php echo $slider_speed_attr; ?>>
         <?php for ($i = 0; $i < $image_count; $i++): ?>
           <?php
           $title    = $images['title'][$i];

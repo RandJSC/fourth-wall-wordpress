@@ -226,9 +226,14 @@
 
     testimonialSlider: function() {
       return this.each(function() {
-        var $el     = $(this);
-        var $slider = $el.find('ul');
-        var $dots   = $(this).find('a.slider-dot');
+        logger.log('testimonialSlider', 'Initializing testimonial slider: %O', this);
+
+        var $el      = $(this);
+        var $slider  = $el.find('ul');
+        var $dots    = $(this).find('a.slider-dot');
+        var speed    = $el.data('autoplaySpeed') || 8;
+
+        logger.log('testimonialSlider', 'Setting autoplay speed to %d seconds', speed);
 
         $slider.on('init', function(evt, slider) {
           logger.log('testimonialSlider', 'Slider initialized: %O', slider);
@@ -247,7 +252,7 @@
 
         $slider.slick({
           autoplay: true,
-          autoplaySpeed: 5e3,
+          autoplaySpeed: speed * 1000,
           infinite: true,
           arrows: false,
           dots: false,
@@ -309,9 +314,23 @@
       });
     },
 
-    homepageSlider: function() {
+    homepageSlider: function(opts) {
+
       return this.each(function() {
-        return $(this).slick(slickDefaults);
+        logger.log('homepageSlider', 'Initializing homepage slider on: %O', this);
+
+        var speedObj  = {};
+        var $el       = $(this);
+        var speed     = $el.data('autoplaySpeed');
+
+        if (speed) {
+          logger.log('homepageSlider', 'Overriding autoplay speed: %d seconds', speed);
+          speedObj.autoplaySpeed = speed * 1000;
+        }
+
+        var slickOpts = assign(slickDefaults, opts, speedObj);
+
+        return $(this).slick(slickOpts);
       });
     },
 

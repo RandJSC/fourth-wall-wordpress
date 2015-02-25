@@ -27,18 +27,24 @@ global $fwe_settings;
       <div class="slides"<?php echo $slider_speed_attr; ?>>
         <?php for ($i = 0; $i < $image_count; $i++): ?>
           <?php
-          $title    = $images['title'][$i];
-          $link_url = $images['link_url'][$i];
-          $img_id   = fwe_get_first_valid_image($images['image'][$i]);
-          $src      = wp_get_attachment_image_src($img_id, 'homepage-slider');
+          $title      = $images['title'][$i];
+          $link_url   = esc_url($images['link_url'][$i]);
+          $link_blank = empty($link_url) || $link_url == '#';
+          $img_id     = fwe_get_first_valid_image($images['image'][$i]);
+          $src        = wp_get_attachment_image_src($img_id, 'homepage-slider');
           ?>
           <figure class="slide">
-            <a href="<?php echo $link_url; ?>">
+            <?php if (!$link_blank): ?>
+              <a href="<?php echo $link_url; ?>">
+            <?php endif; ?>
               <?php
               $img_src = fwe_lazy_load_img_src($src[0], $i);
               ?>
               <img <?php echo $img_src; ?> alt="<?php echo esc_attr($title); ?>" width="100%">
               <figcaption><?php echo $title; ?></figcaption>
+            <?php if (!$link_blank): ?>
+              </a>
+            <?php endif; ?>
             </a>
           </figure>
         <?php endfor; ?>

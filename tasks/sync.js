@@ -8,6 +8,7 @@ var chalk   = require('chalk');
 var path    = require('path');
 var shell   = require('gulp-shell');
 var helpers = require('./lib/helpers.js');
+var confirm = require('gulp-confirm');
 
 var projectRoot = path.resolve(path.join(__dirname, '..'));
 
@@ -76,3 +77,16 @@ gulp.task('plugins:down', syncTask({
   message: 'Syncing plugins DOWN...',
   direction: 'down'
 }));
+
+gulp.task('sync:production', function() {
+  var rsyncCmd = helpers.commandTemplate([
+    'rsync',
+    '-avzr',
+    '\'' + path.join(projectRoot, 'build/') + '\'',
+    '\'{{ production.rsync.username }}@{{ production.rsync.hostname }}:{{ production.rsync.path }}\''
+  ]);
+
+  return gulp.src('')
+    .pipe(helpers.log(chalk.blue('Syncing up to production...')))
+    .pipe(shell(rsyncCmd));
+});

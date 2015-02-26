@@ -13,8 +13,9 @@ var Handlebars = require('handlebars');
 var path       = require('path');
 var os         = require('os');
 
-var localConfig  = secrets.servers.dev;
-var remoteConfig = secrets.servers.staging;
+var localConfig      = secrets.servers.dev;
+var remoteConfig     = secrets.servers.staging;
+var productionConfig = secrets.servers.production;
 
 var vagrant = {
   privateKey: path.join(process.env.HOME, '.vagrant.d', 'insecure_private_key'),
@@ -37,7 +38,8 @@ var commandTemplate = function commandTemplate(parts, bindings, glue) {
 
   bindings = _.assign({}, bindings, {
     dev: localConfig,
-    staging: remoteConfig
+    staging: remoteConfig,
+    production: productionConfig
   });
 
   var allParts = _.isArray(parts) ? parts.join(glue) : parts;

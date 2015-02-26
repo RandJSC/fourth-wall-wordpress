@@ -64,6 +64,7 @@
     "gulp-cache": "^0.2.2",
     "gulp-changed": "^1.0.0",
     "gulp-concat": "^2.4.1",
+    "gulp-confirm": "^0.1.6",
     "gulp-filter": "^1.0.2",
     "gulp-flatten": "^0.0.3",
     "gulp-gzip": "0.0.8",

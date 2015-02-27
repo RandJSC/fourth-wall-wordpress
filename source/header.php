@@ -11,6 +11,7 @@ $fwe_settings = get_option('fwe_settings');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="google-site-verification" content="Z_CCv22iEho8OTtkwYnDDaHYWmixfHMHZz4pGLXCKU8">
 
   <title><?php wp_title(); ?></title>
 
@@ -43,6 +44,8 @@ $fwe_settings = get_option('fwe_settings');
   <?php include(locate_template('partials/addthis.php')); ?>
 
   <?php wp_head(); ?>
+
+  <?php include(locate_template('partials/analytics.php')); ?>
 </head>
 <body <?php body_class(); ?>>
   <?php include(locate_template('partials/facebook-init.php')); ?>

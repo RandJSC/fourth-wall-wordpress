@@ -9,7 +9,7 @@
   var config = {};
 
   // turn off in production
-  config.debug = true;
+  config.debug = false;
   config.showMemoryStats = false;
 
   config.defaults = {

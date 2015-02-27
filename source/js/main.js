@@ -47,6 +47,21 @@
 
   $(function() {
 
+    // Console access to libraries (debug mode only):
+    if (config.debug) {
+      window.jQuery     = window.$ = $;
+      window.logger     = logger;
+      window.FastClick  = fastClick;
+      window.Snap       = Snap;
+      window.Handlebars = Handlebars;
+      window.config     = config;
+      window.ie         = ie;
+    } else {
+      // If not in debug mode, disable all logged messages
+      logger.options.groupsEnabled = false;
+      logger.options.disabled      = true;
+    }
+
     logger.log('timing', 'Begin docReady');
 
     $(document.documentElement).removeClass('no-js').addClass('js');
@@ -73,20 +88,6 @@
     var $cta                = $('.call-to-action');
     var $banner             = $('section.banner');
 
-    // Console access to libraries (debug mode only):
-    if (config.debug) {
-      window.jQuery        = window.$ = $;
-      window.logger        = logger;
-      window.FastClick     = fastClick;
-      window.Snap          = Snap;
-      window.Handlebars    = Handlebars;
-      window.config        = config;
-      window.ie            = ie;
-    } else {
-      // If not in debug mode, disable all logged messages
-      logger.options.groupsEnabled = false;
-      logger.options.disabled = true;
-    }
 
     // Setup AddThis sharing buttons
     if (window.hasOwnProperty('addthis')) {

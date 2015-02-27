@@ -20,6 +20,11 @@
   var TweenLite  = require('gsap/src/uncompressed/TweenLite');
   var ScrollTo   = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
 
+  if (!config.debug) {
+    logger.options.groupsEnabled = false;
+    logger.options.disabled      = true;
+  }
+
   $(document).ready(function() {
     logger.log('eventMap', 'Initializing event map');
 

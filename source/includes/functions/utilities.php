@@ -406,6 +406,7 @@ function fwe_get_root_parent($post) {
 }
 
 function fwe_get_first_valid_image($images) {
+  if (is_string($images) || is_int($images)) return $images;
   if (!is_array($images)) return 0;
 
   $intval = 0;

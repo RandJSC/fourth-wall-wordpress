@@ -75,7 +75,13 @@ include(locate_template('partials/gallery-quick-links.php'));
           <div class="slides">
             <?php for ($i = 0; $i < $photo_count; $i++): ?>
               <?php
-              list($src, $width, $height, $resized) = wp_get_attachment_image_src($photos['photo'][$i][0], 'full');
+              $photo_id = fwe_get_first_valid_image($photos['photo'][$i]);
+
+              if (!$photo_id) {
+                continue;
+              }
+
+              list($src, $width, $height, $resized) = wp_get_attachment_image_src($photo_id, 'full');
               $src_attr = fwe_lazy_load_img_src($src, $i);
               ?>
               <figure class="slide">

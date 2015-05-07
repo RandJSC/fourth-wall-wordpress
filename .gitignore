@@ -15,3 +15,4 @@
 .vim_librarian
 /npm-debug.log
 /vagrant-ssh.config
+/.bundle

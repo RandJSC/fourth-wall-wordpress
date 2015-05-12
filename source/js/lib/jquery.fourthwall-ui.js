@@ -240,7 +240,7 @@
 
           $dots.on('click', function(evt) {
             var slideNum = $(this).data('index');
-            $slider.slickGoTo(slideNum);
+            $slider.slick('slickGoTo', slideNum);
             $dots.removeClass('current');
             $(this).addClass('current');
             return false;

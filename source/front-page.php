@@ -11,9 +11,14 @@ global $fwe_settings;
 
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
   <?php
-  $post_id     = get_the_ID();
-  $images      = get_post_meta($post_id, 'slider_images', true);
-  $image_count = count($images['image']);
+  $post_id      = get_the_ID();
+  $images       = get_post_meta($post_id, 'slider_images', true);
+  $image_count  = count($images['image']);
+  $stitches     = get_post_meta($post_id, 'stitch_children');
+  $stitches     = array_filter($stitches, function($item) {
+    return !empty($item);
+  });
+  $has_stitches = is_array($stitches) && count($stitches);
 
   if (array_key_exists('homepage_slider_speed', $fwe_settings)) {
     $slider_speed_attr = ' data-autoplay-speed="' . $fwe_settings['homepage_slider_speed'] . '"';
@@ -74,6 +79,16 @@ global $fwe_settings;
 
     <?php the_content(); ?>
   </section>
+
+  <?php
+  if ($has_stitches) {
+    foreach ($stitches as $stitch_id) {
+      $stitch = fwe_get_stitch_vars($stitch_id);
+      include locate_template('partials/subpage-stitch-content.php');
+    }
+    wp_reset_postdata();
+  }
+  ?>
 <?php endwhile; endif; ?>
 
 <?php

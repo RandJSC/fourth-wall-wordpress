@@ -106,6 +106,8 @@
 
           window.marker = marker;
 
+          if (!loc.has_events) return;
+
           google.maps.event.addListener(marker, 'click', function() {
             logger.log('eventMap', 'Marker clicked: %s', loc.title);
             var contentReq = $.ajax(jsonLink, {

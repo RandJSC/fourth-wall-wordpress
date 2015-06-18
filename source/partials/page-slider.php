@@ -1,5 +1,9 @@
+<?php
+global $fwe_settings;
+$slider_speed = fwe_theme_option_exists('global_slider_speed') ? $fwe_settings['global_slider_speed'] : 8;
+?>
 <div class="main-page-slider">
-  <div class="slides">
+  <div class="slides" data-speed="<?php echo esc_attr($slider_speed); ?>">
     <?php for ($i = 0; $i < count($slider_images['image']); $i++): ?>
       <?php
       $title    = $slider_images['title'][$i];

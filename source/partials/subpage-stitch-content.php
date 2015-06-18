@@ -1,4 +1,6 @@
 <?php
+global $fwe_settings;
+
 $page_id       = $stitch['stitch_page']->ID;
 $path          = fwe_relative_url(get_permalink($page_id));
 $backgrounds   = get_post_meta($page_id, 'page_backgrounds', true);
@@ -6,6 +8,7 @@ $backgrounds   = fwe_build_page_background_object($backgrounds);
 $bg_data       = '';
 $section_style = '';
 $content_style = '';
+$slider_speed  = fwe_theme_option_exists('global_slider_speed') ? $fwe_settings['global_slider_speed'] : 8;
 
 if (!empty($backgrounds)) {
   $bg_data       = !empty($backgrounds) ? ' data-backgrounds="' . htmlspecialchars(json_encode($backgrounds)) . '"' : '';
@@ -36,7 +39,7 @@ if (!empty($backgrounds)) {
 
     <?php if ($stitch['has_slides']): ?>
       <div class="stitch-slider">
-        <div class="slides">
+        <div class="slides" data-speed="<?php echo esc_attr($slider_speed); ?>">
           <?php for ($i = 0; $i < $stitch['slide_count']; $i++): ?>
             <?php
             $title    = $stitch['slider_images']['title'][$i];

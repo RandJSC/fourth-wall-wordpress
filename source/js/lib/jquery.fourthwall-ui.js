@@ -158,10 +158,19 @@
         var $el       = $(this);
         var $fig      = $el.find('figure');
         var $img      = $fig.find('img');
+        var $caption  = $fig.find('figcaption');
+
         var fixHeight = function() {
           var imgHeight = $img.height();
-          logger.log('banner:fixHeight', 'Fixing banner height: %d', imgHeight);
-          $fig.height(imgHeight);
+          var capHeight = $caption.height();
+          var totalHeight = imgHeight;
+
+          if ($(window).width() < 768) {
+            totalHeight += capHeight;
+          }
+
+          logger.log('banner:fixHeight', 'Fixing banner height: %d', totalHeight);
+          $fig.height(totalHeight);
         };
 
         imagesLoaded($el[0], fixHeight);

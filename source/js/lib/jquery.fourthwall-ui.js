@@ -335,18 +335,22 @@
     },
 
     photoSlider: function(opts) {
-      var defaults = {
+      var defaults  = {
         popup: false,
         container: '.stitch-slider',
         navLinks: null,
         scrollThreshold: 100
       };
-      var options  = isObject(opts) ? assign(defaults, opts) : defaults;
+      var options   = isObject(opts) ? assign(defaults, opts) : defaults;
 
       return this.each(function() {
         logger.log('gallery', 'Setting up photo slider on %O', this);
 
-        var $el = $(this);
+        var $el       = $(this);
+        var slickOpts = assign({}, slickDefaults, {
+          autoplay: true,
+          autoplaySpeed: $el.data('speed') * 1000
+        });
 
         $el.on('init', function(evt, slider) {
           var sides      = [ 'left', 'right' ];
@@ -427,7 +431,7 @@
           });
         });
 
-        $el.slick(slickDefaults);
+        $el.slick(slickOpts);
       });
     },
 

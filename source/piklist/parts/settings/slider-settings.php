@@ -30,3 +30,17 @@ piklist('field', array(
     'step' => 1,
   ),
 ));
+
+piklist('field', array(
+  'type'        => 'number',
+  'field'       => 'global_slider_speed',
+  'label'       => 'Generic Slider Speed',
+  'description' => 'In seconds',
+  'help'        => 'This setting controls the speed of all sliders on the site except Testimonials and Homepage',
+  'value'       => 5,
+  'attributes'  => array(
+    'min'  => 1,
+    'max'  => 30,
+    'step' => 1,
+  ),
+));

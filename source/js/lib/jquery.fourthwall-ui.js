@@ -30,7 +30,7 @@
   var Handlebars    = require('handlebars');
   var TweenLite     = require('gsap/src/uncompressed/TweenLite');
   var ScrollTo      = require('gsap/src/uncompressed/plugins/ScrollToPlugin');
-  var Magnific      = require('./jquery.magnific-popup.min');
+  var MagnificPopup = require('magnific-popup');
   var gforms        = require('./gforms-api');
   var colors        = require('./colors');
   var imagesLoaded  = require('imagesloaded');
@@ -137,18 +137,6 @@
     arrows: false,
     slide: 'figure',
     adaptiveHeight: true
-  };
-
-  var bindMagnificClose = function(cb) {
-    this.container.find('a.button').on('click', function(evt) {
-      evt.preventDefault();
-      evt.stopPropagation();
-      $.magnificPopup.close();
-
-      if (isFunction(cb)) {
-        cb.call(this);
-      }
-    });
   };
 
   module.exports = $.fn.extend({
@@ -650,6 +638,7 @@
         $btn.buttonSpinner();
 
         $el.on('submit', function(evt) {
+          var popupContent;
           var name        = $el.find('#contact-name').val();
           var email       = $el.find('#contact-email').val();
           var message     = $el.find('#contact-message').val();
@@ -691,19 +680,22 @@
             $btn.buttonSpinner('stop');
             logger.log('form:ajax', 'AJAX error: %O', xhr);
 
+            popupContent = $(templates.formConfirmation({
+              header: 'Error!',
+              message: 'There was a problem with your submission. Please try again.'
+            })).find('a.button').on('click', function(evt) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              $.magnificPopup.instance.close();
+            }).end();
+
             $.magnificPopup.open({
               items: [
                 {
                   type: 'inline',
-                  src: templates.formConfirmation({
-                    header: 'Error!',
-                    message: 'There was a problem with your submission. Please try again.'
-                  })
+                  src: popupContent
                 }
-              ],
-              callbacks: {
-                open: bindMagnificClose
-              }
+              ]
             });
           });
 
@@ -711,21 +703,23 @@
             logger.log('form:ajax', 'Received response from server: %O', json);
             $btn.buttonSpinner('stop');
 
+            popupContent = $(templates.formConfirmation({
+              header: 'Thanks!',
+              message: $el.data('confirmation')
+            })).find('a.button').on('click', function(evt) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              $.magnificPopup.instance.close();
+              $el[0].reset();
+            }).end();
+
             $.magnificPopup.open({
               items: [
                 {
                   type: 'inline',
-                  src: templates.formConfirmation({
-                    header: 'Thanks!',
-                    message: $el.data('confirmation')
-                  })
+                  src: popupContent
                 }
-              ],
-              callbacks: {
-                open: bindMagnificClose(function() {
-                  $el[0].reset();
-                })
-              }
+              ]
             });
           });
 
@@ -970,8 +964,11 @@
             evt.preventDefault();
             evt.stopPropagation();
 
-            dialog = templates.formErrors({ errors: errors });
-            console.log(dialog, errors);
+            dialog = $(templates.formErrors({errors: errors})).find('a.button').on('click', function(evt) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              $.magnificPopup.instance.close();
+            }).end();
 
             $.magnificPopup.open({
               items: [
@@ -979,10 +976,7 @@
                   type: 'inline',
                   src: dialog
                 }
-              ],
-              callbacks: {
-                open: bindMagnificClose
-              }
+              ]
             });
           }
 
@@ -1029,7 +1023,7 @@
         $el.on('submit', function() {
           logger.log('hireUsForm:submission', 'Submitting "Hire Us" form');
 
-          var jsonSubmission, ajax;
+          var jsonSubmission, ajax, popupContent;
           var submission = {};
           var $inputs    = $el.find('input, select');
           var submitURL  = $el.attr('action');
@@ -1063,19 +1057,22 @@
             $submit.buttonSpinner('stop');
             logger.log('hireUsForm:submission:ajax', 'AJAX error: %O', xhr);
 
+            popupContent = $(templates.formConfirmation({
+              header: 'Error!',
+              message: 'There was a problem with your submission. Please try again.'
+            })).find('a.button').on('click', function(evt) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              $.magnificPopup.instance.close();
+            }).end();
+
             $.magnificPopup.open({
               items: [
                 {
                   type: 'inline',
-                  src: templates.formConfirmation({
-                    header: 'Error!',
-                    message: 'There was a problem with your submission. Please try again.'
-                  })
+                  src: popupContent
                 }
-              ],
-              callbacks: {
-                open: bindMagnificClose
-              }
+              ]
             });
           });
 
@@ -1083,19 +1080,23 @@
             logger.log('hireUsForm:submission:ajax', 'Received response from server: %O', json);
             $submit.buttonSpinner('stop');
 
+            popupContent = $(templates.formConfirmation({
+              header: 'Thanks!',
+              message: json.message
+            })).find('a.button').on('click', function(evt) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              $.magnificPopup.instance.close();
+              $el[0].reset();
+            }).end();
+
             $.magnificPopup.open({
               items: [
                 {
                   type: 'inline',
-                  src: templates.formConfirmation({
-                    header: 'Thanks!',
-                    message: json.message
-                  })
+                  src: popupContent
                 }
-              ],
-              callbacks: {
-                open: bindMagnificClose(function() { $el[0].reset(); })
-              }
+              ]
             });
           });
 

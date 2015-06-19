@@ -25,10 +25,10 @@ class FourthWall_HireUs {
     16, // Phone
     8, // Service
     9, // Event Date
-    10, // Budget
+    //10, // Budget
     11, // Location
     13, // Contact Method
-    14, // Contact Time
+    //14, // Contact Time
     18, // Nickname
   );
 
@@ -48,7 +48,7 @@ class FourthWall_HireUs {
     $success_msg = array_key_exists('hire_us_success_message', $settings) ? $settings['hire_us_success_message'] : 'Thank you!';
     $mime_type   = $data[19];
 
-    if (!in_array($mime_type, $this->allowed_mime_types)) {
+    if ($mime_type && !in_array($mime_type, $this->allowed_mime_types)) {
       return new WP_Error('That file type is not allowed.');
     }
 

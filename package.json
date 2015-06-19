@@ -40,6 +40,7 @@
     "lodash.isundefined": "^2.4.1",
     "lodash.sortby": "^2.4.1",
     "lodash.throttle": "^2.4.1",
+    "magnific-popup": "^1.0.0",
     "memory-stats": "^1.0.2",
     "moment": "^2.8.4",
     "q": "^1.0.1",

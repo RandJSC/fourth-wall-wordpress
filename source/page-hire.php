@@ -103,7 +103,7 @@ $banner = fwe_get_page_banner($post->ID);
 
             <p class="right">
               <button id="hire-submit" type="submit">
-                <label class="button-label">Submit &raquo;</label>
+                <span class="button-label">Submit &raquo;</span>
               </button>
             </p>
           </form>

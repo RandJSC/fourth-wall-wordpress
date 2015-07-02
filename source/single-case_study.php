@@ -7,7 +7,8 @@
 get_header();
 
 global $post, $fwe_settings;
-$banner_link = get_post_type_archive_link('case_study');
+$banner_link  = get_post_type_archive_link('case_study');
+$slider_speed = fwe_theme_option_exists('global_slider_speed') ? $fwe_settings['global_slider_speed'] : 8;
 
 include(locate_template('partials/gallery-banner.php'));
 include(locate_template('partials/gallery-quick-links.php'));
@@ -72,7 +73,7 @@ include(locate_template('partials/gallery-quick-links.php'));
 
       <div class="gallery-images">
         <div class="gallery-slider">
-          <div class="slides">
+          <div class="slides" data-speed="<?php echo esc_attr($slider_speed); ?>">
             <?php for ($i = 0; $i < $photo_count; $i++): ?>
               <?php
               $photo_id = fwe_get_first_valid_image($photos['photo'][$i]);
